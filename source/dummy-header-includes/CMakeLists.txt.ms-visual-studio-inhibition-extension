@@ -1,0 +1,5 @@
+﻿cmake_minimum_required( VERSION 3.13 )
+project (cppx_core)
+
+file( GLOB_RECURSE source_files LIST_DIRECTORIES false "*.cpp" "*.hpp" )
+add_library( cppx_core_dummy_includes ${source_files} )
