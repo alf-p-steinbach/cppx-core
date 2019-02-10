@@ -1,4 +1,4 @@
-#include <cppx-core/collections/Forward_iterator_impl_.hpp>
+#include <cppx-core/iterators/Forward_iterator_impl_.hpp>
 
 namespace
 {

@@ -1,5 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+
 #include <cppx-core/text/unicode/To_bytes.hpp>
+#include <cppx-core/iterators/Count_iterator_.hpp>
 
 namespace cppx
 {
@@ -7,41 +9,15 @@ namespace cppx
 
     namespace impl
     {
-        // Iterator traits specialization for this class is at the end of this file.
-        class Count_iterator
-        {
-            Size        m_count     = 0;
-
-            struct Proxy
-            {
-                operator char () const { return {}; }
-                void operator=( char ) {}
-            };
-
-        public:
-            auto count() const noexcept -> Size { return m_count; }
-
-            void operator+=( const int n ) noexcept { m_count += n; }
-
-            auto operator*() const noexcept
-                -> Proxy
-            { return {}; }
-
-            auto operator++() noexcept
-                -> Count_iterator&
-            {
-                ++m_count;
-                return *this;
-            }
-        };
+        using Bytes_count_iterator = Count_iterator_<char>;
 
         // This overload is an optimization and can be removed with no ill effects
         // except execution time.
         template< class Value >
-        auto output_utf8( const uint32_t code, const Count_iterator initial_count )
-            -> Count_iterator
+        auto output_utf8( const uint32_t code, const Bytes_count_iterator initial_count )
+            -> Bytes_count_iterator
         {
-            Count_iterator counter = initial_count;
+            Bytes_count_iterator counter = initial_count;
             if( code <= 0x7F )          {  ++counter; }
             else if( code <= 0x7FF )    {  counter += 2; }
             else if( code <= 0xFFFF )   {  counter += 3; }
@@ -49,14 +25,13 @@ namespace cppx
 
             return counter;
         }
-
     }  // namespace impl
 
     template< class Char >
     inline auto n_utf8_bytes_for( const basic_string_view<Char>& sv ) noexcept
         -> Size
     {
-        impl::Count_iterator it;
+        impl::Bytes_count_iterator it;
         it = To_bytes().utf8_from_codes( CPPX_ITEMS( sv ), it );
         return it.count();
     }
@@ -77,11 +52,3 @@ namespace cppx
         -> Size
     { return n_utf8_bytes_for( basic_string_view<Char>( s ) ); }
 }  // namespace cppx
-
-namespace std
-{
-    template<>
-    struct iterator_traits<cppx::impl::Count_iterator>:
-        iterator_traits<char*>
-    {};
-}  // namespace std

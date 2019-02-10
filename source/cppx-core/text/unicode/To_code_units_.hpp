@@ -2,6 +2,7 @@
 
 #include <cppx-core/collections/Span_.hpp>                          // cppx::Span_
 #include <cppx-core/core-language/syntax/macro_use.hpp>             // CPPX_USE_STD
+#include <cppx-core/core-language/parameters/In_out_ref_.hpp>       // cppx::In_out_ref_, std::ref
 #include <cppx-core/core-language/signed-sizes.hpp>                 // cppx::Size
 #include <cppx-core/failure-handling/macro_fail.hpp>                // CPPX_FAIL
 #include <cppx-core/meta-template/Enable_if_.hpp>                   // cppx::Enable_if_
@@ -14,9 +15,9 @@
 
 namespace cppx
 {
-    CPPX_USE_STD( distance, invoke, next );
+    CPPX_USE_STD( distance, invoke, ref, next );
 
-    class To_code_points
+    class To_code_units_
     {
         int     m_n_bad_groups              = 0;
         int     m_n_noncanonical_groups     = 0;
@@ -36,10 +37,10 @@ namespace cppx
         }
 
         template< class In_iterator >
-        auto code_point_from_bytes( In_iterator& it, const In_iterator beyond )
+        auto code_point_from_bytes( In_out_ref_<In_iterator> it_ref, const In_iterator beyond )
             -> uint32_t
         {
-            // TODO: #if
+            auto& it = it_ref.get();
             hopefully( it != beyond )
                 or CPPX_FAIL( "Called with an empty byte sequence `it == beyond`" );
 
@@ -96,7 +97,7 @@ namespace cppx
             const In_iterator beyond_bytes = bytes_range.beyond();
             for( auto it = bytes_range.first(); it != beyond_bytes; )
             {
-                const uint32_t code_point = code_point_from_bytes( it, beyond_bytes );
+                const uint32_t code_point = code_point_from_bytes( in_out_ref( it ), beyond_bytes );
                 m_n_bad_groups += (code_point == ascii::bad_char);
                 current = utf16::from_code_point( code_point, current );
             }

@@ -14,7 +14,7 @@ namespace cppx
     CPPX_USE_STD( basic_string_view, begin, bitset, end, initializer_list );
 
     template< class Char >
-    inline auto is_in( const basic_string_view<Char>& sv, const char ch ) noexcept
+    inline auto is_in( const basic_string_view<Char>& sv, const Char ch ) noexcept
         -> bool
     { return 0 <= static_cast<Size>( sv.find( ch ) ); }
 

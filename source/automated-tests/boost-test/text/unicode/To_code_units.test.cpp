@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <_/test-framework.hpp>
-#include <cppx-core/text/unicode/To_code_points.hpp>
+#include <cppx-core/text/unicode/To_code_units_.hpp>
 
 #include <cppx-core/collections/size-checking.hpp>                  // cppx::(array_size_of, length_of)
 #include <cppx-core/collections/Span_.hpp>                          // cppx::all_but_last_of
@@ -14,23 +14,23 @@ $use_cppx( P_, Byte, all_but_last_of, array_size_of, length_of, Raw_array_ );
 $use_std( begin, end, string, u16string );
 
 #include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>   //!
-$begin_test_suite( cppx_core, text, unicode, HEADER, To_code_points );
+$begin_test_suite( cppx_core, text, unicode, HEADER, To_code_units_ );
 
-    //-------------------------------------------- To_code_points
+    //-------------------------------------------- To_code_units_
 
-    $test_case( To_code_points, EMPTY_STRING )
+    $test_case( To_code_units_, EMPTY_STRING )
     {
-        cppx::To_code_points converter;
+        cppx::To_code_units_ converter;
         $expect_eq( converter.n_bad_groups(), 0 );
         $expect_eq( converter.n_noncanonical_groups(), 0 );
     }
 
-    $test_case( To_code_points, LATIN1_TEXT )
+    $test_case( To_code_units_, LATIN1_TEXT )
     {
         auto const& u8s =   "blåbærsyltetøy";
         auto const& u16s  = u"blåbærsyltetøy";
 
-        cppx::To_code_points converter;
+        cppx::To_code_units_ converter;
         u16string buffer( 80, u'#' );
         const auto p_end = converter.utf16_from_bytes(
             all_but_last_of( u8s ), buffer.data()
@@ -42,13 +42,13 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, To_code_points );
         $expect_eq( buffer, u16s );
     }
 
-    $test_case( To_code_points, NONBMP_TEXT )
+    $test_case( To_code_units_, NONBMP_TEXT )
     {
         // Clef symbol U+1D11E => surrogate pair {U+D834, U+DD1E}.
         auto const& u8s     =  "A 𝄞 clef!";
         auto const& u16s    = u"A 𝄞 clef!";     // With a surrogate pair.
 
-        cppx::To_code_points converter;
+        cppx::To_code_units_ converter;
         u16string buffer( 80, u'#' );
         const auto p_end = converter.utf16_from_bytes(
             all_but_last_of( u8s ), buffer.data()
@@ -60,14 +60,14 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, To_code_points );
         $expect_eq( buffer, u16s );
     }
 
-    $test_case( To_code_points, INVALID_LATIN1_TEXT )
+    $test_case( To_code_units_, INVALID_LATIN1_TEXT )
     {
         Raw_array_<char>    u8s     =  "blåbærsyltetøy";
         auto const&         u16s    = u"bl@\x7F" u"bærsyltetøy";
 
         $expect_eq( array_size_of( u16s ) -  1, 15 );
         u8s[2] = '@';
-        cppx::To_code_points converter;
+        cppx::To_code_units_ converter;
         u16string buffer( 80, u'#' );
         const auto p_end = converter.utf16_from_bytes(
             all_but_last_of( u8s ), buffer.data()

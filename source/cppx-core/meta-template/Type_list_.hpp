@@ -14,25 +14,25 @@ namespace cppx
 
     //------------------------------------------------ Head_
 
-    template< class Type_set >
+    template< class A_type_list >
     struct Head_t_;
 
     template< class A_type, class... More_types >
     struct Head_t_<Type_list_<A_type, More_types... >> { using T = A_type; };
 
-    template< class Type_set >
-    using Head_ = typename Head_t_<Type_set>::T;
+    template< class A_type_list >
+    using Head_ = typename Head_t_<A_type_list>::T;
 
     //------------------------------------------------ Tail_
 
-    template< class Type_set >
+    template< class A_type_list >
     struct Tail_t_;
 
     template< class A_type, class... More_types >
     struct Tail_t_<Type_list_<A_type, More_types...>> { using T = Type_list_<More_types...>; };
 
-    template< class Type_set >
-    using Tail_ = typename Tail_t_<Type_set>::T;
+    template< class A_type_list >
+    using Tail_ = typename Tail_t_<A_type_list>::T;
 
 
     //------------------------------------------------ Joined_
@@ -70,12 +70,12 @@ namespace cppx
             static constexpr bool value = false;
         };
 
-        template< class Some_type_list, class Main_type_list >
+        template< class Possible_subset, class Main_type_list >
         struct Has_subset_
         {
             static constexpr bool value =
-                Contains_< Head_<Some_type_list>, Main_type_list >::value and
-                Has_subset_< Tail_<Some_type_list>, Main_type_list >::value;
+                Contains_< Head_<Possible_subset>, Main_type_list >::value and
+                Has_subset_< Tail_<Possible_subset>, Main_type_list >::value;
         };
 
         template< class Main_type_list >
