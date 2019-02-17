@@ -26,7 +26,7 @@ namespace cppx
 
         //----------------------------------------------- Specialized basic builders:
         //
-        // Note: the more safe standard library converters such as std::add_pointer_t
+        // Note: the more safe standard library generators such as std::add_pointer_t
         // are not used for commented builders because they would prevent template
         // argument deduction. The basic builders defined here are just names for the
         // conventional way of writing e.g. formal argument types. As such they carry

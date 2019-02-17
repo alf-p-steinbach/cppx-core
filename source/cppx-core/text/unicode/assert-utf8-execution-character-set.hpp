@@ -5,19 +5,10 @@
 // `_all_.hpp_`, or define `CPPX_NO_CHARSET_ASSERTION_PLEASE` before including it.
 
 #include <cppx-core/config.hpp>     // cppx::check_the_basic_execution_character_set
-
-namespace cppx
-{
-    constexpr auto the_execution_character_set_is_utf8()
-        -> bool
-    {
-        constexpr auto& slashed_o = "ø";
-        return (sizeof( slashed_o ) == 3 and slashed_o[0] == '\xC3' and slashed_o[1] == '\xB8');
-    }
-}  // namespace cppx
+#include <cppx-core/text/unicode/utf8-is_the_execution_character_set.hpp>
 
 static_assert(
     not cppx::check_the_execution_character_set
-        or cppx::the_execution_character_set_is_utf8(),
+        or cppx::utf8::is_the_execution_character_set(),
     "The execution character set must be UTF-8 (e.g. MSVC option \"/utf-8\")."
     );

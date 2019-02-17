@@ -13,11 +13,11 @@
 #include <iterator>             // std::(distance, next)
 #include <functional>           // std::invoke
 
-namespace cppx
+namespace cppx::utf16
 {
     CPPX_USE_STD( distance, invoke, ref, next );
 
-    class To_code_units_
+    class Generator
     {
         int     m_n_bad_groups              = 0;
         int     m_n_noncanonical_groups     = 0;
@@ -161,4 +161,4 @@ namespace cppx
             ) -> Out_iterator
         { return utf32_from_bytes( Span_( first, beyond ), destination ); }
     };
-}  // namespace cppx
+}  // namespace cppx::utf16

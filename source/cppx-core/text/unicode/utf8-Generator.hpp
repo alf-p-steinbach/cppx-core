@@ -14,7 +14,7 @@
 #include <string>               // std::string
 #include <utility>              // std::(exchange, move)
 
-namespace cppx
+namespace cppx::utf8
 {
     CPPX_USE_STD( basic_string, basic_string_view, iterator_traits, exchange, move, next, string );
 
@@ -58,7 +58,7 @@ namespace cppx
         }
     }  // namespace impl
 
-    class To_bytes
+    class Generator
     {
         uint32_t    m_surrogate_1   = 0;
         Size        m_n_bad_chars   = 0;
@@ -125,4 +125,4 @@ namespace cppx
             ) -> Out_iterator
         { return utf8_from_codes( Span_( first, beyond ), destination ); }
     };
-}  // namespace cppx
+}  // namespace cppx::utf8

@@ -6,8 +6,8 @@
 #include <cppx-core/core-language/signed-sizes.hpp>                 // cppx::Size
 #include <cppx-core/core-language/syntax/macro_use.hpp>             // $use_cppx
 #include <cppx-core/meta-type/type-builders.hpp>                    // cppx::(P_, Raw_array_of_)
-#include <cppx-core/text/unicode/n_utf8_bytes_for.hpp>              // cppx::n_utf8_bytes_for
-#include <cppx-core/text/unicode/To_bytes.hpp>                      // cppx::To_bytes
+#include <cppx-core/text/unicode/utf8-Generator.hpp>                // cppx::utf8::Generator
+#include <cppx-core/text/unicode/utf8-n_bytes_for.hpp>              // cppx::utf8::n_bytes_for
 
 #include <c/assert.hpp>     // assert
 #include <c/string.hpp>     // strlen
@@ -16,7 +16,8 @@
 #include <vector>           // std::vector
 #include <iterator>         // std::(begin, end)
 
-$use_cppx( Byte, n_utf8_bytes_for, P_, Raw_array_of_, Size, To_bytes );
+$use_nested_ns_name( utf8, cppx );
+$use_cppx( Byte, utf8::n_bytes_for, P_, Raw_array_of_, Size );
 
 #include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>   //!
 $begin_test_suite( cppx_core, text, unicode, HEADER, utf8_iteration );
@@ -82,8 +83,8 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, utf8_iteration );
         std::vector<P_<const char>>&        group_pointers
         )
     {
-            To_bytes converter;
-            u8 = std::string( n_utf8_bytes_for( data ), '#' );
+            utf8::Generator generator;
+            u8 = std::string( utf8::n_bytes_for( data ), '#' );
             P_<char> p = u8.data();
             for( const wchar_t wch : data )
             {
@@ -92,7 +93,7 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, utf8_iteration );
                 {
                     break;
                 }
-                p = converter.utf8_from_code( wch, p );
+                p = generator.utf8_from_code( wch, p );
             }
     }
 

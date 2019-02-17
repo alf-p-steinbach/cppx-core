@@ -5,6 +5,8 @@
 #include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
 #include <cppx-core/core-language/syntax/macro_use.hpp>             // CPPX_USE_STD
 #include <cppx-core/core-language/signed-sizes.hpp>                 // cppx::Size
+#include <cppx-core/meta-template/Enable_if_.hpp>                   // cppx::Enable_if_
+#include <cppx-core/meta-type/type-traits.hpp>                      // cppx::is_char_type_
 
 #include <iterator>     // std::(begin, distance, end, prev, next, make_reverse_iterator, reverse_iterator )
 #include <queue>        // std::queue
@@ -113,6 +115,14 @@ namespace cppx
         const auto all = all_of( c );
         return span_of( all.first(), prev( all.beyond() ) );
     }
+
+    template<
+        class Char, Size n,
+        class = Enable_if_<is_a_char_type_<Char>>
+        >
+    inline auto text_span_of_literal( const Raw_array_of_<n, const Char>& string_literal )
+        -> Span_<P_<const Char>>
+    { return all_but_last_of( string_literal ); }
 
     template< class Container >
     inline auto all_but_last_n_of( Container& c, const Size n )

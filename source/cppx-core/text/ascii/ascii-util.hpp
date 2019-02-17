@@ -45,17 +45,17 @@ namespace cppx
         -> bool
     { return ascii_range::contains( ch ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_ascii( const basic_string_view<Char>& sv )
         -> bool
     { return ascii_range::contains_all( sv.begin(), sv.end() ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_ascii( const P_<const Char> s )
         -> bool
     { return is_all_ascii( basic_string_view<Char>( s ) ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_ascii( const basic_string<Char>& s )
         -> bool
     { return is_all_ascii( basic_string_view<Char>( s ) ); }
@@ -63,17 +63,17 @@ namespace cppx
 
     //---------------------------------------- wide_from_ascii:
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto wide_from_ascii( const basic_string_view<Char>& v )
         -> wstring
     { return wstring( v.begin(), v.end() ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto wide_from_ascii( const P_<const Char> s )
         -> wstring
     { return wide_from_ascii( basic_string_view<Char>( s ) ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto wide_from_ascii( const basic_string<Char>& s )
         -> wstring
     { return wide_from_ascii( basic_string_view<Char>( s ) ); }
@@ -84,11 +84,11 @@ namespace cppx
     // Depends on the C level locale (setlocale)
     namespace cstdlib
     {
-        template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
-        inline auto is_space( const Char ch ) -> bool;
-
-        template<>
-        inline auto is_space<char>( const char ch )
+        template<
+            class Char,
+            class = Enable_if_< is_a_cpp03_char_type_<Char> or is_a_char_variant_type_<Char> >
+            >
+        inline auto is_space( const Char ch )
             -> bool
         { return !!::isspace( static_cast<Byte>( ch ) ); }
 
@@ -99,12 +99,12 @@ namespace cppx
     }  // namespace cstdlib
 
     // Is independent of locale
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_ascii_whitespace( const Char ch )
         -> bool
     { return is_ascii( ch ) and cstdlib::is_space( ch ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_ascii_whitespace( const basic_string_view<Char>& sv )
         -> bool
     {
@@ -118,39 +118,39 @@ namespace cppx
         return true;
     }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_ascii_whitespace( const basic_string<Char>& s )
         -> bool
     { return is_all_ascii_whitespace( basic_string_view<Char>( s ) ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_ascii_whitespace( const P_<const Char> s )
         -> bool
     { return is_all_ascii_whitespace( basic_string_view<Char>( s ) ); }
 
     //----------------------------------------  Uppercase/lowercase:
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_ascii_lowercase( const Char ch )
         -> bool
     { return 'a' <= ch and ch <= 'z'; }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_ascii_uppercase( const Char ch )
         -> bool
     { return 'A' <= ch and ch <= 'Z'; }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_lowercase( const Char ch )
         -> Char
     { return (is_ascii_uppercase( ch )? Char( ch - 'A' + 'a' ) : ch); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_uppercase( const Char ch )
         -> Char
     { return (is_ascii_lowercase( ch )? Char( ch - 'a' + 'A' ) : ch); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_lowercase( const basic_string_view<Char>& v )
         -> basic_string<Char>
     {
@@ -163,7 +163,7 @@ namespace cppx
         return result;
     }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_uppercase( const basic_string_view<Char>& v )
         -> basic_string<Char>
     {
@@ -176,22 +176,22 @@ namespace cppx
         return result;
     }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_lowercase( const P_<const Char> s )
         -> basic_string<Char>
     { return ascii_to_lowercase( basic_string_view<Char>( s ) ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_uppercase( const P_<const Char> s )
         -> basic_string<Char>
     { return ascii_to_uppercase( basic_string_view<Char>( s ) ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_lowercase( const basic_string<Char>& s )
         -> basic_string<Char>
     { return ascii_to_lowercase( basic_string_view<Char>( s ) ); }
 
-    template< class Char, class = Enable_if_<is_cpp03_char_type_<Char>>>
+    template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto ascii_to_uppercase( const basic_string<Char>& s )
         -> basic_string<Char>
     { return ascii_to_uppercase( basic_string_view<Char>( s ) ); }

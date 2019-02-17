@@ -51,8 +51,9 @@ namespace cppx::boost_fix
             {
                 os
                     << "\\u"
-                    << std::hex << std::setw( 2*sizeof( wchar_t ) ) << std::setfill( '0' )
-                    << unsigned( wch )
+                    << std::hex << std::setfill( '0' )
+                    << std::setw( 2*sizeof( wchar_t ) ) << unsigned( wch )
+                    << std::setfill( ' ' ) << std::dec
                     << "\" " << prefixes[char_type_id_<Char>] << "\"";
             }
         }

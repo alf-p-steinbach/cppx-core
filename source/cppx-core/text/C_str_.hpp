@@ -12,7 +12,7 @@ namespace cppx
     {
         template<
             class Char,
-            class = Enable_if_<is_cpp03_char_type_<Unconst_<Char>>>
+            class = Enable_if_<is_a_cpp03_char_type_<Unconst_<Char>>>
             >
         using C_str_ = P_<Char>;
     }  // namespace impl

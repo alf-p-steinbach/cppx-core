@@ -8,20 +8,33 @@
 
 namespace cppx
 {
-    using Char_like_types               = Type_list_<unsigned char, signed char>;
+    using Char_variant_types            = Type_list_<unsigned char, signed char>;
+    using Byte_char_types               = Type_list_<char, unsigned char, signed char>;
 
-    using Cpp03_char_types              = Type_list_<char, wchar_t>;
-    using Char_types_introduced_in_11   = Type_list_<char16_t, char32_t>;
-    using Cpp11_char_types              = Joined_<Cpp03_char_types, Char_types_introduced_in_11>;
+    using Cpp03_char_literal_types              = Type_list_<char, wchar_t>;
+    using Char_literal_types_introduced_in_11   = Type_list_<char16_t, char32_t>;
+    using Cpp11_char_literal_types              = Joined_<
+        Cpp03_char_literal_types,
+        Char_literal_types_introduced_in_11
+        >;
 
     //Char_types_introduced_in_20 = Type_list_<char8_t>;
-    //using Cpp20_char_types          = Joined_<Cpp11_char_types, Char_types_introduced_in_20>;
+    //using Cpp20_char_literal_types          = Joined_<Cpp11_char_literal_types, Char_literal_types_introduced_in_20>;
 
     template< class Char >
-    constexpr bool is_cpp03_char_type_  = contains_type_<Char, Cpp03_char_types>;
+    constexpr bool is_a_cpp03_char_type_    = contains_type_<Char, Cpp03_char_literal_types>;
 
     template< class Char >
-    constexpr bool is_cpp11_char_type_  = contains_type_<Char, Cpp11_char_types>;
+    constexpr bool is_a_cpp11_char_type_    = contains_type_<Char, Cpp11_char_literal_types>;
+
+    template< class Char >
+    constexpr bool is_a_char_type_          = is_a_cpp11_char_type_<Char>;  // Until C++20, maybe beyond.
+
+    template< class Char >
+    constexpr bool is_a_char_variant_type_  = contains_type_<Char, Char_variant_types>;
+
+    template< class Char >
+    constexpr bool is_a_byte_char_type_     = contains_type_<Char, Byte_char_types>;
 
     //----------------------------------------------------------------------------------------------
 
