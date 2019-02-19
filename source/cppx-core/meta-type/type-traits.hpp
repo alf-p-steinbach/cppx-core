@@ -4,16 +4,15 @@
 #include <cppx-core/language/type-builders.hpp>             // cppx::Raw_array_of_
 #include <cppx-core/meta-template/Type_list_.hpp>           // cppx::(contains_type_, Joined_, Type_list_)
 
-#include <iterator>         // std::iterator_traits
-#include <type_traits>      // std::(is_base_of_v, is_class_v, is_integral_v, is_unsigned_v, is_same_v, *)
-
 namespace cppx
 {
     using Char_variant_types            = Type_list_<unsigned char, signed char>;
     using Byte_char_types               = Type_list_<char, unsigned char, signed char>;
 
     using Cpp03_char_literal_types              = Type_list_<char, wchar_t>;
+
     using Char_literal_types_introduced_in_11   = Type_list_<char16_t, char32_t>;
+
     using Cpp11_char_literal_types              = Joined_<
         Cpp03_char_literal_types,
         Char_literal_types_introduced_in_11

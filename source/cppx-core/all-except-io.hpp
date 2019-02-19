@@ -7,12 +7,11 @@ static_assert( __cplusplus >= 201703L,
 #   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
 #endif
 
-// Intentionally omitted: `meta-macro` and `testing`.
-
 #include <cppx-core/collections/_all_.hpp>
 #include <cppx-core/failure-handling/_all_.hpp>
 #include <cppx-core/iterators/_all_.hpp>
 #include <cppx-core/language/_all_.hpp>
+#include <cppx-core/meta-macro/_all_.hpp>
 #include <cppx-core/meta-template/_all_.hpp>
 #include <cppx-core/meta-type/_all_.hpp>
 #include <cppx-core/misc/macro-define_tag.hpp>
