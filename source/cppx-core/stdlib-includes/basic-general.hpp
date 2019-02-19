@@ -23,7 +23,7 @@
 #include <queue>            // std::queue
 #include <random>           // std::(...)
 #include <stack>            // std::stack
-#include <stdexcept>        // std::(...). But see <@/failure-handling/macro_fail.hpp>.
+#include <stdexcept>        // std::(...). But see <@/failure-handling/macro-fail.hpp>.
 #include <string>           // std::string
 #include <string_view>      // - But see <@/text/String_view_.hpp>.
 #include <thread>           // std::thread, std::this_thread::sleep_for

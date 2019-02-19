@@ -2,10 +2,10 @@
 #include <_/test-framework.hpp>
 #include <cppx-core/text/unicode/utf8-Generator.hpp>
 
-#include <cppx-core/collections/size-checking.hpp>                  // cppx::(array_size_of, length_of)
-#include <cppx-core/collections/Span_.hpp>                          // cppx::all_but_last_of
-#include <cppx-core/core-language/syntax/macro_use.hpp>             // $use_std
-#include <cppx-core/core-language/bit-level/_all_.hpp>              // cppx::Byte
+#include <cppx-core/collections/size-checking.hpp>              // cppx::(array_size_of, length_of)
+#include <cppx-core/collections/Span_.hpp>                      // cppx::all_but_last_of
+#include <cppx-core/language/syntax/macro-use.hpp>              // $use_std
+#include <cppx-core/language/bit-level/_all_.hpp>               // cppx::Byte
 
 #include <iterator>         // std::(begin, end)
 
@@ -164,7 +164,7 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, utf8_Generator );
         buffer.resize( p_end - buffer.data() );
         $expect_eq( generator.n_bad_chars(), 0 );
         $expect( length_of( buffer ) >= 3 );
-        //macro_expect_eq( buffer, u8s );
+        //macro-expect_eq( buffer, u8s );
         (void) u8s;
      }
 

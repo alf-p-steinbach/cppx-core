@@ -4,8 +4,8 @@
 // Line and character position indexing is 1-based.
 
 #include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
-#include <cppx-core/core-language/syntax/macro_use.hpp>             // CPPX_USE_STD
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
+#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/meta-template/enable_if_.hpp>                   // cppx::Enable_if_
 
 #include <optional>                 // std::optional

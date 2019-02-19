@@ -3,8 +3,8 @@
 // Mainly for use with range based `for` loops.
 
 #include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
-#include <cppx-core/core-language/syntax/macro_use.hpp>             // CPPX_USE_STD
-#include <cppx-core/core-language/signed-sizes.hpp>                 // cppx::Size
+#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
+#include <cppx-core/language/signed-sizes.hpp>                      // cppx::Size
 #include <cppx-core/meta-template/Enable_if_.hpp>                   // cppx::Enable_if_
 #include <cppx-core/meta-type/type-traits.hpp>                      // cppx::is_char_type_
 

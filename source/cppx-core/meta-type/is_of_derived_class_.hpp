@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+#include <cppx-core/language/type-builders.hpp>         // cppx::P_
 #include <cppx-core/meta-template/Enable_if_.hpp>       // cppx::Enable_if_
 #include <cppx-core/meta-type/type-traits.hpp>          // cppx::is_base_and_derived_
-#include <cppx-core/meta-type/type-builders.hpp>        // cppx::r
 
 namespace cppx
 {

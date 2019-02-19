@@ -1,2 +1,2 @@
-#include <cppx-core/meta-macro/macro_repeat.hpp>
+#include <cppx-core/meta-macro/macro-repeat.hpp>
 namespace { int satisfy_linker; }

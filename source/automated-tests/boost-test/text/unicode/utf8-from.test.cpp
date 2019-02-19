@@ -2,9 +2,9 @@
 #include <_/test-framework.hpp>
 #include <cppx-core/text/unicode/utf8-from.hpp>
 
-#include <cppx-core/core-language/bit-level/byte-types.hpp>         // cppx::Byte
-#include <cppx-core/core-language/syntax/macro_use.hpp>             // $use_cppx
-#include <cppx-core/meta-type/type-builders.hpp>                    // cppx::P_
+#include <cppx-core/language/bit-level/byte-types.hpp>          // cppx::Byte
+#include <cppx-core/language/syntax/macro-use.hpp>              // $use_cppx
+#include <cppx-core/language/type-builders.hpp>                 // cppx::P_
 
 #include <string>       // std::string
 #include <string_view>  // std::string_view

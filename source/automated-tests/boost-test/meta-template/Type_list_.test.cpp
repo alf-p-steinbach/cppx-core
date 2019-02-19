@@ -2,8 +2,8 @@
 #include <_/test-framework.hpp>
 #include <cppx-core/meta-template/Type_list_.hpp>
 
-#include <cppx-core/core-language/syntax/macro_use.hpp>     // $use_cppx
-#include <cppx-core/meta-type/type-traits.hpp>              // cppx::is_same_type_
+#include <cppx-core/language/syntax/macro-use.hpp>      // $use_cppx
+#include <cppx-core/meta-type/type-traits.hpp>          // cppx::is_same_type_
 
 $use_cppx( is_same_type_ );
 

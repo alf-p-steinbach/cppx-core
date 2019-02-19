@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/core-language/syntax/macro_use.hpp>             // CPPX_USE_STD
-#include <cppx-core/core-language/signed-sizes.hpp>                 // cppx::(Size)
-#include <cppx-core/meta-type/type-builders.hpp>                    // cppx::(P_, R_)
+#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core/language/signed-sizes.hpp>                  // cppx::(Size)
+#include <cppx-core/language/type-builders.hpp>                 // cppx::P_
 
 #include <c/stddef.hpp>                             // ptrdiff_t
 #include <iterator>                                 // std::(begin, end, forward_iterator_tag)

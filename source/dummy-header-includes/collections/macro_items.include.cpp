@@ -1,2 +1,2 @@
-#include <cppx-core/collections/syntax/macro_items.hpp>
+#include <cppx-core/collections/syntax/macro-items.hpp>
 namespace{ int satisfy_linker; }
