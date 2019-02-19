@@ -7,7 +7,7 @@
 // Hence the following more consistent and easy-to-use, but limited, facility.
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/meta-type/type-traits.hpp>                  // cppx::is_integral_
+#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_integral_
 
 #include <limits>       // std::numeric_limits
 
