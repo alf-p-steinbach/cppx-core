@@ -1,6 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+#include <c/stddef.hpp>     // size_t
 
-// This file intentionally does not use the standard library or other cppx-core files.
+// Intentionally doesn't use the C++ standard library or other cppx-core files.
 
 namespace cppx
 {

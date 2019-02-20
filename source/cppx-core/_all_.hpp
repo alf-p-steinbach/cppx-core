@@ -8,4 +8,5 @@ static_assert( __cplusplus >= 201703L,
 #endif
 
 #include <cppx-core/all-except-io.hpp>
+#include <cppx-core/io/_all_.hpp>
 #include <cppx-core/stdlib-includes/_all_.hpp>
