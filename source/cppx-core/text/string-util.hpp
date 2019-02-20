@@ -20,13 +20,15 @@ namespace cppx
     // simpleton approach of counting code points for character positions is usually Good
     // Enough™, and it plays nicely with console windows that do not compose characters.
 
-    inline auto spaces( const Size n )
+    inline auto spaces( const int n )
         -> string
     { return (n <= 0? "" : string( n, ' ')); }
 
     inline auto repeated( const int n, const string_view& s )
         -> string
     {
+        if( n <= 0 ) { return ""; }
+
         string result;
         result.reserve( n*s.length() );
         for( int i = 1; i <= n; ++i )
@@ -109,13 +111,12 @@ namespace cppx
     template< class Iterator >
     inline auto joined(
         const Span_<Iterator>       range,
-        const string&                           separator = " "
+        const string&               separator = " "
         ) -> string
     {
         if( is_empty( range ) ) { return ""; }
 
-        string result;
-        result << range.front();
+        string result = range.front();
         for( const auto& item : all_but_first_of( range ) )
         {
             result += separator;

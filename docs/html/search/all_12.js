@@ -8,7 +8,7 @@ var searchData=
   ['smallest_5f',['smallest_',['../d6/d02/namespacecppx_1_1number__properties.html#acc282fb04a7e8505eb3977d90f66db1f',1,'cppx::number_properties']]],
   ['source_5flocation',['Source_location',['../df/da3/classcppx_1_1_source__location.html',1,'cppx::Source_location'],['../df/da3/classcppx_1_1_source__location.html#a4315b8d39e963738d2066fbd57e4eadc',1,'cppx::Source_location::Source_location()'],['../d2/dd7/macro-source__location_8hpp.html#aaccecdc393b2965c3f7005ad8f01c2fc',1,'source_location():&#160;macro-source_location.hpp']]],
   ['source_5flocation_2ehpp',['Source_location.hpp',['../dc/df2/_source__location_8hpp.html',1,'']]],
-  ['spaces',['spaces',['../d6/deb/namespacecppx.html#ad22a850bbb30db0028e56afe3d543a7f',1,'cppx']]],
+  ['spaces',['spaces',['../d6/deb/namespacecppx.html#aa836fa441bfb394131269b14e05a97d4',1,'cppx']]],
   ['span_5f',['Span_',['../d3/d84/classcppx_1_1_span__.html',1,'cppx::Span_&lt; Iterator &gt;'],['../d3/d84/classcppx_1_1_span__.html#a90015fc6cb4dfa2008a2effed05707b7',1,'cppx::Span_::Span_(const Iterator first, const Iterator beyond)'],['../d3/d84/classcppx_1_1_span__.html#ac2f6e8dc8488d03c0ad5fa0da3b9718c',1,'cppx::Span_::Span_(Collection &amp;c)']]],
   ['span_5f_2ehpp',['Span_.hpp',['../dd/d0a/_span___8hpp.html',1,'']]],
   ['span_5fof',['span_of',['../d6/deb/namespacecppx.html#a17d48e7b61f19b433801d11d0ea635b9',1,'cppx']]],
