@@ -2,6 +2,8 @@
 
 The core of the not yet published *C++ Band Aid* library.
 
+The intent of the Cppx Core micro-library is to serve as the core of a not yet published C++ Band Aid library, which in turn is meant to serve as support for people wanting to present concise C++ examples. The C++ Band Aid library has support for UTF-8 in Windows consoles (as does my Wrapped Stdlib library), and that's the essential dividing line between it and Cppx Core: there's nothing system specific and very little i/o support in Cppx Core, though there is UTF-8 functionality
+
 Example usage:
 
 ~~~cpp
