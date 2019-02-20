@@ -14,25 +14,25 @@ namespace cppx
     inline namespace type_production
     {
         template< bool condition, class A, class B >
-        using Choose_ = std::conditional_t<condition, A, B>;
+        using Type_choice_  = std::conditional_t<condition, A, B>;
 
         template< class Some_pointer_type >
-        using Unptr_ = std::remove_pointer_t<Some_pointer_type>;
+        using Unptr_        = std::remove_pointer_t<Some_pointer_type>;
 
         template< class Some_reference_type >
-        using Unref_ = std::remove_reference_t<Some_reference_type>;
+        using Unref_        = std::remove_reference_t<Some_reference_type>;
         
         template< class Integer >
-        using Signed_ = std::make_signed_t< Integer >;
+        using Signed_       = std::make_signed_t< Integer >;
 
         template< class Integer >
-        using Unsigned_ = std::make_unsigned_t< Integer >;
+        using Unsigned_     = std::make_unsigned_t< Integer >;
 
         template< class Some_type >
-        using Const_ = std::add_const_t< Some_type >;
+        using Const_        = std::add_const_t< Some_type >;
 
         template< class Some_type >
-        using Unconst_ = std::remove_const_t< Some_type >;
+        using Unconst_      = std::remove_const_t< Some_type >;
 
 
         //----------------------------------------------- Special kinds of reference:
@@ -44,16 +44,16 @@ namespace cppx
         // support template argument deduction?
 
         template< class Some_type >
-        using Intended_temp_ref_ = Some_type&&;         // std::add_rvalue_reference_t<Some_type>;
+        using Intended_temp_ref_        = Some_type&&;  // std::add_rvalue_reference_t<Some_type>;
 
         template< class Some_type >
-        using Intended_forwarding_ref_ = Some_type&&;   // Also known as a “universal reference”.
+        using Intended_forwarding_ref_  = Some_type&&;  // Also known as a “universal reference”.
 
 
         //----------------------------------------------- Arrays:
 
         template< size_t n, class Item >
-        using Array_of_ = std::array<Item, n>;
+        using Array_of_                 = std::array<Item, n>;
 
     }  // inline namespace type_production
 

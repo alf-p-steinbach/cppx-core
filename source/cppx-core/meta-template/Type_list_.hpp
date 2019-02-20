@@ -1,9 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-//#include <cppx-core/meta-type/type-traits.hpp>      // cppx::is_same_type_
-// Can't use above header here because it would give a circular header dependency.
-
-#include <type_traits>      // std::is_same_v
+#include <cppx-core/language/tmp/basic-type-traits.hpp>     // cppx::is_same_type_
 
 namespace cppx
 {
@@ -55,8 +52,6 @@ namespace cppx
     /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
-        template< class A, class B> constexpr bool is_same_type_ = std::is_same_v<A, B>;
-
         template< class A_type, class Type_list >
         struct Contains_
         {
