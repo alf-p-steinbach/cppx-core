@@ -10,7 +10,7 @@
 namespace cppx
 {
     template< class Item, size_t n >
-    constexpr auto array_size_of( Item (&)[n] ) noexcept
+    constexpr auto array_size_of( Raw_array_of_<n, const Item>& ) noexcept
         -> Size
     { return n; }
 
@@ -20,7 +20,7 @@ namespace cppx
     { return strlen( s ); }
 
     template< class Char, Size n >
-    constexpr inline auto length_of_literal( const Raw_array_of_<n, const Char>& s ) noexcept
+    constexpr inline auto length_of_literal( Raw_array_of_<n, const Char>& s ) noexcept
         -> Size
     { return n - 1; }
 

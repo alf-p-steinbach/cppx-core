@@ -10,14 +10,11 @@
 #include <c/ctype.hpp>           // isspace
 #include <string>                // std::(string, wstring)
 #include <string_view>           // std::string_view
-#include <type_traits>           // std::make_unsigned
-#include <utility>               // std::(Enable_if_)
 
 namespace cppx
 {
     CPPX_USE_STD(
-        basic_string, basic_string_view, make_unsigned_t, string, string_view,
-        wstring, wstring_view
+        basic_string, basic_string_view, string, string_view, wstring, wstring_view
         );
 
     //---------------------------------------- Is-ASCII checking:

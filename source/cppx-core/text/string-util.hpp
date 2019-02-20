@@ -48,26 +48,6 @@ namespace cppx
         -> string
     { return spaces( width - utf8::n_code_points_in( s ) ) + string( s ); }
 
-    inline auto bullet_block(
-        const string_view&      s,
-        const string_view&      bullet          = best_effort::bullet_str,
-        const int               indent_size     = 4
-        ) -> string
-    {
-        if( s.empty() ) { return ""; }
-        const auto indent = spaces( indent_size );
-
-        string formatted = left( bullet, indent_size );
-        char prev_ch = '\0';
-        for( const char ch : s )
-        {
-            if( prev_ch == '\n' ) { formatted += indent; }
-            formatted += ch;
-            prev_ch = ch;
-        }
-        return formatted;
-    }
-
 
     //----------------------------------------  Misc:
 
