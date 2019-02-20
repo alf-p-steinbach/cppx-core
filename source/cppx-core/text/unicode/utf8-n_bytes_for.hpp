@@ -7,6 +7,7 @@ namespace cppx::utf8
 {
     CPPX_USE_STD( basic_string, basic_string_view, iterator_traits, move, next, string );
 
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         using Bytes_count_iterator = Count_iterator_<char>;
@@ -26,6 +27,7 @@ namespace cppx::utf8
             return counter;
         }
     }  // namespace impl
+    /// @endcond
 
     template< class Char >
     inline auto n_bytes_for( const basic_string_view<Char>& sv ) noexcept

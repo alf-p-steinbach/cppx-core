@@ -5,6 +5,7 @@
 
 namespace cppx
 {
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         template< class Derived, class Type >
@@ -15,6 +16,7 @@ namespace cppx
             return static_cast<P_<Type>>( p_derived ) == p? p_derived : nullptr;
         }
     }
+    /// @endcond
 
     template<
         class Derived,

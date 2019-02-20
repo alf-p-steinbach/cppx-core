@@ -43,6 +43,7 @@ namespace cppx
 
 #elif defined( __GNUC__ )
 
+        /// @cond DOXY_SHOW_IMPL_DETAILS
         namespace impl
         {
             template< class Unsigned >
@@ -60,6 +61,7 @@ namespace cppx
                 -> int
             { return  __builtin_popcountll( x ); }
         }  // namespace impl
+        /// @endcond
 
         inline auto sum_of_bits( const uint16_t x ) noexcept
             -> int

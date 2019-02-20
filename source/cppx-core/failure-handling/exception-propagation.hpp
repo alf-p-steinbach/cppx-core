@@ -9,6 +9,7 @@ namespace cppx
 {
     CPPX_USE_STD( exception_ptr, rethrow_exception );
 
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         inline auto stored_ptr()
@@ -18,6 +19,7 @@ namespace cppx
             return the_stored_ptr;
         }
     }
+    /// @endcond
 
     inline auto replace_stored_x_with( const exception_ptr& p )
         -> exception_ptr

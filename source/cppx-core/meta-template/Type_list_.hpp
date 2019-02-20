@@ -52,6 +52,7 @@ namespace cppx
 
     //------------------------------------------------ contains_*
 
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         template< class A, class B> constexpr bool is_same_type_ = std::is_same_v<A, B>;
@@ -85,6 +86,7 @@ namespace cppx
         };
 
     }  // namespace impl
+    /// @endcond
 
     template< class Some_type, class Type_list >
     constexpr bool contains_type_ =

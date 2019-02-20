@@ -14,7 +14,7 @@ namespace cppx
     // elsewhere for the nested namespace name `impl`.
     namespace math
     {
-        /// @cond IMPL
+        /// @cond DOXY_SHOW_IMPL_DETAILS
         namespace impl
         {
             inline auto log2_8( const uint8_t x ) noexcept

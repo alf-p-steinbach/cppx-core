@@ -19,16 +19,21 @@ namespace cppx::boost_fix
 {
     CPPX_USE_STD( ostream, basic_string_view );
 
-    template< class Char >
-    struct Char_type_id_;
+    /// @cond DOXY_SHOW_IMPL_DETAILS
+    namespace impl
+    {
+        template< class Char >
+        struct Char_type_id_;
 
-    template<> struct Char_type_id_<char>{ enum{ value = 0 }; };
-    template<> struct Char_type_id_<wchar_t>{ enum{ value = 1 }; };
-    template<> struct Char_type_id_<char16_t>{ enum{ value = 2 }; };
-    template<> struct Char_type_id_<char32_t>{ enum{ value = 3 }; };
+        template<> struct Char_type_id_<char>{ enum{ value = 0 }; };
+        template<> struct Char_type_id_<wchar_t>{ enum{ value = 1 }; };
+        template<> struct Char_type_id_<char16_t>{ enum{ value = 2 }; };
+        template<> struct Char_type_id_<char32_t>{ enum{ value = 3 }; };
 
-    template< class Char >
-    constexpr int char_type_id_ = Char_type_id_<Char>::value;
+        template< class Char >
+        constexpr int char_type_id_ = Char_type_id_<Char>::value;
+    }  // namespace impl
+    /// @endcond
 
     template< class Char >
     inline auto print_on( ostream& os, const P_<const char> type_spec, const basic_string_view<Char>& ws )
@@ -39,7 +44,7 @@ namespace cppx::boost_fix
         os
             << type_spec
             << (*type_spec? "( " : "")
-            << prefixes[char_type_id_<Char>]
+            << prefixes[impl::char_type_id_<Char>]
             << "\"";
         for( const Char wch : ws )
         {
@@ -54,7 +59,7 @@ namespace cppx::boost_fix
                     << std::hex << std::setfill( '0' )
                     << std::setw( 2*sizeof( wchar_t ) ) << unsigned( wch )
                     << std::setfill( ' ' ) << std::dec
-                    << "\" " << prefixes[char_type_id_<Char>] << "\"";
+                    << "\" " << prefixes[impl::char_type_id_<Char>] << "\"";
             }
         }
         os << "\"" << (*type_spec? " )" : "");

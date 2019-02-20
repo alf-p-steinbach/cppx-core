@@ -8,6 +8,7 @@
 
 namespace cppx
 {
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         template<
@@ -16,6 +17,7 @@ namespace cppx
             >
         using C_str_ = P_<Char>;
     }  // namespace impl
+    /// @endcond
 
     template< class Char >  using C_str_            = impl::C_str_<Const_<Char>>;
     template< class Char >  using C_mutable_str_    = impl::C_str_<Unconst_<Char>>;

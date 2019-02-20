@@ -16,7 +16,7 @@ namespace cppx
 {
     CPPX_USE_STD( conditional_t );
 
-    /// @cond IMPL
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         template< class T > using Nl_ = std::numeric_limits<T>;

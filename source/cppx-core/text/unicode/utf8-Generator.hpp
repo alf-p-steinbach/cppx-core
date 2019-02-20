@@ -18,7 +18,7 @@ namespace cppx::utf8
 {
     CPPX_USE_STD( basic_string, basic_string_view, iterator_traits, exchange, move, next, string );
 
-
+    /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
         template< class Out_iterator >
@@ -57,6 +57,7 @@ namespace cppx::utf8
             return out;
         }
     }  // namespace impl
+    /// @endcond
 
     class Generator
     {
