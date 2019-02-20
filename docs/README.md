@@ -4,14 +4,14 @@ The core of the not yet published *C++ Band Aid* library.
 
 Example usage:
 
-~~~ cpp
+~~~cpp
 #include <cppx-core/_all_.hpp>
 
 auto main() -> int
 {
-    $use_cppx( up_to );  $use_std( cout, endl );
+    $use_std( cout, endl );
 
-    for( const int i : up_to( 7 ) )
+    for( const int i : cppx::up_to( 7 ) )
     {
         cout << "Cppx Core is great, yay!" << endl;
     }
@@ -136,4 +136,4 @@ auto main() -> int
             utf8-n_bytes_for.hpp
 ~~~
 
-In addition there's an ***\_\_all\_\_.hpp*** header in every folder. Including the top level <i>\_\_all\_\_.hpp</i> header includes everything. Alternatively you can include the top-level ***all-except-io.hpp*** header, also not shown above, which includes everything except the *io* folder and the standard library's i/o headers.
+In addition there's an ***\_all\_.hpp*** header in every folder. Including the top level <i>\_all\_.hpp</i> header includes everything. Alternatively you can include the top-level ***all-except-io.hpp*** header, also not shown above, which includes everything except the *io* folder and the standard library's i/o headers.

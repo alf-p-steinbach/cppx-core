@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cppx_2dcore',['cppx-core',['../index.html',1,'']]]
+  ['cppx_20core',['Cppx Core',['../index.html',1,'']]]
 ];
