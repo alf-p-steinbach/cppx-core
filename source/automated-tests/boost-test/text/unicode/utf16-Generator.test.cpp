@@ -4,9 +4,9 @@
 
 #include <cppx-core/collections/size-checking.hpp>              // cppx::(array_size_of, length_of)
 #include <cppx-core/collections/Span_.hpp>                      // cppx::text_span_of_literal
-#include <cppx-core/language/syntax/macro-use.hpp>              // $use_std
 #include <cppx-core/language/bit-level/_all_.hpp>               // cppx::Byte
-#include <cppx-core/language/type-builders.hpp>                 // cppx::Raw_array_
+#include <cppx-core/syntax/macro-use.hpp>                       // $use_std
+#include <cppx-core/syntax/type-assemblers.hpp>                 // cppx::Raw_array_
 
 #include <iterator>         // std::(begin, end)
 

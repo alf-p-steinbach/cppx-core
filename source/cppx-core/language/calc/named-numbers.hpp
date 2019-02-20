@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/syntax/macro-use.hpp>
+#include <cppx-core/syntax/macro-use.hpp>
 
 #include <c/math.hpp>
 #include <limits>           // std::numeric_limits

@@ -4,5 +4,3 @@
 #include <cppx-core/collections/Range_.hpp>
 #include <cppx-core/collections/size-checking.hpp>
 #include <cppx-core/collections/Span_.hpp>
-
-#include <cppx-core/collections/syntax/_all_.hpp>

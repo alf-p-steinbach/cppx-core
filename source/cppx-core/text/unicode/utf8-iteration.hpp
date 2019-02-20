@@ -6,9 +6,9 @@
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
 #include <cppx-core/collections/Range_.hpp>                     // cppx::up_to
 #include <cppx-core/failure-handling/macro-fail.hpp>            // cppx::(hopefully, fail) CPPX_FAIL
-#include <cppx-core/language/bit-level/byte-types.hpp>          // cppx::Byte
-#include <cppx-core/language/signed-sizes.hpp>                  // cppx::Size
-#include <cppx-core/language/type-builders.hpp>                 // cppx::(P_)
+#include <cppx-core/language/types/byte-types.hpp>              // cppx::Byte
+#include <cppx-core/language/types/signed-size-types.hpp>       // cppx::Size
+#include <cppx-core/syntax/type-assemblers.hpp>                 // cppx::(P_)
 #include <cppx-core/text/pointers-from-string_view.hpp>         // cppx::(p_first_of, p_beyond_of)
 
 #include <string_view>          // std::(string_view )

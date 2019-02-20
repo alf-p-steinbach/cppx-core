@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
-#include <cppx-core/language/type-builders.hpp>                     // cppx::P_
+#include <cppx-core/syntax/macro-use.hpp>                           // CPPX_USE_STD
+#include <cppx-core/syntax/type-assemblers.hpp>                     // cppx::P_
 
 #include <iterator>         // std::(begin, end)
 #include <type_traits>      // std::(true_type, false_type)

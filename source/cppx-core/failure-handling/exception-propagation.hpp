@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
+#include <cppx-core/syntax/macro-use.hpp>           // CPPX_USE_STD
 
 #include <exception>            // std::(rethrow_exception)
 #include <stdexcept>            // std::(exception_ptr)

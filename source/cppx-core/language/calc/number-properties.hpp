@@ -6,10 +6,11 @@
 // values as values but floating point type values as functions that must be invoked.
 // Hence the following more consistent and easy-to-use, but limited, facility.
 
-#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_integral_
+//#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_integral_
+#include <cppx-core/syntax/macro-use.hpp>                       // CPPX_USE_STD
 
 #include <limits>       // std::numeric_limits
+#include <type_traits>  // std::is_integral_v
 
 namespace cppx
 {
@@ -20,13 +21,13 @@ namespace cppx
     {
         template< class T > using Nl_ = std::numeric_limits<T>;
 
-        template< class T, bool is_integral_type = is_integral_<T> >
+        template< class T, bool is_integral_type = std::is_integral_v<T> >
         struct Number_properties_;
 
         template< class T >
         struct Number_properties_<T, true>    // Integral types
         {
-            static_assert( is_integral_<T> );
+            static_assert( std::is_integral_v<T> );
 
             static constexpr T      largest         = Nl_<T>::max();
             static constexpr T      smallest        = 1;                // Smallest non-zero.
@@ -38,7 +39,7 @@ namespace cppx
         template< class T >
         struct Number_properties_<T, false>    // Floating point and fixed point types
         {
-            static_assert( not is_integral_<T> );
+            static_assert( not std::is_integral_v<T> );
 
             static constexpr bool   is_ieee_754_    = Nl_<T>::is_iec559;
             static constexpr T      largest         = Nl_<T>::max();

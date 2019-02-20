@@ -1,8 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/tmp/basic-type-traits.hpp>     // cppx::(is_signed_ ...)
-#include <cppx-core/language/type-builders.hpp>             // cppx::Raw_array_of_
-#include <cppx-core/meta-template/Type_list_.hpp>           // cppx::(contains_type_, Joined_, Type_list_)
+#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::(is_signed_ ...)
+#include <cppx-core/syntax/type-assemblers.hpp>                 // cppx::Raw_array_of_
+#include <cppx-core/meta-template/Type_list_.hpp>               // cppx::(contains_type_, Joined_, Type_list_)
 
 namespace cppx
 {

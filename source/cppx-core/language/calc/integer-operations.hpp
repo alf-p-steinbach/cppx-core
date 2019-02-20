@@ -1,13 +1,12 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/basic-size-checking.hpp>       // cppx::array_size_of
-#include <cppx-core/language/syntax/macro-use.hpp>
-#include <cppx-core/language/tmp/basic-Enable_if_.hpp>      // cppx::Enable_if_
-#include <cppx-core/language/tmp/basic-type-traits.hpp>     // cppx::is_unsigned_
+//#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_unsigned_
+#include <cppx-core/syntax/macro-use.hpp>
 
 #include <c/limits.hpp>     // INT_MAX
 #include <c/stdint.hpp>     // ::(uintXX_t)
 #include <c/stdlib.hpp>     // ::(div_t, div)
+#include <type_traits>      // std::is_unsigned_v
 
 namespace cppx
 {
@@ -25,7 +24,7 @@ namespace cppx
                 {
                     INT_MAX, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
                 };
-                static_assert( array_size_of( logs ) == 16 );
+                //static_assert( array_size_of( logs ) == 16 );
 
                 return (x & 0xF0? 4 + logs[x >> 4] : logs[x]);
             }
@@ -64,13 +63,13 @@ namespace cppx
             -> int
         { return a - b*div( a, b ); }
 
-        template<
-            class Unsigned,
-            class = Enable_if_<is_unsigned_<Unsigned>>
-            >
+        template< class Unsigned >
         inline auto log2( const Unsigned x ) noexcept
             -> int
-        { return impl::log2( x ); }
+        {
+            static_assert( std::is_unsigned_v<Unsigned> );
+            return impl::log2( x );
+        }
 
     }  // namespace math
 

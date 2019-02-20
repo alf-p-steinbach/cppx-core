@@ -1,8 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/tmp/basic-Enable_if_.hpp>      // cppx::Enable_if_
-#include <cppx-core/language/tmp/basic-type-traits.hpp>     // cppx::is_const_
+#include <cppx-core/language/tmp/basic-Enable_if_.hpp>          // cppx::Enable_if_
+#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_const_
+#include <cppx-core/syntax/macro-use.hpp>                       // CPPX_USE_STD
 
 #include <functional>   // std::(ref, reference_wrapper)
 
@@ -10,9 +10,8 @@ namespace cppx
 {
     CPPX_USE_STD( ref, reference_wrapper );
 
-    template<
-        class Type,
-        class = Enable_if_<not is_const_<Type>>
+    template< class Type
+        ,class = Enable_if_<not is_const_<Type>>
         >
     class In_out_ref_:
         public reference_wrapper<Type>
