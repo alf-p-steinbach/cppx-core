@@ -1,8 +1,34 @@
-# Cppx Core
+# *cppx-core* – C++ Core Functionality
 
-The core of the not yet published *C++ Band Aid* library.
+The *cppx-core* library primarily reduces the code needed to do some simple common things, e.g.
 
-The intent of the Cppx Core micro-library is to serve as the core of a not yet published C++ Band Aid library, which in turn is meant to serve as support for people wanting to present concise C++ examples. The C++ Band Aid library has support for UTF-8 in Windows consoles (as does my Wrapped Stdlib library), and that's the essential dividing line between it and Cppx Core: there's nothing system specific and very little i/o support in Cppx Core, though there is UTF-8 functionality
+* including standard library headers  
+  via e.g. just `#include <cppx-core/_all_.hpp>`, or more specifically via e.g. `#include <cppx-core/stdlib-includes/_all_.hpp>`, which avoids dragging in any *cppx-core* stuff;  
+
+* `using` a larger number of identifiers  
+  via e.g. `CPPX_USE_STD( cout, cerr, endl, exception );`, or  
+
+* throwing an exception with the throwing function's name  
+  via e.g. `CPPX_FAIL( "Oops!" );`, which also embeds the file name and line number in the exception message.
+
+This code reduction will hopefully support Good Programming Practices&trade; in examples on the net, where brevity is often very important.
+
+For those, including in particular the author himself, who abhor shouting uppercase identifiers peppered throughout the code, the library by default defines lowercase macro names with a non-standard but still supported by most every compiler `$` in front. For the two macros mentioned above those names are `$use_std` and `$fail`, and systematically ditto for all other macros. Since there is a chance that there exists some obscure compiler that doesn't support the `$`, those names are not used in the library code itself, and the definitions can be removed by defining `CPPX_NO_DOLLARS` globally in the build.
+
+The library also provides safe and concise ways to do some common things, or things that *should be* common except that they involve too much DIY coding in bare standard C++, e.g.
+
+* counting loops expressed with range based `for`  
+  like `for( const int i: up_to( 42 ) )`;  
+
+* unwrapping of nested exceptions  
+  e.g. just `cout << description_lines_from( ex ) << endl;` to output the set of messages one per line; or  
+
+* providing a pair of iterators to a function,  
+  e.g. `sort( CPPX_ITEMS( v ) );` (with the lowercase macro name just `sort( $items( v ) );`).
+
+The provided functionality may seem a bit arbitrary, or, well, very arbitrary: a little of X, a little of Y, none of Z that the reader is especially interested in, with little or no obvious relationship between X and Y and other things in the library. It emerged by repeatedly paring down an as yet unpublished library that I call *C++ Band Aid*, so it's a bit like the prime numbers emerging via a sieve process, *apparently* arbitrary but hanging together at a higher level. The intent of the *cppx core* micro-library is to serve as the core of the *C++ Band Aid* library, which adds more high level and more system specific things such as transparent UTF-8 support for Windows console i/o, much like my now archived *Wrapped Stdlib* library but in a Better Way&trade;.
+
+---
 
 Example usage:
 
@@ -20,7 +46,9 @@ auto main() -> int
 }
 ~~~
 
-*Cppx Core* provides the following:
+---
+
+*cppx-core* provides the following headers:
 
 ~~~ txt
 •

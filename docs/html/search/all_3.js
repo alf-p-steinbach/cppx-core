@@ -277,7 +277,6 @@ var searchData=
   ['debug',['debug',['../dc/d38/namespacecppx_1_1debug.html',1,'cppx']]],
   ['hf',['hf',['../d8/de1/namespacecppx_1_1hf.html',1,'cppx']]],
   ['hopefully_5fand_5ffail',['hopefully_and_fail',['../d6/da6/namespacecppx_1_1hopefully__and__fail.html',1,'cppx']]],
-  ['cppx_20core',['Cppx Core',['../index.html',1,'']]],
   ['math',['math',['../d1/d58/namespacecppx_1_1math.html',1,'cppx']]],
   ['number_5fproperties',['number_properties',['../d6/d02/namespacecppx_1_1number__properties.html',1,'cppx']]],
   ['ptr_5fand_5fref',['ptr_and_ref',['../d6/d2d/namespacecppx_1_1ptr__and__ref.html',1,'cppx']]],
