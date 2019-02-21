@@ -5,7 +5,7 @@
 // remarked, one extra level of indirection is the solution to any computer science problem.
 //
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $invoke_macro    CPPX_INVOKE_MACRO
 #   define $invoke_macro_b  CPPX_INVOKE_MACRO_B
 #endif

@@ -12,7 +12,7 @@
 #include <cppx-core/meta-macro/macro-apply.hpp>
 #include <cppx-core/meta-macro/macro-repeat.hpp>
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $begin_test_suite    CPPX_BEGIN_TEST_SUITE
 #   define $end_test_suite      CPPX_END_TEST_SUITE
 

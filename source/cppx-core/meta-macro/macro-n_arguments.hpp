@@ -12,7 +12,7 @@
 
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $n_arguments     CPPX_N_ARGUMENTS
 #endif
 

@@ -8,7 +8,7 @@
 
 #include <string_view>
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   undef $dbginfo
 #   define $dbginfo CPPX_DBGINFO
 #endif

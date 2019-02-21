@@ -2,7 +2,7 @@
 
 #include <cppx-core/meta-macro/macro-apply_with_fixed_arg.hpp>
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $use_from_namespace          CPPX_USE_FROM_NAMESPACE
 #   define $use_nested_ns_name          CPPX_USE_NESTED_NS_NAME
 #   define $use_std                     CPPX_USE_STD

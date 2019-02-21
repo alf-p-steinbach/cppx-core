@@ -2,7 +2,7 @@
 #include <cppx-core/failure-handling/hopefully_and_fail.hpp>
 #include <cppx-core/failure-handling/macro-source_location.hpp>
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $fail    CPPX_FAIL
 #   define $fail_   CPPX_FAIL_
 #endif

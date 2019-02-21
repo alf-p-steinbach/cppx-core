@@ -6,7 +6,7 @@
 
 namespace gtest = testing;
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $expect              EXPECT_TRUE
 #   define $expect_eq           EXPECT_EQ
 #   define $require             ASSERT_TRUE

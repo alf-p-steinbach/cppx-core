@@ -5,7 +5,7 @@
 // $with_const( Lock( mutex ) ) access_resource();
 // $with( cppx::Const_<Lock>( mutex ) ) access_resource();
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $with        CPPX_WITH
 #   define $with_const  CPPX_WITH_CONST
 #endif

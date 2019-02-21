@@ -4,7 +4,7 @@
 
 #include <iterator>         // std::(begin, end)
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define  $items CPPX_ITEMS
 #endif
 

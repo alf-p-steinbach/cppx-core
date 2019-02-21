@@ -4,7 +4,7 @@
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 #include <cppx-core/meta-macro/macro-joined.hpp>
 
-#ifndef CPPX_NO_DOLLARS
+#ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $apply_with_fixed_arg    CPPX_APPLY_WITH_FIXED_ARG
 #endif
 
