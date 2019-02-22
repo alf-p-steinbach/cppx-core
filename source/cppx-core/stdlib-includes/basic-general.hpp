@@ -18,10 +18,12 @@
 #include <functional>       // std::(function)
 #include <iosfwd>           // - Forward declarations of stream types etc.
 #include <iterator>         // std::(begin, end, size)
+#include <map>              // std::map
 #include <mutex>            // std::(mutex, lock_guard) etc.
 #include <numeric>          // std::accumulate etc.
 #include <queue>            // std::queue
 #include <random>           // std::(...)
+#include <set>              // std::set
 #include <stack>            // std::stack
 #include <stdexcept>        // std::(...). But see <@/failure-handling/macro-fail.hpp>.
 #include <string>           // std::string

@@ -4,32 +4,45 @@ The *cppx-core* C++17 header library reduces the code needed to do some simple c
 
 This code reduction will hopefully support Good Programming Practices&trade; in examples on the net, where brevity is often very important.
 
-Some of this, e.g. `using`-declaring a list of identifiers from some namespace, is necessarily done via macros. For example, `CPPX_USE_STD(cout, endl);`. For those people, including in particular the author himself, who abhor textual prefixes and having shouting uppercase identifiers peppered throughout the code, the library by default defines corresponding lowercase macro names with just a `$` as prefix. For example, `$use_std(cout, endl);`, and systematically ditto for all other macros. The `$` is non-standard but is still supported by most every compiler. However, there is a chance that there exists some compiler that doesn't support the `$`, and consequently those names are not used in the library code itself, and the `$`-name definitions can be removed by defining `CPPX_NO_DOLLARS_PLEASE` globally in the build.
-
-The library also provides safe and concise ways to do some things that *would be* common except that they involve too much DIY coding in bare standard C++. For example, a counting loop can be expressed like `for(const int i: up_to(42))`; unwrapping the messages of nested exceptions like `cout << description_lines_from(ex) << endl;`; and providing a pair of iterators to a function,  like (using the lowercase macro name) `sort($items(v));`. Well, the last one isn't *entirely* safe: the macro only excludes function value results and other rvalue expressions as arguments, so an lvalue expression with side effects can wreak some havoc, as with any macro, but I feel it's worth it.
-
-Third, the library provides a *unified readable notation* for some common tasks. For example, consider checking whether a C string is empty, `!*s`, versus checking whether a `std::vector<int>` is empty, `v.empty()`, versus checking whether a `std::valarray<int>` is empty, `va.size() == 0`. You can write the same in all cases, namely `is_empty(s)`, `is_empty(v)` and `is_empty(va)`. Note: the implemention for the last case is not a specialization that calls `va.size()`, but just the default when the container lacks an `empty`-method, namely `std::begin(va) == std::end(va)`. Unified notation like `is_empty` gives more readable and clear code and supports template code that treats different types in the same way.
-
----
-The provided functionality emerged by repeatedly paring down an as yet unpublished library that I call *C++ Band Aid*, so it's a bit like the prime numbers emerging via a sieve process: *apparently* arbitrary with inexplicable large holes here & there, but hanging together and making sense at a higher level. The intent of the *cppx core* micro-library is to serve as the core of the refactored *C++ Band Aid* library. The *C++ Band Aid* library adds more high level and more system specific things such as transparent UTF-8 support for Windows console i/o, much like my now archived *Wrapped Stdlib* library but in a Better Way&trade;.
-
 Example *cppx-core* usage:
 
 ~~~cpp
+// → examples/hello.cpp
 #include <cppx-core/_all_.hpp>
+$use_cppx( up_to, spaces );
+$use_std( cout, endl );
 
 auto main() -> int
 {
-    $use_std( cout, endl );
-
-    for( const int i : cppx::up_to( 7 ) )
+    for( const int i: up_to( 7 ) )
     {
-        cout << "Cppx Core is great, yay!" << endl;
+        cout << spaces( 36 - i*i ) << "Cppx Core is great, yay!" << endl;
     }
 }
 ~~~
 
+~~~txt
+                                    Cppx Core is great, yay!
+                                   Cppx Core is great, yay!
+                                Cppx Core is great, yay!
+                           Cppx Core is great, yay!
+                    Cppx Core is great, yay!
+           Cppx Core is great, yay!
+Cppx Core is great, yay!
+~~~
+<div></div>
+
 ---
+
+Some things, e.g. `using`-declaring a list of identifiers from some namespace, is necessarily done via macros. For example, `CPPX_USE_STD(cout, endl);`. For those people, including in particular the author himself, who abhor textual prefixes and having shouting uppercase identifiers peppered throughout the code, the library by default defines corresponding lowercase macro names with just a `$` as prefix. For example, `$use_std(cout, endl);`, and systematically ditto for all other macros. The `$` is non-standard but is still supported by most every compiler. However, there is a chance that there exists some compiler that doesn't support the `$`, and consequently those names are not used in the library code itself, and the `$`-name definitions can be removed by defining `CPPX_NO_DOLLARS_PLEASE` globally in the build.
+
+The library also provides safe and concise ways to do some things that *would be* common except that they involve too much DIY coding in bare standard C++. For example, a counting loop can be expressed like `for(const int i: up_to(42))`; unwrapping the messages of nested exceptions like `cout << description_lines_from(ex) << endl;`; and providing a pair of iterators to a function,  like (using the lowercase macro name) `sort($items(v));`. Well, the last one isn't *entirely* safe: the macro only excludes function value results and other rvalue expressions as arguments, so an lvalue expression with side effects can wreak some havoc, as with any macro, but I feel it's worth it.
+
+Third, the library provides a *unified readable notation* for some common tasks. For example, consider checking whether a C string is empty, `!*s`, versus checking whether a `std::vector<int>` is empty, `v.empty()`, versus checking whether a `std::valarray<int>` is empty, `va.size() == 0`. You can write the same *cppx-core* expression in all cases, namely `is_empty(s)`, `is_empty(v)` and `is_empty(va)`. The implemention for the last case is not a specialization for `std::valarray` that calls `va.size()`, but the general default when the container lacks an `empty`-method, namely the check `std::begin(va) == std::end(va)`. Unified notation like `is_empty` gives more readable and clear code and supports template code that treats different types in the same way.
+
+---
+
+The provided functionality emerged by repeatedly paring down an as yet unpublished library that I call *C++ Band Aid*, so it's a bit like the prime numbers emerging via a sieve process: *apparently* arbitrary with inexplicable large holes here & there, but hanging together and making sense at a higher level. The intent of the *cppx core* micro-library is to serve as the core of the refactored *C++ Band Aid* library. The *C++ Band Aid* library adds more high level and more system specific things such as transparent UTF-8 support for Windows console i/o, much like my now archived *Wrapped Stdlib* library but in a Better Way&trade;.
 
 *cppx-core* provides the following headers:
 

@@ -1,5 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
+#include <cppx-core/language/bit-level/bits_per_.hpp>               // cppx::magnitude_bits_per_
 #include <cppx-core/text/unicode/unicode-Code_point_generator.hpp>  // cppx::unicode::Code_point_generator
 #include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
 
@@ -14,26 +15,21 @@ namespace cppx::utf16
         public unicode::Code_point_generator
     {
     public:
-        template<
-            class Out_iterator,
-            class = Enable_if_<(magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16)>
-            >
+        template< class Out_iterator >
         auto utf16_from_byte( const Byte value, const Out_iterator destination )
             -> Out_iterator
         {
+            static_assert( magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16 );
             CPPX_FAIL( "Not implemented yet" );
         }
 
-        template<
-            class In_iterator,
-            class Out_iterator,
-            class = Enable_if_<(magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16)>
-            >
+        template< class In_iterator, class Out_iterator >
         auto utf16_from_bytes(
             const Span_<In_iterator>        bytes_range,
             const Out_iterator              destination
             ) -> Out_iterator
         {
+            static_assert( magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16 );
             using Out_value = Item_for_iterator_<Out_iterator>;
 
             Out_iterator current = destination;
@@ -46,16 +42,15 @@ namespace cppx::utf16
             return current;
         }
 
-        template<
-            class In_iterator,
-            class Out_iterator,
-            class = Enable_if_<(magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16)>
-            >
+        template< class In_iterator, class Out_iterator >
         auto utf16_from_bytes(
             const In_iterator       first,
             const In_iterator       beyond,
             const Out_iterator      destination
             ) -> Out_iterator
-        { return utf16_from_bytes( Span_( first, beyond ), destination ); }
+        {
+            static_assert( magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16 );
+            return utf16_from_bytes( Span_( first, beyond ), destination );
+        }
     };
 }  // namespace cppx::utf16

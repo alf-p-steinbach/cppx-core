@@ -19,6 +19,6 @@ var searchData=
   ['noreturn',['noreturn',['../de/db0/macro-noreturn_8hpp.html#a4a453f3a748e55cbdac6fcc79357cfef',1,'macro-noreturn.hpp']]],
   ['nul',['NUL',['../dc/d62/namespacecppx_1_1ascii.html#aad84b4744cfa4eafe51ec6733c2f9b79',1,'cppx::ascii']]],
   ['null',['null',['../dc/d62/namespacecppx_1_1ascii.html#ae164d225bc6546367687f950fc49f301',1,'cppx::ascii']]],
-  ['number_2dproperties_2ehpp',['number-properties.hpp',['../df/d16/number-properties_8hpp.html',1,'']]],
+  ['number_2dtype_2dproperties_2ehpp',['number-type-properties.hpp',['../d1/dc4/number-type-properties_8hpp.html',1,'']]],
   ['number_5fproperties_5f',['Number_properties_',['../d6/deb/namespacecppx.html#a7a9af59e4fc25904d46151ab1abe3446',1,'cppx']]]
 ];
