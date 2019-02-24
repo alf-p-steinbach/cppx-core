@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['tail_5ft_5f',['Tail_t_',['../d6/d76/structcppx_1_1_tail__t__.html',1,'cppx']]],
-  ['tail_5ft_5f_3c_20type_5flist_5f_3c_20a_5ftype_2c_20more_5ftypes_2e_2e_2e_20_3e_20_3e',['Tail_t_&lt; Type_list_&lt; A_type, More_types... &gt; &gt;',['../d1/dbe/structcppx_1_1_tail__t___3_01_type__list___3_01_a__type_00_01_more__types_8_8_8_01_4_01_4.html',1,'cppx']]],
-  ['type_5flist_5f',['Type_list_',['../d3/d37/structcppx_1_1_type__list__.html',1,'cppx']]]
+  ['set_5f',['Set_',['../d2/d61/classcppx_1_1_set__.html',1,'cppx']]],
+  ['sorted_5fmap_5f',['Sorted_map_',['../df/d59/classcppx_1_1_sorted__map__.html',1,'cppx']]],
+  ['sorted_5fset_5f',['Sorted_set_',['../da/d8f/classcppx_1_1_sorted__set__.html',1,'cppx']]],
+  ['source_5flocation',['Source_location',['../df/da3/classcppx_1_1_source__location.html',1,'cppx']]],
+  ['span_5f',['Span_',['../d3/d84/classcppx_1_1_span__.html',1,'cppx']]],
+  ['success',['Success',['../d7/d4d/structcppx_1_1hf_1_1_success.html',1,'cppx::hf']]],
+  ['symbol_5fstrings_5fascii',['Symbol_strings_ascii',['../d5/dc8/structcppx_1_1_symbol__strings__ascii.html',1,'cppx']]],
+  ['symbol_5fstrings_5futf8',['Symbol_strings_utf8',['../d4/d63/structcppx_1_1_symbol__strings__utf8.html',1,'cppx']]]
 ];

@@ -3,14 +3,12 @@
 
 namespace app
 {
-    $use_cppx( Index, is_ascii_whitespace, is_empty, n_items_in, P_, spaces );
-    $use_std( cin, cout, endl, getline, string, string_view, max_element, unordered_map );
-
-    template< class Key, class Value >
-    using Map_ = std::unordered_map<Key, Value>;
-
-    template< class Value >
-    using Sorted_set_ = std::set<Value>;
+    $use_cppx(
+        Index, is_ascii_whitespace, is_empty, length_of, Map_, n_items_in, spaces
+        );
+    $use_std(
+        cin, cout, end, endl, getline, string, string_view, max_element, vector
+        );
 
     auto input() -> string
     {
@@ -20,16 +18,18 @@ namespace app
         return result;
     }
 
-    auto code_indices_in( const string_view& sv )
-        -> Map_<char, Sorted_set_<Index>>         // “ASCII code point” → “indices”
+    using Char_indices = Map_<char, vector<Index>>;     // “ASCII code point” → “indices”
+
+    auto char_indices_in( const string_view& s )
+        -> Char_indices
     {
-        Map_<char, Sorted_set_<Index>> result;
-        for( Index i = 0; i < n_items_in( sv ); ++i )
+        Char_indices result;
+        for( Index i = 0; i < length_of( s ); ++i )
         {
-            const char ch = sv[i];
+            const char ch = s[i];
             if( not is_ascii_whitespace( ch ) )
             {
-                result[ch].insert( i );
+                result[ch].push_back( i );
             }
         }
         return result;
@@ -37,59 +37,58 @@ namespace app
 
     void run()
     {
-        cout << ">>> The KWIC-like personal greeting program, for ASCII! <<<" << endl;
+        cout << ">>> The KWIC-like personal greeting program, using ASCII! <<<" << endl;
         cout << "Hi, what's your name (in lowercase & English letters only please)\n? ";
         const string username = input();
-        
-        const auto  code_indices    = code_indices_in( username );
-        const auto  it_most_common  = max_element( $items( code_indices ),
+
+        const Char_indices  char_indices    = char_indices_in( username );
+        const auto          it_most_common  = max_element( $items( char_indices ),
             []( auto& a, auto& b ) { return a.second.size() < b.second.size(); }
             );
 
         cout << endl;
-        if( it_most_common == end( code_indices ) )     // Username empty or all spaces.
+        if( it_most_common == end( char_indices ) )     // Username empty or all spaces.
         {
             cout << "Have a nice day!" << endl;
             return;
         }
-        else if( it_most_common->second.size() == 1 )
+
+        const char ch       = it_most_common->first;
+        const auto& indices = it_most_common->second;
+
+        if( n_items_in( indices ) == 1 )
         {
             cout << "All characters in your name are unique, " << username << "." << endl;
+            return;
         }
-        else
-        {
-            cout << "Oh hi, " << username << "! Nice to meet you!" << endl;
-            const char ch = it_most_common->first;
-            cout    << "The/a most common character in your name is '" << ch << "':" << endl;
 
-            const auto& indices     = it_most_common->second;
-            const Index max_index   = *max_element( $items( indices ) );
-            
-            cout << endl;
-            for( const Index i: indices )
-            {
-                cout    << spaces( max_index - i )
-                        << username.substr( 0, i )
-                        << "|" << ch << "|"
-                        << username.substr( i + 1 )
-                        << endl;
-            }
+        cout << "Oh hi, " << username << "! Nice to meet you!" << endl;
+        cout << "The/a most common character in your name is '" << ch << "':" << endl;
+        cout << endl;
+        const Index max_index = *max_element( $items( indices ) );
+        for( const Index i: indices )
+        {
+            cout    << spaces( max_index - i )
+                    << username.substr( 0, i )
+                    << "|" << ch << "|"
+                    << username.substr( i + 1 )
+                    << endl;
         }
     }
-}
+}  // namespace app
 
 auto main() -> int
 {
+    $use_cppx( description_lines_from, monospaced_bullet_block );
+    $use_std( cerr, endl, exception, string );
+
     try
     {
         app::run();
         return EXIT_SUCCESS;
     }
-    catch( const std::exception& x )
+    catch( const exception& x )
     {
-        $use_cppx( monospaced_bullet_block, description_lines_from );
-        $use_std( cerr, endl, string );
-
         const string text = description_lines_from( x );
         cerr << "\n" << monospaced_bullet_block( text, "!" ) << endl;
     }
