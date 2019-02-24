@@ -11,7 +11,7 @@
 
 # Example: a KWIC-like greeting program
 
-Much of the point of the *cppx-core* library is to support good programming practices that otherwise would involve too much code, in answers to people's questions on the net, and in discussions on the net. And so this example is a possible such answer's or discussion's code example. It's a more realistic use of the library than the “hello” program.
+This example is a possible Q&A answer's or discussion's code example. It's a more realistic use of the library than the “hello” program.
 
 The program asks for the user's name and if that name contains one or more repeated characters it reports one that has the maximum count, as the most common character in the name, and then presents the name repeatedly but offset horizontally so that occurrences of that character line up vertically:
 
@@ -103,7 +103,7 @@ namespace app
         cout << "Oh hi, " << username << "! Nice to meet you!" << endl;
         cout << "The/a most common character in your name is '" << ch << "':" << endl;
         cout << endl;
-        const Index max_index = *max_element( $items( indices ) );
+        const Index max_index = indices.back();
         for( const Index i: indices )
         {
             cout    << spaces( max_index - i )
@@ -142,7 +142,7 @@ Code:
 #include <cppx-core/_all_.hpp>
 ~~~
 
-This includes everything from the library, including a *guaranteed set of standard library headers*.
+This line includes everything from the library, including a guaranteed set of standard library headers.
 
 Every folder in *cppx-core*  has an ***\_all\_.hpp*** file that includes everything in that folder and subfolders. Thus, using the top level *\_all\_.hpp* file includes everything. You can include smaller subsets by including a sub-folder's *\_all\_.hpp*, or a specific header (they're all self-sufficient, with no requirements), or at the top level you can alternatively include ***all-except-io.hpp***.
 
@@ -155,11 +155,78 @@ The guaranteed set of standard library headers is provided by
 
 The non-i/o headers provided by *stdlib-includes/basic-general.hpp* are generally those that correspond to either C++ core langauge features, or to core language features in some other similar languages like Java and C#:
 
-* algorithm, array, atomic, chrono, deque, functional, initializer_list, iosfwd, iterator, map, memory, mutex, numeric, optional, queue, random, set, stack, stdexcept, string, string_view, thread, unordered_map, unordered_set, utility, vector.
+* *\<algorithm\>*, *\<array\>*, *\<atomic\>*, *\<chrono\>*, *\<deque\>*, *\<functional\>*, *\<initializer\_list\>*, *\<iosfwd\>*, *\<iterator\>*, *\<map\>*, *\<memory\>*, *\<mutex\>*, *\<numeric\>*, *\<optional\>*, *\<queue\>*, *\<random\>*, *\<set\>*, *\<stack\>*, *\<stdexcept\>*, *\<string\>*, *\<string\_view\>*, *\<thread\>*, *\<unordered_map\>*, *\<unordered\_set\>*, *\<utility\>*, *\<vector\>*.
 
 The i/o headers provided by *stdlib-includes/basic-io.hpp* are just all the C++17 i/o headers, because there are just a few:
 
-* filesystem, fstream, iomanip, iostream, sstream
+* *\<filesystem>*, *\<fstream>*, *\<iomanip>*, *\<iostream>*, *\<sstream>*.
 
 Note: the *\<iostream\>* header guaranteed includes *\<ios\>*, *\<streambuf\>*, *\<istream\>* and *\<ostream\>*, so you get those too.
 
+
+## 1.2 – An `app` namespace.
+
+Code:
+
+~~~cpp
+namespace app
+{
+    ⋮
+}  // namespace app
+~~~
+
+With *cppx-core* it's easy to `using`-declare identifiers from other namespaces, and that's best done within your own namespace, not in the global namespace.
+
+In particular, introducing identifiers directly into the global namespace can be problematic in a header.
+
+So, in order to keep to good programming practices that work in general, I here use an `app` namespace for everything but the `main` function.
+
+
+## 1.3 – `using`-declaring names from libraries.
+
+Code:
+
+~~~cpp
+    $use_cppx(
+        Index, is_ascii_whitespace, is_empty, length_of, Map_, n_items_in, spaces
+        );
+    $use_std(
+        cin, cout, end, endl, getline, string, string_view, max_element, vector
+        );
+~~~
+
+The **`$use_cppx`** macro is a more readable non-shouting alias for `CPPX_USE_CPPX`, and ditto, **`$use_std`** is a more readable non-shouting alias for `CPPX_USE_STD`. They `using`-declare the specified names, from respectively the `cppx` and `std` namespaces. The **`cppx` namespace** contains stuff from the *cppx-core* (and later also the *C++ Band Aid*) library, and the `std` namespace contains stuff from the C++ standard library.
+
+Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, a.k.a. **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces. There's also `CPPX_USE_NAMESPACE_NAME_IN`, a.k.a. **`$use_namespace_name_in`**, which you can use to `namespace`-declare the name of a nested namespace. These macros are provided by *syntax/macro-use.hpp*.
+
+
+## 1.4 – Throwing an exception via the `$fail` macro.
+
+Code:
+
+~~~cpp
+    auto input() -> string
+    {
+        string result;
+        getline( cin, result )
+            or $fail( "std::getline failed on std::cin" );
+        return result;
+    }
+~~~
+
+By default **`$fail`** throws a `std::runtime_error` exception with the source code location embedded in the exception message as a second and indented line.
+
+`$fail` ends up using **`cppx::fail`** to throw the exception. And the `cppx::fail` function has `bool` return type, though it never returns!, in order to facilitate usage like the `… or $fail` pattern above. When it's used within a `catch` block then the current exception is nested via the standard C++11 mechanism.
+
+In this example there's no exception nesting, and the message can look like this (here running the program in Windows):
+
+> `>>> The KWIC-like personal greeting program, using ASCII! <<<`  
+> `Hi, what's your name (in lowercase & English letters only please)`  
+> `?` ***^Z***  
+>  
+> <code>!&nbsp;&nbsp;&nbsp;input - std::getline failed on std::cin</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>File "kwic-greeting.ascii.cpp" at line 17</code>  
+
+The **`^Z`** is from typing a <kbd>Ctrl</kbd>+<kbd>Z</kbd>, which in Windows signifies end-of-text, like an end-of-file.
+
+Fine point: in order to get straight ASCII quote characters, like **`"`**, I defined **`CPPX_USE_ASCII_PLEASE`** when I built the program. The default roundish UTF-8 encoded quote characters don't play well in an ordinary (non-WSL) Windows console window. Instead of the macro symbol definition I could have provided a custom *config.hpp* file via an include path override, or I could have edited the default one.

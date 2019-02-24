@@ -65,7 +65,7 @@ namespace app
         cout << "Oh hi, " << username << "! Nice to meet you!" << endl;
         cout << "The/a most common character in your name is '" << ch << "':" << endl;
         cout << endl;
-        const Index max_index = *max_element( $items( indices ) );
+        const Index max_index = indices.back();
         for( const Index i: indices )
         {
             cout    << spaces( max_index - i )
