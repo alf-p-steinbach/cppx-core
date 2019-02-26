@@ -1,0 +1,172 @@
+The {\itshape cppx-\/core} C++17 header library reduces the code needed to do some simple common things, e.\+g. including standard library headers, {\ttfamily using}-\/declaring a larger number of identifiers from a namespace, or throwing an exception with the throwing function\textquotesingle{}s name in the message.
+
+This code reduction will hopefully support Good Programming Practices\texttrademark{} in examples on the net, where brevity is often very important.
+
+Example {\itshape cppx-\/core} usage (a larger example is \mbox{\hyperlink{md_example-kwic}{also available}})\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// → examples/hello.cpp}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <cppx-core/\_all\_.hpp>}}
+\DoxyCodeLine{\$use\_cppx( up\_to, spaces );}
+\DoxyCodeLine{\$use\_std( cout, endl );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto} main() -> \textcolor{keywordtype}{int}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{for}( \textcolor{keyword}{const} \textcolor{keywordtype}{int} i: up\_to( 7 ) )}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        cout << spaces( 36 - i*i ) << \textcolor{stringliteral}{"Cppx Core is great, yay!"} << endl;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{                                    Cppx Core is great, yay!}
+\DoxyCodeLine{                                   Cppx Core is great, yay!}
+\DoxyCodeLine{                                Cppx Core is great, yay!}
+\DoxyCodeLine{                           Cppx Core is great, yay!}
+\DoxyCodeLine{                    Cppx Core is great, yay!}
+\DoxyCodeLine{           Cppx Core is great, yay!}
+\DoxyCodeLine{Cppx Core is great, yay!}
+\end{DoxyCode}
+ 
+
+
+
+
+
+Some things, e.\+g. {\ttfamily using}-\/declaring a list of identifiers from some namespace, is necessarily done via macros. For example, {\ttfamily C\+P\+P\+X\+\_\+\+U\+S\+E\+\_\+\+S\+T\+D(cout, endl);}. For those people, including in particular the author himself, who abhor textual prefixes and having shouting uppercase identifiers peppered throughout the code, the library by default defines corresponding lowercase macro names with just a {\ttfamily \$} as prefix. For example, {\ttfamily \$use\+\_\+std(cout, endl);}, and systematically ditto for all other macros. The {\ttfamily \$} is non-\/standard but is still supported by most every compiler. However, there is a chance that there exists some compiler that doesn\textquotesingle{}t support the {\ttfamily \$}, and consequently those names are not used in the library code itself, and the {\ttfamily \$}-\/name definitions can be removed by defining {\ttfamily C\+P\+P\+X\+\_\+\+N\+O\+\_\+\+D\+O\+L\+L\+A\+R\+S\+\_\+\+P\+L\+E\+A\+SE} globally in the build.
+
+The library also provides safe and concise ways to do some things that {\itshape would be} common except that they involve too much D\+IY coding in bare standard C++. For example, a counting loop can be expressed like {\ttfamily for(const int i\+: up\+\_\+to(42))}; unwrapping the messages of nested exceptions like {\ttfamily cout $<$$<$ description\+\_\+lines\+\_\+from(ex) $<$$<$ endl;}; and providing a pair of iterators to a function, like (using the lowercase macro name) {\ttfamily sort(\$items(v));}. The last one isn\textquotesingle{}t {\itshape entirely} safe\+: the macro only excludes function value results and other rvalue expressions as arguments, so an lvalue expression with side effects can wreak some havoc, as with any macro, but I feel it\textquotesingle{}s worth it.
+
+Third, the library provides a {\itshape unified readable notation} for some common tasks. For example, consider checking whether a C string is empty, {\ttfamily !$\ast$s}, versus checking whether a {\ttfamily std\+::vector$<$int$>$} is empty, {\ttfamily v.\+empty()}, versus checking whether a {\ttfamily std\+::valarray$<$int$>$} is empty, {\ttfamily va.\+size() == 0}. You can write the same {\itshape cppx-\/core} expression in all cases, namely {\ttfamily is\+\_\+empty(s)}, {\ttfamily is\+\_\+empty(v)} and {\ttfamily is\+\_\+empty(va)}. The implemention for the last case is not a specialization for {\ttfamily std\+::valarray} that calls {\ttfamily va.\+size()}, but the general default when the container lacks an {\ttfamily empty}-\/method, namely the check {\ttfamily std\+::begin(va) == std\+::end(va)}. Unified notation like {\ttfamily is\+\_\+empty} gives more readable and clear code and supports template code that treats different types in the same way.
+
+
+
+
+
+The provided functionality emerged by repeatedly paring down an as yet unpublished library that I call {\itshape C++ Band Aid}, so it\textquotesingle{}s a bit like the prime numbers emerging via a sieve process\+: {\itshape apparently} arbitrary with inexplicable large holes here \& there, but hanging together and making sense at a higher level. The intent of the {\itshape cppx core} micro-\/library is to serve as the core of the refactored {\itshape C++ Band Aid} library. The {\itshape C++ Band Aid} library adds more high level and more system specific things such as transparent U\+T\+F-\/8 support for Windows console i/o, much like my now archived {\itshape Wrapped Stdlib} library but in a Better Way\texttrademark{}.
+
+{\itshape cppx-\/core} provides the following headers\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{•}
+\DoxyCodeLine{│   config.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───collections}
+\DoxyCodeLine{│       is\_empty.hpp}
+\DoxyCodeLine{│       is\_in.hpp}
+\DoxyCodeLine{│       Range\_.hpp}
+\DoxyCodeLine{│       size-checking.hpp}
+\DoxyCodeLine{│       Span\_.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───failure-handling}
+\DoxyCodeLine{│       Abstract\_source\_location.hpp}
+\DoxyCodeLine{│       exception-propagation.hpp}
+\DoxyCodeLine{│       exception-unwrapping.hpp}
+\DoxyCodeLine{│       hopefully\_and\_fail.hpp}
+\DoxyCodeLine{│       macro-dbginfo.hpp}
+\DoxyCodeLine{│       macro-fail.hpp}
+\DoxyCodeLine{│       macro-source\_location.hpp}
+\DoxyCodeLine{│       Source\_location.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───io}
+\DoxyCodeLine{│       debugging-output.hpp}
+\DoxyCodeLine{│       monospaced\_bullet\_block.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───iterators}
+\DoxyCodeLine{│       Count\_iterator\_.hpp}
+\DoxyCodeLine{│       Forward\_iterator\_impl\_.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───language}
+\DoxyCodeLine{│   │}
+\DoxyCodeLine{│   ├───bit-level}
+\DoxyCodeLine{│   │       bits\_per\_.hpp}
+\DoxyCodeLine{│   │       sum\_of\_bits.hpp}
+\DoxyCodeLine{│   │}
+\DoxyCodeLine{│   ├───calc}
+\DoxyCodeLine{│   │       integer-operations.hpp}
+\DoxyCodeLine{│   │       named-numbers.hpp}
+\DoxyCodeLine{│   │       number-properties.hpp}
+\DoxyCodeLine{│   │       std-calc.hpp}
+\DoxyCodeLine{│   │}
+\DoxyCodeLine{│   ├───parameters}
+\DoxyCodeLine{│   │       In\_out\_ref\_.hpp}
+\DoxyCodeLine{│   │}
+\DoxyCodeLine{│   ├───tmp}
+\DoxyCodeLine{│   │       basic-Enable\_if\_.hpp}
+\DoxyCodeLine{│   │       basic-type-traits.hpp}
+\DoxyCodeLine{│   │}
+\DoxyCodeLine{│   └───types}
+\DoxyCodeLine{│           basic-size-checking.hpp}
+\DoxyCodeLine{│           byte-types.hpp}
+\DoxyCodeLine{│           signed-size-types.hpp}
+\DoxyCodeLine{│           type-producers.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───meta-macro}
+\DoxyCodeLine{│       macro-apply.hpp}
+\DoxyCodeLine{│       macro-apply\_with\_fixed\_arg.hpp}
+\DoxyCodeLine{│       macro-invoke\_macro.hpp}
+\DoxyCodeLine{│       macro-joined.hpp}
+\DoxyCodeLine{│       macro-n\_arguments.hpp}
+\DoxyCodeLine{│       macro-repeat.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───meta-template}
+\DoxyCodeLine{│       Enable\_if\_.hpp}
+\DoxyCodeLine{│       Type\_list\_.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───meta-type}
+\DoxyCodeLine{│       downcasted\_to\_.hpp}
+\DoxyCodeLine{│       is\_of\_derived\_class\_.hpp}
+\DoxyCodeLine{│       No\_copy.hpp}
+\DoxyCodeLine{│       No\_copy\_or\_move.hpp}
+\DoxyCodeLine{│       type-traits.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───stdlib-includes}
+\DoxyCodeLine{│       basic-general.hpp}
+\DoxyCodeLine{│       basic-io.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───syntax}
+\DoxyCodeLine{│       lvalue\_ref\_to.hpp}
+\DoxyCodeLine{│       macro-define\_tag.hpp}
+\DoxyCodeLine{│       macro-items.hpp}
+\DoxyCodeLine{│       macro-noreturn.hpp}
+\DoxyCodeLine{│       macro-use.hpp}
+\DoxyCodeLine{│       macro-with.hpp}
+\DoxyCodeLine{│       type-assemblers.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├───testing}
+\DoxyCodeLine{│       boost-test-framework-with-wide-string-fix.hpp}
+\DoxyCodeLine{│       boost-test-framework.hpp}
+\DoxyCodeLine{│       google-test-framework.hpp}
+\DoxyCodeLine{│}
+\DoxyCodeLine{└───text}
+\DoxyCodeLine{    │   C\_str\_.hpp}
+\DoxyCodeLine{    │   pointers-from-string\_view.hpp}
+\DoxyCodeLine{    │   string-util.hpp}
+\DoxyCodeLine{    │}
+\DoxyCodeLine{    ├───ascii}
+\DoxyCodeLine{    │       ascii-character-names.hpp}
+\DoxyCodeLine{    │       ascii-fallback-symbols.hpp}
+\DoxyCodeLine{    │       ascii-util.hpp}
+\DoxyCodeLine{    │}
+\DoxyCodeLine{    └───unicode}
+\DoxyCodeLine{            assert-utf8-execution-character-set.hpp}
+\DoxyCodeLine{            unicode-Code\_point\_generator.hpp}
+\DoxyCodeLine{            utf16-from.hpp}
+\DoxyCodeLine{            utf16-Generator.hpp}
+\DoxyCodeLine{            utf16-n\_units\_for.hpp}
+\DoxyCodeLine{            utf16-surrogate-pairs.hpp}
+\DoxyCodeLine{            utf32-Generator.hpp}
+\DoxyCodeLine{            utf8-from.hpp}
+\DoxyCodeLine{            utf8-Generator.hpp}
+\DoxyCodeLine{            utf8-is\_the\_execution\_character\_set.hpp}
+\DoxyCodeLine{            utf8-iteration.hpp}
+\DoxyCodeLine{            utf8-n\_bytes\_for.hpp}
+\end{DoxyCode}
+
+
+In addition there\textquotesingle{}s an {\itshape {\bfseries{\+\_\+all\+\_\+.\+hpp}}} header in every folder. Including the top level {\itshape \+\_\+all\+\_\+.\+hpp} header includes everything. Alternatively you can include the top-\/level {\itshape {\bfseries{all-\/except-\/io.\+hpp}}} header, also not shown above, which includes everything except the {\itshape io} folder and the standard library\textquotesingle{}s i/o headers. 

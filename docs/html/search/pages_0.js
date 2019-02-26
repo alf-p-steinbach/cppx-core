@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cppx_20core',['Cppx Core',['../index.html',1,'']]]
+  ['example_2dkwic',['example-kwic',['../md_example-kwic.html',1,'']]]
 ];

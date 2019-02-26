@@ -4,16 +4,22 @@
 
 - [Example: a KWIC-like greeting program](#example-a-kwic-like-greeting-program)
   - [1 – The ASCII-based variant.](#1--the-ascii-based-variant)
-  - [1.1 – … and one `#include` to bind them all.](#11---and-one-include-to-bind-them-all)
+  - [1.1 – “… and one `#include` to bind them all”.](#11---and-one-include-to-bind-them-all)
+  - [1.2 – An `app` namespace.](#12--an-app-namespace)
+  - [1.3 – `using`-declaring names from libraries.](#13--using-declaring-names-from-libraries)
+  - [1.4 – Throwing an exception via the `$fail` macro.](#14--throwing-an-exception-via-the-fail-macro)
+  - [1.5 –  Using the *cppx-core* support for signed integer arithmetic.](#15---using-the-cppx-core-support-for-signed-integer-arithmetic)
+  - [1.6 – Using the *cppx-core* ASCII support.](#16--using-the-cppx-core-ascii-support)
+  - [1.7 – The `$items` macro.](#17--the-items-macro)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
 # Example: a KWIC-like greeting program
 
-This example is a possible Q&A answer's or discussion's code example. It's a more realistic use of the library than the “hello” program.
+This example is a possible code part of an answer on a Q&A site such as Stack Overflow, or in a response in a technical discussion e.g. on Reddit.
 
-The program asks for the user's name and if that name contains one or more repeated characters it reports one that has the maximum count, as the most common character in the name, and then presents the name repeatedly but offset horizontally so that occurrences of that character line up vertically:
+The program (perhaps a student exercise) asks for the user's name and if that name contains one or more repeated characters it reports one that has the maximum count, as the most common character in the name, and then presents the name repeatedly but offset horizontally so that occurrences of that character line up vertically:
 
 > `>>> The KWIC-like personal greeting program, using ASCII! <<<`  
 > `Hi, what's your name (in lowercase & English letters only please)`  
@@ -134,7 +140,7 @@ auto main() -> int
 }
 ~~~
 
-## 1.1 – … and one `#include` to bind them all.
+## 1.1 – “… and one `#include` to bind them all”.
 
 Code:
 
@@ -197,7 +203,7 @@ Code:
 
 The **`$use_cppx`** macro is a more readable non-shouting alias for `CPPX_USE_CPPX`, and ditto, **`$use_std`** is a more readable non-shouting alias for `CPPX_USE_STD`. They `using`-declare the specified names, from respectively the `cppx` and `std` namespaces. The **`cppx` namespace** contains stuff from the *cppx-core* (and later also the *C++ Band Aid*) library, and the `std` namespace contains stuff from the C++ standard library.
 
-Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, a.k.a. **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces. There's also `CPPX_USE_NAMESPACE_NAME_IN`, a.k.a. **`$use_namespace_name_in`**, which you can use to `namespace`-declare the name of a nested namespace. These macros are provided by *syntax/macro-use.hpp*.
+Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, alias **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces. There's also `CPPX_USE_NAMESPACE_NAME_IN`, alias **`$use_namespace_name_in`**, which you can use to `namespace`-declare the name of a nested namespace. These macros are provided by *syntax/macro-use.hpp*.
 
 
 ## 1.4 – Throwing an exception via the `$fail` macro.
@@ -216,7 +222,7 @@ Code:
 
 By default **`$fail`** throws a `std::runtime_error` exception with the source code location embedded in the exception message as a second and indented line.
 
-`$fail` ends up using **`cppx::fail`** to throw the exception. And the `cppx::fail` function has `bool` return type, though it never returns!, in order to facilitate usage like the `… or $fail` pattern above. When it's used within a `catch` block then the current exception is nested via the standard C++11 mechanism.
+`$fail` ends up using **`cppx::fail`** to throw the exception. And the `cppx::fail` function has `bool` return type, though it never returns!, in order to facilitate usage like the “`… or $fail`” pattern above. When it's used within a `catch` block then the current exception is nested via the standard C++11 mechanism.
 
 In this example there's no exception nesting, and the message can look like this (here running the program in Windows):
 
@@ -229,4 +235,64 @@ In this example there's no exception nesting, and the message can look like this
 
 The **`^Z`** is from typing a <kbd>Ctrl</kbd>+<kbd>Z</kbd>, which in Windows signifies end-of-text, like an end-of-file.
 
-Fine point: in order to get straight ASCII quote characters, like **`"`**, I defined **`CPPX_USE_ASCII_PLEASE`** when I built the program. The default roundish UTF-8 encoded quote characters don't play well in an ordinary (non-WSL) Windows console window. Instead of the macro symbol definition I could have provided a custom *config.hpp* file via an include path override, or I could have edited the default one.
+Fine point: in order to get straight ASCII quote characters, like **`"`**, I defined **`CPPX_USE_ASCII_PLEASE`** when I built the program. The default roundish UTF-8 encoded quote characters don't play well in an ordinary non-WSL Windows console window, even with active codepage 65001. Instead of the macro symbol definition I could have provided a custom *config.hpp* file via an include path override, or I could have edited the default one.
+
+## 1.5 –  Using the *cppx-core* support for signed integer arithmetic.
+
+Code:
+
+~~~cpp
+    using Char_indices = Map_<char, vector<Index>>;
+~~~
+
+You can think of the *cppx-core* **`Map_`** class template as an alias for `std::unordered_map`. Actually it's a derived class in order to provide the missing `[]` indexing operator for a `const` `unordered_map` object, so more precisely it's like an alias for an `unordered_map` with more uniform access notation. So, a variable of type `Char_indices` is a set of pairs, where each pair contains a `char` value and a corresponding `vector` of indices.
+
+The *cppx-core* **`Index`** type is an alias for the standard library's `ptrdiff_t` type. I.e. it's a signed index type of maximal practical range with a self-descriptive name. *cppx-core* also provides a signed size type called **`Size`**, that's also just an alias for `ptrdiff_t`. With signed types one avoids some nasty bugs associated with implicit conversions from signed to unsigned type, and resulting wrap-around to Really Large&trade; values. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**.
+
+
+## 1.6 – Using the *cppx-core* ASCII support.
+
+Code:
+
+~~~cpp
+    auto char_indices_in( const string_view& s )
+        -> Char_indices
+    {
+        Char_indices result;
+        for( Index i = 0; i < length_of( s ); ++i )
+        {
+            const char ch = s[i];
+            if( not is_ascii_whitespace( ch ) )
+            {
+                result[ch].push_back( i );
+            }
+        }
+        return result;
+    }
+~~~
+
+The only new *cppx-core* thing in this snippet is the **`is_ascii_whitespace`** function. Other functions that provide ASCII support include `is_all_ascii_whitespace`, `is_ascii`, `is_all_ascii`, `wide_from_ascii`, `is_ascii_lowercase`, `is_ascii_uppercase`, `ascii_to_lowercase`, `ascii_to_uppercase`, and `ascii_quoted`. Since these functions are restricted to ASCII they're locale independent: you get the same results always.
+
+I chose to express the above with an indexing loop using a classic `for`, computing each item value from the index. Alternatively the loop can be written as a range based `for` producing item references, and computing each index from the item reference. In the Python language one would naturally loop over the `enumerate`d  pairs of item and index, but *cppx-core* doesn't offer that functionality: it may be provided in the future, or by the *C++ Band Aid* library.
+
+
+## 1.7 – The `$items` macro.
+
+Code:
+
+~~~cpp
+    void run()
+    {
+        cout << ">>> The KWIC-like personal greeting program, using ASCII! <<<" << endl;
+        cout << "Hi, what's your name (in lowercase & English letters only please)\n? ";
+        const string username = input();
+
+        const Char_indices  char_indices    = char_indices_in( username );
+        const auto          it_most_common  = max_element( $items( char_indices ),
+            []( auto& a, auto& b ) { return a.second.size() < b.second.size(); }
+            );
+~~~
+
+In the last declaration (of an iterator to the item with the most common `char`) `max_element` is `std::max_element`. As most standard library functions that deal with collections, it takes a pair of iterators as arguments instead of directly taking the collection or something more abstract that represents the collection. The adoption of the *Ranges* library into the C++ standard library will address this, but for now  –  or even then, e.g. as a disambiguation technique  –  you can just use the *cppx-core* **`$items`** macro.
+
+“`$items(char_indices)`” effectively expands to “`std::begin(char_indices),` `std::end(char_indices)`”, except there's a check to ensure that `char_indices` is not an rvalue expression, because that could have made the macro call a function twice, then possibly repeating some side effect of that function.
