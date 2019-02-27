@@ -3,7 +3,7 @@
 // The template aliases defined in this file generally do not support template argument
 // deduction. In contrast, the basic type assemblers like P_ and R_, do.
 
-#include <cppx-core/syntax/type-assemblers.hpp>
+#include <cppx-core/language/syntax/type-assemblers.hpp>
 
 #include <c/stddef.hpp>     // size_t
 #include <array>            // std::array
@@ -11,7 +11,7 @@
 
 namespace cppx
 {
-    inline namespace type_production
+    inline namespace type_producers
     {
         template< bool condition, class A, class B >
         using Type_choice_  = std::conditional_t<condition, A, B>;
@@ -55,12 +55,12 @@ namespace cppx
         template< size_t n, class Item >
         using Array_of_                 = std::array<Item, n>;
 
-    }  // inline namespace type_production
+    }  // inline namespace type_producers
 
     namespace all_type_builders
     {
         using namespace type_assemblers;
         using namespace ptr_and_ref;
-        using namespace type_production;
+        using namespace type_producers;
     }   // namespace all_type_builders
 }  // namespace cppx

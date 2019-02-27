@@ -1,11 +1,18 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
+#include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::Raw_array_of_
+#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::(is_signed_ ...)
-#include <cppx-core/syntax/type-assemblers.hpp>                 // cppx::Raw_array_of_
+#include <cppx-core/language/types/type-producers.hpp>          // cppx::(Unref_ ...)
 #include <cppx-core/meta-template/Type_list_.hpp>               // cppx::(contains_type_, Joined_, Type_list_)
+
+#include <iterator>         // std::begin
+#include <utility>          // std::declval
 
 namespace cppx
 {
+    CPPX_USE_STD( begin, declval );
+
     using Char_variant_types            = Type_list_<unsigned char, signed char>;
     using Byte_char_types               = Type_list_<char, unsigned char, signed char>;
 
@@ -42,10 +49,10 @@ namespace cppx
     using Item_for_iterator_            = typename std::iterator_traits<Iterator>::value_type;
 
     template< class Collection >
-    using Item_for_collection_          = typename Collection::value_type;
+    using Item_for_collection_          = Unref_<decltype(*begin(declval<Collection>()))>;
 
-    template< class Raw_array >
-    using Item_for_array                = std::remove_extent_t<Raw_array>;
+    //template< class Raw_array >
+    //using Item_for_array                = std::remove_extent_t<Raw_array>;
 
     ////----------------------------------------------------------------------------------------------
 

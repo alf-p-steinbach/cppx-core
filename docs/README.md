@@ -42,9 +42,9 @@ Third, the library provides a *unified readable notation* for some common tasks.
 
 ---
 
-Dependencies: the [*C header wrappers*](https://github.com/alf-p-steinbach/C-header-wrappers) nano-library, that provides headers like *\<c/stdlib.hpp\>*.
+Dependency: the [*C header wrappers*](https://github.com/alf-p-steinbach/C-header-wrappers) nano-library, that provides headers like *\<c/stdlib.hpp\>*.
 
-The *cppx-core* functionality emerged by repeatedly paring down an as yet unpublished library that I call *C++ Band Aid*, so it's a bit like the prime numbers emerging via a sieve process: *apparently* arbitrary with inexplicable large holes here & there, but hanging together and making sense at a higher level. The intent of the *cppx core* micro-library is to serve as the core of the refactored *C++ Band Aid* library. The *C++ Band Aid* library adds more high level and more system specific things such as transparent UTF-8 support for Windows console i/o, much like my now archived *Wrapped Stdlib* library but in a Better Way&trade;.
+The *cppx-core* functionality emerged by repeatedly paring down an as yet unpublished library that I call *C++ Band Aid*. Well, also a adding a few things to make it more useful on its own. Still it's a bit like the prime numbers emerging via a sieve process: *apparently* it's arbitrary with inexplicable large holes here & there, but it hangs together and makes sense at a higher level. The intent is for the *cppx core* micro-library to serve as the core of the refactored *C++ Band Aid* library. The *C++ Band Aid* library adds more high level and more system specific things such as transparent UTF-8 support for Windows console i/o and command line arguments, and a common opt-in startup function with exception reporting, much like my now archived *Wrapped Stdlib* library but in a Better Way&trade;.
 
 *cppx-core* provides the following headers:
 
@@ -53,6 +53,7 @@ The *cppx-core* functionality emerged by repeatedly paring down an as yet unpubl
 │   config.hpp
 │   
 ├───collections
+│       Enumerated_.hpp
 │       is_empty.hpp
 │       is_in.hpp
 │       Map_.hpp
@@ -93,8 +94,14 @@ The *cppx-core* functionality emerged by repeatedly paring down an as yet unpubl
 │   │       number-type-properties.hpp
 │   │       std-calc.hpp
 │   │       
-│   ├───parameters
-│   │       In_out_ref_.hpp
+│   ├───syntax
+│   │       lvalue_ref_to.hpp
+│   │       macro-define_tag.hpp
+│   │       macro-items.hpp
+│   │       macro-noreturn.hpp
+│   │       macro-use.hpp
+│   │       macro-with.hpp
+│   │       type-assemblers.hpp
 │   │       
 │   ├───tmp
 │   │       basic-Enable_if_.hpp
@@ -125,18 +132,13 @@ The *cppx-core* functionality emerged by repeatedly paring down an as yet unpubl
 │       No_copy_or_move.hpp
 │       type-traits.hpp
 │       
+├───misc
+├───parameters
+│       In_out_ref_.hpp
+│       
 ├───stdlib-includes
 │       basic-general.hpp
 │       basic-io.hpp
-│       
-├───syntax
-│       lvalue_ref_to.hpp
-│       macro-define_tag.hpp
-│       macro-items.hpp
-│       macro-noreturn.hpp
-│       macro-use.hpp
-│       macro-with.hpp
-│       type-assemblers.hpp
 │       
 ├───testing
 │       boost-test-framework-with-wide-string-fix.hpp

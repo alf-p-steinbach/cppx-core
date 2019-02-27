@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
+#include <cppx-core/language/syntax/macro-use.hpp>
 //#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_unsigned_
-#include <cppx-core/syntax/macro-use.hpp>
 
 #include <c/limits.hpp>     // INT_MAX
 #include <c/stdint.hpp>     // ::(uintXX_t)

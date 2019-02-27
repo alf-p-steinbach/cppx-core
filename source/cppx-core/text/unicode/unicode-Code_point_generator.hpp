@@ -2,10 +2,10 @@
 
 #include <cppx-core/collections/Span_.hpp>                          // cppx::Span_
 #include <cppx-core/failure-handling/macro-fail.hpp>                // CPPX_FAIL, std::exception
-#include <cppx-core/language/parameters/In_out_ref_.hpp>            // cppx::In_out_ref_, std::ref
+#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/language/types/signed-size-types.hpp>           // cppx::Size
 #include <cppx-core/meta-template/Enable_if_.hpp>                   // cppx::Enable_if_
-#include <cppx-core/syntax/macro-use.hpp>                           // CPPX_USE_STD
+#include <cppx-core/parameters/In_out_ref_.hpp>                     // cppx::In_out_ref_, std::ref
 #include <cppx-core/text/ascii/ascii-character-names.hpp>           // cppx::ascii::bad_char
 #include <cppx-core/text/unicode/utf8-iteration.hpp>                // cppx::utf8::*
 

@@ -5,8 +5,8 @@
 
 #include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
+#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/meta-template/enable_if_.hpp>                   // cppx::Enable_if_
-#include <cppx-core/syntax/macro-use.hpp>                           // CPPX_USE_STD
 
 #include <optional>                 // std::optional
 #include <utility>                  // std::Enable_if_

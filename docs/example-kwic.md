@@ -237,7 +237,7 @@ The **`^Z`** is from typing a <kbd>Ctrl</kbd>+<kbd>Z</kbd>, which in Windows sig
 
 Fine point: in order to get straight ASCII quote characters, like **`"`**, I defined **`CPPX_USE_ASCII_PLEASE`** when I built the program. The default roundish UTF-8 encoded quote characters don't play well in an ordinary non-WSL Windows console window, even with active codepage 65001. Instead of the macro symbol definition I could have provided a custom *config.hpp* file via an include path override, or I could have edited the default one.
 
-## 1.5 –  Using the *cppx-core* support for signed integer arithmetic.
+## 1.5 –  Avoiding unsigned types for numbers.
 
 Code:
 
@@ -245,12 +245,14 @@ Code:
     using Char_indices = Map_<char, vector<Index>>;
 ~~~
 
-You can think of the *cppx-core* **`Map_`** class template as an alias for `std::unordered_map`. Actually it's a derived class in order to provide the missing `[]` indexing operator for a `const` `unordered_map` object, so more precisely it's like an alias for an `unordered_map` with more uniform access notation. So, a variable of type `Char_indices` is a set of pairs, where each pair contains a `char` value and a corresponding `vector` of indices.
+With signed types used for *numbers* one avoids some nasty bugs associated with implicit conversions from signed to unsigned type, and resulting wrap-around to Really Large&trade; values. Signed number types also enable the compiler to optimize certain constructs that can't be optimized with unsigned types, essentially because the compiler can assume that there will be no wrap-around. I.e. signed types are not only safer but also potentially more efficient.
 
-The *cppx-core* **`Index`** type is an alias for the standard library's `ptrdiff_t` type. I.e. it's a signed index type of maximal practical range with a self-descriptive name. *cppx-core* also provides a signed size type called **`Size`**, that's also just an alias for `ptrdiff_t`. With signed types one avoids some nasty bugs associated with implicit conversions from signed to unsigned type, and resulting wrap-around to Really Large&trade; values. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**.
+The *cppx-core* **`Index`** type is an alias for the standard library's `ptrdiff_t` type, i.e. it's a signed index type of maximal practical range with a self-descriptive name. *cppx-core* also provides a signed size type called **`Size`**, that's also just an alias for `ptrdiff_t`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**.
+
+You can think of the *cppx-core* **`Map_`** class template as an alias for `std::unordered_map`. Actually it's a derived class in order to provide the missing `[]` indexing operator for a `const` `unordered_map` object, so more precisely it's like an alias for an `unordered_map` with more uniform access notation. So, a variable of type `Char_indices` is a set of pairs, where each pair contains a `char` value and a corresponding `vector` of signed type indices.
 
 
-## 1.6 – Using the *cppx-core* ASCII support.
+## 1.6 – ASCII support.
 
 Code:
 

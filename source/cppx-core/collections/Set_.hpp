@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/Range_.hpp>             // cppx::Range_
-#include <cppx-core/syntax/macro-define_tag.hpp>        // CPPX_DEFINE_TAG
+#include <cppx-core/collections/Range_.hpp>                     // cppx::Range_
+#include <cppx-core/language/syntax/macro-define_tag.hpp>       // CPPX_DEFINE_TAG
 
 #include <initializer_list>     // std::initializer_list
 #include <utility>              // std::move

@@ -4,7 +4,7 @@
 // Removes calls to `dbginfo` when NDEBUG is defined. The `dbginfo` function must be
 // supplied by client code. 
 
-#include <cppx-core/syntax/macro-use.hpp>       // CPPX_USE_STD
+#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
 
 #include <string_view>
 

@@ -1,8 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/syntax/type-assemblers.hpp>                     // cppx::Raw_array_of_
-#include <cppx-core/language/types/signed-size-types.hpp>           // cppx::Size
-#include <cppx-core/syntax/macro-use.hpp>                           // CPPX_USE_STD
+#include <cppx-core/language/syntax/macro-use.hpp>                          // CPPX_USE_STD
+#include <cppx-core/language/syntax/type-assemblers.hpp>                    // cppx::Raw_array_of_
+#include <cppx-core/language/types/signed-size-types.hpp>                   // cppx::Size
 
 #include <algorithm>            // std::(binary_search, find)
 #include <bitset>               // std::bitset

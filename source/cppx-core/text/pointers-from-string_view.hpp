@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
-#include <cppx-core/syntax/type-assemblers.hpp>                 // cppx::(P_, Raw_array_of_)
+#include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(P_, Raw_array_of_)
 #include <cppx-core/text/C_str_.hpp>                            // cppx::C_str_
 
 #include <string_view>          // std::string_view

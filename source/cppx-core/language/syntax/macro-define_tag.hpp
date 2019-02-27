@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/syntax/type-assemblers.hpp>
+#include <cppx-core/language/syntax/type-assemblers.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $define_tag  CPPX_DEFINE_TAG

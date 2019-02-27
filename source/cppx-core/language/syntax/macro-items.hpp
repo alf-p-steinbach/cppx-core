@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/syntax/lvalue_ref_to.hpp>       // cppx::lvalue_ref_to
+#include <cppx-core/language/syntax/lvalue_ref_to.hpp>          // cppx::lvalue_ref_to
 
 #include <iterator>         // std::(begin, end)
 

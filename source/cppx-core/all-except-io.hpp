@@ -15,5 +15,5 @@ static_assert( __cplusplus >= 201703L,
 #include <cppx-core/meta-template/_all_.hpp>
 #include <cppx-core/meta-type/_all_.hpp>
 #include <cppx-core/stdlib-includes/basic-general.hpp>      // Not the i/o headers!
-#include <cppx-core/syntax/_all_.hpp>
+#include <cppx-core/parameters/_all_.hpp>
 #include <cppx-core/text/_all_.hpp>

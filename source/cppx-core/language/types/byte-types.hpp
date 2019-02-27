@@ -2,7 +2,7 @@
 //
 // cppx::cpp17::byte, cppx::Byte and cppx::Signed_byte
 
-#include <cppx-core/syntax/macro-use.hpp>           // CPPX_USE_STD
+#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
 
 #include <c/limits.hpp>                 // CHAR_BIT
 #include <c/stddef.hpp>                 // std::byte
