@@ -35,6 +35,13 @@ namespace app
         return result;
     }
 
+    auto nonspace_char_indices_in( const string_view& s )
+        -> Char_indices
+    {
+        Char_indices result = char_indices_in( s );
+        return result;
+    }
+
     void run()
     {
         cout << ">>> The KWIC-like personal greeting program, using ASCII! <<<" << endl;

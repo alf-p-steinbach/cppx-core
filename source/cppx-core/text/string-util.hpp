@@ -77,11 +77,11 @@ namespace cppx
         }
         P_<const char> p_first      = p_first_of( sv );
         P_<const char> p_beyond     = p_beyond_of( sv );
-        while( p_first != p_beyond and is_ascii_whitespace( *p_first ) )
+        while( p_first != p_beyond and ascii::is_whitespace( *p_first ) )
         {
             ++p_first;
         }
-        while( p_beyond != p_first and is_ascii_whitespace( *p_beyond ) )
+        while( p_beyond != p_first and ascii::is_whitespace( *p_beyond ) )
         {
             --p_beyond;
         }
