@@ -70,9 +70,9 @@ namespace app
         -> Char_indices
     {
         Char_indices result;
-        for( const auto current: enumerated( s ) )
+        for( const auto [ch, i]: enumerated( s ) )
         {
-            result[current.item].push_back( current.index );
+            result[ch].push_back( i );
         }
         return result;
     }
@@ -81,7 +81,7 @@ namespace app
         -> Char_indices
     {
         Char_indices result = char_indices_in( s );
-        for( const char ch : ascii::whitespace_characters() )
+        for( const char ch: ascii::whitespace_characters() )
         {
             result.erase( ch );
         }
@@ -304,7 +304,7 @@ This functionality is at a higher level, and involving more arbitrary choices, t
 
 The `$fail` macro is provided by *cppx-core/failure-handling/macro-fail.hpp*.
 
-## 1.6 –  Avoiding unsigned types for numbers.
+## 1.6 –  With slight effort, avoid unsigned types for numbers.
 
 Code:
 
@@ -323,7 +323,7 @@ The *cppx-core* **`Index`** type is an alias for the standard library's `ptrdiff
 You can think of the *cppx-core* **`Map_`** class template as an alias for `std::unordered_map`. Actually it's a derived class in order to provide the missing `[]` indexing operator for a `const` `unordered_map` object, so more precisely it's like an alias for an `unordered_map` with more uniform access notation. So, a variable of type `Char_indices` is a set of pairs, where each pair contains a `char` value and a corresponding `vector` of signed type indices.
 
 
-## 1.7 – Easily access both index and item value in a range based `for`.
+## 1.7 – Easily access both index and item in a range based `for`.
 
 Code:
 
@@ -332,15 +332,17 @@ Code:
         -> Char_indices
     {
         Char_indices result;
-        for( const auto current: enumerated( s ) )
+        for( const auto [ch, i]: enumerated( s ) )
         {
-            result[current.item].push_back( current.index );
+            result[ch].push_back( i );
         }
         return result;
     }
 ~~~
 
-This function builds up a mapping from each `char` value in `s`, to a vector of indices where that `char` value occurs. Thus, in the loop body both a `char` item in `s`, and its index, are needed. The **`enumerated`** function makes that easy by providing a virtual collection of `Item_and_index` pairs:
+This function builds up a map from each `char` value in `s`, to a vector of indices where that `char` value occurs. Thus, in the loop body both a `char` item in `s`, and its index, are needed. The *cppx-core* **`enumerated`** function combined with a C++17 *structured binding* makes that easy.
+
+`enumerated` produces a virtual collection of `Item_and_index` pairs:
 
 ~~~cpp
     using   Item        = decltype( *declval<Collection>().begin() );  // Usually a ref.
@@ -352,48 +354,52 @@ This function builds up a mapping from each `char` value in `s`, to a vector of 
     };
 ~~~
 
-So, in each iteration of the range based `for ` loop above, the `current` variable is one such `Item_and_index`. Since the collection here is a `const std::string` the `Item` type is a `const char&`. Effectively that's just a `char`.
-
-The basic idea comes from the Python language's built-in function `enumerate`, and the name `enumerated` was chosen to make that connection very clear.
-
-One alternative is to loop over references to the `char` items and *calculate* each item's index:
+This means that in C++11-compatible code the loop could have been expressed as
 
 ~~~cpp
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result;
-        for( const char& ch: s )
-        {
-            const Index i = &ch - &s[0];
-            result[ch].push_back( i );
-        }
-        return result;
-    }
+for( const auto current: enumerated( s ) )
+{
+    result[current.item].push_back( current.index );
+}
+~~~
+
+And in C++17 and later, with a structured binding, that reduces to just
+
+~~~cpp
+for( const auto [ch, i]: enumerated( s ) )
+{
+    result[ch].push_back( i );
+}
+~~~
+
+
+The basic ideas come from the Python language. The *cppx-core* `enumerated` function is based on Python's built-in function `enumerate`, and the C++17 structured bindings are based on Python's “unpacking”. Strangely, C++17 adopted only the “unpacking” half of the package, but the `enumerated` function completes that little package.
+
+One alternative to using `enumerated` is to loop over references to the `char` items and *calculate* each item's index:
+
+~~~cpp
+for( const char& ch: s )
+{
+    const Index i = &ch - &s[0];
+    result[ch].push_back( i );
+}
 ~~~
 
 This introduces a perhaps non-obvious calculation.
 
-Another alternative, sort of the opposite, is to loop over index values and calculate each item reference from the index:
+Another alternative, sort of opposite, is to loop over index values and calculate each item reference from the index:
 
 ~~~cpp
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result;
-        for( int i: Range( 0, length_of( s ) ) )
-        {
-            const char ch = s[i];
-            result[ch].push_back( i );
-        }
-        return result;
-    }
+for( const int i: up_to( length_of( s ) ) )
+{
+    const char ch = s[i];
+    result[ch].push_back( i );
+}
 ~~~
 
-This replaces the first alternative's unusual calculation with a more common and easily understood one, just ordinary `[]` indexing.
+This replaces the first alternative's unusual calculation with a more common and easily understood one, just ordinary `[]` indexing. Of course, with an `enumerated` based loop one doesn't need to specify a calculation at all.
 
-**`Range`** is `cppx::Range`, which allows simple counting loops to be expressed as range based `for` loops. This particular usage could alternatively have been expressed as `for(int i: up_to(1+length_of(s)))`. The **`up_to`** function is just a convenience function that produces `Range`s.
-
+In passing, the *cppx-core* **`up_to`** function produces a `cppx::Range`, a virtual collection of integers, which allows simple counting loops to be expressed as range based `for` loops with correctness-supporting `const` counter variable.
 
 ## 1.8 – ASCII support.
 
@@ -404,7 +410,7 @@ Code:
         -> Char_indices
     {
         Char_indices result = char_indices_in( s );
-        for( const char ch : ascii::whitespace_characters() )
+        for( const char ch: ascii::whitespace_characters() )
         {
             result.erase( ch );
         }
@@ -412,7 +418,11 @@ Code:
     }
 ~~~
 
-The **`cppx::ascii`** namespace provides several ASCII support functions, plus names for the ASCII control characters. The `ascii::whitespace_characters` function provides a reference to a Meyers' singleton string, initialized on the first call with the ASCII characters that `::isspace` (from the C library) returns `true` for. Alternatively `ascii::is_whitespace` function could have been used in the code that creates the mapping, in `char_indices_in`, but that would not have given such a nice separation of issues to discuss here.
+The **`cppx::ascii`** namespace provides a number of ASCII support functions, e.g. `ascii::is_space`, plus names of practically useful ASCII control characters, e.g. `ascii::escape` (defined as `'\x1B'`).
+
+You can think of the **`ascii::whitespace_characters`** function as producing a `std::string` with the ASCII `char` values that the C library's `isspace` regards as whitespace.
+
+Technically, for efficiency, it provides a reference to a Meyers' singleton string that's initialized on the first call with all the ASCII characters that `isspace` returns logical *true* for.
 
 
 ## 1.9 – The `$items` macro.

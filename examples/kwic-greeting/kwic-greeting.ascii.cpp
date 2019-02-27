@@ -22,7 +22,18 @@ namespace app
 
     using Char_indices = Map_<char, vector<Index>>;     // “ASCII code point” → “indices”
 
-#if N==1
+#if N==0
+    auto char_indices_in( const string_view& s )
+        -> Char_indices
+    {
+        Char_indices result;
+        for( const auto [ch, i]: enumerated( s ) )
+        {
+            result[ch].push_back( i );
+        }
+        return result;
+    }
+#elif N==1
     auto char_indices_in( const string_view& s )
         -> Char_indices
     {
@@ -47,12 +58,13 @@ namespace app
     }
 #elif N==3
     using cppx::Range;
+    using cppx::up_to;
 
     auto char_indices_in( const string_view& s )
         -> Char_indices
     {
         Char_indices result;
-        for( int i: Range( 0, length_of( s ) ) )
+        for( const int i: up_to( length_of( s ) ) )
         {
             const char ch = s[i];
             result[ch].push_back( i );
@@ -65,7 +77,7 @@ namespace app
         -> Char_indices
     {
         Char_indices result = char_indices_in( s );
-        for( const char ch : ascii::whitespace_characters() )
+        for( const char ch: ascii::whitespace_characters() )
         {
             result.erase( ch );
         }
