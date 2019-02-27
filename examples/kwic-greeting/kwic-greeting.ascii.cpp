@@ -3,8 +3,10 @@
 
 namespace app
 {
+    $use_namespace_name_in( cppx, ascii );
+
     $use_cppx(
-        Index, is_ascii_whitespace, is_empty, length_of, Map_, n_items_in, spaces
+        enumerated, Index, is_empty, length_of, Map_, n_items_in, spaces
         );
     $use_std(
         cin, cout, end, endl, getline, string, string_view, max_element, vector
@@ -20,25 +22,53 @@ namespace app
 
     using Char_indices = Map_<char, vector<Index>>;     // “ASCII code point” → “indices”
 
+#if N==1
     auto char_indices_in( const string_view& s )
         -> Char_indices
     {
         Char_indices result;
-        for( Index i = 0; i < length_of( s ); ++i )
+        for( const auto current: enumerated( s ) )
         {
-            const char ch = s[i];
-            if( not is_ascii_whitespace( ch ) )
-            {
-                result[ch].push_back( i );
-            }
+            result[current.item].push_back( current.index );
         }
         return result;
     }
+#elif N==2
+    auto char_indices_in( const string_view& s )
+        -> Char_indices
+    {
+        Char_indices result;
+        for( const char& ch: s )
+        {
+            const Index i = &ch - &s[0];
+            result[ch].push_back( i );
+        }
+        return result;
+    }
+#elif N==3
+    using cppx::Range;
+
+    auto char_indices_in( const string_view& s )
+        -> Char_indices
+    {
+        Char_indices result;
+        for( int i: Range( 0, length_of( s ) ) )
+        {
+            const char ch = s[i];
+            result[ch].push_back( i );
+        }
+        return result;
+    }
+#endif
 
     auto nonspace_char_indices_in( const string_view& s )
         -> Char_indices
     {
         Char_indices result = char_indices_in( s );
+        for( const char ch : ascii::whitespace_characters() )
+        {
+            result.erase( ch );
+        }
         return result;
     }
 
@@ -48,7 +78,7 @@ namespace app
         cout << "Hi, what's your name (in lowercase & English letters only please)\n? ";
         const string username = input();
 
-        const Char_indices  char_indices    = char_indices_in( username );
+        const Char_indices  char_indices    = nonspace_char_indices_in( username );
         const auto          it_most_common  = max_element( $items( char_indices ),
             []( auto& a, auto& b ) { return a.second.size() < b.second.size(); }
             );

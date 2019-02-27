@@ -3,11 +3,16 @@
 #include <cppx-core/collections/size-checking.hpp>                  // cppx::n_items_in
 #include <cppx-core/iterators/Forward_iterator_impl_.hpp>           // cppx::Forward_iterator_impl_
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::P_
+#include <cppx-core/language/syntax/macro-define_tag.hpp>           // CPPX_DEFINE_TAG
 #include <cppx-core/meta-type/type-traits.hpp>                      // cppx::Iterator_for_
+
+#include <iterator>         // std::begin
+
+CPPX_DEFINE_TAG( Temporary );
 
 namespace cppx
 {
-    CPPX_USE_STD( declval );
+    CPPX_USE_STD( begin, declval );
 
     template< class Collection >
     class Enumerated_
@@ -17,7 +22,7 @@ namespace cppx
         P_<Collection>      m_p_collection;
 
     public:
-        using   Item        = decltype( *declval<Collection_iterator>() );  // Usually a ref.
+        using   Item        = decltype( *begin( declval<Collection>() ) );  // Usually a ref.
         using   Item_value  = Unref_<Item>;
 
         struct Item_and_index
@@ -60,11 +65,15 @@ namespace cppx
         explicit Enumerated_( Collection& c ):
             m_p_collection( &c )
         {}
+
+        explicit Enumerated_( tag::Temporary, Collection&& c ):
+            m_p_collection( &c )
+        {}
     };
 
     template< class Collection >
     auto enumerated( Collection& c )
         -> Enumerated_<Collection>
-    { return {c]; }
+    { return Enumerated_<Collection>( c ); }
 
 }  // namespace cppx
