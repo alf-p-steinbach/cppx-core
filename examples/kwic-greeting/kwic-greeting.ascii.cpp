@@ -6,7 +6,7 @@ namespace app
     $use_namespace_name_in( cppx, ascii );
 
     $use_cppx( Index, is_empty, length_of, Map_, n_items_in, spaces );
-    $use_std( cin, cout, end, endl, getline, string, string_view, max_element, vector );
+    $use_std( cin, cout, end, endl, getline, string, string_view, max_element );
 
     auto input() -> string
     {
