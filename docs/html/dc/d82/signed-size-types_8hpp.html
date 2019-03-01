@@ -73,13 +73,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;c/stddef.hpp&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for signed-size-types.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d7/d87/signed-size-types_8hpp__incl.png" border="0" usemap="#cppx-core_2language_2types_2signed-size-types_8hpp" alt=""/></div>
 <map name="cppx-core_2language_2types_2signed-size-types_8hpp" id="cppx-core_2language_2types_2signed-size-types_8hpp">
-<area shape="rect"  title=" " alt="" coords="5,5,224,47"/>
-<area shape="rect"  title=" " alt="" coords="61,95,168,121"/>
+<area shape="rect"  title=" " alt="" coords="12,5,231,47"/>
+<area shape="rect"  title=" " alt="" coords="5,95,112,121"/>
+<area shape="rect"  title=" " alt="" coords="136,95,235,121"/>
 </map>
 </div>
 </div>
@@ -94,8 +96,8 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae398d25c80d4e5de1615bbc81c34d978"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d9b/namespacecppx_1_1size__types.html#ae398d25c80d4e5de1615bbc81c34d978">cppx::size_types::Size</a> = ptrdiff_t</td></tr>
-<tr class="separator:ae398d25c80d4e5de1615bbc81c34d978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c80e3814b9c1bf4116006d93668f01"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d9b/namespacecppx_1_1size__types.html#a81c80e3814b9c1bf4116006d93668f01">cppx::size_types::Size</a> = std::make_signed_t&lt; size_t &gt;</td></tr>
+<tr class="separator:a81c80e3814b9c1bf4116006d93668f01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95c691624eaf7db1cc6de0be149d1502"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d9b/namespacecppx_1_1size__types.html#a95c691624eaf7db1cc6de0be149d1502">cppx::size_types::Index</a> = Size</td></tr>
 <tr class="separator:a95c691624eaf7db1cc6de0be149d1502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b5e272c423ffecc25ebcf846b1f6b54"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d9b/namespacecppx_1_1size__types.html#a7b5e272c423ffecc25ebcf846b1f6b54">cppx::size_types::Unsigned_size</a> = size_t</td></tr>

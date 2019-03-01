@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['index',['index',['../de/d9e/structcppx_1_1_enumerated___1_1_item__and__index.html#a1690fcd3625c53c041160059b19f9091',1,'cppx::Enumerated_::Item_and_index']]],
   ['inv_5fsqrt2',['inv_sqrt2',['../d1/d58/namespacecppx_1_1math.html#ad56cd0033320b0b6e8f4a436c170de86',1,'cppx::math']]],
   ['inv_5fsqrt_5fpi',['inv_sqrt_pi',['../d1/d58/namespacecppx_1_1math.html#a0d7df39ddbfe6af10acfa65a1294daba',1,'cppx::math']]],
   ['is_5fa_5f',['is_a_',['../d6/deb/namespacecppx.html#ac12bf63bfc2106fc91009ed28b2a5c07',1,'cppx']]],
@@ -17,5 +18,6 @@ var searchData=
   ['is_5fintegral_5f',['is_integral_',['../d6/deb/namespacecppx.html#a8f9d2394a22bfdc99fb441883044f2ee',1,'cppx']]],
   ['is_5fsame_5ftype_5f',['is_same_type_',['../d6/deb/namespacecppx.html#a6d8a3f4d21c4ab4e9a1adadc8e9baa1d',1,'cppx']]],
   ['is_5fsigned_5f',['is_signed_',['../d6/deb/namespacecppx.html#ad44fb53c1d9eaebd11e19f986ea69322',1,'cppx']]],
-  ['is_5funsigned_5f',['is_unsigned_',['../d6/deb/namespacecppx.html#ae6dd996b33d4a62f467e78127635fc85',1,'cppx']]]
+  ['is_5funsigned_5f',['is_unsigned_',['../d6/deb/namespacecppx.html#ae6dd996b33d4a62f467e78127635fc85',1,'cppx']]],
+  ['item',['item',['../de/d9e/structcppx_1_1_enumerated___1_1_item__and__index.html#ade13e86ad8bedafd32ec93cbb049e1ad',1,'cppx::Enumerated_::Item_and_index']]]
 ];

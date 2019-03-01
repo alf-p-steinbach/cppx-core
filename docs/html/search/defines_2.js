@@ -147,7 +147,7 @@ var searchData=
   ['cppx_5ffail_5f',['CPPX_FAIL_',['../db/d7e/macro-fail_8hpp.html#a7985c94d982af6c74e21418ce98be345',1,'macro-fail.hpp']]],
   ['cppx_5fgenerate_5ftest_5fsuite_5fend_5f',['CPPX_GENERATE_TEST_SUITE_END_',['../d5/d6e/boost-test-framework_8hpp.html#a560193ea26341ebf7e4a543d75b78d07',1,'boost-test-framework.hpp']]],
   ['cppx_5fgenerate_5ftest_5fsuite_5fstart_5f',['CPPX_GENERATE_TEST_SUITE_START_',['../d5/d6e/boost-test-framework_8hpp.html#afe3ee7e85b744c50434d5d4c67115d81',1,'boost-test-framework.hpp']]],
-  ['cppx_5fgenerate_5fusing_5fdeclaration_5fin',['CPPX_GENERATE_USING_DECLARATION_IN',['../d3/d7c/macro-use_8hpp.html#abb48829f20542d4f3bd34af570146d15',1,'macro-use.hpp']]],
+  ['cppx_5fgenerate_5fusing_5fdeclaration_5ffor',['CPPX_GENERATE_USING_DECLARATION_FOR',['../d3/d7c/macro-use_8hpp.html#a72ef70b1dd886c0e6dc568af4973e5c3',1,'macro-use.hpp']]],
   ['cppx_5finvoke_5fmacro',['CPPX_INVOKE_MACRO',['../de/dd0/macro-invoke__macro_8hpp.html#a8034758d183ea9694cf58d7a1b55e8ca',1,'macro-invoke_macro.hpp']]],
   ['cppx_5finvoke_5fmacro_5fb',['CPPX_INVOKE_MACRO_B',['../de/dd0/macro-invoke__macro_8hpp.html#a3989aec016cb1e3ff2d60be62de2588e',1,'macro-invoke_macro.hpp']]],
   ['cppx_5fitems',['CPPX_ITEMS',['../d2/db5/macro-items_8hpp.html#a439a843c508fae6f701916f335cb2e49',1,'macro-items.hpp']]],
@@ -233,6 +233,7 @@ var searchData=
   ['cppx_5fuse_5fcppx',['CPPX_USE_CPPX',['../d3/d7c/macro-use_8hpp.html#aaa954273e2aeb3171c12ebd1fa883cf4',1,'macro-use.hpp']]],
   ['cppx_5fuse_5ffrom_5fnamespace',['CPPX_USE_FROM_NAMESPACE',['../d3/d7c/macro-use_8hpp.html#a199823e7ebe0e4995ae9c0be202660f8',1,'macro-use.hpp']]],
   ['cppx_5fuse_5fnamespace_5fname_5fin',['CPPX_USE_NAMESPACE_NAME_IN',['../d3/d7c/macro-use_8hpp.html#a16af707bb06fb2683b0821bfa75d67b7',1,'macro-use.hpp']]],
+  ['cppx_5fuse_5fnamespace_5fnames_5fin',['CPPX_USE_NAMESPACE_NAMES_IN',['../d3/d7c/macro-use_8hpp.html#aff4d1eba5d9042295e2037b10e8a4f90',1,'macro-use.hpp']]],
   ['cppx_5fuse_5fstd',['CPPX_USE_STD',['../d3/d7c/macro-use_8hpp.html#ae12b226a995df6da2a098b7222c8211d',1,'macro-use.hpp']]],
   ['cppx_5fwith',['CPPX_WITH',['../de/d9e/macro-with_8hpp.html#a5ae4254206e66ba53ac9343ef89f61df',1,'macro-with.hpp']]],
   ['cppx_5fwith_5fconst',['CPPX_WITH_CONST',['../de/d9e/macro-with_8hpp.html#a97ea26c34a23e2970983538c74a31744',1,'macro-with.hpp']]]

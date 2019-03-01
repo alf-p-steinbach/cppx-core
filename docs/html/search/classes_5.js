@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['in_5fout_5fref_5f',['In_out_ref_',['../db/def/classcppx_1_1_in__out__ref__.html',1,'cppx']]],
-  ['incomplete_5fgroup_5fexception',['Incomplete_group_exception',['../d4/dba/classcppx_1_1unicode_1_1_code__point__generator_1_1_incomplete__group__exception.html',1,'cppx::unicode::Code_point_generator']]],
-  ['iterator_5ftraits_3c_20cppx_3a_3acount_5fiterator_5f_3c_20item_20_3e_20_3e',['iterator_traits&lt; cppx::Count_iterator_&lt; Item &gt; &gt;',['../dc/d42/structstd_1_1iterator__traits_3_01cppx_1_1_count__iterator___3_01_item_01_4_01_4.html',1,'std']]]
+  ['has_5fmethod_5fempty_5f',['Has_method_empty_',['../dc/d25/classcppx_1_1_has__method__empty__.html',1,'cppx']]],
+  ['head_5ft_5f',['Head_t_',['../de/daf/structcppx_1_1_head__t__.html',1,'cppx']]],
+  ['head_5ft_5f_3c_20type_5flist_5f_3c_20a_5ftype_2c_20more_5ftypes_2e_2e_2e_20_3e_20_3e',['Head_t_&lt; Type_list_&lt; A_type, More_types... &gt; &gt;',['../d2/d24/structcppx_1_1_head__t___3_01_type__list___3_01_a__type_00_01_more__types_8_8_8_01_4_01_4.html',1,'cppx']]]
 ];

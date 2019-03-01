@@ -15,6 +15,7 @@ var searchData=
   ['forward_5fiterator_5fimpl_5f',['Forward_iterator_impl_',['../dc/df9/classcppx_1_1_forward__iterator__impl__.html',1,'cppx']]],
   ['forward_5fiterator_5fimpl_5f_2ehpp',['Forward_iterator_impl_.hpp',['../d0/dda/_forward__iterator__impl___8hpp.html',1,'']]],
   ['forward_5fiterator_5fimpl_5f_3c_20iterator_2c_20integer_20_3e',['Forward_iterator_impl_&lt; Iterator, Integer &gt;',['../dc/df9/classcppx_1_1_forward__iterator__impl__.html',1,'cppx']]],
+  ['forward_5fiterator_5fimpl_5f_3c_20iterator_2c_20item_5fand_5findex_20_3e',['Forward_iterator_impl_&lt; Iterator, Item_and_index &gt;',['../dc/df9/classcppx_1_1_forward__iterator__impl__.html',1,'cppx']]],
   ['from',['from',['../d2/dcb/namespacecppx_1_1utf8.html#aa72a4f382ccf754c830787b28ae0dd5a',1,'cppx::utf8::from(const P_&lt; const Char &gt; s) -&gt; string'],['../d2/dcb/namespacecppx_1_1utf8.html#a399f0f6a4a871f40a201aa3603af012d',1,'cppx::utf8::from(const basic_string&lt; Char &gt; &amp;s) -&gt; string'],['../d2/dcb/namespacecppx_1_1utf8.html#a4da0d45a3654ed0740c79dbafd7a218f',1,'cppx::utf8::from(string s) -&gt; string'],['../d2/dcb/namespacecppx_1_1utf8.html#a715c68cafdd1a5e99f2cc580a508d1ae',1,'cppx::utf8::from(const basic_string_view&lt; Char &gt; &amp;s) -&gt; string']]],
   ['from_5fcode_5fpoint',['from_code_point',['../db/de7/namespacecppx_1_1utf16.html#a2d345779464a900fd70d27de963eb235',1,'cppx::utf16']]],
   ['from_5fstring_5fview',['from_string_view',['../d2/dcb/namespacecppx_1_1utf8.html#af502298d3ed51d759c24bbc5c7b51621',1,'cppx::utf8']]],

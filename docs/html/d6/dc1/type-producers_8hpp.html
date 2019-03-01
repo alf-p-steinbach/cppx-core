@@ -72,7 +72,7 @@ $(function() {
 <div class="title">type-producers.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="../../d0/d4b/type-assemblers_8hpp_source.html">cppx-core/syntax/type-assemblers.hpp</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="../../d0/d4b/type-assemblers_8hpp_source.html">cppx-core/language/syntax/type-assemblers.hpp</a>&gt;</code><br />
 <code>#include &lt;c/stddef.hpp&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
@@ -81,11 +81,11 @@ Include dependency graph for type-producers.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d3/d5b/type-producers_8hpp__incl.png" border="0" usemap="#cppx-core_2language_2types_2type-producers_8hpp" alt=""/></div>
 <map name="cppx-core_2language_2types_2type-producers_8hpp" id="cppx-core_2language_2types_2type-producers_8hpp">
-<area shape="rect"  title=" " alt="" coords="147,5,345,47"/>
-<area shape="rect"  href="../../d0/d4b/type-assemblers_8hpp.html" title=" " alt="" coords="5,95,175,136"/>
-<area shape="rect"  title=" " alt="" coords="98,184,205,211"/>
-<area shape="rect"  title=" " alt="" coords="251,102,308,129"/>
-<area shape="rect"  title=" " alt="" coords="333,102,431,129"/>
+<area shape="rect"  title=" " alt="" coords="188,5,385,47"/>
+<area shape="rect"  href="../../d0/d4b/type-assemblers_8hpp.html" title=" " alt="" coords="5,95,216,136"/>
+<area shape="rect"  title=" " alt="" coords="128,184,235,211"/>
+<area shape="rect"  title=" " alt="" coords="291,102,349,129"/>
+<area shape="rect"  title=" " alt="" coords="373,102,472,129"/>
 </map>
 </div>
 </div>
@@ -95,43 +95,43 @@ Include dependency graph for type-producers.hpp:</div>
 Namespaces</h2></td></tr>
 <tr class="memitem:d6/deb/namespacecppx"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/deb/namespacecppx.html">cppx</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:d0/df3/namespacecppx_1_1type__production"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html">cppx::type_production</a></td></tr>
+<tr class="memitem:db/d77/namespacecppx_1_1type__producers"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html">cppx::type_producers</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:dd/dd8/namespacecppx_1_1all__type__builders"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/dd8/namespacecppx_1_1all__type__builders.html">cppx::all_type_builders</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae56578e8aabf73b41a5ec3d71af59348"><td class="memTemplParams" colspan="2">template&lt;bool condition, class A , class B &gt; </td></tr>
-<tr class="memitem:ae56578e8aabf73b41a5ec3d71af59348"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#ae56578e8aabf73b41a5ec3d71af59348">cppx::type_production::Type_choice_</a> = std::conditional_t&lt; condition, A, B &gt;</td></tr>
-<tr class="separator:ae56578e8aabf73b41a5ec3d71af59348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2e1f52ee680edf1a42fa7fc7450df84"><td class="memTemplParams" colspan="2">template&lt;class Some_pointer_type &gt; </td></tr>
-<tr class="memitem:aa2e1f52ee680edf1a42fa7fc7450df84"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#aa2e1f52ee680edf1a42fa7fc7450df84">cppx::type_production::Unptr_</a> = std::remove_pointer_t&lt; Some_pointer_type &gt;</td></tr>
-<tr class="separator:aa2e1f52ee680edf1a42fa7fc7450df84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc8ef3a919aa9b66276fc1358726ece1"><td class="memTemplParams" colspan="2">template&lt;class Some_reference_type &gt; </td></tr>
-<tr class="memitem:abc8ef3a919aa9b66276fc1358726ece1"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#abc8ef3a919aa9b66276fc1358726ece1">cppx::type_production::Unref_</a> = std::remove_reference_t&lt; Some_reference_type &gt;</td></tr>
-<tr class="separator:abc8ef3a919aa9b66276fc1358726ece1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a693562936bfca66a897841314a4ce4ea"><td class="memTemplParams" colspan="2">template&lt;class Integer &gt; </td></tr>
-<tr class="memitem:a693562936bfca66a897841314a4ce4ea"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#a693562936bfca66a897841314a4ce4ea">cppx::type_production::Signed_</a> = std::make_signed_t&lt; Integer &gt;</td></tr>
-<tr class="separator:a693562936bfca66a897841314a4ce4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97137521f7c254f64791084575183728"><td class="memTemplParams" colspan="2">template&lt;class Integer &gt; </td></tr>
-<tr class="memitem:a97137521f7c254f64791084575183728"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#a97137521f7c254f64791084575183728">cppx::type_production::Unsigned_</a> = std::make_unsigned_t&lt; Integer &gt;</td></tr>
-<tr class="separator:a97137521f7c254f64791084575183728"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac76d6f23767b30afa2d40767312ad595"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
-<tr class="memitem:ac76d6f23767b30afa2d40767312ad595"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#ac76d6f23767b30afa2d40767312ad595">cppx::type_production::Const_</a> = std::add_const_t&lt; Some_type &gt;</td></tr>
-<tr class="separator:ac76d6f23767b30afa2d40767312ad595"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a5616a99e0f70c06c3abe33138d501e"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
-<tr class="memitem:a7a5616a99e0f70c06c3abe33138d501e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#a7a5616a99e0f70c06c3abe33138d501e">cppx::type_production::Unconst_</a> = std::remove_const_t&lt; Some_type &gt;</td></tr>
-<tr class="separator:a7a5616a99e0f70c06c3abe33138d501e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93ddabdb8d308b6efb180240ed99cbe3"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
-<tr class="memitem:a93ddabdb8d308b6efb180240ed99cbe3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#a93ddabdb8d308b6efb180240ed99cbe3">cppx::type_production::Intended_temp_ref_</a> = Some_type &amp;&amp;</td></tr>
-<tr class="separator:a93ddabdb8d308b6efb180240ed99cbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acaffaa9a844c96c69d1c240e2fda8a39"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
-<tr class="memitem:acaffaa9a844c96c69d1c240e2fda8a39"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#acaffaa9a844c96c69d1c240e2fda8a39">cppx::type_production::Intended_forwarding_ref_</a> = Some_type &amp;&amp;</td></tr>
-<tr class="separator:acaffaa9a844c96c69d1c240e2fda8a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f5dacd47394cfe00e87939c9b75505b"><td class="memTemplParams" colspan="2">template&lt;size_t n, class Item &gt; </td></tr>
-<tr class="memitem:a6f5dacd47394cfe00e87939c9b75505b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/df3/namespacecppx_1_1type__production.html#a6f5dacd47394cfe00e87939c9b75505b">cppx::type_production::Array_of_</a> = std::array&lt; Item, n &gt;</td></tr>
-<tr class="separator:a6f5dacd47394cfe00e87939c9b75505b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac91d7e0413e472125eeebaebb4c8c786"><td class="memTemplParams" colspan="2">template&lt;bool condition, class A , class B &gt; </td></tr>
+<tr class="memitem:ac91d7e0413e472125eeebaebb4c8c786"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#ac91d7e0413e472125eeebaebb4c8c786">cppx::type_producers::Type_choice_</a> = std::conditional_t&lt; condition, A, B &gt;</td></tr>
+<tr class="separator:ac91d7e0413e472125eeebaebb4c8c786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e972375aa075a363d03847f8e9124b8"><td class="memTemplParams" colspan="2">template&lt;class Some_pointer_type &gt; </td></tr>
+<tr class="memitem:a3e972375aa075a363d03847f8e9124b8"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a3e972375aa075a363d03847f8e9124b8">cppx::type_producers::Unptr_</a> = std::remove_pointer_t&lt; Some_pointer_type &gt;</td></tr>
+<tr class="separator:a3e972375aa075a363d03847f8e9124b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c69139983b3d403dea8e9ce85782a50"><td class="memTemplParams" colspan="2">template&lt;class Some_reference_type &gt; </td></tr>
+<tr class="memitem:a4c69139983b3d403dea8e9ce85782a50"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a4c69139983b3d403dea8e9ce85782a50">cppx::type_producers::Unref_</a> = std::remove_reference_t&lt; Some_reference_type &gt;</td></tr>
+<tr class="separator:a4c69139983b3d403dea8e9ce85782a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48b010977c2cca970f3834a440ffa895"><td class="memTemplParams" colspan="2">template&lt;class Integer &gt; </td></tr>
+<tr class="memitem:a48b010977c2cca970f3834a440ffa895"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a48b010977c2cca970f3834a440ffa895">cppx::type_producers::Signed_</a> = std::make_signed_t&lt; Integer &gt;</td></tr>
+<tr class="separator:a48b010977c2cca970f3834a440ffa895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0837da6ae42b6ff9e7004398fb9062ae"><td class="memTemplParams" colspan="2">template&lt;class Integer &gt; </td></tr>
+<tr class="memitem:a0837da6ae42b6ff9e7004398fb9062ae"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a0837da6ae42b6ff9e7004398fb9062ae">cppx::type_producers::Unsigned_</a> = std::make_unsigned_t&lt; Integer &gt;</td></tr>
+<tr class="separator:a0837da6ae42b6ff9e7004398fb9062ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5be869560cd1c72e88286056bbce3312"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
+<tr class="memitem:a5be869560cd1c72e88286056bbce3312"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a5be869560cd1c72e88286056bbce3312">cppx::type_producers::Const_</a> = std::add_const_t&lt; Some_type &gt;</td></tr>
+<tr class="separator:a5be869560cd1c72e88286056bbce3312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86d2035501f1cec4dc26d04718340f7d"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
+<tr class="memitem:a86d2035501f1cec4dc26d04718340f7d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a86d2035501f1cec4dc26d04718340f7d">cppx::type_producers::Unconst_</a> = std::remove_const_t&lt; Some_type &gt;</td></tr>
+<tr class="separator:a86d2035501f1cec4dc26d04718340f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab5de03a543dcac1f96e7f5fdf77ad6d"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
+<tr class="memitem:aab5de03a543dcac1f96e7f5fdf77ad6d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#aab5de03a543dcac1f96e7f5fdf77ad6d">cppx::type_producers::Intended_temp_ref_</a> = Some_type &amp;&amp;</td></tr>
+<tr class="separator:aab5de03a543dcac1f96e7f5fdf77ad6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5cb499c0c297bec8c0c48953f419cf"><td class="memTemplParams" colspan="2">template&lt;class Some_type &gt; </td></tr>
+<tr class="memitem:a9b5cb499c0c297bec8c0c48953f419cf"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a9b5cb499c0c297bec8c0c48953f419cf">cppx::type_producers::Intended_forwarding_ref_</a> = Some_type &amp;&amp;</td></tr>
+<tr class="separator:a9b5cb499c0c297bec8c0c48953f419cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef78d8229c9f7869ad831eb0abefc88"><td class="memTemplParams" colspan="2">template&lt;size_t n, class Item &gt; </td></tr>
+<tr class="memitem:a0ef78d8229c9f7869ad831eb0abefc88"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../db/d77/namespacecppx_1_1type__producers.html#a0ef78d8229c9f7869ad831eb0abefc88">cppx::type_producers::Array_of_</a> = std::array&lt; Item, n &gt;</td></tr>
+<tr class="separator:a0ef78d8229c9f7869ad831eb0abefc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

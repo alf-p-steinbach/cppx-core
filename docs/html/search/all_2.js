@@ -7,7 +7,7 @@ var searchData=
   ['basic_2dio_2ehpp',['basic-io.hpp',['../d9/de9/basic-io_8hpp.html',1,'']]],
   ['basic_2dsize_2dchecking_2ehpp',['basic-size-checking.hpp',['../d9/dd6/basic-size-checking_8hpp.html',1,'']]],
   ['basic_2dtype_2dtraits_2ehpp',['basic-type-traits.hpp',['../d2/d2b/basic-type-traits_8hpp.html',1,'']]],
-  ['begin',['begin',['../db/dc0/classcppx_1_1_range__.html#ad6ba5a76ea3caaab4479f8c02420ea73',1,'cppx::Range_::begin()'],['../d3/d84/classcppx_1_1_span__.html#aa620a3549398be54465423b270b247df',1,'cppx::Span_::begin()']]],
+  ['begin',['begin',['../d5/d94/classcppx_1_1_enumerated__.html#a980de0df557a985b1a35d0f50b4165d3',1,'cppx::Enumerated_::begin()'],['../db/dc0/classcppx_1_1_range__.html#ad6ba5a76ea3caaab4479f8c02420ea73',1,'cppx::Range_::begin()'],['../d3/d84/classcppx_1_1_span__.html#aa620a3549398be54465423b270b247df',1,'cppx::Span_::begin()']]],
   ['begin_5ftest_5fsuite',['begin_test_suite',['../d5/d6e/boost-test-framework_8hpp.html#a32bdafe389db3b69050965fce38984fe',1,'boost-test-framework.hpp']]],
   ['bel',['BEL',['../dc/d62/namespacecppx_1_1ascii.html#a93778c7e4bfbdb44961201b3d896799e',1,'cppx::ascii']]],
   ['bell',['bell',['../dc/d62/namespacecppx_1_1ascii.html#abf3b7a8577b19ad255f3244f63d26c39',1,'cppx::ascii']]],

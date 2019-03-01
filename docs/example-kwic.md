@@ -162,7 +162,7 @@ The guaranteed set of standard library headers is provided by
 #include <cppx-core/stdlib-includes/basic-io.hpp>
 ~~~
 
-The non-i/o headers provided by *cppx-core/stdlib-includes/basic-general.hpp* are generally those that correspond to either C++ core langauge features, or to core language features in some other similar languages like Java and C#:
+The non-i/o headers provided by *cppx-core/stdlib-includes/basic-general.hpp* are generally those that correspond to either C++ core language features, or to core language features in some other similar languages like Java and C#:
 
 * *\<algorithm\>*, *\<array\>*, *\<atomic\>*, *\<chrono\>*, *\<deque\>*, *\<functional\>*, *\<initializer\_list\>*, *\<iosfwd\>*, *\<iterator\>*, *\<map\>*, *\<memory\>*, *\<mutex\>*, *\<numeric\>*, *\<optional\>*, *\<queue\>*, *\<random\>*, *\<set\>*, *\<stack\>*, *\<stdexcept\>*, *\<string\>*, *\<string\_view\>*, *\<thread\>*, *\<unordered_map\>*, *\<unordered\_set\>*, *\<utility\>*, *\<vector\>*.
 
@@ -392,5 +392,88 @@ So, ***how to express a loop condition*** can depend crucially on whether the lo
 
 ## 11 – Easily display the messages of nested exceptions.
 
-kjhgkjhgkjhg
+Code:
 
+~~~cpp
+auto main() -> int
+{
+    $use_cppx( description_lines_from, monospaced_bullet_block );
+    $use_std( cerr, endl, exception, string );
+
+    try
+    {
+        app::run();
+        return EXIT_SUCCESS;
+    }
+    catch( const exception& x )
+    {
+        #if defined( __unix__ ) or defined( __APPLE__ )
+            if( cin.eof() ) { cout << endl; }
+        #endif
+        const string text = description_lines_from( x );
+        cerr << monospaced_bullet_block( text, "!" ) << endl;
+    }
+    return EXIT_FAILURE;
+}
+~~~
+
+Since in this program no nested exceptions are thrown, the result of **`description_lines_from`**`(x)` is the same as `x.what()` produces. So, I used `description_lines_from` mainly just to be able to explain it. For a nested exception `x.what()` produces only the top level exception's text, whereas `description_lines_from` adds the nested exceptions' messages as additional lines.
+
+The **`monospaced_bullet_block`** function indents the lines, by default with 4 spaces, and places the specified symbol text at the start of the first line, so that this program's possible exception message
+
+> <code>input - std::getline failed on std::cin</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;>File "kwic-greeting.ascii.cpp" at line 19</code>  
+
+is presented as the block
+
+> <code>!&nbsp;&nbsp;&nbsp;input - std::getline failed on std::cin</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>File "kwic-greeting.ascii.cpp" at line 19</code>  
+
+The purpose of the symbol, here **`!`**, is to identify each top level exception in sequence of exception message presentations, plus to identify the exception message presentation as such when it follows ordinary output.
+
+
+`description_lines_from` is trivially implemented in terms of **`call_with_description_lines_from`**, which delves recursively into the nested exceptions by throwing and catching them:
+
+~~~cpp
+    inline void call_with_description_lines_from(
+        const exception&                            x,
+        const function<void( const C_str )>&        f
+        )
+    {
+        f( x.what() );
+        try
+        {
+            rethrow_if_nested( x );
+        }
+        catch( const exception& rx )
+        {
+            call_with_description_lines_from( rx, f );
+        }
+        catch( ... )
+        {
+            f( "<a non-standard exception>" );
+        }
+    }
+
+    inline auto description_lines_from( const exception& x )
+        -> string
+    {
+        string result;
+        const auto add = [&]( const C_str s ) -> void
+        {
+            if( not is_empty( result ) )
+            {
+                result += '\n';
+            }
+            result += s;
+        };
+        call_with_description_lines_from( x, add );
+        return result;
+    }
+~~~
+
+Here `C_str` is a name for the `char const*`  type, and `rethrow_if_nested` is a function from the C++ standard library, that rethrows the directly nested exception, if any.
+
+By the way, as the code so far has exemplified my preferred convention for where to place `const` is as **prefix `const`**. And to enable “*always prefix `const`*” coding the *cppx-core* library provides a *type builder* called **`P_`** so that e.g. backwards `char const* const` can be expressed as forward reading direction `const P_<const char>`. For some time I experimented with a ditto notation for references, but in the end I found that it didn't really provide any advantage  –  but `P_` does, in particular because, unlike references, it makes sense to declare a pointer itself as `const`.
+
+Both the above functions are provided by *cppx-core/failure-handling/exception-unwrapping.hpp*. The `monospaced_bullet_block` function is provided by *cppx-core/io/monospaced_bullet_block.hpp*. The `P_` type builder is provided by *cppx-core/language/syntax/type-assemblers.hpp*.
