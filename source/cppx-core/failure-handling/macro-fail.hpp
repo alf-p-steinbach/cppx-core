@@ -11,4 +11,4 @@
     CPPX_FAIL_( std::runtime_error, __VA_ARGS__ )
 
 #define CPPX_FAIL_( X, ... ) \
-    cppx::fail<X>( std::string( __VA_ARGS__ ), CPPX_SOURCE_LOCATION )
+    ::cppx::fail<X>( std::string( __VA_ARGS__ ), CPPX_SOURCE_LOCATION )

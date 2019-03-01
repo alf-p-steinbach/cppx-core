@@ -2,44 +2,48 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Example: a KWIC-like greeting program](#example-a-kwic-like-greeting-program)
-  - [1 – The ASCII-based variant.](#1--the-ascii-based-variant)
-  - [1.1 – “… and one `#include` to bind them all”.](#11---and-one-include-to-bind-them-all)
-  - [1.2 – An `app` namespace.](#12--an-app-namespace)
-  - [1.3 – `using`-declaring names from libraries.](#13--using-declaring-names-from-libraries)
-  - [1.4 – Throwing an exception via the `$fail` macro.](#14--throwing-an-exception-via-the-fail-macro)
-  - [1.5 –  Using the *cppx-core* support for signed integer arithmetic.](#15---using-the-cppx-core-support-for-signed-integer-arithmetic)
-  - [1.6 – Using the *cppx-core* ASCII support.](#16--using-the-cppx-core-ascii-support)
-  - [1.7 – The `$items` macro.](#17--the-items-macro)
+- [Example: a KWIC-like ASCII based greeting program.](#example-a-kwic-like-ascii-based-greeting-program)
+  - [1 – The complete code.](#1--the-complete-code)
+  - [2 – “… one `#include` to bind them all”.](#2---one-include-to-bind-them-all)
+  - [3 – An `app` namespace.](#3--an-app-namespace)
+  - [4 – Easily make nested namespaces directly available.](#4--easily-make-nested-namespaces-directly-available)
+  - [5 – Easily make stuff from namespaces, directly available.](#5--easily-make-stuff-from-namespaces-directly-available)
+  - [6 – Easily throw an exception with throw point information.](#6--easily-throw-an-exception-with-throw-point-information)
+  - [7 –  Collection wrappers for clarity & more complete functionality.](#7---collection-wrappers-for-clarity--more-complete-functionality)
+  - [8 – ASCII support.](#8--ascii-support)
+  - [9 – Easily pass `begin`/`end` pairs with the `$items` macro.](#9--easily-pass-beginend-pairs-with-the-items-macro)
+  - [10 –  With slight effort, avoid unsigned types for numbers.](#10---with-slight-effort-avoid-unsigned-types-for-numbers)
+  - [11 – Easily display the messages of nested exceptions.](#11--easily-display-the-messages-of-nested-exceptions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-# Example: a KWIC-like greeting program
+# Example: a KWIC-like ASCII based greeting program.
 
-This example is a possible code part of an answer on a Q&A site such as Stack Overflow, or in a response in a technical discussion e.g. on Reddit.
+This example could have been a code part of an answer on a Q&A site such as Stack Overflow, or in a response in a technical discussion e.g. on Reddit.
 
 The program (perhaps a student exercise) asks for the user's name and if that name contains one or more repeated characters it reports one that has the maximum count, as the most common character in the name, and then presents the name repeatedly but offset horizontally so that occurrences of that character line up vertically:
 
 > `>>> The KWIC-like personal greeting program, using ASCII! <<<`  
 > `Hi, what's your name (in lowercase & English letters only please)`  
-> `? ` ***alfa bravo charlie***
+> `? ` ***alfa bravo charlie delta***
 >  
-> `Oh hi, alfa bravo charlie! Nice to meet you!`  
+> `Oh hi, alfa bravo charlie delta! Nice to meet you!`  
 > `The/a most common character in your name is 'a':`  
 >  
-> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|a|lfa bravo charlie</code>  
-> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alf|a| bravo charlie</code>  
-> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alfa br|a|vo charlie</code>  
-> <code>alfa bravo ch|a|rlie</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|a|lfa bravo charlie delta</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alf|a| bravo charlie delta</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alfa br|a|vo charlie delta</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alfa bravo ch|a|rlie delta</code>  
+> <code>alfa bravo charlie delt|a|</code>   
 
-The example interaction above is for the ASCII text encoding variant of the program. ASCII text uses only one byte per character, one `char` value per character, which gives simpler code than with the more general UTF-8 encoding. The UTF-8 based variant is slightly more complicated, and so even though I did that first here it's presented last.
+The interaction above is for the ASCII text encoding variant of the program. ASCII text uses only one byte per character, one `char` value per character, which gives simpler code than with the more general UTF-8 encoding. The UTF-8 based variant (not discussed here) is therefore slightly more complicated.
 
 By the way, “KWIC” means *key word in context*.
 
-It was once a popular exercise for students, similar to this example, but with a key word lining up vertically instead of just a single character.
+KVIC was once a popular exercise for students, similar to this example, but with a key word lining up vertically instead of just a single character.
 
-## 1 – The ASCII-based variant.
+## 1 – The complete code.
 
 ~~~cpp
 // → examples/kwic-greeting/kwic-greeting.ascii.cpp
@@ -49,12 +53,8 @@ namespace app
 {
     $use_namespace_name_in( cppx, ascii );
 
-    $use_cppx(
-        enumerated, Index, is_empty, length_of, Map_, n_items_in, spaces
-        );
-    $use_std(
-        cin, cout, end, endl, getline, string, string_view, max_element, vector
-        );
+    $use_cppx( Index, is_empty, length_of, Map_, n_items_in, spaces );
+    $use_std( cin, cout, end, endl, getline, string, string_view, max_element, vector );
 
     auto input() -> string
     {
@@ -64,26 +64,18 @@ namespace app
         return result;
     }
 
-    using Char_indices = Map_<char, vector<Index>>;     // “ASCII code point” → “indices”
+    using Char_counts = Map_<char, int>;    // “ASCII code point” → “count”
 
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
+    auto nonspace_char_counts_in( const string_view& s )
+        -> Char_counts
     {
-        Char_indices result;
-        for( const auto [ch, i]: enumerated( s ) )
+        Char_counts result;
+        for( const char ch: s )
         {
-            result[ch].push_back( i );
-        }
-        return result;
-    }
-
-    auto nonspace_char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result = char_indices_in( s );
-        for( const char ch: ascii::whitespace_characters() )
-        {
-            result.erase( ch );
+            if( not ascii::is_whitespace( ch ) )
+            {
+                ++result[ch];
+            }
         }
         return result;
     }
@@ -93,23 +85,21 @@ namespace app
         cout << ">>> The KWIC-like personal greeting program, using ASCII! <<<" << endl;
         cout << "Hi, what's your name (in lowercase & English letters only please)\n? ";
         const string username = input();
+        cout << endl;
 
-        const Char_indices  char_indices    = nonspace_char_indices_in( username );
-        const auto          it_most_common  = max_element( $items( char_indices ),
-            []( auto& a, auto& b ) { return a.second.size() < b.second.size(); }
+        const Char_counts   counts          = nonspace_char_counts_in( username );
+        const auto          it_most_common  = max_element( $items( counts ),
+            []( auto a, auto b ) { return a.second < b.second; }
             );
 
-        cout << endl;
-        if( it_most_common == end( char_indices ) )     // Username empty or all spaces.
+        if( it_most_common == end( counts ) )   // Username empty or all spaces.
         {
             cout << "Have a nice day!" << endl;
             return;
         }
 
-        const char ch       = it_most_common->first;
-        const auto& indices = it_most_common->second;
-
-        if( n_items_in( indices ) == 1 )
+        const char ch  = it_most_common->first;
+        if( counts[ch] == 1 )
         {
             cout << "All characters in your name are unique, " << username << "." << endl;
             return;
@@ -118,10 +108,11 @@ namespace app
         cout << "Oh hi, " << username << "! Nice to meet you!" << endl;
         cout << "The/a most common character in your name is '" << ch << "':" << endl;
         cout << endl;
-        const Index max_index = indices.back();
-        for( const Index i: indices )
+        const Index     first_index     = username.find( ch );
+        const Index     last_index      = username.rfind( ch );
+        for( Index i = first_index; i >= 0; i = username.find( ch, i + 1 ) )
         {
-            cout    << spaces( max_index - i )
+            cout    << spaces( last_index - i )
                     << username.substr( 0, i )
                     << "|" << ch << "|"
                     << username.substr( i + 1 )
@@ -142,14 +133,17 @@ auto main() -> int
     }
     catch( const exception& x )
     {
+        #if defined( __unix__ ) or defined( __APPLE__ )
+            if( cin.eof() ) { cout << endl; }
+        #endif
         const string text = description_lines_from( x );
-        cerr << "\n" << monospaced_bullet_block( text, "!" ) << endl;
+        cerr << monospaced_bullet_block( text, "!" ) << endl;
     }
     return EXIT_FAILURE;
 }
 ~~~
 
-## 1.1 – “… and one `#include` to bind them all”.
+## 2 – “… one `#include` to bind them all”.
 
 Code:
 
@@ -168,18 +162,18 @@ The guaranteed set of standard library headers is provided by
 #include <cppx-core/stdlib-includes/basic-io.hpp>
 ~~~
 
-The non-i/o headers provided by *stdlib-includes/basic-general.hpp* are generally those that correspond to either C++ core langauge features, or to core language features in some other similar languages like Java and C#:
+The non-i/o headers provided by *cppx-core/stdlib-includes/basic-general.hpp* are generally those that correspond to either C++ core langauge features, or to core language features in some other similar languages like Java and C#:
 
 * *\<algorithm\>*, *\<array\>*, *\<atomic\>*, *\<chrono\>*, *\<deque\>*, *\<functional\>*, *\<initializer\_list\>*, *\<iosfwd\>*, *\<iterator\>*, *\<map\>*, *\<memory\>*, *\<mutex\>*, *\<numeric\>*, *\<optional\>*, *\<queue\>*, *\<random\>*, *\<set\>*, *\<stack\>*, *\<stdexcept\>*, *\<string\>*, *\<string\_view\>*, *\<thread\>*, *\<unordered_map\>*, *\<unordered\_set\>*, *\<utility\>*, *\<vector\>*.
 
-The i/o headers provided by *stdlib-includes/basic-io.hpp* are just all the C++17 i/o headers, because there are just a few:
+The i/o headers provided by *cppx-core/stdlib-includes/basic-io.hpp* are just all the C++17 i/o headers, because there are just a few:
 
 * *\<filesystem>*, *\<fstream>*, *\<iomanip>*, *\<iostream>*, *\<sstream>*.
 
 Note: the *\<iostream\>* header guaranteed includes *\<ios\>*, *\<streambuf\>*, *\<istream\>* and *\<ostream\>*, so you get those too.
 
 
-## 1.2 – An `app` namespace.
+## 3 – An `app` namespace.
 
 Code:
 
@@ -196,7 +190,7 @@ In particular, introducing identifiers directly into the global namespace can be
 
 So, in order to keep to good programming practices that work in general, I here use an `app` namespace for everything but the `main` function.
 
-## 1.3 – Easily make nested namespaces, directly available.
+## 4 – Easily make nested namespaces directly available.
 
 Code:
 
@@ -210,24 +204,20 @@ This expands to
     namespace ascii = cppx::ascii;
 ~~~
 
-With a longer namespace name than “`ascii`”, the **`$use_namespace_name_in`** macro invocation will in general be shorter than the expansion. You also get shorter invocation code than the expansion when you want to use two or more namespaces nested in the same namespace, in which case you can use the `$use_namespace_names_in` “plural form” macro. In any case it avoids the name repetition, i.e. it's more DRY  –  *Don't Repeat Yourself*  –  and hence less error prone.
+The **`$use_namespace_name_in`** macro has a corresponding “plural form” macro **`$use_namespace_names_in`** for when you want to use two or more nested namespaces from the same namespace. 
 
-It would be nice with direct language support for this.
+I'm sorry, the names are verbose. The plural form can still save typing, but one doesn't often need to refer unqualified to multiple nested namespaces… So, this notation is more about avoiding the name repetition in the expansion; it's a more DRY notation  –  *Don't Repeat Yourself*.
 
-This macro is provided by *cppx-core/language/syntax/macro-use.hpp*.
+These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
 
 
-## 1.4 – Easily make stuff from namespaces, directly available.
+## 5 – Easily make stuff from namespaces, directly available.
 
 Code:
 
 ~~~cpp
-    $use_cppx(
-        Index, is_ascii_whitespace, is_empty, length_of, Map_, n_items_in, spaces
-        );
-    $use_std(
-        cin, cout, end, endl, getline, string, string_view, max_element, vector
-        );
+    $use_cppx( Index, is_empty, length_of, Map_, n_items_in, spaces );
+    $use_std( cin, cout, end, endl, getline, string, string_view, max_element, vector );
 ~~~
 
 This expands to
@@ -240,7 +230,6 @@ using cppx::length_of;
 using cppx::Map_;
 using cppx::n_items_in;
 using cppx::spaces;
-
 using std::cin;
 using std::cout;
 using std::end;
@@ -252,15 +241,13 @@ using std::max_element;
 using std::vector;
 ~~~
 
-The **`$use_cppx`** macro is a more readable non-shouting alias for `CPPX_USE_CPPX`, and ditto, **`$use_std`** is a more readable non-shouting alias for `CPPX_USE_STD`. They `using`-declare the specified names, from respectively the `cppx` and `std` namespaces. The **`cppx` namespace** contains stuff from the *cppx-core* (and later also the *C++ Band Aid*) library, and the `std` namespace contains stuff from the C++ standard library.
+The **`$use_cppx`** macro is an alias for `CPPX_USE_CPPX`, and ditto, **`$use_std`** is an alias for `CPPX_USE_STD`. They `using`-declare the specified names, from respectively the `cppx` and `std` namespaces. The **`cppx`** namespace contains stuff from the *cppx-core* library, but it's a cross-library namespace: it's also used for stuff in the *C++ Band Aid* library.
 
 Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, alias **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces.
 
-It would be nice with direct language support for this.
+Like `$use_namespace_name_in` and `$use_namespace_names_in` these macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
 
-These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
-
-## 1.5 – Easily throw an exception with throw point information.
+## 6 – Easily throw an exception with throw point information.
 
 Code:
 
@@ -274,10 +261,10 @@ Code:
     }
 ~~~
 
-The simple `$fail` invocation expands, via some other macros, to
+The **`$fail`** macro uses the **`fail`** function to throw the exception; the simple `$fail` invocation expands, via some other macros, to
 
 ~~~cpp
-    cppx::fail<std::runtime_error>(
+    ::cppx::fail<std::runtime_error>(
         std::string( "std::getline failed on std::cin" ),
         ::cppx::Source_location( __FILE__, __LINE__, {}, __func__ )
         )
@@ -285,147 +272,66 @@ The simple `$fail` invocation expands, via some other macros, to
 
 … except that the expansion is all on one source code line, crucial for `__LINE__`.
 
-As shown the **`$fail`** macro uses the **`cppx::fail`** function to throw the exception. And the `cppx::fail` function has `bool` return type, though it never returns!, in order to facilitate usage like the “`… or $fail`” pattern above. When it's used within a `catch` block then the current exception is nested via the standard C++11 mechanism.
+Though it never returns the `fail` function has `bool` return type, in order to facilitate usage like the “`… or $fail`” pattern above. When there is a `std::current_exception()`, then that current exception is nested in the thrown one via the standard C++11 mechanism. *cppx-core* supports accessing the nested messages in a simple way via `call_with_description_lines_from`, or more directly via `description_lines_from`.
 
-In this example there's no exception nesting, and the message can look like this (here running the program in Windows):
+In this example there's no exception nesting, and the message can look like this:
 
-> `>>> The KWIC-like personal greeting program, using ASCII! <<<`  
-> `Hi, what's your name (in lowercase & English letters only please)`  
-> `?` ***^Z***  
->  
-> <code>!&nbsp;&nbsp;&nbsp;input - std::getline failed on std::cin</code>  
-> <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>File "kwic-greeting.ascii.cpp" at line 19</code>  
+> <code>input - std::getline failed on std::cin</code>  
+> <code>&nbsp;&nbsp;&nbsp;&nbsp;>File "kwic-greeting.ascii.cpp" at line 19</code>  
 
-The **`^Z`** is from typing a <kbd>Ctrl</kbd>+<kbd>Z</kbd>, which in Windows signifies end-of-text, like an end-of-file.
+In practice this only happens when the user specifies *end of file* for the standard input stream.
 
-Fine point: in order to get straight ASCII quote characters, like **`"`**, I defined **`CPPX_USE_ASCII_PLEASE`** when I built the program. The default roundish UTF-8 encoded quote characters don't play well in an ordinary non-WSL Windows console window, even with active codepage 65001. Instead of the macro symbol definition I could have provided a custom *config.hpp* file via an include path override, or I could have edited the default one.
+Fine point: in order to get straight ASCII quote characters, like **`"`**, I defined **`CPPX_ASCII_PLEASE`** when I built the program. The default roundish UTF-8 encoded quote characters don't play well in an ordinary non-WSL Windows console window, even with active codepage 65001. Instead of the macro symbol definition I could have provided a custom *config.hpp* file via an include path override, or I could have edited the default one.
 
-This functionality is at a higher level, and involving more arbitrary choices, than what can reasonably be provided by a core language feature, but it is within the remit of the standard library.
+This macro and its cast of support functions are all provided by headers in the *cppx-core/failure-handling/* folder, e.g. *cppx-core/failure-handling/macro-fail.hpp*.
 
-The `$fail` macro is provided by *cppx-core/failure-handling/macro-fail.hpp*.
-
-## 1.6 –  With slight effort, avoid unsigned types for numbers.
+## 7 –  Collection wrappers for clarity & more complete functionality.
 
 Code:
 
 ~~~cpp
-    using Char_indices = Map_<char, vector<Index>>;
+    using Char_counts = Map_<char, int>;    // “ASCII code point” → “count”
 ~~~
 
-When an unsigned type like `size_t` is used for numbers, the implicit conversions from signed to unsigned type can result in wrap-around to Really Large&trade; values, leading to some nasty bugs. For example, the C++ rules guarantee that `std::string("Hello").length() < -87`. Coming from some other language that's unexpected and quite counter-intuitive, the stuff that bugs are made of.
+You can think of the *cppx-core* **`Map_`** class template as an alias for `std::unordered_map`. Actually it's a derived class in order to provide the missing `[]` indexing operator for a `const` `unordered_map` object, so more precisely it's like an alias for an `unordered_map` with more uniform access notation. So, a variable of type `Char_counts` is a set of pairs, where each pair contains a `char` value and a corresponding count.
 
-Using signed integer types for numbers helps avoid that, and also lets the compiler optimize certain constructs that it's not allowed to optimize with unsigned type. Essentially that's because with a signed type the compiler can assume that there will be no wrap-around, whereas with unsigned type the language guarantees wrap-around. I.e. signed types are not only safer but also potentially more efficient.
+`Map_` has a sibling type **`Sorted_map`**, that you can think of as an alias for `std::map`. In the standard library the type that reasonably is the default kind of map, `std::unordered_map`, has the longest and less readable name. That's because it wasn't added until C++11, but the *cppx-core* names `Map` and `Sorted_map` let you use the shortest and most clear name for the most commonly used kind of map.
 
-The *cppx-core* **`Index`** type is an alias for the standard library's `ptrdiff_t` type, i.e. it's a signed index type of maximal practical range with a self-descriptive name.
+Similarly to the `Map` and `Sorted_map` pair, there is **`Set`** and **`Sorted_set`**. While the map types are only supported by one convenience function, **`is_in`**, the set types have a host of support functions. For example, there is **`set_difference`**, the same *name* as the standard library's `std::set_difference`, but with the crucial difference that `cppx::set_difference` can be applied to `std::set`s (or `cppx::Set`s). Why the standard library's set operations don't support the standard library's set types, is a perplexing mystery, growing with each new version of the standard. But *cppx-core* fixes that.
 
-*cppx-core/language/types/signed-size-types.hpp* also provides a signed size type called **`Size`**, that's also just an alias for `ptrdiff_t`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**. Both these functions are provided by *cppx-core/collections/size-checking.hpp*.
-
-You can think of the *cppx-core* **`Map_`** class template as an alias for `std::unordered_map`. Actually it's a derived class in order to provide the missing `[]` indexing operator for a `const` `unordered_map` object, so more precisely it's like an alias for an `unordered_map` with more uniform access notation. So, a variable of type `Char_indices` is a set of pairs, where each pair contains a `char` value and a corresponding `vector` of signed type indices.
+These types and functions are all provided by headers in the *cppx-core/collections/* folder, e.g. *cppx-core/collections/Map_.hpp*.
 
 
-## 1.7 – Easily access both index and item in a range based `for`.
+## 8 – ASCII support.
 
 Code:
 
 ~~~cpp
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
+    auto nonspace_char_counts_in( const string_view& s )
+        -> Char_counts
     {
-        Char_indices result;
-        for( const auto [ch, i]: enumerated( s ) )
+        Char_counts result;
+        for( const char ch: s )
         {
-            result[ch].push_back( i );
+            if( not ascii::is_whitespace( ch ) )
+            {
+                ++result[ch];
+            }
         }
         return result;
     }
 ~~~
 
-This function builds up a map from each `char` value in `s`, to a vector of indices where that `char` value occurs. Thus, in the loop body both a `char` item in `s`, and its index, are needed. The *cppx-core* **`enumerated`** function combined with a C++17 *structured binding* makes that easy.
+The **`cppx::ascii`** namespace provides a number of ASCII support functions, e.g. **`ascii::is_whitespace`**, plus names of practically useful ASCII control characters, e.g. **`ascii::escape`** (which is defined as `'\x1B'`).
 
-`enumerated` produces a virtual collection of `Item_and_index` pairs:
+The standard library provides the `::isspace` function from the C standard library, but this function has Undefined Behavior if it's passed a negative value other than `EOF`, such as a directly passed non-ASCII `char`. The `cppx::ascii::is_whitespace` function is more safe: it can be called with any `char` value. Also it's more reliable in that it will always return `false` for non-ASCII values, regardless of the C level locale.
 
-~~~cpp
-    using   Item        = decltype( *declval<Collection>().begin() );  // Usually a ref.
+The standard library also provides a `std::isspace` function overload that takes a `char` and a `std::locale` as arguments. That doesn't suffer from the correctness problems of `::isspace`, but is less efficient and gives more contorted calling code. And likewise for other `cppx::ascii` functions: it's not functionality that's entirely missing in the standard library, but functionality where the standard library, for historical reasons, namely the C++ roots in 1970's C and the generalization of iostreams in the 1990s, makes the calling code brittle, or unclear, or inefficient.
 
-    struct Item_and_index
-    {
-        Item    item;
-        Index   index;
-    };
-~~~
-
-This means that in C++11-compatible code the loop could have been expressed as
-
-~~~cpp
-for( const auto current: enumerated( s ) )
-{
-    result[current.item].push_back( current.index );
-}
-~~~
-
-And in C++17 and later, with a structured binding, that reduces to just
-
-~~~cpp
-for( const auto [ch, i]: enumerated( s ) )
-{
-    result[ch].push_back( i );
-}
-~~~
+These functions and control character names are all provided by headers in the *cppx-core/text/ascii/* folder, mainly *cppx-core/text/ascii/ascii-util.hpp*.
 
 
-The basic ideas come from the Python language. The *cppx-core* `enumerated` function is based on Python's built-in function `enumerate`, and the C++17 structured bindings are based on Python's “unpacking”. Strangely, C++17 adopted only the “unpacking” half of the package, but the `enumerated` function completes that little package.
-
-One alternative to using `enumerated` is to loop over references to the `char` items and *calculate* each item's index:
-
-~~~cpp
-for( const char& ch: s )
-{
-    const Index i = &ch - &s[0];
-    result[ch].push_back( i );
-}
-~~~
-
-This introduces a perhaps non-obvious calculation.
-
-Another alternative, sort of opposite, is to loop over index values and calculate each item reference from the index:
-
-~~~cpp
-for( const int i: up_to( length_of( s ) ) )
-{
-    const char ch = s[i];
-    result[ch].push_back( i );
-}
-~~~
-
-This replaces the first alternative's unusual calculation with a more common and easily understood one, just ordinary `[]` indexing. Of course, with an `enumerated` based loop one doesn't need to specify a calculation at all.
-
-In passing, the *cppx-core* **`up_to`** function produces a `cppx::Range`, a virtual collection of integers, which allows simple counting loops to be expressed as range based `for` loops with correctness-supporting `const` counter variable.
-
-## 1.8 – ASCII support.
-
-Code:
-
-~~~cpp
-    auto nonspace_char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result = char_indices_in( s );
-        for( const char ch: ascii::whitespace_characters() )
-        {
-            result.erase( ch );
-        }
-        return result;
-    }
-~~~
-
-The **`cppx::ascii`** namespace provides a number of ASCII support functions, e.g. `ascii::is_space`, plus names of practically useful ASCII control characters, e.g. `ascii::escape` (defined as `'\x1B'`).
-
-You can think of the **`ascii::whitespace_characters`** function as producing a `std::string` with the ASCII `char` values that the C library's `isspace` regards as whitespace.
-
-Technically, for efficiency, it provides a reference to a Meyers' singleton string that's initialized on the first call with all the ASCII characters that `isspace` returns logical *true* for.
-
-
-## 1.9 – The `$items` macro.
+## 9 – Easily pass `begin`/`end` pairs with the `$items` macro.
 
 Code:
 
@@ -435,15 +341,56 @@ Code:
         cout << ">>> The KWIC-like personal greeting program, using ASCII! <<<" << endl;
         cout << "Hi, what's your name (in lowercase & English letters only please)\n? ";
         const string username = input();
+        cout << endl;
 
-        const Char_indices  char_indices    = char_indices_in( username );
-        const auto          it_most_common  = max_element( $items( char_indices ),
-            []( auto& a, auto& b ) { return a.second.size() < b.second.size(); }
+        const Char_counts   counts          = nonspace_char_counts_in( username );
+        const auto          it_most_common  = max_element( $items( counts ),
+            []( auto a, auto b ) { return a.second < b.second; }
             );
 ~~~
 
 As most standard library functions that deal with collections, `std::max_element` takes a pair of iterators as arguments instead of directly taking the collection or something more abstract that represents the collection.
 
-The adoption of the *Ranges* library into the C++ standard library will address this, but for now  –  or even then, e.g. as a disambiguation technique  –  you can use the *cppx-core* **`$items`** macro.
+The adoption of the [*Ranges* library](https://github.com/ericniebler/range-v3) into the C++ standard library will address this, but for now  –  or even then, e.g. as a disambiguation technique  –  you can use the *cppx-core* **`$items`** macro.
 
 There's a check to ensure that the argument, here `char_indices`, is not an rvalue expression, because that could have made the macro call a function twice, then possibly repeating some side effect of that function.
+
+The `$items` macro is provided by *cppx-core/language/syntax/macro-items.hpp*.
+
+
+## 10 –  With slight effort, avoid unsigned types for numbers.
+
+Code:
+
+~~~cpp
+        const Index     first_index     = username.find( ch );
+        const Index     last_index      = username.rfind( ch );
+        for( Index i = first_index; i >= 0; i = username.find( ch, i + 1 ) )
+        {
+            cout    << spaces( last_index - i )
+                    << username.substr( 0, i )
+                    << "|" << ch << "|"
+                    << username.substr( i + 1 )
+                    << endl;
+        }
+~~~
+
+When an unsigned type like `size_t` is used for numbers, the implicit conversions from signed to unsigned type can result in wrap-around to Really Large&trade; values, leading to some nasty bugs. For example, the C++ rules guarantee that `std::string("Hello").length() < -87`. Coming from some other language that's unexpected and quite counter-intuitive, the stuff that epic bugs are made of. Laugh or cry? Cry, definitely.
+
+Using signed integer types for numbers helps avoid that, and also lets the compiler optimize certain constructs that it's not allowed to optimize with unsigned type. That's because with a signed type the compiler can assume that there will be no wrap-around, whereas with unsigned type the language guarantees wrap-around. I.e. signed types are not only safer but also potentially more efficient.
+
+Consequently *cppx-core* provides an **`Index`** type as an alias for `std::make_signed_t<size_t>`, i.e. it's a signed index type of maximal practical range with a short self-descriptive name.
+
+It's not defined as just an alias for `ptrdiff_t` (the type of a pointer difference) because to be most practical it needs to be the exact same size as `size_t`. And the C++ standard doesn't guarantee that `ptrdiff_t` is the same size as `size_t`.  On the contrary, for a 16-bit system it requires that `ptrdiff_t` is at least 17 bits (!), while `size_t` can be just 16 bits.
+
+Now, with the default allocator the size type of a `std::string`, a `std::vector` or whatever, is `size_t`. And e.g. `std::string::npos` is defined as `size_t(-1)`, the maximum `size_t` value. But crucially, since it results from casting `-1` to `size_t`, converting it back to a signed type that's not larger than `size_t`, must in practice result in the original `-1`. Hence in the loop above the continuation condition is `i >= 0`. With a `size_t` loop variable the condition would instead be the more verbose `i != string::npos`, or, using the fact that `string::npos` is a large value, `i <= last_index`.
+
+So, ***how to express a loop condition*** can depend crucially on whether the loop variable is of a signed or unsigned type. With the signed `Index` type you can get simple conditions as above, and you can avoid wrap-around problems. But using `Index` doesn't remove all the dangers: coding as if it were an unsigned type can yield bugs.
+
+*cppx-core/language/types/signed-size-types.hpp* also provides a signed size type called **`Size`**, that's an alias for `Index`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**. Both these functions are provided by *cppx-core/collections/size-checking.hpp*.
+
+
+## 11 – Easily display the messages of nested exceptions.
+
+kjhgkjhgkjhg
+

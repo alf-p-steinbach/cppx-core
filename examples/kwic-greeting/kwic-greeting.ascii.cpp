@@ -5,12 +5,8 @@ namespace app
 {
     $use_namespace_name_in( cppx, ascii );
 
-    $use_cppx(
-        enumerated, Index, is_empty, length_of, Map_, n_items_in, spaces
-        );
-    $use_std(
-        cin, cout, end, endl, getline, string, string_view, max_element, vector
-        );
+    $use_cppx( Index, is_empty, length_of, Map_, n_items_in, spaces );
+    $use_std( cin, cout, end, endl, getline, string, string_view, max_element, vector );
 
     auto input() -> string
     {
@@ -20,66 +16,18 @@ namespace app
         return result;
     }
 
-    using Char_indices = Map_<char, vector<Index>>;     // “ASCII code point” → “indices”
+    using Char_counts = Map_<char, int>;    // “ASCII code point” → “count”
 
-#if N==0
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
+    auto nonspace_char_counts_in( const string_view& s )
+        -> Char_counts
     {
-        Char_indices result;
-        for( const auto [ch, i]: enumerated( s ) )
+        Char_counts result;
+        for( const char ch: s )
         {
-            result[ch].push_back( i );
-        }
-        return result;
-    }
-#elif N==1
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result;
-        for( const auto current: enumerated( s ) )
-        {
-            result[current.item].push_back( current.index );
-        }
-        return result;
-    }
-#elif N==2
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result;
-        for( const char& ch: s )
-        {
-            const Index i = &ch - &s[0];
-            result[ch].push_back( i );
-        }
-        return result;
-    }
-#elif N==3
-    using cppx::Range;
-    using cppx::up_to;
-
-    auto char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result;
-        for( const int i: up_to( length_of( s ) ) )
-        {
-            const char ch = s[i];
-            result[ch].push_back( i );
-        }
-        return result;
-    }
-#endif
-
-    auto nonspace_char_indices_in( const string_view& s )
-        -> Char_indices
-    {
-        Char_indices result = char_indices_in( s );
-        for( const char ch: ascii::whitespace_characters() )
-        {
-            result.erase( ch );
+            if( not ascii::is_whitespace( ch ) )
+            {
+                ++result[ch];
+            }
         }
         return result;
     }
@@ -89,23 +37,21 @@ namespace app
         cout << ">>> The KWIC-like personal greeting program, using ASCII! <<<" << endl;
         cout << "Hi, what's your name (in lowercase & English letters only please)\n? ";
         const string username = input();
+        cout << endl;
 
-        const Char_indices  char_indices    = nonspace_char_indices_in( username );
-        const auto          it_most_common  = max_element( $items( char_indices ),
-            []( auto& a, auto& b ) { return a.second.size() < b.second.size(); }
+        const Char_counts   counts          = nonspace_char_counts_in( username );
+        const auto          it_most_common  = max_element( $items( counts ),
+            []( auto a, auto b ) { return a.second < b.second; }
             );
 
-        cout << endl;
-        if( it_most_common == end( char_indices ) )     // Username empty or all spaces.
+        if( it_most_common == end( counts ) )   // Username empty or all spaces.
         {
             cout << "Have a nice day!" << endl;
             return;
         }
 
-        const char ch       = it_most_common->first;
-        const auto& indices = it_most_common->second;
-
-        if( n_items_in( indices ) == 1 )
+        const char ch  = it_most_common->first;
+        if( counts[ch] == 1 )
         {
             cout << "All characters in your name are unique, " << username << "." << endl;
             return;
@@ -114,10 +60,11 @@ namespace app
         cout << "Oh hi, " << username << "! Nice to meet you!" << endl;
         cout << "The/a most common character in your name is '" << ch << "':" << endl;
         cout << endl;
-        const Index max_index = indices.back();
-        for( const Index i: indices )
+        const Index     first_index     = username.find( ch );
+        const Index     last_index      = username.rfind( ch );
+        for( Index i = first_index; i >= 0; i = username.find( ch, i + 1 ) )
         {
-            cout    << spaces( max_index - i )
+            cout    << spaces( last_index - i )
                     << username.substr( 0, i )
                     << "|" << ch << "|"
                     << username.substr( i + 1 )
@@ -138,8 +85,11 @@ auto main() -> int
     }
     catch( const exception& x )
     {
+        #if defined( __unix__ ) or defined( __APPLE__ )
+            if( cin.eof() ) { cout << endl; }
+        #endif
         const string text = description_lines_from( x );
-        cerr << "\n" << monospaced_bullet_block( text, "!" ) << endl;
+        cerr << monospaced_bullet_block( text, "!" ) << endl;
     }
     return EXIT_FAILURE;
 }
