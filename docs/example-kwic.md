@@ -88,7 +88,8 @@ namespace app
         cout << endl;
 
         const Char_counts   counts          = nonspace_char_counts_in( username );
-        const auto          it_most_common  = max_element( $items( counts ),
+        const auto          it_most_common  = max_element(
+            $items( counts ),
             []( auto a, auto b ) { return a.second < b.second; }
             );
 
@@ -343,7 +344,8 @@ Code:
         cout << endl;
 
         const Char_counts   counts          = nonspace_char_counts_in( username );
-        const auto          it_most_common  = max_element( $items( counts ),
+        const auto          it_most_common  = max_element(
+            $items( counts ),
             []( auto a, auto b ) { return a.second < b.second; }
             );
 ~~~
