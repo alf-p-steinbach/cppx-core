@@ -429,10 +429,9 @@ is presented as the block
 > <code>!&nbsp;&nbsp;&nbsp;input - std::getline failed on std::cin</code>  
 > <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>File "kwic-greeting.ascii.cpp" at line 19</code>  
 
-The purpose of the symbol, here **`!`**, is to identify each top level exception in sequence of exception message presentations, plus to identify the exception message presentation as such when it follows ordinary output.
+The purpose of the symbol, here **`!`**, is to identify each top level exception in a sequence of exception message presentations, plus to identify the exception message presentation as such when it follows ordinary output.
 
-
-`description_lines_from` is trivially implemented in terms of **`call_with_description_lines_from`**, which delves recursively into the nested exceptions by throwing and catching them:
+`description_lines_from` is implemented in terms of **`call_with_description_lines_from`**, which delves recursively into the nested exceptions by throwing and catching them:
 
 ~~~cpp
     inline void call_with_description_lines_from(
