@@ -238,7 +238,6 @@ using std::getline;
 using std::string;
 using std::string_view;
 using std::max_element;
-using std::vector;
 ~~~
 
 The **`$use_cppx`** macro is an alias for `CPPX_USE_CPPX`, and ditto, **`$use_std`** is an alias for `CPPX_USE_STD`. They `using`-declare the specified names, from respectively the `cppx` and `std` namespaces. The **`cppx`** namespace contains stuff from the *cppx-core* library, but it's a cross-library namespace: it's also used for stuff in the *C++ Band Aid* library.
