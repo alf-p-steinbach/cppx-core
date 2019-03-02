@@ -6,8 +6,8 @@
   - [1 – The complete code.](#1--the-complete-code)
   - [2 – “… one `#include` to bind them all”.](#2---one-include-to-bind-them-all)
   - [3 – An `app` namespace.](#3--an-app-namespace)
-  - [4 – Easily make nested namespaces directly available.](#4--easily-make-nested-namespaces-directly-available)
-  - [5 – Easily make stuff from namespaces, directly available.](#5--easily-make-stuff-from-namespaces-directly-available)
+  - [4 – Easily make stuff from namespaces, directly available.](#4--easily-make-stuff-from-namespaces-directly-available)
+  - [5 – Easily also make nested namespaces directly available.](#5--easily-also-make-nested-namespaces-directly-available)
   - [6 – Easily throw an exception with throw point information.](#6--easily-throw-an-exception-with-throw-point-information)
   - [7 –  Collection wrappers for clarity & more complete functionality.](#7---collection-wrappers-for-clarity--more-complete-functionality)
   - [8 – ASCII support.](#8--ascii-support)
@@ -51,10 +51,10 @@ KWIC was once a popular exercise for students, similar to this example, but with
 
 namespace app
 {
-    $use_namespace_name_in( cppx, ascii );
-
     $use_cppx( Index, Map_, spaces );
     $use_std( cin, cout, end, endl, getline, string, string_view, max_element );
+
+    $use_namespace_name_in( cppx, ascii );
 
     auto input() -> string
     {
@@ -191,28 +191,7 @@ In particular, introducing identifiers directly into the global namespace can be
 
 So, in order to keep to good programming practices that work in general, I here use an `app` namespace for everything but the `main` function.
 
-## 4 – Easily make nested namespaces directly available.
-
-Code:
-
-~~~cpp
-    $use_namespace_name_in( cppx, ascii );
-~~~
-
-This expands to
-
-~~~cpp
-    namespace ascii = cppx::ascii;
-~~~
-
-The **`$use_namespace_name_in`** macro has a corresponding “plural form” macro **`$use_namespace_names_in`** for when you want to use two or more nested namespaces from the same namespace. 
-
-I'm sorry, the names are verbose. The plural form can still save typing, but one doesn't often need to refer unqualified to multiple nested namespaces… So, this notation is more about avoiding the name repetition in the expansion; it's a more DRY notation  –  *Don't Repeat Yourself*.
-
-These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
-
-
-## 5 – Easily make stuff from namespaces, directly available.
+## 4 – Easily make stuff from namespaces, directly available.
 
 Code:
 
@@ -242,6 +221,28 @@ The **`$use_cppx`** macro is an alias for `CPPX_USE_CPPX`, and ditto, **`$use_st
 Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, alias **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces.
 
 Like `$use_namespace_name_in` and `$use_namespace_names_in` these macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
+
+
+## 5 – Easily also make nested namespaces directly available.
+
+Code:
+
+~~~cpp
+    $use_namespace_name_in( cppx, ascii );
+~~~
+
+This expands to
+
+~~~cpp
+    namespace ascii = cppx::ascii;
+~~~
+
+The **`$use_namespace_name_in`** macro has a corresponding “plural form” macro **`$use_namespace_names_in`** for when you want to use two or more nested namespaces from the same namespace. 
+
+I'm sorry, the names are verbose. The plural form can still save typing, but one doesn't often need to refer unqualified to multiple nested namespaces… So, this notation is more about avoiding the name repetition in the expansion; it's a more DRY notation  –  *Don't Repeat Yourself*.
+
+These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
+
 
 ## 6 – Easily throw an exception with throw point information.
 
