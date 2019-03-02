@@ -241,7 +241,7 @@ The **`$use_namespace_name_in`** macro has a corresponding “plural form” mac
 
 I'm sorry, the names are verbose. The plural form can still save typing, but one doesn't often need to refer unqualified to multiple nested namespaces… So, this notation is more about avoiding the name repetition in the expansion; it's a more DRY notation  –  *Don't Repeat Yourself*.
 
-Like `$use_cppx` and `$use_std` and `$use_from_namespace`, the `$use_namespace_name_in` and `$use_namespace_names_in` macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
+Like `$use_cppx`, `$use_std` and `$use_from_namespace`, the `$use_namespace_name_in` and `$use_namespace_names_in` macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
 
 
 ## 6 – Easily throw an exception with throw point information.
