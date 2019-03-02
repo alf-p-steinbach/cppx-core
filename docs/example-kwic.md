@@ -125,7 +125,7 @@ namespace app
 auto main() -> int
 {
     $use_cppx( description_lines_from, monospaced_bullet_block );
-    $use_std( cerr, endl, exception, string );
+    $use_std( cerr, cin, cout, endl, exception, string );
 
     try
     {
@@ -220,7 +220,7 @@ The **`$use_cppx`** macro is an alias for `CPPX_USE_CPPX`, and ditto, **`$use_st
 
 Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, alias **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces.
 
-Like `$use_namespace_name_in` and `$use_namespace_names_in` these macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
+These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
 
 
 ## 5 – Easily also make nested namespaces directly available.
@@ -241,7 +241,7 @@ The **`$use_namespace_name_in`** macro has a corresponding “plural form” mac
 
 I'm sorry, the names are verbose. The plural form can still save typing, but one doesn't often need to refer unqualified to multiple nested namespaces… So, this notation is more about avoiding the name repetition in the expansion; it's a more DRY notation  –  *Don't Repeat Yourself*.
 
-These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
+Like `$use_cppx` and `$use_std` and `$use_from_namespace`, the `$use_namespace_name_in` and `$use_namespace_names_in` macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
 
 
 ## 6 – Easily throw an exception with throw point information.
@@ -396,7 +396,7 @@ Code:
 auto main() -> int
 {
     $use_cppx( description_lines_from, monospaced_bullet_block );
-    $use_std( cerr, endl, exception, string );
+    $use_std( cerr, cin, cout, endl, exception, string );
 
     try
     {
