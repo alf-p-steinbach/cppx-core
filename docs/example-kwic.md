@@ -53,7 +53,7 @@ namespace app
 {
     $use_namespace_name_in( cppx, ascii );
 
-    $use_cppx( Index, is_empty, length_of, Map_, n_items_in, spaces );
+    $use_cppx( Index, Map_, spaces );
     $use_std( cin, cout, end, endl, getline, string, string_view, max_element );
 
     auto input() -> string
@@ -217,7 +217,7 @@ These macros are provided by *cppx-core/language/syntax/macro-use.hpp*.
 Code:
 
 ~~~cpp
-    $use_cppx( Index, is_empty, length_of, Map_, n_items_in, spaces );
+    $use_cppx( Index, Map_, spaces );
     $use_std( cin, cout, end, endl, getline, string, string_view, max_element );
 ~~~
 
@@ -225,11 +225,7 @@ This expands to
 
 ~~~cpp
 using cppx::Index;
-using cppx::is_ascii_whitespace;
-using cppx::is_empty;
-using cppx::length_of;
 using cppx::Map_;
-using cppx::n_items_in;
 using cppx::spaces;
 using std::cin;
 using std::cout;
