@@ -351,7 +351,7 @@ As most standard library functions that deal with collections, `std::max_element
 
 The adoption of the [*Ranges* library](https://github.com/ericniebler/range-v3) into the C++ standard library will address this, but for now  –  or even then, e.g. as a disambiguation technique  –  you can use the *cppx-core* **`$items`** macro.
 
-There's a check to ensure that the argument, here `char_indices`, is not an rvalue expression, because that could have made the macro call a function twice, then possibly repeating some side effect of that function.
+There's a check to ensure that the argument, here `counts`, is not an rvalue expression, because that could have made the macro call a function twice, then possibly repeating some side effect of that function.
 
 The `$items` macro is provided by *cppx-core/language/syntax/macro-items.hpp*.
 
