@@ -12,7 +12,7 @@ CPPX_DEFINE_TAG( Temporary );
 
 namespace cppx
 {
-    CPPX_USE_STD( begin, declval );
+    CPPX_USE_STD( declval );
 
     template< class Collection >
     class Enumerated_
@@ -22,7 +22,7 @@ namespace cppx
         P_<Collection>      m_p_collection;
 
     public:
-        using   Item        = decltype( *begin( declval<Collection>() ) );  // Usually a ref.
+        using   Item        = decltype( *std::begin( declval<Collection>() ) ); // Usually a ref.
         using   Item_value  = Unref_<Item>;
 
         struct Item_and_index

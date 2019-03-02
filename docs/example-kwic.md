@@ -41,7 +41,7 @@ The interaction above is for the ASCII text encoding variant of the program. ASC
 
 By the way, “KWIC” means *key word in context*.
 
-KWIC was once a popular exercise for students, similar to this example, but with key words lining up vertically instead of just a single character.
+KWIC was once a popular exercise for students, similar to this example, but with key words lining up vertically instead of just a single character. With just a *letter in context* it's more of a KWIC-like LIC. In both cases it's something *lined up vertically*, LUV.
 
 ## 1 – The complete code.
 

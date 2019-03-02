@@ -77,7 +77,7 @@ namespace app
 auto main() -> int
 {
     $use_cppx( description_lines_from, monospaced_bullet_block );
-    $use_std( cerr, endl, exception, string );
+    $use_std( cerr, cin, cout, endl, exception, string );
 
     try
     {
