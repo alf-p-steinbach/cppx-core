@@ -8,7 +8,7 @@
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define $n_arguments     CPPX_N_ARGUMENTS    ///< \brief Real name: `$n_arguments` (the `$` removed by DOxygen).
+#   define $n_arguments     CPPX_N_ARGUMENTS    ///< \dollarname{n_arguments}
 #endif
 
 /// \brief Evaluates to the number of arguments that are passed to it.
