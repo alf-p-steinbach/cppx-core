@@ -1,8 +1,5 @@
 build/
+doxygen/html/
 *.tmp
-examples/kwic-greeting/a
-examples/kwic-greeting/x
-examples/kwic-greeting/x
 *.exe
-docs/x
 *.obj
