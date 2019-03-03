@@ -48,10 +48,6 @@ namespace cppx
         }  // namespace impl
         /// @endcond
 
-        inline auto is_negative( const int x ) noexcept
-            -> bool
-        { return (x < 0); }
-
         inline auto div( const int a, const int b ) noexcept
             -> int
         {
@@ -74,7 +70,7 @@ namespace cppx
     }  // namespace math
 
     CPPX_USE_FROM_NAMESPACE( math,
-        is_negative, div, mod, log2
+        div, mod, log2
         );
 
 }  // namespace cppx

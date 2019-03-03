@@ -1,20 +1,27 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-
-// The CPPX_N_ARGUMENTS macro evaluates to the number of arguments that are passed to
-// it. It must be called with at least one argument, and at most 63 arguments.
-//
-// Based on original code by Laurent Deniau in a posting titled “__VA_NARG__”, 17
-// January 2006 in Usenet group “comp.std.c”.
-// https://groups.google.com/forum/?fromgroups=#!topic/comp.std.c/d-6Mj5Lko_s
-//
-// In a response Roland Illig nooted: “using PP_NARG() without arguments would violate
-// 6.10.3p4 of ISO C99.”. This is so also for CPPX_N_ARGUMENTS in C++17, see §19.3/4.
+/// \file
+///
+/// The CPPX_N_ARGUMENTS macro evaluates to the number of arguments that are passed to
+/// it. It must be called with at least one argument, and at most 63 arguments. You can define
+/// `CPPX_NO_DOLLARS_PLEASE` to suppress the definition of the `$n_arguments` alias.
 
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define $n_arguments     CPPX_N_ARGUMENTS
+#   define $n_arguments     CPPX_N_ARGUMENTS    ///< \brief Real name: `$n_arguments` (the `$` removed by DOxygen).
 #endif
+
+/// \brief Evaluates to the number of arguments that are passed to it.
+/// \hideinitializer
+///
+/// Must be called with at least one argument, and at most 63 arguments.
+///
+/// Based on original code by Laurent Deniau in a posting titled “__VA_NARG__”, 17
+/// January 2006 [in Usenet group “comp.std.c”](
+/// https://groups.google.com/forum/?fromgroups=#!topic/comp.std.c/d-6Mj5Lko_s).
+///
+/// In a response Roland Illig nooted that “using `PP_NARG()` without arguments would violate
+/// 6.10.3p4 of ISO C99.”, and this is so also for `CPPX_N_ARGUMENTS` in C++17; see §19.3/4.
 
 #define CPPX_N_ARGUMENTS( ... )                         \
     CPPX_INVOKE_MACRO(                                  \
@@ -31,6 +38,7 @@
         )                                               \
     )
 
+/// @cond DOXY_SHOW_IMPL_DETAILS
 #define CPPX_ARGUMENT_64( \
      a1,  a2,  a3,  a4,  a5,  a6,  a7,  a8,  a9, a10,  \
     a11, a12, a13, a14, a15, a16, a17, a18, a19, a20,  \
@@ -40,3 +48,4 @@
     a51, a52, a53, a54, a55, a56, a57, a58, a59, a60,  \
     a61, a62, a63, a64, ... ) \
     a64
+/// @endcond
