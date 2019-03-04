@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// Mostly this is a concession to the idiosyncracies of Visual C++, which still as of its 2017 version
+/// \brief Mostly this is a concession to the idiosyncracies of Visual C++, which still as of its 2017 version
 /// is unable to count `__VA_ARGS__` as *n* arguments, and instead counts it as 1. Mostly. But as David
 /// Wheeler remarked, one extra level of indirection is the solution to any computer science problem.
 

@@ -1,7 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-///
-/// `CPPX_JOINED` forms the `##` concatenation of the expansions of its arguments.
+/// \brief `$joined` forms the `##` concatenation of the expansions of its arguments.
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $joined      CPPX_JOINED         ///< \dollarname{joined}

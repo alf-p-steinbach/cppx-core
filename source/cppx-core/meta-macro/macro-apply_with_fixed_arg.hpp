@@ -1,16 +1,30 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief For each of the max 63 specified second arguments `$apply_with_fixed_arg`
+/// invokes the specified  two-argument macro `m` with the specified fixed first argument
+///`a` and that second argument.
 
 #include <cppx-core/meta-macro/macro-n_arguments.hpp>
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 #include <cppx-core/meta-macro/macro-joined.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define $apply_with_fixed_arg    CPPX_APPLY_WITH_FIXED_ARG
+#   define $apply_with_fixed_arg    CPPX_APPLY_WITH_FIXED_ARG   ///< \dollarname{apply_with_fixed_arg}
 #endif
+
+/// \brief For each of the max 63 specified second arguments invokes the specified 
+/// two-argument macro `m` with/ the specified fixed first argument  `a` and that second
+/// argument.
+/// \hideinitializer
+///
+/// \param  m       The name of a single-argument macro.
+/// \param  a       A fixed first argument.
+/// \param  ...     One or more (max 63) second arguments that `m` should be called with.
 
 #define CPPX_APPLY_WITH_FIXED_ARG( m, a, ... ) \
     CPPX_AWFA_EXPANSION_HELPER( m, CPPX_N_ARGUMENTS( __VA_ARGS__ ), a, __VA_ARGS__ )
 
+/// @cond DOXY_SHOW_IMPL_DETAILS
 #define CPPX_AWFA_EXPANSION_HELPER( m, n_args, a, ... ) \
     CPPX_INVOKE_MACRO( CPPX_JOINED( CPPX_AWFA_APPLY_TO_, n_args ), ( m, a, __VA_ARGS__ ) )
 
@@ -287,3 +301,4 @@
 
 #define CPPX_AWFA_APPLY_TO_1( m, a, a1 ) \
     CPPX_INVOKE_MACRO_B( m, ( a, a1 ) )
+/// @endcond

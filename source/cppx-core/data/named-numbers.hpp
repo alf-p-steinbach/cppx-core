@@ -42,25 +42,39 @@ namespace cppx
         const auto sqrt2            = 1.41421356237309504880;
         const auto inv_sqrt2        = 0.707106781186547524401;
 #endif
-        constexpr bool has_nan      = numeric_limits<double>::has_quiet_NaN;
-
         template< class Number = double >
-        constexpr auto nan()
-            -> double
+        constexpr bool has_nan_         = numeric_limits<Number>::has_quiet_NaN;
+
+        constexpr bool has_nan          = has_nan_<double>;
+
+        template< class Number >
+        constexpr auto nan_()
+            -> Number
         { return numeric_limits<Number>::quiet_NaN(); }
 
-        constexpr bool has_infinity = numeric_limits<double>::has_infinity;
+        constexpr inline auto nan()
+            -> double
+        { return nan_<double>(); }
 
         template< class Number = double >
-        constexpr auto infinity()
-            -> double
+        constexpr bool has_infinity_    = numeric_limits<double>::has_infinity;
+
+        constexpr bool has_infinity     = has_infinity_<double>;
+
+        template< class Number >
+        constexpr auto infinity_()
+            -> Number
         { return numeric_limits<Number>::infinity(); }
+
+        constexpr inline auto infinity()
+            -> double
+        { return infinity_<double>(); }
 
     }  // namespace math
 
     CPPX_USE_FROM_NAMESPACE( math,
         e, log2e, log10e, ln2, ln10, pi, inv_sqrt_pi, sqrt2, inv_sqrt2,
-        has_nan, nan, has_infinity, infinity
+        has_nan_, has_nan, nan_, nan, has_infinity_, has_infinity, infinity_, infinity
         );
 
 }  // namespace cppx

@@ -1,16 +1,26 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+///
+/// \brief `$repeat(n, what)` produces the `what` text `n` times.
 
 #include <cppx-core/meta-macro/macro-n_arguments.hpp>
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 #include <cppx-core/meta-macro/macro-joined.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define $repeat      CPPX_REPEAT
+#   define $repeat      CPPX_REPEAT         ///< \dollarname{repeat}
 #endif
 
-#define CPPX_REPEAT( n_times, m ) \
-    CPPX_REPEAT_EXPANSION_HELPER_( m, n_times )
+/// \brief `CPPX_REPEAT(n, what)` produces the `what` text `n` times.
+/// \hideinitializer
+///
+/// \param  n       The number of times (minimum 1) to produce the `what` text.
+/// \param  what    The text to produce repeatedly.
 
+#define CPPX_REPEAT( n, what ) \
+    CPPX_REPEAT_EXPANSION_HELPER_( what, n )
+
+/// @cond DOXY_SHOW_IMPL_DETAILS
 #define CPPX_REPEAT_EXPANSION_HELPER_( m, n_times ) \
     CPPX_INVOKE_MACRO( CPPX_JOINED( CPPX_REPEAT_, n_times ), ( m ) )
 
@@ -264,3 +274,4 @@
 
 #define CPPX_REPEAT_1( m ) \
     CPPX_INVOKE_MACRO_B( m, () )
+/// @endcond

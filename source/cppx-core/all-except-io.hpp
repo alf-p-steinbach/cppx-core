@@ -7,7 +7,10 @@ static_assert( __cplusplus >= 201703L,
 #   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
 #endif
 
+#include <cppx-core/all-ascii.hpp>
+#include <cppx-core/all-calc.hpp>
 #include <cppx-core/collections/_all_.hpp>
+#include <cppx-core/data/_all_.hpp>
 #include <cppx-core/failure-handling/_all_.hpp>
 #include <cppx-core/iterators/_all_.hpp>
 #include <cppx-core/language/_all_.hpp>

@@ -4,7 +4,7 @@
 // Line and character position indexing is 1-based.
 
 #include <cppx-core/collections/is_empty.hpp>
-#include <cppx-core/text/ascii/ascii-fallback-symbols.hpp>
+#include <cppx-core/data/Symbol_strings.hpp>
 
 #include <string>                   // std::string
 #include <string_view>              // std::string_view

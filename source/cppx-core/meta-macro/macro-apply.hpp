@@ -1,16 +1,25 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief `$apply` invokes the specified single-argument macro with each of the
+/// specified arguments.
 
 #include <cppx-core/meta-macro/macro-n_arguments.hpp>
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>
 #include <cppx-core/meta-macro/macro-joined.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define $apply       CPPX_APPLY
+#   define $apply       CPPX_APPLY          ///< \dollarname{apply}
 #endif
 
+/// \brief Invokes the specified single-argument macro with each of the specified arguments.
+/// \hideinitializer
+///
+/// \param  m       The name of a single-argument macro.
+/// \param  ...     One or more (max 63) arguments that `m` should be called with.
 #define CPPX_APPLY( m, ... ) \
     CPPX_APPLY_EXPANSION_HELPER_( m, CPPX_N_ARGUMENTS( __VA_ARGS__ ), __VA_ARGS__ )
 
+/// @cond DOXY_SHOW_IMPL_DETAILS
 #define CPPX_APPLY_EXPANSION_HELPER_( m, n_args, ... ) \
     CPPX_INVOKE_MACRO( CPPX_JOINED( CPPX_APPLY_TO_, n_args ), ( m, __VA_ARGS__ ) )
 
@@ -267,3 +276,4 @@
 
 #define CPPX_APPLY_TO_1( m, a1 ) \
     CPPX_INVOKE_MACRO_B( m, ( a1 ) )
+/// @endcond

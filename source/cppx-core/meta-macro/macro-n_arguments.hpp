@@ -1,8 +1,9 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
 ///
-/// The CPPX_N_ARGUMENTS macro evaluates to the number of arguments that are passed to
-/// it. It must be called with at least one argument, and at most 63 arguments. You can define
+/// \brief The `$n_arguments` macro evaluates to the number of arguments that are passed to it.
+///
+/// It must be called with at least one argument, and at most 63 arguments. You can define
 /// `CPPX_NO_DOLLARS_PLEASE` to suppress the definition of the `$n_arguments` alias.
 
 #include <cppx-core/meta-macro/macro-invoke_macro.hpp>

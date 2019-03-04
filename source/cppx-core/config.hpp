@@ -16,6 +16,6 @@ namespace cppx
     #else
         = false;        // Default.
     #endif
-    // ↑ See <cppx-core/text/ascii/ascii-fallback-symbols.hpp>
+    // ↑ See <cppx-core/data/Symbol_strings.hpp>
 
 }  // namespace cppx

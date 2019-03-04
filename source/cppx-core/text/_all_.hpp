@@ -3,6 +3,5 @@
 #include <cppx-core/text/ascii/_all_.hpp>
 #include <cppx-core/text/unicode/_all_.hpp>
 
-#include <cppx-core/text/C_str_.hpp>
 #include <cppx-core/text/pointers-from-string_view.hpp>
 #include <cppx-core/text/string-util.hpp>

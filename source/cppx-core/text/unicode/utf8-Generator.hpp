@@ -1,11 +1,11 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/collections/Span_.hpp>                          // cppx::Span_
+#include <cppx-core/data/ascii-character-names.hpp>                 // cppx::ascii::*
 #include <cppx-core/language/syntax/macro-items.hpp>                // CPPX_ITEMS
 #include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::(P_)
 #include <cppx-core/language/types/byte-types.hpp>                  // cppx::Byte
 #include <cppx-core/language/types/signed-size-types.hpp>           // cppx::Size
-#include <cppx-core/text/ascii/ascii-character-names.hpp>           // cppx::ascii::*
 #include <cppx-core/text/pointers-from-string_view.hpp>             // cppx::(p_first_of, p_beyond_of)
 #include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
 
