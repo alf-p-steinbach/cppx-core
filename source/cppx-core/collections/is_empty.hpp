@@ -42,9 +42,9 @@ namespace cppx
         }
     }
 
-    inline auto is_empty( const P_<const char> s )          -> bool     { return !*s; }
-    inline auto is_empty( const P_<const wchar_t> s )       -> bool     { return !*s; }
-    inline auto is_empty( const P_<const char16_t> s )      -> bool     { return !*s; }
-    inline auto is_empty( const P_<const char32_t> s )      -> bool     { return !*s; }
+    inline auto is_empty( const P_<const char> s )      -> bool { return !*s; }
+    inline auto is_empty( const P_<const wchar_t> s )   -> bool { return !*s; }
+    inline auto is_empty( const P_<const char16_t> s )  -> bool { return !*s; }
+    inline auto is_empty( const P_<const char32_t> s )  -> bool { return !*s; }
 
 }  // namespace cppx

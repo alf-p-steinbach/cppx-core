@@ -49,10 +49,10 @@ namespace cppx
     using Item_for_iterator_            = typename std::iterator_traits<Iterator>::value_type;
 
     template< class Collection >
-    using Item_for_collection_          = Unref_<decltype( *begin( declval<Collection>() ) )>;
+    using Item_for_collection_          = Unref_<decltype( *begin( declval<Collection&>() ) )>;
 
     template< class Collection >
-    using Iterator_for_                 = decltype( begin( declval<Collection>() ) );
+    using Iterator_for_                 = decltype( begin( declval<Collection&>() ) );
 
     //template< class Raw_array >
     //using Item_for_array                = std::remove_extent_t<Raw_array>;
