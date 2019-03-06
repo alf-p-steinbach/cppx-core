@@ -53,11 +53,11 @@ namespace cppx{
 
     using Range = Range_<int>;
 
+    template< class Integer >
+    void reversed( const Range_<Integer>& ) = delete;           // TODO: implement
+
     inline constexpr auto up_to( const int n ) noexcept
         -> Range
     { return Range( 0, n - 1 ); }
-
-    template< class Integer >
-    void reversed( const Range_<Integer>& ) = delete;           // TODO: implement
 
 }  // namespace cppx
