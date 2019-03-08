@@ -24,23 +24,26 @@ namespace cppx
         -> string
     { return (n <= 0? "" : string( n, ' ')); }
 
-    inline auto repeated( const int n, const string_view& s )
-        -> string
+    inline namespace string_repeat
     {
-        if( n <= 0 ) { return ""; }
-
-        string result;
-        result.reserve( n*s.length() );
-        for( int i = 1; i <= n; ++i )
+        inline auto repeated( const int n, const string_view& s )
+            -> string
         {
-            result += s;
-        }
-        return result;
-    }
+            if( n <= 0 ) { return ""; }
 
-    inline auto operator*( const int n, const string_view& s )
-        -> string
-    { return repeated( n, s ); }
+            string result;
+            result.reserve( n*s.length() );
+            for( int i = 1; i <= n; ++i )
+            {
+                result += s;
+            }
+            return result;
+        }
+
+        inline auto operator*( const int n, const string_view& s )
+            -> string
+        { return repeated( n, s ); }
+    }
 
     inline auto left( const string_view& s, const int width )
         -> string

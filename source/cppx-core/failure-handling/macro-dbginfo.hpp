@@ -4,7 +4,7 @@
 // Removes calls to `dbginfo` when NDEBUG is defined. The `dbginfo` function must be
 // supplied by client code. 
 
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
+#include <cppx-core/collections/String_value_view_.hpp>     // cppx::String_value_view
 
 #include <string_view>
 
@@ -22,6 +22,5 @@
 
 namespace cppx
 {
-    CPPX_USE_STD( string_view );
-    extern void dbginfo( const string_view& );
+    extern void dbginfo( const String_value_view& );
 }

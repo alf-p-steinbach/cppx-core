@@ -15,7 +15,7 @@ namespace cppx
         {
             constexpr int logs[] =
             {
-                INT_MAX, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
+                -1, 0, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3
             };
             //static_assert( array_size_of( logs ) == 16 );
 

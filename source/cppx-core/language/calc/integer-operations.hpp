@@ -6,7 +6,8 @@
 #include <c/limits.hpp>     // INT_MAX
 #include <c/stdint.hpp>     // ::(uintXX_t)
 #include <c/stdlib.hpp>     // ::(div_t, div)
-#include <type_traits>      // std::is_unsigned_v
+#include <algorithm>        // std::max
+#include <type_traits>      // std::(common_type_t, is_integral_v, is_unsigned_v)
 
 // Using explicit `using` declarations instead of `inline` namespace to avoid ambiguity
 // elsewhere for the nested namespace name `impl`.
@@ -43,11 +44,28 @@ namespace cppx::math
     inline auto icubed( const Int x )
         -> Int
     { return x*x*x; }
+
+    template< class... Ints >
+    inline auto imin( const Ints... args )
+        -> std::common_type_t<Ints...>
+    { 
+        static_assert( (... and std::is_integral_v<Ints> ) );
+        return std::min( {std::common_type_t<Ints...>( args )...} );
+    }
+
+    template< class... Ints >
+    inline auto imax( const Ints... args )
+        -> std::common_type_t<Ints...>
+    { 
+        static_assert( (... and std::is_integral_v<Ints> ) );
+        return std::max( {std::common_type_t<Ints...>( args )...} );
+    }
+
 }  // namespace cppx::math
 
 namespace cppx
 {
     CPPX_USE_FROM_NAMESPACE( math,
-        is_even, is_odd, idiv, imod, isquared, icubed
+        is_even, is_odd, idiv, imod, isquared, icubed, imax
         );
 }  // namespace cppx

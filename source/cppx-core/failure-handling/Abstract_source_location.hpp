@@ -3,8 +3,9 @@
 // This astract class is used by cppx::fail. It can't use things that use cppx::fail.
 // Line and character position indexing is 1-based.
 
-#include <cppx-core/collections/is_empty.hpp>
-#include <cppx-core/data/Symbol_strings.hpp>
+#include <cppx-core/collections/is_empty.hpp>               // cppx::is_empty
+#include <cppx-core/data/Symbol_strings.hpp>                // cppx::best_effort::*
+#include <cppx-core/language/syntax/macro-with.hpp>         // CPPX_WITH
 
 #include <string>                   // std::string
 #include <string_view>              // std::string_view
@@ -16,14 +17,15 @@ namespace cppx
     class Abstract_source_location
     {
         static     // Uses simple straight ASCII quotes if CPPX_ASCII_PLEASE is defined.
-        inline auto quoted( const string_view& sv )
+        inline auto quoted( const string& s )
             -> string
         {
-            string s;
-            s = best_effort::left_quote_str;
-            s.append( sv.data(), sv.size() );
-            s += best_effort::right_quote_str;
-            return s;
+            string result;
+
+            result = best_effort::left_quote_str;
+            result += s;
+            result += best_effort::right_quote_str;
+            return result;
         }
 
     public:

@@ -1,5 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
+#include <cppx-core/language/calc/integer-operations.hpp>       // cppx::is_odd
 #include <cppx-core/language/syntax/macro-use.hpp>
 
 namespace cppx::math
