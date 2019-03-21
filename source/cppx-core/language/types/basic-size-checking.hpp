@@ -4,15 +4,27 @@
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(Raw_array_of_, P_)
 #include <cppx-core/language/types/signed-size-types.hpp>       // cppx::Size
 
+#include <array>            // std::array
+#include <bitset>           // std::bitset
 #include <string>           // std::(char_traits)
 #include <iterator>         // std::(begin, end, size)
 
 namespace cppx
 {
-    CPPX_USE_STD( char_traits );
+    CPPX_USE_STD( array, bitset, char_traits );
 
     template< class Item, size_t n >
-    constexpr auto array_size_of( Raw_array_of_<n, const Item>& ) noexcept
+    constexpr auto array_size_of( const Raw_array_of_<n, Item>& ) noexcept
+        -> Size
+    { return n; }
+
+    template< class Item, size_t n >
+    constexpr auto array_size_of( const array<Item, n>& ) noexcept
+        -> Size
+    { return n; }
+
+    template< class Item, size_t n >
+    constexpr auto array_size_of( const bitset<n>& ) noexcept
         -> Size
     { return n; }
 
