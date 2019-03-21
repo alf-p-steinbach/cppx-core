@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/size-checking.hpp>                  // cppx::n_items_in
+#include <cppx-core/collections/dynamic-size-checking.hpp>          // cppx::n_items_in
 #include <cppx-core/iterators/Forward_iterator_impl_.hpp>           // cppx::Forward_iterator_impl_
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::P_
 #include <cppx-core/language/syntax/macro-define_tag.hpp>           // CPPX_DEFINE_TAG

@@ -6,12 +6,11 @@
 
 #include <array>            // std::array
 #include <bitset>           // std::bitset
-#include <string>           // std::(char_traits)
 #include <iterator>         // std::(begin, end, size)
 
 namespace cppx
 {
-    CPPX_USE_STD( array, bitset, char_traits );
+    CPPX_USE_STD( array, bitset );
 
     template< class Item, size_t n >
     constexpr auto array_size_of( const Raw_array_of_<n, Item>& ) noexcept
@@ -27,11 +26,6 @@ namespace cppx
     constexpr auto array_size_of( const bitset<n>& ) noexcept
         -> Size
     { return n; }
-
-    template< class Char >
-    inline auto length_of( const P_<const Char> s ) noexcept
-        -> Size
-    { return char_traits<Char>::length( s ); }
 
     template< class Char, Size n >
     constexpr inline auto length_of_literal( Raw_array_of_<n, const Char>& s ) noexcept

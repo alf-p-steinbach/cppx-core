@@ -1,4 +1,4 @@
-#include <cppx-core/collections/size-checking.hpp>
+#include <cppx-core/collections/dynamic-size-checking.hpp>
 
 // Introduces template specializations that satisfy the linker that there's something here.
 namespace
