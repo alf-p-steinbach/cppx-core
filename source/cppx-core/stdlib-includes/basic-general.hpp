@@ -36,4 +36,5 @@
 #include <unordered_map>        // - But see <@/collections/Map_.hpp>
 #include <unordered_set>        // - But see <@/collections/Set_.hpp>
 #include <utility>              // std::(forward, move), std::rel_ops::*
+#include <variant>              // std::variant
 #include <vector>               // std::vector

@@ -1,18 +1,20 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/iterators/Count_iterator_.hpp>
+#include <cppx-core/language/syntax/macro-use.hpp>
 #include <cppx-core/text/unicode/utf16-Generator.hpp>
 
 namespace cppx::utf16
 {
+    CPPX_USE_STD( basic_string, basic_string_view );
+
     template< class Char >
     inline auto n_units_for( const basic_string_view<Char>& sv ) noexcept
         -> Size
     {
-        //impl::Count_iterator it;
-        //it = utf16::Generator().utf8_from_codes( CPPX_ITEMS( sv ), it );
-        //return it.count();
-        return 0;       // TODO:
+        Count_iterator_<char16_t> it;
+        it = Generator().utf16_from_bytes( CPPX_ITEMS( sv ), it );
+        return it.count();
     }
 
     //// Optimization.
@@ -20,14 +22,15 @@ namespace cppx::utf16
     //    -> Size
     //{ return sv.size(); }
 
-    //// Callability.
-    //template< class Char >
-    //inline auto utf8::n_bytes_for( const P_<Char> s ) noexcept
-    //    -> Size
-    //{ return utf8::n_bytes_for( basic_string_view<Char>( s ) ); }
+    // Callability.
+    template< class Char >
+    inline auto n_units_for( const P_<Char> s ) noexcept
+        -> Size
+    { return n_units_for( basic_string_view<Char>( s ) ); }
 
-    //template< class Char >
-    //inline auto utf8::n_bytes_for( const basic_string<Char>& s ) noexcept
-    //    -> Size
-    //{ return utf8::n_bytes_for( basic_string_view<Char>( s ) ); }
+    template< class Char >
+    inline auto n_units_for( const basic_string<Char>& s ) noexcept
+        -> Size
+    { return n_units_for( basic_string_view<Char>( s ) ); }
+
 }  // namespace cppx::utf16

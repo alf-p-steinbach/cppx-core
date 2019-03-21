@@ -6,14 +6,17 @@
 
 namespace cppx::utf16
 {
-    CPPX_USE_STD( basic_string, basic_string_view, iterator_traits, move, next, string, string_view );
+    CPPX_USE_STD(
+        basic_string, basic_string_view, string, string_view, u16string, wstring,
+        iterator_traits, move, next
+        );
 
     template<
         class Char,
         class Result_char = char16_t,
         class = Enable_if_< magnitude_bits_per_<Result_char> >= 16 >
         >
-    inline auto utf16_from_string_view( const basic_string_view<Char>& sv )
+    inline auto from_string_view( const basic_string_view<Char>& sv )
         -> basic_string<Result_char>
     {
         if( is_empty( sv ) ) { return {}; }
@@ -26,31 +29,47 @@ namespace cppx::utf16
         }
         else
         {
-            string result( utf16::n_units_for( sv ), Result_char() );
-            utf16::Generator().utf16_from_bytes( CPPX_ITEMS( sv ), result.begin() );
+            basic_string<Result_char> result( n_units_for( sv ), Result_char() );
+            Generator().utf16_from_bytes( CPPX_ITEMS( sv ), result.begin() );
             return result;
         }
     }
 
-#if 0
     template< class Char >
-    inline auto utf8::from( const P_<const Char> s )
-        -> string
-    { return utf8::from_string_view<Char>( s ); }
+    inline auto from( const P_<const Char> s )
+        -> u16string
+    { return from_string_view<Char>( s ); }
 
     template< class Char >
-    inline auto utf8::from( const basic_string<Char>& s )
-        -> string
-    { return utf8::from_string_view<Char>( s ); }
+    inline auto from( const basic_string<Char>& s )
+        -> u16string
+    { return from_string_view<Char>( s ); }
 
-    inline auto utf8::from( string s )
-        -> string
+    inline auto from( u16string s )
+        -> u16string
     { return move( s ); }
 
     template< class Char >
-    inline auto utf8::from( const basic_string_view<Char>& s )
-        -> string
-    { return utf8::from_string_view<Char>( s ); }
-#endif
+    inline auto from( const basic_string_view<Char>& s )
+        -> u16string
+    { return from_string_view<Char>( s ); }
 
+    template< class Char >
+    inline auto wide_from( const P_<const Char> s )
+        -> wstring
+    { return from_string_view<Char, wchar_t>( s ); }
+
+    template< class Char >
+    inline auto wide_from( const basic_string<Char>& s )
+        -> wstring
+    { return from_string_view<Char, wchar_t>( s ); }
+
+    //inline auto wide_from( wstring s )
+    //    -> wstring
+    //{ return move( s ); }
+
+    template< class Char >
+    inline auto wide_from( const basic_string_view<Char>& s )
+        -> wstring
+    { return from_string_view<Char, wchar_t>( s ); }
 }  // namespace cppx::utf16
