@@ -2,6 +2,8 @@
 
 <img align="right" width="380" style="padding-left: 1em" src="images/folder-dependencies.png">
 
+![This library is under construction](images/under-construction.25-pct.png)
+
 The main purpose of the *cppx-core* C++17 header library is to provide basic Unicode functionality, e.g. UTF-8 ↔ UTF-16 conversion, plus other basic C++ coding functionality, to an as yet unpublished library called *C++ Band Aid*.
 
 But *cppx-core* is eminently usable on its own.
