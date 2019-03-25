@@ -13,7 +13,8 @@
 #endif
 
 #define CPPX_USE_FROM_NAMESPACE( ns, ... ) \
-    CPPX_APPLY_WITH_FIXED_ARG( CPPX_GENERATE_USING_DECLARATION_FOR, ns, __VA_ARGS__ )
+    CPPX_APPLY_WITH_FIXED_ARG( CPPX_GENERATE_USING_DECLARATION_FOR, ns, __VA_ARGS__ ) \
+    static_assert( !!"Terminate this statement with a semicolon" )
 
 #define CPPX_GENERATE_USING_DECLARATION_FOR( ns, name ) \
     using ns::name;
@@ -28,7 +29,8 @@
     namespace nested_ns = parent_ns::nested_ns
 
 #define CPPX_USE_NAMESPACE_NAMES_IN( parent_ns, ... ) \
-    CPPX_APPLY_WITH_FIXED_ARG( CPPX_GENERATE_NAMESPACE_NAME_USAGE, parent_ns, __VA_ARGS__ )
+    CPPX_APPLY_WITH_FIXED_ARG( CPPX_GENERATE_NAMESPACE_NAME_USAGE, parent_ns, __VA_ARGS__ ) \
+    static_assert( !!"Terminate this statement with a semicolon" )
 
 #define CPPX_GENERATE_NAMESPACE_NAME_USAGE( parent_ns, nested_ns ) \
     namespace nested_ns = parent_ns::nested_ns;
