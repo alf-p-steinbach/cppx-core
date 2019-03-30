@@ -8,11 +8,11 @@ namespace cppx
 {
     // Enable_if_<is_a_cpp03_char_type_<Unconst_<Char>>>
     template< class Char >  using C_str_            = P_<Const_<Char>>;
-    template< class Char >  using C_mutable_str_    = P_<Unconst_<Char>>;
+    template< class Char >  using Mutable_c_str_    = P_<Unconst_<Char>>;
 
-    using C_str             = C_str_<char>;
-    using C_wstr            = C_str_<wchar_t>;
-    using C_mutable_str     = C_mutable_str_<char>;
-    using C_mutable_wstr    = C_mutable_str_<wchar_t>;
+    using C_str                 = C_str_<char>;
+    using Wide_c_str            = C_str_<wchar_t>;
+    using Mutable_c_str         = Mutable_c_str_<char>;
+    using Mutable_wide_c_str    = Mutable_c_str_<wchar_t>;
 
 } // namespace cppx

@@ -41,7 +41,7 @@ namespace cppx
     //-------------------------------------------------------- Arrays
 
     template< class It, class Arg >
-    auto is_in_range( const It begin, const It end, const Arg& v )
+    auto is_in_span( const It begin, const It end, const Arg& v )
         -> bool
     { return find( begin, end, v ) != end; }
 
@@ -51,7 +51,7 @@ namespace cppx
     { return is_in_range( begin( a ), end( a ), v ); }
 
     template< class It, class Arg >
-    auto is_in_sorted_range( const It begin, const It end, const Arg& v )
+    auto is_in_sorted_span( const It begin, const It end, const Arg& v )
         -> bool
     { return binary_search( begin, end, v ); }
 

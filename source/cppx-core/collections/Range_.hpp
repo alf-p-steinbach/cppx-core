@@ -60,4 +60,9 @@ namespace cppx{
         -> Range
     { return Range( 0, n - 1 ); }
 
+    template< class Integer >
+    auto is_in( const Range_<Integer>& range, const Integer v )
+        -> bool
+    { return range.contains( v ); }
+
 }  // namespace cppx
