@@ -6,13 +6,14 @@
 #include <cppx-core/language/syntax/macro-define_tag.hpp>           // CPPX_DEFINE_TAG
 #include <cppx-core/meta-type/type-traits.hpp>                      // cppx::Iterator_for_
 
+#include <initializer_list> // std::initializer_list
 #include <iterator>         // std::begin
 
 CPPX_DEFINE_TAG( Temporary );
 
 namespace cppx
 {
-    CPPX_USE_STD( declval );
+    CPPX_USE_STD( declval, initializer_list );
 
     template< class Collection >
     class Enumerated_
@@ -76,4 +77,8 @@ namespace cppx
         -> Enumerated_<Collection>
     { return Enumerated_<Collection>( c ); }
 
+    template< class Item >
+    auto enumerated( const initializer_list<Item>& list )
+        -> Enumerated_<const initializer_list<Item>>
+    { return Enumerated_<const initializer_list<Item>>( list ); }
 }  // namespace cppx
