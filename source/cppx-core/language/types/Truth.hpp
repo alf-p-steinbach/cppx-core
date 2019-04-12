@@ -16,8 +16,15 @@ namespace cppx
         bool        m_value;
 
     public:
-        constexpr operator bool() const { return m_value; }
+        // Implicit conversion to `bool`, because that's needed for template args.
+        // Restricted via SFINAE because overload resolution, want predictability.
+        template<
+            class Result,
+            class = Enable_if_<is_same_v<Result, bool>>
+        >
+        constexpr operator Result() const { return m_value; }
 
+        // Construction SFINAE-restricted to `bool` argument.
         template<
             class Arg,
             class = Enable_if_<is_same_v<Arg, bool>>
