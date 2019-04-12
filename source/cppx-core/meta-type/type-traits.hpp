@@ -3,6 +3,7 @@
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::Raw_array_of_
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::(is_signed_ ...)
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core/language/types/type-producers.hpp>          // cppx::(Unref_ ...)
 #include <cppx-core/meta-template/Type_list_.hpp>               // cppx::(contains_type_, Joined_, Type_list_)
 
@@ -29,19 +30,19 @@ namespace cppx
     //using Cpp20_char_literal_types          = Joined_<Cpp11_char_literal_types, Char_literal_types_introduced_in_20>;
 
     template< class Char >
-    constexpr bool is_a_cpp03_char_type_    = contains_type_<Char, Cpp03_char_literal_types>;
+    constexpr Truth is_a_cpp03_char_type_   = contains_type_<Char, Cpp03_char_literal_types>;
 
     template< class Char >
-    constexpr bool is_a_cpp11_char_type_    = contains_type_<Char, Cpp11_char_literal_types>;
+    constexpr Truth is_a_cpp11_char_type_   = contains_type_<Char, Cpp11_char_literal_types>;
 
     template< class Char >
-    constexpr bool is_a_char_type_          = is_a_cpp11_char_type_<Char>;  // Until C++20, maybe beyond.
+    constexpr Truth is_a_char_type_         = is_a_cpp11_char_type_<Char>;  // Until C++20, maybe beyond.
 
     template< class Char >
-    constexpr bool is_a_char_variant_type_  = contains_type_<Char, Char_variant_types>;
+    constexpr Truth is_a_char_variant_type_ = contains_type_<Char, Char_variant_types>;
 
     template< class Char >
-    constexpr bool is_a_byte_char_type_     = contains_type_<Char, Byte_char_types>;
+    constexpr Truth is_a_byte_char_type_    = contains_type_<Char, Byte_char_types>;
 
     //----------------------------------------------------------------------------------------------
 

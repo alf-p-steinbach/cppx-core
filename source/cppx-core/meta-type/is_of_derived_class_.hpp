@@ -2,6 +2,7 @@
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::P_
 #include <cppx-core/language/tmp/basic-Enable_if_.hpp>          // cppx::Enable_if_
 #include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_base_and_derived_
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 namespace cppx
 {
@@ -15,7 +16,7 @@ namespace cppx
         class = Enable_if_<is_base_and_derived_<Type, Derived>>
         >
     inline auto is_of_derived_class_( const Type& o )
-        -> bool
+        -> Truth
     {
         const auto p_derived = dynamic_cast<P_<const Derived>>( &o );
         return static_cast<P_<const Type>>( p_derived ) == &o;

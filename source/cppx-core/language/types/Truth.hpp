@@ -16,12 +16,12 @@ namespace cppx
         bool        m_value;
 
     public:
-        explicit operator bool() const { return m_value; }
+        constexpr operator bool() const { return m_value; }
 
         template<
             class Arg,
             class = Enable_if_<is_same_v<Arg, bool>>
         >
-        Truth( const Arg value ): m_value( value ) {}
+        constexpr Truth( const Arg value ): m_value( value ) {}
     };
 }  // namespace cppx

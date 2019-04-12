@@ -3,6 +3,7 @@
 #include <cppx-core/language/syntax/macro-use.hpp>                          // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>                    // cppx::Raw_array_of_
 #include <cppx-core/language/types/signed-size-types.hpp>                   // cppx::Size
+#include <cppx-core/language/types/Truth.hpp>                               // cppx::Truth
 
 #include <algorithm>            // std::(binary_search, find)
 #include <bitset>               // std::bitset
@@ -18,12 +19,12 @@ namespace cppx
 
     template< class Char >
     inline auto is_in( const basic_string_view<Char>& sv, const Char ch ) noexcept
-        -> bool
+        -> Truth
     { return 0 <= static_cast<Size>( sv.find( ch ) ); }
 
     template< class Item, class Value >
     inline auto is_in( const initializer_list<Item>& items, const Value& v ) noexcept
-        -> bool
+        -> Truth
     {
         for( auto& item : items )
         {
@@ -34,7 +35,7 @@ namespace cppx
 
     template< size_t n >
     inline auto is_in( const bitset<n>& bits, const int i ) noexcept
-        -> bool
+        -> Truth
     { return !!bits[i]; }
 
 
@@ -42,21 +43,22 @@ namespace cppx
 
     template< class It, class Arg >
     auto is_in_span( const It begin, const It end, const Arg& v )
-        -> bool
+        -> Truth
     { return find( begin, end, v ) != end; }
 
     template< class Key, Size n, class Arg >
     auto is_in( Raw_array_of_<n, const Key>& a, const Arg& v )
-        -> bool
+        -> Truth
     { return is_in_range( begin( a ), end( a ), v ); }
 
     template< class It, class Arg >
     auto is_in_sorted_span( const It begin, const It end, const Arg& v )
-        -> bool
+        -> Truth
     { return binary_search( begin, end, v ); }
 
     template< class Key, Size n, class Arg >
     auto is_in_sorted( Raw_array_of_<n, const Key>& a, const Arg& v )
-        -> bool
+        -> Truth
     { return is_in_sorted_range( begin( a ), end( a ), v ); }
+
 }  // namespace cppx

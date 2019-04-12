@@ -7,6 +7,7 @@
 // Hence the following more consistent and easy-to-use, but limited, facility.
 
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
+#include <cppx-core/language/types/Truth.hpp>               // cppx::Truth
 
 #include <limits>       // std::numeric_limits
 #include <type_traits>  // std::is_integral_v
@@ -20,7 +21,7 @@ namespace cppx
     {
         template< class T > using Nl_ = std::numeric_limits<T>;
 
-        template< class T, bool is_integral_type = std::is_integral_v<T> >
+        template< class T, bool is_integral_type = std::is_integral_v<T> >  // "bool" until C++20.
         struct Number_properties_;
 
         template< class T >
@@ -40,7 +41,7 @@ namespace cppx
         {
             static_assert( not std::is_integral_v<T> );
 
-            static constexpr bool   is_ieee_754_    = Nl_<T>::is_iec559;
+            static constexpr Truth  is_ieee_754_    = Nl_<T>::is_iec559;
             static constexpr T      largest         = Nl_<T>::max();
             static constexpr T      smallest        = Nl_<T>::min();    // Smallest non-zero.
             static constexpr T      max             = largest;
@@ -61,7 +62,7 @@ namespace cppx
 
     inline namespace number_properties
     {
-        template< class T > constexpr bool  is_ieee_754_    = Number_properties_<T>::is_ieee_754;
+        template< class T > constexpr Truth is_ieee_754_    = Number_properties_<T>::is_ieee_754;
         template< class T > constexpr T     largest_        = Number_properties_<T>::largest;
         template< class T > constexpr T     smallest_       = Number_properties_<T>::smallest;
         template< class T > constexpr T     max_            = Number_properties_<T>::max;

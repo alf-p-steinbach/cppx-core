@@ -6,6 +6,7 @@
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::(P_)
 #include <cppx-core/language/types/byte-types.hpp>                  // cppx::Byte
 #include <cppx-core/language/types/signed-size-types.hpp>           // cppx::Size
+#include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
 #include <cppx-core/text/pointers-from-string_view.hpp>             // cppx::(p_first_of, p_beyond_of)
 #include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
 
@@ -74,7 +75,7 @@ namespace cppx::utf8
             Out_iterator it = destination;
             if( m_surrogate_1 != 0 )
             {
-                const bool ok = utf16::range_of_pair_value_2.contains( code );
+                const Truth ok = utf16::range_of_pair_value_2.contains( code );
                 if( ok )
                 {
                     const uint32_t first_value      = exchange( m_surrogate_1, 0 );

@@ -2,6 +2,7 @@
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::P_
 #include <cppx-core/language/types/signed-size-types.hpp>       // cppx::(Size)
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 #include <c/stddef.hpp>                             // ptrdiff_t
 #include <iterator>                                 // std::(begin, end, forward_iterator_tag)
@@ -21,7 +22,7 @@
 //          { return m_current; }
 //                  
 //          friend auto operator==( const Iterator& a, const Iterator& b )
-//              -> bool
+//              -> Truth
 //          { return a.m_current == b.m_current; }
 //      
 //          explicit Iterator( const Integer value )
@@ -66,7 +67,7 @@ namespace cppx
         }
 
         friend auto operator!=( const Derived& a, const Derived& b )
-            -> bool
+            -> Truth
         { return not(a == b); }
     };
 

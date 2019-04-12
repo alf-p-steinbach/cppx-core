@@ -4,6 +4,7 @@
 #include <cppx-core/language/syntax/macro-items.hpp>            // CPPX_ITEMS
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/types/byte-types.hpp>              // cppx::Byte
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core/language/types/type-producers.hpp>          // cppx::(R_, P_, Unsigned_)
 #include <cppx-core/meta-template/enable_if_.hpp>               // cppx::Enable_if_
 #include <cppx-core/meta-type/type-traits.hpp>                  // cppx::is_cpp03_char_type_
@@ -23,12 +24,12 @@ namespace cppx::cstdlib
         class = Enable_if_< is_a_cpp03_char_type_<Char> or is_a_char_variant_type_<Char> >
         >
     inline auto is_space( const Char ch )
-        -> bool
+        -> Truth
     { return !!::isspace( static_cast<Byte>( ch ) ); }
 
     template<>
     inline auto is_space<wchar_t>( const wchar_t ch )
-        -> bool
+        -> Truth
     { return !!::iswspace( ch ); }
 
 }  // namespace cppx::cstdlib
@@ -43,12 +44,12 @@ namespace cppx::ascii
 
     template< class Integer >
     inline auto contains( const Integer v )
-        -> bool
+        -> Truth
     { return (static_cast<Unsigned_<Integer>>( v ) <= ascii::last_char); }
 
     template< class It >
     inline auto contains_all_of( const It start, const It beyond )
-        -> bool
+        -> Truth
     {
         for( It it = start; it != beyond; ++it )
         {
@@ -59,17 +60,17 @@ namespace cppx::ascii
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto contains_all_of( const basic_string_view<Char>& sv )
-        -> bool
+        -> Truth
     { return contains_all_of( CPPX_ITEMS( sv ) ); }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto contains_all_of( const P_<const Char> s )
-        -> bool
+        -> Truth
     { return contains_all_of( basic_string_view<Char>( s ) ); }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto contains_all_of( const basic_string<Char>& s )
-        -> bool
+        -> Truth
     { return contains_all_of( basic_string_view<Char>( s ) ); }
 
 
@@ -96,12 +97,12 @@ namespace cppx::ascii
     // Is independent of locale
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_whitespace( const Char ch )
-        -> bool
+        -> Truth
     { return ascii::contains( ch ) and cstdlib::is_space( ch ); }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_whitespace( const basic_string_view<Char>& sv )
-        -> bool
+        -> Truth
     {
         for( const Char ch : sv )
         {
@@ -115,12 +116,12 @@ namespace cppx::ascii
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_whitespace( const basic_string<Char>& s )
-        -> bool
+        -> Truth
     { return is_all_whitespace( basic_string_view<Char>( s ) ); }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_all_whitespace( const P_<const Char> s )
-        -> bool
+        -> Truth
     { return is_all_whitespace( basic_string_view<Char>( s ) ); }
 
     inline auto whitespace_characters()
@@ -146,12 +147,12 @@ namespace cppx::ascii
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_lowercase( const Char ch )
-        -> bool
+        -> Truth
     { return 'a' <= ch and ch <= 'z'; }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto is_uppercase( const Char ch )
-        -> bool
+        -> Truth
     { return 'A' <= ch and ch <= 'Z'; }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>

@@ -1,5 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/iterators/Forward_iterator_impl_.hpp>
+#include <cppx-core/iterators/Forward_iterator_impl_.hpp>       // cppx::Forward_iterator_impl_
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 #include <c/assert.hpp>
 
@@ -24,7 +25,7 @@ namespace cppx{
             { return m_current; }
             
             friend auto operator==( const Iterator& a, const Iterator& b ) noexcept
-                -> bool
+                -> Truth
             { return a.m_current == b.m_current; }
 
             explicit Iterator( const Integer value ) noexcept
@@ -39,7 +40,7 @@ namespace cppx{
         constexpr auto size() const noexcept -> Integer { return 1 + m_upper - m_lower; }
 
         constexpr auto contains( const Integer x ) const noexcept
-            -> bool
+            -> Truth
         { return m_lower <= x and x <= m_upper; }
 
         auto begin() const noexcept  -> Iterator     { return Iterator( m_lower ); }
@@ -62,7 +63,7 @@ namespace cppx{
 
     template< class Integer >
     auto is_in( const Range_<Integer>& range, const Integer v )
-        -> bool
+        -> Truth
     { return range.contains( v ); }
 
 }  // namespace cppx

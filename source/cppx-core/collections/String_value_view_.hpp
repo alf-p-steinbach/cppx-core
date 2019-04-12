@@ -4,6 +4,7 @@
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx:P_
 #include <cppx-core/language/types/signed-size-types.hpp>       // cppx::Size
 #include <cppx-core/collections/dynamic-size-checking.hpp>      // cppx::length_of
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 #include <string>               // std::basic_string
 #include <string_view>          // std::basic_string_view
@@ -20,7 +21,7 @@ namespace cppx
 
     public:
         auto is_empty() const
-            -> bool
+            -> Truth
         { return m_length == 0; }
 
         auto length() const
@@ -49,7 +50,7 @@ namespace cppx
 
     template< class Char >
     inline auto is_empty( const String_value_view_<Char>& svv )
-        -> bool
+        -> Truth
     { return svv.is_empty(); }
 
     using String_value_view     = String_value_view_<char>;

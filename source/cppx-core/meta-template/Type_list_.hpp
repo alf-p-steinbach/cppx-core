@@ -1,6 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/language/tmp/basic-type-traits.hpp>     // cppx::is_same_type_
+#include <cppx-core/language/types/Truth.hpp>               // cppx::Truth
 
 namespace cppx
 {
@@ -55,7 +56,7 @@ namespace cppx
         template< class A_type, class Type_list >
         struct Contains_
         {
-            static constexpr bool value =
+            static constexpr Truth value =
                 is_same_type_< A_type, Head_<Type_list > > or
                 Contains_< A_type, Tail_<Type_list> >::value;
         };
@@ -63,13 +64,13 @@ namespace cppx
         template< class A_type >
         struct Contains_< A_type, Type_list_<> >
         {
-            static constexpr bool value = false;
+            static constexpr Truth value = false;
         };
 
         template< class Possible_subset, class Main_type_list >
         struct Has_subset_
         {
-            static constexpr bool value =
+            static constexpr Truth value =
                 Contains_< Head_<Possible_subset>, Main_type_list >::value and
                 Has_subset_< Tail_<Possible_subset>, Main_type_list >::value;
         };
@@ -77,7 +78,7 @@ namespace cppx
         template< class Main_type_list >
         struct Has_subset_<Type_list_<>, Main_type_list>
         {
-            static constexpr bool value = true;
+            static constexpr Truth value = true;
         };
 
     }  // namespace impl

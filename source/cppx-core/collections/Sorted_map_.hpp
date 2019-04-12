@@ -1,6 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 #include <map>                  // std::map
 
@@ -24,7 +25,7 @@ namespace cppx
 
     template< class Key, class Value, class Arg >
     auto is_in( const Sorted_map_<Key, Value>& map, const Arg& v )
-        -> bool
+        -> Truth
     { return map.count( v ) > 0; }
 
 }  // namespace cppx

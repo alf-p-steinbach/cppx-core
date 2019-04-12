@@ -1,6 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/language/syntax/macro-use.hpp>
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 #include <c/math.hpp>
 #include <limits>           // std::numeric_limits
@@ -11,7 +12,7 @@ namespace cppx
     // elsewhere for the nested namespace name `impl`.
     namespace math
     {
-        using std::numeric_limits;
+        CPPX_USE_STD( numeric_limits );
 
 #ifdef M_PI
         const auto e                = M_E;              // e              2.71828182845904523536
@@ -43,9 +44,9 @@ namespace cppx
         const auto inv_sqrt2        = 0.707106781186547524401;
 #endif
         template< class Number = double >
-        constexpr bool has_nan_         = numeric_limits<Number>::has_quiet_NaN;
+        constexpr Truth has_nan_        = numeric_limits<Number>::has_quiet_NaN;
 
-        constexpr bool has_nan          = has_nan_<double>;
+        constexpr Truth has_nan         = has_nan_<double>;
 
         template< class Number >
         constexpr auto nan_()
@@ -57,9 +58,9 @@ namespace cppx
         { return nan_<double>(); }
 
         template< class Number = double >
-        constexpr bool has_infinity_    = numeric_limits<double>::has_infinity;
+        constexpr Truth has_infinity_   = numeric_limits<double>::has_infinity;
 
-        constexpr bool has_infinity     = has_infinity_<double>;
+        constexpr Truth has_infinity    = has_infinity_<double>;
 
         template< class Number >
         constexpr auto infinity_()

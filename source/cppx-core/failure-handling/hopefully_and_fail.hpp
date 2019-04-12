@@ -1,7 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
-#include <cppx-core/language/syntax/all.hpp>                      // CPPX_USE_STD, CPPX_NORETURN
+#include <cppx-core/language/syntax/all.hpp>                        // CPPX_USE_STD, CPPX_NORETURN
+#include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
 
 #include <stdexcept>        // std::runtime_error
 #include <exception>        // std::throw_with_nested
@@ -40,19 +41,19 @@ namespace cppx
         // `std::system_error`, which is derived from `std::runtime_error` and carries an
         // error code.
 
-        inline auto hopefully( const bool condition )
-            -> bool
+        inline auto hopefully( const Truth condition )
+            -> Truth
         { return condition; }
 
         template< class X = runtime_error >
         CPPX_NORETURN
         inline auto fail( const string& message )
-            -> bool
+            -> Truth
         {
             // This checking is necessary for MinGW g++ 8.2.0. Not sure if the standard
             // requires it. It would be a design to attract bugs, if it were required.
 
-            const bool in_exception_handling = (std::current_exception() != nullptr);
+            const Truth in_exception_handling = (std::current_exception() != nullptr);
             if( in_exception_handling )
             {
                 throw_with_nested( X( message ) );
@@ -66,7 +67,7 @@ namespace cppx
         template< class X = runtime_error >
         CPPX_NORETURN
         inline auto fail( const string& message, const Abstract_source_location& throw_point )
-            -> bool
+            -> Truth
         {
             fail<X>( string()
                 + throw_point.function_name_or_unspecified() + " - " + message + "\n"
@@ -82,7 +83,7 @@ namespace cppx
         // Typical usage patterns, here using a Windows' function that returns `HRESULT`:
         //
         //      auto operator>>( const HRESULT hr, Success )
-        //          -> bool
+        //          -> Truth
         //      { return SUCCEEDED( hr ); }
         //
         //      //...
@@ -97,7 +98,7 @@ namespace cppx
 
         template< class Value >
         auto operator>>( const Value& v, Failure )
-            -> bool
+            -> Truth
         { return not (v >> Success{}); }
     }  // namespace hf
 

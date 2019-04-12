@@ -9,6 +9,7 @@
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(P_)
 #include <cppx-core/language/types/byte-types.hpp>              // cppx::Byte
 #include <cppx-core/language/types/signed-size-types.hpp>       // cppx::Size
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core/text/pointers-from-string_view.hpp>         // cppx::(p_first_of, p_beyond_of)
 
 #include <string_view>          // std::(string_view )
@@ -18,15 +19,15 @@ namespace cppx::utf8
     CPPX_USE_STD( string_view );
 
     inline auto is_single_byte( const char ch )
-        -> bool
+        -> Truth
     { return (Byte( ch ) & 0x80) == 0x00; }
 
     inline auto is_valid_single_byte( const char ch )
-        -> bool
+        -> Truth
     { return is_single_byte( ch ); }
 
     inline auto is_continuation_byte( const char ch )
-        -> bool
+        -> Truth
     {
         // The general scheme is that bit pattern 0b10xxxxxx denotes a continuation byte,
         // providing 6 bits to the result value.
@@ -34,11 +35,11 @@ namespace cppx::utf8
     }
 
     inline auto is_valid_continuation_byte( const char ch )
-        -> bool
+        -> Truth
     { return is_continuation_byte( ch ); }
 
     inline auto is_lead_byte( const char ch )
-        -> bool
+        -> Truth
     {
         // The general scheme is that bit pattern 0b11xxxxxx denotes a lead byte.
         // The number of leading 1's equals the total number of bytes in this group.
@@ -46,7 +47,7 @@ namespace cppx::utf8
     }
 
     inline auto is_valid_lead_byte( const char ch )
-        -> bool
+        -> Truth
     {
         // The general scheme is that bit pattern 0b11xxxxxx denotes a lead byte, but
         // some code points are ruled out because those encodings are not permitted.
@@ -86,7 +87,7 @@ namespace cppx::utf8
     }
 
     inline auto move_to_prev( P_<const char>& p, const P_<const char> p_first )
-        -> bool
+        -> Truth
     {
         // assert( p != nullptr )
         // assert( p != p_first )
@@ -108,7 +109,7 @@ namespace cppx::utf8
     }
 
     inline auto advance( P_<const char>& p, const Size distance, const string_view& range )
-        -> bool
+        -> Truth
     {
         if( distance >= 0 )
         {

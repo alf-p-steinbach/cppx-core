@@ -7,7 +7,7 @@
 namespace cppx
 {
 
-    template< bool condition, class Result = void >
+    template< bool condition, class Result = void >     // "bool" until C++20
     using Enable_if_ = std::enable_if_t<condition, Result>;
 
 }  // namespace cppx

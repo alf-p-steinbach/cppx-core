@@ -32,7 +32,7 @@ namespace cppx
     namespace best_effort
     {
         using Symbol_strings = Type_choice_<
-            use_ascii_substitutes, ascii::Symbol_strings, utf8::Symbol_strings
+            !!use_ascii_substitutes, ascii::Symbol_strings, utf8::Symbol_strings
             >;
 
         constexpr auto& left_quote_str      = Symbol_strings::left_quote_str;

@@ -1,6 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/language/syntax/macro-use.hpp>
+#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
+
 //#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_unsigned_
 
 #include <c/limits.hpp>     // INT_MAX
@@ -15,12 +17,12 @@ namespace cppx::math
 {
     template< class Int = int >
     inline auto is_even( const Int x )
-        -> bool
+        -> Truth
     { return x % 2 == 0; }
 
     template< class Int = int >
     inline auto is_odd( const Int x )
-        -> bool
+        -> Truth
     { return x % 2 == 1; }
 
     template< class Int = int >

@@ -13,7 +13,7 @@ namespace cppx
 {
     inline namespace type_producers
     {
-        template< bool condition, class A, class B >
+        template< bool condition, class A, class B >        // "bool" until C++20
         using Type_choice_  = std::conditional_t<condition, A, B>;
 
         template< class Some_pointer_type >

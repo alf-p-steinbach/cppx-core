@@ -14,7 +14,7 @@ namespace cppx
         CPPX_USE_STD( cerr, cout, clog, endl, ostream, string_view );
 
         inline auto put_stderr_line( const string_view s ) noexcept
-            -> bool
+            -> Truth
         {
             if( not is_empty( s ) )
             {
@@ -28,7 +28,7 @@ namespace cppx
             ostream&                    stream,
             const string_view           s
             ) noexcept
-            -> bool
+            -> Truth
         {
             if( is_in( { &cerr, &clog }, &stream ) )
             {
@@ -40,44 +40,37 @@ namespace cppx
             {
                 const std::ios::iostate original_x_flags = stream.exceptions();
                 stream << s << endl;
-                const bool ok = not stream.fail();
+                const Truth ok = not stream.fail();
                 if( original_x_flags ) { stream.exceptions( original_x_flags ); }
                 return ok;
             }
         }
 
         inline auto put_line( const string_view s ) noexcept
-            -> bool
-        {
-            return put_line( cerr, s );
-        }
+            -> Truth
+        { return put_line( cerr, s ); }
 
         inline auto put_block_to(
             ostream&                    stream,
             const string_view           bullet,
             const string_view           s
             )
-            -> bool
-        {
-            return put_line( stream, monospaced_bullet_block( s, bullet ) );
-        }
+            -> Truth
+        { return put_line( stream, monospaced_bullet_block( s, bullet ) ); }
 
         inline auto put_info_block(
             const string_view           s,
             ostream&                    stream = clog
             )
-            -> bool
-        {
-            return put_block_to( stream, "i", s );
-        }
+            -> Truth
+        { return put_block_to( stream, "i", s ); }
 
         inline auto put_error_block(
             const string_view           s,
             ostream&                    stream = cerr
             )
-            -> bool
-        {
-            return put_block_to( stream, best_effort::right_arrow_str, s );
-        }
+            -> Truth
+        { return put_block_to( stream, best_effort::right_arrow_str, s ); }
+
     }  // namespace debug
 }  // namespace cppx
