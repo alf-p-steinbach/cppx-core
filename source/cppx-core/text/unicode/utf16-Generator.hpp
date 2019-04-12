@@ -30,7 +30,7 @@ namespace cppx::utf16
             ) -> Out_iterator
         {
             static_assert( magnitude_bits_per_<Item_for_iterator_<Out_iterator>> >= 16 );
-            using Out_value = Item_for_iterator_<Out_iterator>;
+            //using Out_value = Item_for_iterator_<Out_iterator>;
 
             Out_iterator current = destination;
             const In_iterator beyond_bytes = bytes_range.beyond();

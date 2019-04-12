@@ -5,4 +5,5 @@
 #include <cppx-core/language/types/fixed-size-checking.hpp>
 #include <cppx-core/language/types/Int_.hpp>
 #include <cppx-core/language/types/signed-size-types.hpp>
+#include <cppx-core/language/types/Truth.hpp>
 #include <cppx-core/language/types/type-producers.hpp>

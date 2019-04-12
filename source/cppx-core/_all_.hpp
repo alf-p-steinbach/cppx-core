@@ -1,9 +1,5 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/assert-c++17-or-later.hpp>
-#ifndef CPPX_NO_CHARSET_ASSERTION_PLEASE
-#   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
-#endif
+// This header is only for backward compatibility. All other <_all_.hpp> removed.
+// New code should use the `<all.hpp>` headers -- the underscores were a mistake.
 
-#include <cppx-core/all-except-io.hpp>
-#include <cppx-core/io/_all_.hpp>
-#include <cppx-core/stdlib-includes/_all_.hpp>
+#include <cppx-core/all.hpp>

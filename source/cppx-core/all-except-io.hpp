@@ -6,14 +6,14 @@
 
 #include <cppx-core/all-ascii.hpp>
 #include <cppx-core/all-calc.hpp>
-#include <cppx-core/collections/_all_.hpp>
-#include <cppx-core/data/_all_.hpp>
-#include <cppx-core/failure-handling/_all_.hpp>
-#include <cppx-core/iterators/_all_.hpp>
-#include <cppx-core/language/_all_.hpp>
-#include <cppx-core/meta-macro/_all_.hpp>
-#include <cppx-core/meta-template/_all_.hpp>
-#include <cppx-core/meta-type/_all_.hpp>
+#include <cppx-core/collections/all.hpp>
+#include <cppx-core/data/all.hpp>
+#include <cppx-core/failure-handling/all.hpp>
+#include <cppx-core/iterators/all.hpp>
+#include <cppx-core/language/all.hpp>
+#include <cppx-core/meta-macro/all.hpp>
+#include <cppx-core/meta-template/all.hpp>
+#include <cppx-core/meta-type/all.hpp>
 #include <cppx-core/stdlib-includes/basic-general.hpp>      // Not the i/o headers!
-#include <cppx-core/parameters/_all_.hpp>
-#include <cppx-core/text/_all_.hpp>
+#include <cppx-core/parameters/all.hpp>
+#include <cppx-core/text/all.hpp>
