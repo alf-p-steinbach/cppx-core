@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 //
-// A boolean type without implicit conversion from integral or pointer types.
+// A boolean type without implicit conversion from/to integral or pointer types.
 
 #include <cppx-core/language/tmp/basic-Enable_if_.hpp>      // cppx::Enable_if_
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
