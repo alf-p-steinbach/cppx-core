@@ -22,13 +22,13 @@ namespace cppx
             class Result,
             class = Enable_if_<is_same_v<Result, bool>>
         >
-        constexpr operator Result() const { return m_value; }
+        constexpr operator Result() const noexcept { return m_value; }
 
         // Construction SFINAE-restricted to `bool` argument.
         template<
             class Arg,
             class = Enable_if_<is_same_v<Arg, bool>>
         >
-        constexpr Truth( const Arg value ): m_value( value ) {}
+        constexpr Truth( const Arg value ) noexcept: m_value( value ) {}
     };
 }  // namespace cppx
