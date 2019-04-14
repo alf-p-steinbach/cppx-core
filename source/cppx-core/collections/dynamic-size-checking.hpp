@@ -14,12 +14,12 @@ namespace cppx
     CPPX_USE_STD( basic_string, basic_string_view, bitset, char_traits, size );
 
     template< class Collection >
-    constexpr auto n_items_in( const Collection& c ) noexcept
+    constexpr auto n_items_of( const Collection& c ) noexcept
         -> Size
     { return size( c ); }
 
     template< size_t n >
-    auto n_items_in( const bitset<n>& bits ) noexcept
+    auto n_items_of( const bitset<n>& bits ) noexcept
         -> Size
     { return bits.count(); }
 

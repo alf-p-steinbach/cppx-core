@@ -13,7 +13,7 @@ namespace cppx::utf16
         -> Size
     {
         Count_iterator_<char16_t> it;
-        it = Generator().utf16_from_bytes( CPPX_ITEMS( sv ), it );
+        it = Generator().utf16_from_bytes( CPPX_ITEMS_OF( sv ), it );
         return it.count();
     }
 

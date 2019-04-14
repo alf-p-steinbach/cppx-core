@@ -30,7 +30,7 @@ namespace cppx::utf16
         else
         {
             basic_string<Result_char> result( n_units_for( sv ), Result_char() );
-            Generator().utf16_from_bytes( CPPX_ITEMS( sv ), result.begin() );
+            Generator().utf16_from_bytes( CPPX_ITEMS_OF( sv ), result.begin() );
             return result;
         }
     }

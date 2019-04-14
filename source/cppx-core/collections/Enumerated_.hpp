@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/dynamic-size-checking.hpp>          // cppx::n_items_in
+#include <cppx-core/collections/dynamic-size-checking.hpp>          // cppx::n_items_of
 #include <cppx-core/iterators/Forward_iterator_impl_.hpp>           // cppx::Forward_iterator_impl_
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::P_
 #include <cppx-core/language/syntax/macro-define_tag.hpp>           // CPPX_DEFINE_TAG
@@ -62,7 +62,7 @@ namespace cppx
 
         auto end() const
             -> Iterator
-        { return Iterator( std::end( *m_p_collection ), n_items_in( *m_p_collection ) ); }
+        { return Iterator( std::end( *m_p_collection ), n_items_of( *m_p_collection ) ); }
 
         explicit Enumerated_( Collection& c ):
             m_p_collection( &c )

@@ -22,7 +22,7 @@ namespace cppx::utf8
         else
         {
             string result( n_bytes_for( ws ), '\0' );
-            Generator().utf8_from_codes( CPPX_ITEMS( ws ), result.begin() );
+            Generator().utf8_from_codes( CPPX_ITEMS_OF( ws ), result.begin() );
             return result;
         }
     }

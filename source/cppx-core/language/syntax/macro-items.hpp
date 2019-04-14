@@ -5,10 +5,10 @@
 #include <iterator>         // std::(begin, end)
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define  $items CPPX_ITEMS
+#   define  $items_of       CPPX_ITEMS_OF
 #endif
 
 // Careful, don't call with lvalue expression that has side effects.
 
-#define CPPX_ITEMS( c ) \
+#define CPPX_ITEMS_OF( c ) \
     std::begin( cppx::lvalue_ref_to( c ) ), std::end( c )

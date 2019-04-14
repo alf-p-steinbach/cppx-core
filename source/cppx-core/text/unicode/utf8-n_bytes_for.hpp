@@ -34,7 +34,7 @@ namespace cppx::utf8
         -> Size
     {
         impl::Bytes_count_iterator it;
-        it = Generator().utf8_from_codes( CPPX_ITEMS( sv ), it );
+        it = Generator().utf8_from_codes( CPPX_ITEMS_OF( sv ), it );
         return it.count();
     }
 

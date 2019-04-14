@@ -49,7 +49,7 @@ namespace cppx
     };
 
     template< class Iterator >
-    inline auto n_items_in( const Span_<Iterator>& range )
+    inline auto n_items_of( const Span_<Iterator>& range )
         -> Size
     { return distance( range.begin(), range.end() ); }
 

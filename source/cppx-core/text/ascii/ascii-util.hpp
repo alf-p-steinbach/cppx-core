@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/collections/Range_.hpp>                     // cppx::Range
 #include <cppx-core/data/ascii-character-names.hpp>             // cppx::ascii::/names/
-#include <cppx-core/language/syntax/macro-items.hpp>            // CPPX_ITEMS
+#include <cppx-core/language/syntax/macro-items.hpp>            // CPPX_ITEMS_OF
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/types/byte-types.hpp>              // cppx::Byte
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
@@ -61,7 +61,7 @@ namespace cppx::ascii
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto contains_all_of( const basic_string_view<Char>& sv )
         -> Truth
-    { return contains_all_of( CPPX_ITEMS( sv ) ); }
+    { return contains_all_of( CPPX_ITEMS_OF( sv ) ); }
 
     template< class Char, class = Enable_if_<is_a_cpp03_char_type_<Char>>>
     inline auto contains_all_of( const P_<const Char> s )
