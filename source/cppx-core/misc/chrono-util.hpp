@@ -17,7 +17,7 @@ namespace cppx
     using Timer_clock = conditional_t<chrono::high_resolution_clock::is_steady,
         chrono::high_resolution_clock,
         chrono::steady_clock
-    >;
+        >;
 
     template< class Rep, class Period >
     inline auto as_seconds( const chrono::duration<Rep, Period> duration_value )
@@ -38,4 +38,5 @@ namespace cppx
     inline auto as_nanoseconds( const chrono::duration<Rep, Period> duration_value )
         -> double
     { return chrono::duration<double, nano>( duration_value ).count(); }
-}
+
+}  // namespace cppx

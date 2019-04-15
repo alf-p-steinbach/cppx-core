@@ -7,6 +7,8 @@
 #   define $use_cppx                    CPPX_USE_CPPX
 #   define $use_std                     CPPX_USE_STD
 #   define $use_namespace_name_in       CPPX_USE_NAMESPACE_NAME_IN
+#   define $use_cppx_namespace_name     CPPX_USE_CPPX_NAMESPACE_NAME
+#   define $use_std_namespace_name      CPPX_USE_STD_NAMESPACE_NAME
 #   define $use_namespace_names_in      CPPX_USE_NAMESPACE_NAMES_IN
 #   define $use_cppx_namespace_names    CPPX_USE_CPPX_NAMESPACE_NAMES
 #   define $use_std_namespace_names     CPPX_USE_STD_NAMESPACE_NAMES
@@ -27,6 +29,12 @@
 
 #define CPPX_USE_NAMESPACE_NAME_IN( parent_ns, nested_ns ) \
     namespace nested_ns = parent_ns::nested_ns
+
+#define CPPX_USE_CPPX_NAMESPACE_NAME( name ) \
+    CPPX_USE_NAMESPACE_NAME_IN( cppx, name )
+
+#define CPPX_USE_STD_NAMESPACE_NAME( name ) \
+    CPPX_USE_NAMESPACE_NAME_IN( std, name )
 
 #define CPPX_USE_NAMESPACE_NAMES_IN( parent_ns, ... ) \
     CPPX_APPLY_WITH_FIXED_ARG( CPPX_GENERATE_NAMESPACE_NAME_USAGE, parent_ns, __VA_ARGS__ ) \
