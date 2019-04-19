@@ -1,8 +1,10 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief Common integer operations: `is_even`, `is_odd`, `intdiv`, `intmod`,
+/// `intsquare`, `intcube`, `intmin` and `intmax`.
 
-#include <cppx-core/language/syntax/macro-use.hpp>
+#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_CPPX
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
-
 //#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_unsigned_
 
 #include <c/limits.hpp>     // INT_MAX
@@ -11,44 +13,42 @@
 #include <algorithm>        // std::max
 #include <type_traits>      // std::(common_type_t, is_integral_v, is_unsigned_v)
 
-// Using explicit `using` declarations instead of `inline` namespace to avoid ambiguity
-// elsewhere for the nested namespace name `impl`.
-namespace cppx::math
+namespace cppx
 {
-    template< class Int = int >
+    template< class Int >
     inline auto is_even( const Int x )
         -> Truth
     { return x % 2 == 0; }
 
-    template< class Int = int >
+    template< class Int >
     inline auto is_odd( const Int x )
         -> Truth
     { return x % 2 == 1; }
 
-    template< class Int = int >
-    inline auto idiv( const Int a, const Int b ) noexcept
+    template< class Int >
+    inline auto intdiv( const Int a, const Int b ) noexcept
         -> Int
     {
         const div_t r = ::div( a, b );
         return (r.quot < 0 and r.rem != 0? r.quot - 1 : r.quot);
     }
 
-    inline auto imod( const int a, const int b ) noexcept
+    inline auto intmod( const int a, const int b ) noexcept
         -> int
-    { return a - b*idiv( a, b ); }
+    { return a - b*intdiv( a, b ); }
 
     template< class Int = int >
-    inline auto isquared( const Int x )
+    inline auto intsquare( const Int x )
         -> Int
     { return x*x; }
 
     template< class Int = int >
-    inline auto icubed( const Int x )
+    inline auto intcube( const Int x )
         -> Int
     { return x*x*x; }
 
     template< class... Ints >
-    inline auto imin( const Ints... args )
+    inline auto intmin( const Ints... args )
         -> std::common_type_t<Ints...>
     { 
         static_assert( (... and std::is_integral_v<Ints> ) );
@@ -56,18 +56,17 @@ namespace cppx::math
     }
 
     template< class... Ints >
-    inline auto imax( const Ints... args )
+    inline auto intmax( const Ints... args )
         -> std::common_type_t<Ints...>
     { 
         static_assert( (... and std::is_integral_v<Ints> ) );
         return std::max( {std::common_type_t<Ints...>( args )...} );
     }
 
-}  // namespace cppx::math
-
-namespace cppx
-{
-    CPPX_USE_FROM_NAMESPACE( math,
-        is_even, is_odd, idiv, imod, isquared, icubed, imax
+    namespace calc
+    {
+        CPPX_USE_CPPX(
+            is_even, is_odd, intdiv, intmod, intsquare, intcube, intmin, intmax
         );
+    }  // namespace calc
 }  // namespace cppx

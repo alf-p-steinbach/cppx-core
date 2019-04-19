@@ -1,4 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief `intlog2`, the position of the most significant bit in an unsigned value.
+
+#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_CPPX
 
 #include <c/limits.hpp>     // INT_MAX
 #include <c/stdint.hpp>     // uint8_t
@@ -41,11 +45,18 @@ namespace cppx
     }  // namespace impl
     /// @endcond
 
+    /// \brief The position of the most significant bit in an unsigned value, or -1 for value zero.
+    //
     template< class Unsigned >
-    constexpr inline auto ilog2( const Unsigned x ) noexcept
+    constexpr inline auto intlog2( const Unsigned x ) noexcept
         -> int
     {
         static_assert( std::is_unsigned_v<Unsigned> );
         return impl::log2( x );
     }
+
+    namespace bitlevel
+    {
+        CPPX_USE_CPPX( intlog2 );
+    }  // namespace bitlevel
 }  // namespace cppx
