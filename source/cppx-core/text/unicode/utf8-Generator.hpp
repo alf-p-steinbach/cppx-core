@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/collections/Span_.hpp>                          // cppx::Span_
 #include <cppx-core/data/ascii-character-names.hpp>                 // cppx::ascii::*
-#include <cppx-core/language/syntax/macro-items.hpp>                // CPPX_ITEMS_OF
+#include <cppx-core/language/syntax/macro-items_of.hpp>             // CPPX_ITEMS_OF
 #include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::(P_)
 #include <cppx-core/language/types/byte-types.hpp>                  // cppx::Byte

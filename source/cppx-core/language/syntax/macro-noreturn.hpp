@@ -1,7 +1,9 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief `void $noreturn foo();` tells the compiler that `foo()` is not returning.
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
-#   define $noreturn    CPPX_NORETURN
+#   define $noreturn    CPPX_NORETURN           ///< \dollarname{noreturn}
 #endif
 
 // Silly-warning suppression:
@@ -19,5 +21,11 @@
 #endif
 
 #ifndef CPPX_NORETURN
+/// \brief `void $noreturn foo();` tells the compiler that `foo()` is not returning.
+///
+/// For older versions of Visual C++ and g++ that don't support the C++11
+/// `[[noreturn]]` attribute, you can define the macro symbol `CPPX_FIX_NORETURN_PLEASE`,
+/// preferably in the compiler invocation. That was the original purpose of this macro.
+/// For newer compilers it's mainly just a readability thing, fewer distracting brackets.
 #   define CPPX_NORETURN            [[noreturn]]
 #endif

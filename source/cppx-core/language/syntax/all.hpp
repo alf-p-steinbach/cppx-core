@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/language/syntax/macro-define_tag.hpp>
-#include <cppx-core/language/syntax/macro-items.hpp>
+#include <cppx-core/language/syntax/macro-items_of.hpp>
 #include <cppx-core/language/syntax/macro-noreturn.hpp>
 #include <cppx-core/language/syntax/macro-unused.hpp>
 #include <cppx-core/language/syntax/macro-use.hpp>
