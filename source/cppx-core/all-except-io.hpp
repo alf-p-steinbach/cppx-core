@@ -7,7 +7,6 @@
 #include <cppx-core/all-ascii.hpp>
 #include <cppx-core/all-calc.hpp>
 #include <cppx-core/collections/all.hpp>
-#include <cppx-core/data/all.hpp>
 #include <cppx-core/failure-handling/all.hpp>
 #include <cppx-core/iterators/all.hpp>
 #include <cppx-core/language/all.hpp>

@@ -1,5 +1,6 @@
 build/
-doxygen/html/
 *.tmp
 *.exe
 *.obj
+doxygen/cppx-core DOxygen-generated documentation/
+
