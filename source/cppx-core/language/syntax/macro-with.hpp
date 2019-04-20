@@ -14,16 +14,20 @@
 
 /// \brief Binds the specified declarator to `auto&& _` in the following braces block.
 ///
-/// For example:  
+/// `$with` can be used to make clear that an object is used for constructor + destructor
+/// execution (RAII), or that it's used just to hold a temporary result in order to access
+/// parts of it using the `_` name.
+///
+/// RAII examples:  
 /// `$with( Lock( mutex ) ) access_resource();`  
-/// `$with( cppx::Const_<Lock>( mutex ) ) access_resource();`
+/// `$with( Const_<Lock>( mutex ) ) access_resource();`
 
 #define CPPX_WITH( ... ) \
-    if ( auto&& _ = __VA_ARGS__; true or !!&_ )     // The !!&_ avoids warning about unused.
+    if ( auto&& _ [[maybe_unused]] = __VA_ARGS__; true )
 
-/// \brief Binds the specified declarator to `const auto&& _` in the following braces block.
+/// \brief Binds the specified declarator to `const auto& _` in the following braces block.
 ///
 /// For example:  
 /// `$with_const( Lock( mutex ) ) access_resource();`
 #define CPPX_WITH_CONST( ... ) \
-    if( const auto& _ = __VA_ARGS__; true or !!&_ )
+    if( const auto& _ [[maybe_unused]] = __VA_ARGS__; true )

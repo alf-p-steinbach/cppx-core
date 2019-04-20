@@ -3,7 +3,6 @@
 #include <cppx-core/language/syntax/macro-define_tag.hpp>
 #include <cppx-core/language/syntax/macro-items_of.hpp>
 #include <cppx-core/language/syntax/macro-noreturn.hpp>
-#include <cppx-core/language/syntax/macro-unused.hpp>
 #include <cppx-core/language/syntax/macro-use.hpp>
 #include <cppx-core/language/syntax/macro-with.hpp>
 #include <cppx-core/language/syntax/type-assemblers.hpp>
