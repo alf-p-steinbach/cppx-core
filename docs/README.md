@@ -126,7 +126,7 @@ A larger (but still small) example is also available:
 │           byte-types.hpp
 │           C_str_.hpp
 │           signed-size-types.hpp
-│           type-producers.hpp
+│           type-makers.hpp
 │           
 ├───meta-macro
 │       macro-apply.hpp

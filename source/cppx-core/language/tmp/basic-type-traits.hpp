@@ -1,9 +1,20 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief `is_base_and_derived_`, `is_same_type_`, `is_a_`, `is_const_`, `is_class_`,
+/// `is_fixed_point_`, `is_floating_point_`, `is_integral_`, `is_integral_`,
+/// `is_unsigned_`
+///
+/// `is_based_and_derived_` clarifies the roles of the template arguments, which are not
+/// apparent in `std::is_base_of_t`. `is_based_and_derived_` is also more clean regarded
+/// as English. `is_class` doesn't care if you feed it a reference, it then reports about
+/// the referent type. The numerical category type traits provide a common notation for
+/// checking also for fixed point type, which is an omission in the standard library. But
+/// in general it's all mainly about readability and convenience.
 
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
 #include <iterator>         // std::iterator_traits
-#include <type_traits>      // std::(is_base_of_v, is_class_v, is_integral_v, is_unsigned_v, is_same_v, *)
+#include <type_traits>      // std::(is_*, std::remove_reference_t)
 
 namespace cppx
 {
@@ -21,7 +32,7 @@ namespace cppx
     //----------------------------------------------------------------------------------------------
 
     template< class T >
-    constexpr Truth is_const_           = std::is_const_v<T>;
+    constexpr Truth is_const_           = std::is_const_v<std::remove_reference_t<T>>;
 
     template< class T >
     constexpr Truth is_class_           = std::is_class_v<T>;

@@ -11,7 +11,7 @@
 
 namespace cppx
 {
-    inline namespace type_producers
+    inline namespace type_makers
     {
         template< bool condition, class A, class B >        // "bool" until C++20
         using Type_choice_  = std::conditional_t<condition, A, B>;
@@ -35,32 +35,17 @@ namespace cppx
         using Unconst_      = std::remove_const_t< Some_type >;
 
 
-        //----------------------------------------------- Special kinds of reference:
-        //
-        // As of C++17 there's no way to /enforce/ the meanings implied by these names,
-        // so these are currently purely comment-like templates. At one time I thought
-        // they were a good idea. As of late 2018 I've changed that opinion, but maybe
-        // with some later version of C++ they can be defined with constraints and still
-        // support template argument deduction?
-
-        template< class Some_type >
-        using Intended_temp_ref_        = Some_type&&;  // std::add_rvalue_reference_t<Some_type>;
-
-        template< class Some_type >
-        using Intended_forwarding_ref_  = Some_type&&;  // Also known as a “universal reference”.
-
-
         //----------------------------------------------- Arrays:
 
         template< size_t n, class Item >
         using Array_of_                 = std::array<Item, n>;
 
-    }  // inline namespace type_producers
+    }  // inline namespace type_makers
 
     namespace all_type_builders
     {
         using namespace type_assemblers;
         using namespace ptr_and_ref;
-        using namespace type_producers;
+        using namespace type_makers;
     }   // namespace all_type_builders
 }  // namespace cppx
