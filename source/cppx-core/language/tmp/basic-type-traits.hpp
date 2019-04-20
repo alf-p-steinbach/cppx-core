@@ -13,7 +13,6 @@
 
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 
-#include <iterator>         // std::iterator_traits
 #include <type_traits>      // std::(is_*, std::remove_reference_t)
 
 namespace cppx
