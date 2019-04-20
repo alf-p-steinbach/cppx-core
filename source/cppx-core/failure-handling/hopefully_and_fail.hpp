@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
-#include <cppx-core/language/syntax/all.hpp>                        // CPPX_USE_STD, CPPX_NORETURN
+#include <cppx-core/language/syntax/all.hpp>                        // CPPX_USE_STD, [[noreturn]]
 #include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
 
 #include <stdexcept>        // std::runtime_error
@@ -46,7 +46,7 @@ namespace cppx
         { return condition; }
 
         template< class X = runtime_error >
-        CPPX_NORETURN
+        [[noreturn]]
         inline auto fail( const string& message )
             -> Truth
         {
@@ -65,7 +65,7 @@ namespace cppx
         }
 
         template< class X = runtime_error >
-        CPPX_NORETURN
+        [[noreturn]]
         inline auto fail( const string& message, const Abstract_source_location& throw_point )
             -> Truth
         {
