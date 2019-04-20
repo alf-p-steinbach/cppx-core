@@ -6,7 +6,7 @@
 ///
 /// `is_based_and_derived_` clarifies the roles of the template arguments, which are not
 /// apparent in `std::is_base_of_t`. `is_based_and_derived_` is also more clean regarded
-/// as English. `is_class` doesn't care if you feed it a reference, it then reports about
+/// as English. `is_const` doesn't care if you feed it a reference, it then reports about
 /// the referent type. The numerical category type traits provide a common notation for
 /// checking also for fixed point type, which is an omission in the standard library. But
 /// in general it's all mainly about readability and convenience.
