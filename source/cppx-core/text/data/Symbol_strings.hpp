@@ -35,11 +35,11 @@ namespace cppx
             !!use_ascii_substitutes, ascii::Symbol_strings, utf8::Symbol_strings
             >;
 
-        constexpr auto& left_quote_str      = Symbol_strings::left_quote_str;
-        constexpr auto& right_quote_str     = Symbol_strings::right_quote_str;
-        constexpr auto& bullet_str          = Symbol_strings::bullet_str;
-        constexpr auto& left_arrow_str      = Symbol_strings::left_arrow_str;
-        constexpr auto& right_arrow_str     = Symbol_strings::right_arrow_str;
+        inline constexpr auto& left_quote_str   = Symbol_strings::left_quote_str;
+        inline constexpr auto& right_quote_str  = Symbol_strings::right_quote_str;
+        inline constexpr auto& bullet_str       = Symbol_strings::bullet_str;
+        inline constexpr auto& left_arrow_str   = Symbol_strings::left_arrow_str;
+        inline constexpr auto& right_arrow_str  = Symbol_strings::right_arrow_str;
     }  // namespace best_effort
 
 }  // namespace cppx

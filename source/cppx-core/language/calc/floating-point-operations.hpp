@@ -10,12 +10,11 @@ namespace cppx
     /// @cond DOXY_SHOW_IMPL_DETAILS
     namespace impl
     {
-        template< class Number = double >
-        inline auto intpow( const Number base, const int exponent )
-            -> Number
+        inline auto intpow( const double base, const int exponent )
+            -> double
         {
-            Number result = 1;
-            Number weight = base;
+            double result = 1;
+            double weight = base;
             for( int n = exponent; n != 0; weight *= weight )
             {
                 if( is_odd( n ) )
@@ -52,15 +51,13 @@ namespace cppx
     }
 
     /// \brief The square (second power) of the argument.
-    template< class Number = double >
-    inline auto squared( const Number x )
-        -> Number
+    inline auto squared( const double x )
+        -> double
     { return x*x; }
 
     /// \brief The cube (third power) of the argument.
-    template< class Number = double >
-    inline auto cubed( const Number x )
-        -> Number
+    inline auto cubed( const double x )
+        -> double
     { return x*x*x; }
 
     namespace calc

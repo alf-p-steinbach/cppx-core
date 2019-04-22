@@ -3,7 +3,7 @@
 /// \brief Simple C string pointer type names such as `C_str` for `char const*`.
 ///
 /// The shortest names like `C_str` stand for `const` string data. The prefix `Mutable_`,
-/// as in `Mutable_c_str()`, indicates mutable string data. This naming reflects
+/// as in `Mutable_c_str`, indicates mutable string data. This naming reflects
 /// an experience that handling `const` string data is by far most common.
 ///
 /// Using the type names avoids issues with non-reading direction placement of `*`,
