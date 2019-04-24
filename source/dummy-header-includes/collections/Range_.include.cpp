@@ -2,5 +2,5 @@
 
 namespace
 {
-    auto x = &cppx::up_to;
+    auto x = &cppx::up_to<int>;
 }  // namespace <anon>

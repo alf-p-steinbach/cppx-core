@@ -4,6 +4,7 @@
 #include <cppx-core/collections/Enumerated_.hpp>
 #include <cppx-core/collections/is_empty.hpp>
 #include <cppx-core/collections/is_in.hpp>
+#include <cppx-core/collections/Matrix_.hpp>
 #include <cppx-core/collections/Map_.hpp>
 #include <cppx-core/collections/Range_.hpp>
 #include <cppx-core/collections/Set_.hpp>
