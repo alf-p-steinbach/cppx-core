@@ -3,12 +3,16 @@
 /// \brief `bits_per_` and `magnitude_bits_per_`.
 
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_CPPX
-#include <cppx-core/language/types/byte-types.hpp>          // cppx::bits_per_byte
 
-#include <limits>           // std::numeric_limits
+#include <c/limits.hpp>     // CHAR_BIT
+#include <limits>           // std::numeric_limits 
 
 namespace cppx
 {
+    CPPX_USE_STD( numeric_limits );
+
+    const int bits_per_byte = CHAR_BIT;     /// Usually 8, but e.g. 16 on some DSPs.
+
     /// \brief The number of bits per object/value of the specified type.
     ///
     /// On 2019 computers this is generally `bits_per_<Type> - std::is_signed_v<Type>`.
@@ -22,7 +26,7 @@ namespace cppx
     /// On 2019 computers this is generally `bits_per_<Type> - std::is_signed_v<Type>`.
     ///
     template< class Type >
-    constexpr int magnitude_bits_per_   = std::numeric_limits<Type>::digits;
+    constexpr int magnitude_bits_per_   = numeric_limits<Type>::digits;
 
     namespace bitlevel
     {
