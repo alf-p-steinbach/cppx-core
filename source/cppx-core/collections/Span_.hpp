@@ -19,6 +19,20 @@ namespace cppx
         queue, reverse_iterator, stack
         );
 
+    template< class Collection >
+    inline auto it_begin_of(Collection&& c)
+    {
+        using std::begin;
+        return begin( c );
+    }
+
+    template< class Collection >
+    inline auto it_end_of(Collection&& c)
+    {
+        using std::end;
+        return end( c );
+    }
+
     template< class Iterator >
     class Span_
     {
@@ -42,11 +56,14 @@ namespace cppx
         {}
 
         template< class Collection >
-        Span_( Collection& c ):
-            m_first( begin( c ) ),
-            m_beyond( end( c ) )
+        Span_( Collection&& c ):
+            m_first( it_begin_of( c ) ),
+            m_beyond( it_end_of( c ) )
         {}
     };
+
+    template< class Item >
+    using Raw_array_span_ = Span_<P_<Item>>;
 
     template< class Iterator >
     inline auto n_items_of( const Span_<Iterator>& range )
@@ -59,7 +76,7 @@ namespace cppx
     { return Span_<Iterator>( first, beyond ); }
 
     template< class Container >
-    inline auto all_of( Container& c )
+    inline auto all_of( Container&& c )
         -> Span_<decltype( begin( c ) )>
     { return span_of( begin( c ), end( c ) ); }
 
@@ -92,7 +109,7 @@ namespace cppx
     }
 
     template< class Container >
-    inline auto all_but_first_of( Container& c )
+    inline auto all_but_first_of( Container&& c )
         -> Span_<decltype( begin( c ) )>
     {
         const auto all = all_of( c );
@@ -100,7 +117,7 @@ namespace cppx
     }
 
     template< class Container >
-    inline auto all_but_first_n_of( Container& c, const Size n )
+    inline auto all_but_first_n_of( Container&& c, const Size n )
         -> Span_<decltype( begin( c ) )>
     {
         const auto all = all_of( c );
@@ -108,7 +125,7 @@ namespace cppx
     }
 
     template< class Container >
-    inline auto all_but_last_of( Container& c )
+    inline auto all_but_last_of( Container&& c )
         -> Span_<decltype( begin( c ) )>
     {
         const auto all = all_of( c );
@@ -124,7 +141,7 @@ namespace cppx
     { return all_but_last_of( string_literal ); }
 
     template< class Container >
-    inline auto all_but_last_n_of( Container& c, const Size n )
+    inline auto all_but_last_n_of( Container&& c, const Size n )
         -> Span_<decltype( begin( c ) )>
     {
         const auto all = all_of( c );
@@ -132,7 +149,7 @@ namespace cppx
     }
 
     template< class Container >
-    inline auto reversed( Container& c )
+    inline auto reversed( Container&& c )
         -> Span_<reverse_iterator<decltype( begin( c ) )>>
     {
         const auto all = all_of( c );
