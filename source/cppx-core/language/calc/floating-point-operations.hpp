@@ -1,6 +1,9 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief Useful common “calculator” operations: `intpow`, `squared` and `cubed`.
+/// \brief Useful common “calculator” operations:
+/// \make_name_ref{cppx,intpow},
+/// \make_name_ref{cppx,squared} and
+/// \make_name_ref{cppx,cubed}.
 
 #include <cppx-core/language/calc/integer-operations.hpp>       // cppx::is_odd
 #include <cppx-core/language/syntax/macro-use.hpp>

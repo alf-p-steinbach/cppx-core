@@ -1,6 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief `intlog2`, the position of the most significant bit in an unsigned value.
+/// \brief \make_name_ref{cppx,intlog2}, the position of the most significant bit
+/// in an unsigned value.
 
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_CPPX
 

@@ -252,7 +252,8 @@ TAB_SIZE               = 4
 # a double escape (\\{ and \\})
 
 ALIASES                = "dollarname{1}=\brief Real name: `$\1` (the `$` is just removed by Doxygen)." \
-                         "make_ref{1}=\ref \1"
+                         "make_ref{1}=\ref \1" \
+                         "make_name_ref{2}=\ref \1::\2 \"\2\""
 
 # This tag can be used to specify a number of word-keyword mappings (TCL only).
 # A mapping has the form "name=value". For example adding "class=itcl::class"

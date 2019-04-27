@@ -1,4 +1,9 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
+/// \file
+/// \brief Static size checkers:
+/// \make_name_ref{cppx,bits_per_},
+/// \make_name_ref{cppx,array_size_of} (raw array, `array` and `bitset`) and
+/// \make_name_ref{cppx,length_of_literal} (any kind of string literal).
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(Raw_array_of_, P_)

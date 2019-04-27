@@ -1,7 +1,14 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief Common integer operations: `is_even`, `is_odd`, `intdiv`, `intmod`,
-/// `intsquare`, `intcube`, `intmin` and `intmax`.
+/// \brief Common integer operations:
+/// \make_name_ref{cppx,is_even},
+/// \make_name_ref{cppx,is_odd},
+/// \make_name_ref{cppx,intdiv},
+/// \make_name_ref{cppx,intmod},
+/// \make_name_ref{cppx,intsquare},
+/// \make_name_ref{cppx,intcube},
+/// \make_name_ref{cppx,intmin} and
+/// \make_name_ref{cppx,intmax}.
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_CPPX
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth

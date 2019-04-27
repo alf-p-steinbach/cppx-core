@@ -1,8 +1,16 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief `is_base_and_derived_`, `is_same_type_`, `is_a_`, `is_const_`, `is_class_`,
-/// `is_fixed_point_`, `is_floating_point_`, `is_integral_`, `is_integral_`,
-/// `is_unsigned_`
+/// \brief
+/// \make_name_ref{cppx,is_base_and_derived_},
+/// \make_name_ref{cppx,is_same_type_},
+/// \make_name_ref{cppx,is_a_},
+/// \make_name_ref{cppx,is_const_},
+/// \make_name_ref{cppx,is_class_},
+/// \make_name_ref{cppx,is_fixed_point_},
+/// \make_name_ref{cppx,is_floating_point_},
+/// \make_name_ref{cppx,is_integral_},
+/// \make_name_ref{cppx,is_integral_} and
+/// \make_name_ref{cppx,is_unsigned_}.
 ///
 /// `is_based_and_derived_` clarifies the roles of the template arguments, which are not
 /// apparent in `std::is_base_of_t`. `is_based_and_derived_` is also more clean regarded

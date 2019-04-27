@@ -1,6 +1,10 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief `Byte` and `Signed_byte`, + `std::byte` support definitions.
+/// \brief
+/// \make_name_ref{cppx,Byte} and
+/// \make_name_ref{cppx,Signed_byte}, + `std::byte` support definitions
+/// \make_name_ref{cppx,as_number} and
+/// \make_name_ref{cppx,as_std_byte}.
 ///
 /// \sa The <cppx-core/language/\make_ref{bits_per_.hpp}> header 
 /// defines general bit size functionality, including `bits_per_byte`.

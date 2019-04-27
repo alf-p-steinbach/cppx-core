@@ -1,6 +1,10 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief Simple C string pointer type names such as `C_str` for `char const*`.
+/// \brief
+/// \make_name_ref{cppx,C_str} for `char const*`;
+/// \make_name_ref{cppx,Wide_c_str} for `wchar_t const*`; and
+/// \make_name_ref{cppx,Mutable_c_str} and
+/// \make_name_ref{cppx,Mutable_wide_c_str} as ditto mutable types.
 ///
 /// The shortest names like `C_str` stand for `const` string data. The prefix `Mutable_`,
 /// as in `Mutable_c_str`, indicates mutable string data. This naming reflects

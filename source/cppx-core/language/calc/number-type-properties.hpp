@@ -1,6 +1,16 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief Concise, clear & consistent notation for number type properties.
+/// \brief Concise, clear & consistent notation for number type properties:
+/// \make_name_ref{cppx,is_ieee_754_},
+/// \make_name_ref{cppx,largest_},
+/// \make_name_ref{cppx,smallest_},
+/// \make_name_ref{cppx,max_},
+/// \make_name_ref{cppx,min_},
+/// \make_name_ref{cppx,max_e_},
+/// \make_name_ref{cppx,min_e_},
+/// \make_name_ref{cppx,n_digits_},
+/// \make_name_ref{cppx,radix_} and
+/// \make_name_ref{cppx,epsilon_}.
 ///
 /// The `std::numeric_limits` facility is very verbose, has in part cryptic names, is
 /// non-systematic in what values mean for different kinds of types, and needlessly
@@ -35,7 +45,7 @@ namespace cppx
             static constexpr T      smallest        = 1;                // Smallest non-zero.
             static constexpr T      max             = largest;
             static constexpr T      min             = Nl_<T>::min();    // Usually `-largest_ - 1`.
-            static constexpr int    n_digits_       = Nl_<T>::digits10;
+            static constexpr int    n_digits        = Nl_<T>::digits10;
         };
 
         template< class T >
@@ -43,7 +53,7 @@ namespace cppx
         {
             static_assert( not std::is_integral_v<T> );
 
-            static constexpr Truth  is_ieee_754_    = Nl_<T>::is_iec559;
+            static constexpr Truth  is_ieee_754     = Nl_<T>::is_iec559;
             static constexpr T      largest         = Nl_<T>::max();
             static constexpr T      smallest        = Nl_<T>::min();    // Smallest non-zero.
             static constexpr T      max             = largest;

@@ -1,6 +1,16 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief Macros for generating more concise and clear `using` statements.
+/// \brief Macros for generating more concise and clear `using` statements, primarily
+/// `$use_cppx` and
+/// `$use_std`, but also more generally
+/// `$use_from_namespace`,
+/// `$use_namespace_name_in`,
+/// `$use_cppx_namespace_name`,
+/// `$use_std_namespace_name`,
+/// `$use_namespace_names_in`,
+/// `$use_cppx_namespace_names` and
+/// `$use_std_namespace_names`.
+
 
 #include <cppx-core/meta-macro/macro-apply_with_fixed_arg.hpp>
 

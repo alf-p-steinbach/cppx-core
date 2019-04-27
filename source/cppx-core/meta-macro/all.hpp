@@ -6,3 +6,4 @@
 #include <cppx-core/meta-macro/macro-joined.hpp>
 #include <cppx-core/meta-macro/macro-n_arguments.hpp>
 #include <cppx-core/meta-macro/macro-repeat.hpp>
+#include <cppx-core/meta-macro/only_lvalue_ref_to.hpp>

@@ -1,6 +1,11 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 /// \file
-/// \brief Simple type builders `Type_`, `P_`, `R_`, `Raw_array_` and `Raw_array_of_`.
+/// \brief Simple type builders
+/// \make_name_ref{cppx,Type_},
+/// \make_name_ref{cppx,P_},
+/// \make_name_ref{cppx,R_},
+/// \make_name_ref{cppx,Raw_array_} and
+/// \make_name_ref{cppx,Raw_array_of_}.
 ///
 /// The more safe standard library generators such as std::add_pointer_t
 /// are not used because they would prevent template argument deduction. The basic
