@@ -2,8 +2,8 @@
 /// \file
 /// \brief
 /// \make_name_ref{cppx,Truth}
-/// is a drop-in replacement for `bool` without implicit conversion to types other than
-/// `bool`.
+/// is a drop-in replacement for `bool` without implicit conversion from/to types other
+/// than `bool`.
 
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
 #include <cppx-core/language/tmp/basic-Enable_if_.hpp>      // cppx::Enable_if_
@@ -14,22 +14,23 @@ namespace cppx
 {
     CPPX_USE_STD( enable_if_t, is_same_v );
 
-    /// \brief A drop-in replacement for `bool` without implicit conversion to types
+    /// \brief A drop-in replacement for `bool` without implicit conversion from/to types
     /// other than `bool`.
     ///
-    /// “Replacement”: e.g. indexing of a `std::vector<Truth>` will in practice produce
-    /// a reference to a `Truth` item, which you can take the address of, rather than the
-    /// proxy object you usually get with a `std::vector<bool>`. The proxy objects of the
-    /// latter allows it to store just 1 bit per item, at a cost that includes marginally
-    /// reduced efficiency and high inconvenience. That cost is avoided with `Truth`.
-    ///
-    /// “Drop-in”: Implicit conversions to and from `bool` type are a common cause of
-    /// undesired overload resolution. `Truth` avoids this by only converting to and from
+    /// Implicit conversions to and from `bool` type are a common cause of
+    /// undesired overload resolution. `Truth` only converts implicitly to and from
     /// `bool`. It's mostly a drop-in replacement for `bool` because you can use `Truth`
-    /// values directly as `if` and loop conditions, and in boolean expressions.
+    /// values directly as conditions in `if` and loop statemetns, and in boolean
+    /// operator expressions.
     ///
     /// “Mostly”: as of C++17 `Truth`, like any other user-defined class type, can't be
     /// used as template value parameter type, but this may change with C++20.
+    ///
+    /// Unplanned positive effect: indexing of a `std::vector<Truth>` produces a reference
+    /// to a `Truth` item, which you can take the address of, rather than the proxy object
+    /// that you usually get with a `std::vector<bool>`. The proxy objects of the latter
+    /// allows it to store just 1 bit per item, at a cost that includes marginally reduced
+    /// efficiency and high inconvenience. That cost is avoided with `Truth` as item type.
     class Truth
     {
         bool        m_value;
