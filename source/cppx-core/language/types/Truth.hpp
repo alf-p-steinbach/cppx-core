@@ -20,7 +20,7 @@ namespace cppx
     /// Implicit conversions to and from `bool` type are a common cause of
     /// undesired overload resolution. `Truth` only converts implicitly to and from
     /// `bool`. It's mostly a drop-in replacement for `bool` because you can use `Truth`
-    /// values directly as conditions in `if` and loop statemetns, and in boolean
+    /// values directly as conditions in `if` and loop statements, and in boolean
     /// operator expressions.
     ///
     /// “Mostly”: as of C++17 `Truth`, like any other user-defined class type, can't be
