@@ -2,6 +2,10 @@
 //
 // This astract class is used by cppx::fail. It can't use things that use cppx::fail.
 // Line and character position indexing is 1-based.
+//
+// A similar class has been proposed for the standard library, see
+// <url: https://en.cppreference.com/w/cpp/experimental/source_location>
+
 
 #include <cppx-core/collections/is_empty.hpp>               // cppx::is_empty
 #include <cppx-core/language/syntax/macro-with.hpp>         // CPPX_WITH

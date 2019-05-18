@@ -70,6 +70,7 @@ namespace cppx
         return std::max( {std::common_type_t<Ints...>( args )...} );
     }
 
+    // Is documented in the `all.hpp` header.
     namespace calc
     {
         CPPX_USE_CPPX(

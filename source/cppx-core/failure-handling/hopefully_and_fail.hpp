@@ -7,6 +7,7 @@
 #include <stdexcept>        // std::runtime_error
 #include <exception>        // std::throw_with_nested
 #include <string>           // std::string
+#include <utility>          // std::forward
 
 namespace cppx
 {
@@ -14,7 +15,10 @@ namespace cppx
 
     namespace hf
     {
-        CPPX_USE_STD( current_exception, runtime_error, string, throw_with_nested );
+        CPPX_USE_STD(
+            forward,
+            current_exception, runtime_error, string, throw_with_nested 
+            );
 
         //------------------------------------------ hopefully & fail
         //
@@ -45,9 +49,9 @@ namespace cppx
             -> Truth
         { return condition; }
 
-        template< class X = runtime_error >
+        template< class X = runtime_error, class... More_args >
         [[noreturn]]
-        inline auto fail( const string& message )
+        inline auto fail( const string& message, More_args&&... more_args )
             -> Truth
         {
             // This checking is necessary for MinGW g++ 8.2.0. Not sure if the standard
@@ -56,22 +60,35 @@ namespace cppx
             const Truth in_exception_handling = (std::current_exception() != nullptr);
             if( in_exception_handling )
             {
-                throw_with_nested( X( message ) );
+                throw_with_nested( X( message, forward<More_args>( more_args )... ) );
             }
             else
             {
-                throw X( message );
+                throw X( message, forward<More_args>( more_args )...  );
             }
         }
 
-        template< class X = runtime_error >
-        [[noreturn]]
-        inline auto fail( const string& message, const Abstract_source_location& throw_point )
-            -> Truth
+        inline auto rich_exception_text(
+            const string&                       message,
+            const Abstract_source_location&     throw_point
+            ) -> string
         {
-            fail<X>( string()
+            return string()
                 + throw_point.function_name_or_unspecified() + " - " + message + "\n"
-                + string( 4, ' ' ) + ">" + throw_point.file_and_line()
+                + string( 4, ' ' ) + ">" + throw_point.file_and_line();
+        }
+
+        template< class X = runtime_error, class... More_args >
+        [[noreturn]]
+        inline auto fail_with_location(
+            const Abstract_source_location&     throw_point,
+            const string&                       message,
+            More_args&&...                      more_args
+            ) -> Truth
+        {
+            fail<X>(
+                rich_exception_text( message, throw_point ),
+                forward<More_args>( more_args )...
                 );
         }
 
@@ -80,18 +97,19 @@ namespace cppx
         // A unified notation that provides separation of failure /checking/ and
         // /throwing/ of exception with possibly costly to construct arguments.
         //
+        // Since the `or` is the built-in `or` the arguments to `fail` are only evaluated
+        // in the case of failure, which means the normal case is efficient.
+        //
         // Typical usage patterns, here using a Windows' function that returns `HRESULT`:
+        //
+        //      CoInitialize( nullptr, COINIT_MULTITHREADED )
+        //          >> Success() or fail( "main - CoInitialize failed" );
+        //
+        // where
         //
         //      auto operator>>( const HRESULT hr, Success )
         //          -> Truth
         //      { return SUCCEEDED( hr ); }
-        //
-        //      //...
-        //      CoInitialize( nullptr, COINIT_MULTITHREADED )
-        //          >> Success() or fail( "main - CoInitialize failed" );
-        //
-        // Since the `or` is the built-in `or` the arguments to `fail` are only evaluated
-        // in the case of failure, which means the normal case is efficient.
 
         struct Success{};
         struct Failure{};
@@ -106,6 +124,7 @@ namespace cppx
 
         using hf::hopefully;
         using hf::fail;
+        using hf::fail_with_location;
 
         using hf::Success;
         using hf::Failure;

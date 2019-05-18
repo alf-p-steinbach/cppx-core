@@ -64,7 +64,7 @@ namespace cppx
     template< size_t n, class Item >
     using Array_of_                 = std::array<Item, n>;
 
-    /// \brief
+    /// \brief Provides
     /// \make_name_ref{cppx,Type_choice_},
     /// \make_name_ref{cppx,Unptr_},
     /// \make_name_ref{cppx,Unref_},

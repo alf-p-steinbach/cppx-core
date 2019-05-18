@@ -4,4 +4,5 @@
 #include <cppx-core/language/syntax/macro-items_of.hpp>
 #include <cppx-core/language/syntax/macro-use.hpp>
 #include <cppx-core/language/syntax/macro-with.hpp>
+#include <cppx-core/language/syntax/repeat_times.hpp>
 #include <cppx-core/language/syntax/type-assemblers.hpp>

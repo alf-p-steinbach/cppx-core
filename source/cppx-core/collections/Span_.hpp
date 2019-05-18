@@ -20,14 +20,14 @@ namespace cppx
         );
 
     template< class Collection >
-    inline auto it_begin_of(Collection&& c)
+    inline auto it_begin_of( Collection&& c )
     {
         using std::begin;
         return begin( c );
     }
 
     template< class Collection >
-    inline auto it_end_of(Collection&& c)
+    inline auto it_end_of( Collection&& c )
     {
         using std::end;
         return end( c );
@@ -63,7 +63,7 @@ namespace cppx
     };
 
     template< class Item >
-    using Raw_array_span_ = Span_<P_<Item>>;
+    using Array_span_ = Span_<P_<Item>>;
 
     template< class Iterator >
     inline auto n_items_of( const Span_<Iterator>& range )
@@ -136,7 +136,7 @@ namespace cppx
         class Char, Size n
         //,class = Enable_if_<is_a_char_type_<Char>>
         >
-    inline auto text_span_of_literal( const Raw_array_of_<n, const Char>& string_literal )
+    inline auto span_of_literal( const Raw_array_of_<n, const Char>& string_literal )
         -> Span_<P_<const Char>>
     { return all_but_last_of( string_literal ); }
 
@@ -148,15 +148,19 @@ namespace cppx
         return span_of( all.first(), prev( all.beyond(), n ) );
     }
 
+    template< class Iterator >
+    inline auto reverse_span_of( const Iterator first, const Iterator beyond )
+        -> Span_<reverse_iterator<Iterator>>
+    {
+        return span_of(
+            make_reverse_iterator( beyond ),
+            make_reverse_iterator( first )
+        );
+    }
+
     template< class Container >
     inline auto reversed( Container&& c )
         -> Span_<reverse_iterator<decltype( begin( c ) )>>
-    {
-        const auto all = all_of( c );
-        return span_of(
-            make_reverse_iterator( all.beyond() ),
-            make_reverse_iterator( all.first() )
-            );
-    }
+    { return reverse_span_of( CPPX_ITEMS_OF( c ) ); }
 
 }  // namespace cppx

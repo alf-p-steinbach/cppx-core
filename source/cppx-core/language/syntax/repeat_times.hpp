@@ -8,7 +8,7 @@ namespace cppx
     CPPX_USE_STD( forward );
 
     template< class Func, class... Args >
-    void repeat( const Size n, const Func& f, Args&&... args )
+    inline void repeat_times( const Size n, const Func& f, Args&&... args )
     {
         for( Index i = 0; i < n; ++i )
         {

@@ -10,10 +10,11 @@
 namespace cppx
 {
     CPPX_USE_STD( ostringstream, string, string_view );
-    using namespace std::string_literals;       // E.g. ""s
 
     inline namespace basic_string_building
     {
+        using namespace std::string_literals;       // E.g. ""s
+
         template< class Type >
         inline auto operator<<( string& s, const Type& value )
             -> string&

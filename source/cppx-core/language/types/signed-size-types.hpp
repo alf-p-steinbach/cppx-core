@@ -34,6 +34,11 @@ namespace cppx
     using Unsigned_size         = size_t;
     using Unsigned_index        = Unsigned_size;
 
+    /// \brief provides
+    /// \make_name_ref{cppx,Size} and
+    /// \make_name_ref{cppx,Index}, plus unsigned equivalents
+    /// \make_name_ref{cppx,Unsigned_size} and
+    /// \make_name_ref{cppx,Unsigned_index}.
     namespace size_types
     {
         CPPX_USE_CPPX( Size, Index, Unsigned_size, Unsigned_index );

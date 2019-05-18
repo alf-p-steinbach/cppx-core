@@ -3,4 +3,4 @@ build/
 *.exe
 *.obj
 doxygen/cppx-core DOxygen-generated documentation/
-
+explorations/

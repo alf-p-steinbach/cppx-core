@@ -3,14 +3,14 @@
 #include <cppx-core/text/unicode/utf16-Generator.hpp>
 
 #include <cppx-core/collections/dynamic-size-checking.hpp>      // cppx::(array_size_of, length_of)
-#include <cppx-core/collections/Span_.hpp>                      // cppx::text_span_of_literal
+#include <cppx-core/collections/Span_.hpp>                      // cppx::span_of_literal
 #include <cppx-core/language/bit-level/all.hpp>                 // cppx::Byte
 #include <cppx-core/language/syntax/macro-use.hpp>              // $use_std
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::Raw_array_
 
 #include <iterator>         // std::(begin, end)
 
-$use_cppx( P_, Byte, text_span_of_literal, array_size_of, length_of, Raw_array_ );
+$use_cppx( P_, Byte, span_of_literal, array_size_of, length_of, Raw_array_ );
 $use_std( begin, end, string, u16string );
 
 #include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>   //!
@@ -33,7 +33,7 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, utf16_Generator );
         cppx::utf16::Generator generator;
         u16string buffer( 80, u'#' );
         const auto p_end = generator.utf16_from_bytes(
-            text_span_of_literal( u8s ), buffer.data()
+            span_of_literal( u8s ), buffer.data()
             );
         buffer.resize( p_end - buffer.data() );
         $expect_eq( generator.n_bad_groups(), 0 );
@@ -51,7 +51,7 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, utf16_Generator );
         cppx::utf16::Generator generator;
         u16string buffer( 80, u'#' );
         const auto p_end = generator.utf16_from_bytes(
-            text_span_of_literal( u8s ), buffer.data()
+            span_of_literal( u8s ), buffer.data()
             );
         buffer.resize( p_end - buffer.data() );
         $expect_eq( generator.n_bad_groups(), 0 );
@@ -70,7 +70,7 @@ $begin_test_suite( cppx_core, text, unicode, HEADER, utf16_Generator );
         cppx::utf16::Generator generator;
         u16string buffer( 80, u'#' );
         const auto p_end = generator.utf16_from_bytes(
-            text_span_of_literal( u8s ), buffer.data()
+            span_of_literal( u8s ), buffer.data()
             );
         buffer.resize( p_end - buffer.data() );
         $expect_eq( generator.n_bad_groups(), 1 );

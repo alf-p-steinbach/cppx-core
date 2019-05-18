@@ -156,6 +156,17 @@ namespace cppx
     /// The expression `epsilon_<T>` is an alias for `std::numeric_limits<T>::epsilon()`.
     template< class T > constexpr T     epsilon_        = Number_properties_<T>::epsilon;
 
+    /// \brief Provides
+    /// \make_name_ref{cppx,is_ieee_754_},
+    /// \make_name_ref{cppx,largest_},
+    /// \make_name_ref{cppx,smallest_},
+    /// \make_name_ref{cppx,max_},
+    /// \make_name_ref{cppx,min_},
+    /// \make_name_ref{cppx,max_e_},
+    /// \make_name_ref{cppx,min_e_},
+    /// \make_name_ref{cppx,n_digits_},
+    /// \make_name_ref{cppx,radix_} and
+    /// \make_name_ref{cppx,epsilon_}.
     namespace number_properties
     {
         CPPX_USE_CPPX(

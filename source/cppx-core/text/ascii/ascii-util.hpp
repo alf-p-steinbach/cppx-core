@@ -2,7 +2,7 @@
 #include <cppx-core/collections/Range_.hpp>                     // cppx::Range
 #include <cppx-core/language/syntax/macro-items_of.hpp>         // CPPX_ITEMS_OF
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/language/types/byte-types.hpp>              // cppx::Byte
+#include <cppx-core/language/types/Byte.hpp>                    // cppx::Byte
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core/language/types/type-makers.hpp>             // cppx::(R_, P_, Unsigned_)
 #include <cppx-core/meta-template/enable_if_.hpp>               // cppx::Enable_if_

@@ -63,6 +63,7 @@ namespace cppx
         -> double
     { return x*x*x; }
 
+    // Is documented in the `all.hpp` header.
     namespace calc
     {
         CPPX_USE_CPPX( intpow, squared, cubed );

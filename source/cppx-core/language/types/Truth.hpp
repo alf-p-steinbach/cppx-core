@@ -39,6 +39,9 @@ namespace cppx
         static constexpr bool is_bool_ = std::is_same_v<T, bool>;
 
     public:
+        static constexpr auto yes() -> Truth { return true; }
+        static constexpr auto no() -> Truth { return false; }
+
         /// \brief Implicit conversion to `bool` (only).
         ///
         /// Implicit conversion to `bool` because that's needed for template args.
@@ -58,4 +61,8 @@ namespace cppx
             >
         constexpr Truth( const Arg value ) noexcept: m_value( value ) {}
     };
+
+    constexpr auto truth_value_no   = Truth::no();
+    constexpr auto truth_value_yes  = Truth::yes();
+
 }  // namespace cppx

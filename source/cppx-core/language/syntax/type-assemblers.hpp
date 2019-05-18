@@ -82,13 +82,19 @@ namespace cppx
     template< size_t n, class Item >
     using Raw_array_of_ = Item[n];
 
-    /// `Type_`, `P_`, `R_`, `Raw_array_`, `Raw_array_of_`
+    /// \brief Provides
+    /// \make_name_ref{cppx,Type_},
+    /// \make_name_ref{cppx,P_},
+    /// \make_name_ref{cppx,R_},
+    /// \make_name_ref{cppx,Raw_array_} and
+    /// \make_name_ref{cppx,Raw_array_of_}.
     namespace type_assemblers
     {
         CPPX_USE_CPPX( Type_, P_, R_, Raw_array_, Raw_array_of_ );
     }  // inline namespace type_assemblers
 
-    /// Self-descriptive but more wordy `Ptr_` and `Ref_` aliases for `P_` and `R_`.
+    /// Self-descriptive but more wordy `Ptr_` and `Ref_` aliases for
+    /// `P_` and `R_`.
     namespace ptr_and_ref
     {
         template< class T > using Ptr_ = P_<T>;
