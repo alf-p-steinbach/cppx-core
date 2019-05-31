@@ -33,13 +33,9 @@ namespace cppx
         -> std::byte
     { return std::byte( value ); }
 
-    /// \brief Provides
-    /// \make_name_ref{cppx,Byte} and
-    /// \make_name_ref{cppx,Signed_byte}, + `std::byte` support definitions
-    /// \make_name_ref{cppx,as_number} and
-    /// \make_name_ref{cppx,as_std_byte}.
-    namespace byte_stuff
+    // Documented in the <all.hpp> header.
+    namespace system
     {
-        CPPX_USE_CPPX( Byte, Signed_byte, as_number, as_std_byte );
+        CPPX_USE_CPPX( Byte, Signed_byte, bits_per_byte, as_number, as_std_byte );
     }
 }  // namespace cppx

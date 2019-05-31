@@ -5,8 +5,8 @@
 /// is a drop-in replacement for `bool` without implicit conversion from/to types other
 /// than `bool`.
 
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/tmp/basic-Enable_if_.hpp>      // cppx::Enable_if_
+#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
+#include <cppx-core/language/tmp-support/basic-Enable_if_.hpp>      // cppx::Enable_if_
 
 #include <type_traits>      // std::is_same_v
 
@@ -31,12 +31,13 @@ namespace cppx
     /// that you usually get with a `std::vector<bool>`. The proxy objects of the latter
     /// allows it to store just 1 bit per item, at a cost that includes marginally reduced
     /// efficiency and high inconvenience. That cost is avoided with `Truth` as item type.
+
+    template< class T >
+    static constexpr bool is_bool_ = std::is_same_v<T, bool>;
+
     class Truth
     {
         bool        m_value;
-
-        template< class T >
-        static constexpr bool is_bool_ = std::is_same_v<T, bool>;
 
     public:
         static constexpr auto yes() -> Truth { return true; }
@@ -64,5 +65,29 @@ namespace cppx
 
     constexpr auto truth_value_no   = Truth::no();
     constexpr auto truth_value_yes  = Truth::yes();
+
+    constexpr auto operator!=( const Truth lhs, const Truth rhs )
+        -> bool
+    { return !!lhs != !!rhs; }
+
+    constexpr auto operator<=( const Truth lhs, const Truth rhs )
+        -> bool
+    { return !!lhs <= !!rhs; }
+
+    constexpr auto operator<( const Truth lhs, const Truth rhs )
+        -> bool
+    { return !!lhs < !!rhs; }
+
+    constexpr auto operator==( const Truth lhs, const Truth rhs )
+        -> bool
+    { return !!lhs == !!rhs; }
+
+    constexpr auto operator>=( const Truth lhs, const Truth rhs )
+        -> bool
+    { return !!lhs >= !!rhs; }
+
+    constexpr auto operator>( const Truth lhs, const Truth rhs )
+        -> bool
+    { return !!lhs > !!rhs; }
 
 }  // namespace cppx

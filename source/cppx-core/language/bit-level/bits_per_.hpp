@@ -5,7 +5,7 @@
 /// \make_name_ref{cppx,magnitude_bits_per_}.
 
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_CPPX
-#include <cppx-core/language/types/Byte.hpp>                // cppx::bits_per_byte
+#include <cppx-core/language/system/Byte.hpp>               // cppx::bits_per_byte
 
 #include <limits>           // std::numeric_limits 
 

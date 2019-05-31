@@ -7,7 +7,7 @@
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(Raw_array_of_, P_)
-#include <cppx-core/language/types/signed-size-types.hpp>       // cppx::Size
+#include <cppx-core/language/system/size-types.hpp>             // cppx::Size
 #include <cppx-core/language/bit-level/bits_per_.hpp>           // cppx::(bits_per_)
 
 #include <array>            // std::array

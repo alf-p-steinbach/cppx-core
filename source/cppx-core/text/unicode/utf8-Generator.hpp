@@ -3,8 +3,8 @@
 #include <cppx-core/language/syntax/macro-items_of.hpp>             // CPPX_ITEMS_OF
 #include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::(P_)
-#include <cppx-core/language/types/Byte.hpp>                        // cppx::Byte
-#include <cppx-core/language/types/signed-size-types.hpp>           // cppx::Size
+#include <cppx-core/language/system/Byte.hpp>                       // cppx::Byte
+#include <cppx-core/language/system/size-types.hpp>                 // cppx::Size
 #include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
 #include <cppx-core/text/data/ascii-character-names.hpp>            // cppx::ascii::*
 #include <cppx-core/text/pointers-from-string_view.hpp>             // cppx::(p_first_of, p_beyond_of)

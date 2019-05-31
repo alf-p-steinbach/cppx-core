@@ -2,7 +2,7 @@
 
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::Raw_array_of_
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::(is_signed_ ...)
+#include <cppx-core/language/tmp-support/basic-type-traits.hpp> // cppx::(is_signed_ ...)
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core/language/types/type-makers.hpp>             // cppx::(Unref_ ...)
 #include <cppx-core/meta-template/Type_list_.hpp>               // cppx::(contains_type_, Joined_, Type_list_)

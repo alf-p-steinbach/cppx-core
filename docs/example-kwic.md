@@ -385,7 +385,7 @@ Now, with the default allocator the size type of a `std::string`, a `std::vector
 
 So, ***how to express a loop condition*** can depend crucially on whether the loop variable is of a signed or unsigned type. With the signed `Index` type you can get simple conditions as above, and you can avoid wrap-around problems. But using `Index` doesn't remove all the dangers: coding as if it were an unsigned type can yield bugs.
 
-*cppx-core/language/types/signed-size-types.hpp* also provides a signed size type called **`Size`**, that's an alias for `Index`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**. Both these functions are provided by *cppx-core/collections/size-checking.hpp*.
+*cppx-core/language/system/size-types.hpp* also provides a signed size type called **`Size`**, that's an alias for `Index`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**. Both these functions are provided by *cppx-core/collections/size-checking.hpp*.
 
 
 ## 11 – Easily display the messages of nested exceptions.

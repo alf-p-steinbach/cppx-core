@@ -7,8 +7,11 @@
 #include <cppx-core/config.hpp>     // cppx::check_the_basic_execution_character_set
 #include <cppx-core/text/unicode/utf8-is_the_execution_character_set.hpp>
 
-static_assert(
-    not cppx::check_the_execution_character_set
-        or cppx::utf8::is_the_execution_character_set(),
-    "The execution character set must be UTF-8 (e.g. MSVC option \"/utf-8\")."
-    );
+#ifndef CPPX_NO_CHARSET_ASSERTION_PLEASE
+#   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
+#endif
+//static_assert(
+//    not cppx::check_the_execution_character_set
+//        or cppx::utf8::is_the_execution_character_set(),
+//    "The execution character set must be UTF-8 (e.g. MSVC option \"/utf-8\")."
+//    );

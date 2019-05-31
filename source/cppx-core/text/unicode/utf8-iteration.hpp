@@ -7,8 +7,8 @@
 #include <cppx-core/collections/Range_.hpp>                     // cppx::up_to
 #include <cppx-core/failure-handling/macro-fail.hpp>            // cppx::(hopefully, fail) CPPX_FAIL
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(P_)
-#include <cppx-core/language/types/Byte.hpp>                    // cppx::Byte
-#include <cppx-core/language/types/signed-size-types.hpp>       // cppx::Size
+#include <cppx-core/language/system/Byte.hpp>                   // cppx::Byte
+#include <cppx-core/language/system/size-types.hpp>             // cppx::Size
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core/text/pointers-from-string_view.hpp>         // cppx::(p_first_of, p_beyond_of)
 

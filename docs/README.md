@@ -141,7 +141,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │           C_str_.hpp
 │           fixed-size-checking.hpp
 │           Int_.hpp
-│           signed-size-types.hpp
+│           size-types.hpp
 │           Truth.hpp
 │           type-makers.hpp
 │
