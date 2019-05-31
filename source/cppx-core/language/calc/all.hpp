@@ -11,7 +11,7 @@ namespace cppx
     /// \brief Functions and constants typically available on a scientific calculator,
     /// but somehow missing from the standard library.
     ///
-    /// Integer functions `is_even`, `is_odd`, `intdiv`, `intmod`,
+    /// Integer functions `is_even`, `is_odd`, `div_down`, `div_up`, `intmod`,
     /// `intsquare`, `intcube`, `intmin`, `intmax`, and floating point `intpow`,
     /// `squared` and `cubed` functions. Floating point functions `has_nan`_,
     /// `has_nan`, `has_infinity_`, `has_infinity`. Floating point constants  `e`,

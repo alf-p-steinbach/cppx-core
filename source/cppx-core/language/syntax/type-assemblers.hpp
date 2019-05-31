@@ -2,6 +2,7 @@
 /// \file
 /// \brief Simple type builders
 /// \make_name_ref{cppx,Type_},
+/// \make_name_ref{cppx,Func_},
 /// \make_name_ref{cppx,P_},
 /// \make_name_ref{cppx,R_},
 /// \make_name_ref{cppx,Raw_array_} and
@@ -44,6 +45,13 @@ namespace cppx
     /// Credit: I first saw a template like `Type_` suggested by Johannes “litb” Schaub.
     template< class Some_type >
     using Type_ = Some_type;
+
+    /// `Func_<R, A1, A2, A3>` is the type denoted by the type expression
+    /// `auto(A1, A2, A4) -> R`, wrapped up so that other type builders can be applied.
+    /// Note that `const` **can't** be applied to a function type. Or, g++ doesn't
+    /// support it.
+    template< class Result, class... Args >
+    using Func_ = auto( Args... ) -> Result;
 
     /// \brief Creates a raw pointer type.
     ///

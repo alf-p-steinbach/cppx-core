@@ -16,7 +16,6 @@
 
 #include <c/limits.hpp>     // INT_MAX
 #include <c/stdint.hpp>     // ::(uintXX_t)
-#include <c/stdlib.hpp>     // ::(div_t, div)
 #include <algorithm>        // std::max
 #include <type_traits>      // std::(common_type_t, is_integral_v, is_unsigned_v)
 
@@ -33,16 +32,24 @@ namespace cppx
     { return x % 2 == 1; }
 
     template< class Int >
-    inline auto intdiv( const Int a, const Int b ) noexcept
+    constexpr inline auto div_down( const Int a, const Int b ) noexcept
         -> Int
     {
-        const div_t r = ::div( a, b );
-        return (r.quot < 0 and r.rem != 0? r.quot - 1 : r.quot);
+        const Int q = a/b;
+        return (q < 0 and a % b != 0? q - 1 : q);
+    }
+
+    template< class Int >
+    constexpr inline auto div_up( const Int a, const Int b ) noexcept
+        -> Int
+    {
+        const Int q = a/b;
+        return (q >= 0 and a % b != 0? q + 1 : q);
     }
 
     inline auto intmod( const int a, const int b ) noexcept
         -> int
-    { return a - b*intdiv( a, b ); }
+    { return a - b*div_down( a, b ); }
 
     template< class Int = int >
     inline auto intsquare( const Int x )
@@ -74,7 +81,7 @@ namespace cppx
     namespace calc
     {
         CPPX_USE_CPPX(
-            is_even, is_odd, intdiv, intmod, intsquare, intcube, intmin, intmax
+            is_even, is_odd, div_down, div_up, intmod, intsquare, intcube, intmin, intmax
         );
     }  // namespace calc
 }  // namespace cppx
