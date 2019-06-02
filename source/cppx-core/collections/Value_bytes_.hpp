@@ -37,6 +37,18 @@ namespace cppx {
             }
         }
 
+        template< int na, int nb >
+        static auto compare( const Value_bytes_<na>& a, const Value_bytes_<nb>& b )
+            -> int
+        {
+            const int common_size = min( a.size(), b.size() );
+            if( const int r = memcmp( a.data(), b.data(), common_size ) ) {
+                return r;
+            } else {
+                return a.size() - b.size();
+            }
+        }
+
     public:
         auto data() const   -> P_<const Byte>   { return &m_buffer[0]; }
         auto size() const   -> int              { return m_buffer_size; }
@@ -44,27 +56,5 @@ namespace cppx {
         auto begin() const  -> P_<const Byte>   { return data(); }
         auto end() const    -> P_<const Byte>   { return data() + size(); }
     };
-
-    template< int na, int nb >
-    inline auto compare( const Value_bytes_<na>& a, const Value_bytes_<nb>& b )
-        -> int
-    {
-        const int common_size = min( a.size(), b.size() );
-        if( const int r = memcmp( a.data(), b.data(), common_size ) ) {
-            return r;
-        } else {
-            return a.size() - b.size();
-        }
-    }
-
-    template< int na, int nb >
-    inline auto operator<( const Value_bytes_<na>& a, const Value_bytes_<nb>& b )
-        -> bool
-    { return compare( a, b ) < 0; }
-
-    template< int na, int nb >
-    inline auto operator==( const Value_bytes_<na>& a, const Value_bytes_<nb>& b )
-        -> bool
-    { return compare( a, b ) == 0; }
 
 }  // namespace cppx
