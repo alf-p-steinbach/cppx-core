@@ -26,6 +26,10 @@ namespace cppx {
             -> bool
         { return m_is_data_pointer; }
 
+        auto is_code_pointer() const
+            -> bool
+        { return not m_is_data_pointer; }
+
         friend auto compare( const Pointer_bytes& a, const Pointer_bytes& b )
             -> int
         {
