@@ -1,16 +1,17 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/syntax/type-assemblers.hpp>    // cppx::P_
-#include <cppx-core/language/system/Byte.hpp>               // cppx::Byte
-#include <cppx-core/language/system/Endian.hpp>             // cppx::(is_XXX_endian)
+#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::P_
+#include <cppx-core/language/system/Byte.hpp>                   // cppx::Byte
+#include <cppx-core/language/system/Endian.hpp>                 // cppx::(is_XXX_endian)
+#include <cppx-core/language/tmp-support/basic-Enable_if_.hpp>  // cppx::Enable_if_
 
-#include <algorithm>        // std::reverse
+#include <algorithm>        // std::(min, reverse)
 #include <string.h>         // memcpy
 #include <type_traits>      // std::is_trivially_copyable_v
 
 namespace cppx {
-    CPPX_USE_STD( is_trivially_copyable_v, reverse );
+    CPPX_USE_STD( is_trivially_copyable_v, min, reverse );
 
     // Provides a big endian sequence of bytes of a specified simple value.
     template< int capacity >

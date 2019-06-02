@@ -6,6 +6,7 @@
 #include <cppx-core/collections/is_in.hpp>
 #include <cppx-core/collections/Matrix_.hpp>
 #include <cppx-core/collections/Map_.hpp>
+#include <cppx-core/collections/Pointer_bytes.hpp>
 #include <cppx-core/collections/Range_.hpp>
 #include <cppx-core/collections/Set_.hpp>
 #include <cppx-core/collections/Sorted_map_.hpp>
