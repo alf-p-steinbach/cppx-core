@@ -8,10 +8,18 @@
 namespace cppx {
     CPPX_USE_STD( forward );
 
-    template< auto F > struct Buffer_size_for_;
+    template< class F >
+    struct Call_operator_for_
+    {
+        template< class... Args >
+        inline decltype(auto) operator()( Args&&... args ) const
+        {
+            return F::the_function( forward<Args>( args )... );
+        }
+    };
 
-    template< auto F, class... Args >
+    template< class F, class... Args >
     constexpr auto buffer_size_for_( Args&&... args )
         -> Size
-    { return Buffer_size_for_<F>::value( forward<Args>( args )... ); }
+    { return F::its_buffer_size( forward<Args>( args )... ); }
 }  // namespace cppx

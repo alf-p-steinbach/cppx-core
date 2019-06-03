@@ -40,13 +40,13 @@ namespace cppx {
             }
         }
 
-        explicit Pointer_bytes( const P_<const void> pd ):
+        Pointer_bytes( const P_<const void> pd ):
             Base( Common_init_tag(), pd ),
             m_is_data_pointer( true )
         {}
 
         template< class Result, class... Args >
-        explicit Pointer_bytes( const P_<Func_<Result, Args...>> pf ):
+        Pointer_bytes( const P_<Func_<Result, Args...>> pf ):
             Base( Common_init_tag(), pf ),
             m_is_data_pointer( false )
         {}
