@@ -22,4 +22,9 @@ namespace cppx {
     constexpr auto buffer_size_for_( Args&&... args )
         -> Size
     { return F::its_buffer_size( forward<Args>( args )... ); }
+
+    template< class F, class... Args >
+    constexpr auto buffer_size_for( const Call_operator_for_<F>, Args&&... args )
+        -> Size
+    { return buffer_size_for_<F>( forward<Args>( args )... ); }
 }  // namespace cppx
