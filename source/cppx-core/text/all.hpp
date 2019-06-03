@@ -9,3 +9,4 @@
 #include <cppx-core/text/remove_leading_zeroes_in.hpp>
 #include <cppx-core/text/string-util.hpp>
 #include <cppx-core/text/to-hex-in-buffer.hpp>
+#include <cppx-core/text/to-hex-string.hpp>
