@@ -32,6 +32,8 @@ namespace cppx {
             -> Size
         { return hex_digits_per_byte; }
     };
+
+    // buffer, value, {optional} hex_digits
     constexpr auto byte_to_hex_in = Call_operator_for_<Function_byte_to_hex_in>();
 
     struct Function_byte_span_to_hex_in

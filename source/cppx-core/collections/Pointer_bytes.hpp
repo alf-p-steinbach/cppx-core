@@ -52,4 +52,13 @@ namespace cppx {
         {}
     };
 
+    inline auto as_address( const P_<const void> pd )
+        -> Pointer_bytes
+    { return Pointer_bytes( pd ); }
+
+    template< class Result, class... Args >
+    inline auto as_address( const P_<Func_<Result, Args...>> pf )
+        -> Pointer_bytes
+    { return Pointer_bytes( pf ); }
+
 }  // namespace cppx

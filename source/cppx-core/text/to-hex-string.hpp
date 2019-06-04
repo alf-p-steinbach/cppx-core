@@ -41,23 +41,23 @@ namespace cppx {
         class Copyable,
         class = Enable_if_<is_trivially_copyable_<Copyable>>
         >
-    inline auto to_hex(
-        const Copyable          value,
+    inline auto hex_from_value(
+        const Copyable&         value,
         const P_<const char>    hex_digits  = hex_digits_uppercase
         ) -> string
     {
-        if constexpr (is_integral_<Copyable>) {
+        constexpr bool is_integral = is_integral_<Copyable>;
+        if constexpr( is_integral ) {
             return hex_from_integer( value, hex_digits );
         } else {
-            static_assert( false, "Only integral types supported for now" );
+            static_assert( is_integral, "Only integral types supported for now" );
         }
     }
 
     inline auto to_hex(
         const Pointer_bytes&    bytes,
         const P_<const char>    hex_digits  = hex_digits_uppercase
-    )
-        -> string
+        ) -> string
     {
         const int result_length = buffer_size_for( pointer_to_hex_in, bytes.size() );
         string result( result_length, '\0' );
