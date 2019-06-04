@@ -55,6 +55,8 @@ namespace cppx {
             -> Size
         { return n_bytes*hex_digits_per_byte; }
     };
+
+    // buffer, p_first, p_beyond, {optional} hex_digits 
     constexpr auto byte_span_to_hex_in = Call_operator_for_<Function_byte_span_to_hex_in>();
 
     struct Function_pointer_to_hex_in
@@ -69,6 +71,8 @@ namespace cppx {
             -> Size
         { return buffer_size_for( byte_span_to_hex_in, n_bytes ); }
     };
+
+    // buffer, bytes
     constexpr auto pointer_to_hex_in = Call_operator_for_<Function_pointer_to_hex_in>();
 
 }  // namespace cppx

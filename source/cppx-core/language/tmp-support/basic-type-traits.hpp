@@ -4,6 +4,7 @@
 /// \make_name_ref{cppx,is_base_and_derived_},
 /// \make_name_ref{cppx,is_same_type_},
 /// \make_name_ref{cppx,is_a_},
+/// \make_name_ref{cppx,is_trivially_copyable_},
 /// \make_name_ref{cppx,is_const_},
 /// \make_name_ref{cppx,is_class_},
 /// \make_name_ref{cppx,is_fixed_point_},
@@ -39,24 +40,27 @@ namespace cppx
     //----------------------------------------------------------------------------------------------
 
     template< class T >
-    constexpr Truth is_const_           = std::is_const_v<std::remove_reference_t<T>>;
+    constexpr Truth is_trivially_copyable_  = std::is_trivially_copyable_v<T>;
 
     template< class T >
-    constexpr Truth is_class_           = std::is_class_v<T>;
+    constexpr Truth is_const_               = std::is_const_v<std::remove_reference_t<T>>;
 
     template< class T >
-    constexpr Truth is_fixed_point_     = false;
+    constexpr Truth is_class_               = std::is_class_v<T>;
 
     template< class T >
-    constexpr Truth is_floating_point_  = std::is_floating_point_v<T>;
+    constexpr Truth is_fixed_point_         = false;
 
     template< class T >
-    constexpr Truth is_integral_        = std::is_integral_v<T>;
+    constexpr Truth is_floating_point_      = std::is_floating_point_v<T>;
+
+    template< class T >
+    constexpr Truth is_integral_            = std::is_integral_v<T>;
 
     template< class Int >
-    constexpr Truth is_signed_          = std::is_signed_v<Int>;
+    constexpr Truth is_signed_              = std::is_signed_v<Int>;
 
     template< class Int >
-    constexpr Truth is_unsigned_        = std::is_unsigned_v<Int>;
+    constexpr Truth is_unsigned_            = std::is_unsigned_v<Int>;
 
 }  // namespace cppx

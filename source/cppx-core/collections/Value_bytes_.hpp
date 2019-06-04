@@ -20,27 +20,12 @@ namespace cppx {
         Byte    m_buffer[capacity];
         int     m_buffer_size;
 
-    protected:
-        struct Common_init_tag{};
-
-        template<
-            class Value,
-            class = Enable_if_<is_trivially_copyable_v<Value>>
-            >
-        Value_bytes_( Common_init_tag, const Value& v ):
-            m_buffer_size( sizeof( v ) )
-        {
-            static_assert( sizeof( v ) <= capacity );
-            static_assert( not system::is_mixed_endian );
-            memcpy( &m_buffer[0], &v, m_buffer_size );
-            if( system::is_little_endian ) {
-                reverse( m_buffer, m_buffer + m_buffer_size );
-            }
-        }
-
+    public:
         template< int na, int nb >
-        static auto compare( const Value_bytes_<na>& a, const Value_bytes_<nb>& b )
-            -> int
+        static auto compare_bytes_of(
+            const Value_bytes_<na>&     a,
+            const Value_bytes_<nb>&     b
+            ) -> int
         {
             const int common_size = min( a.size(), b.size() );
             if( const int r = memcmp( a.data(), b.data(), common_size ) ) {
@@ -50,12 +35,26 @@ namespace cppx {
             }
         }
 
-    public:
         auto data() const   -> P_<const Byte>   { return &m_buffer[0]; }
         auto size() const   -> int              { return m_buffer_size; }
 
         auto begin() const  -> P_<const Byte>   { return data(); }
         auto end() const    -> P_<const Byte>   { return data() + size(); }
+
+        template<
+            class Value,
+            class = Enable_if_<is_trivially_copyable_v<Value>>
+            >
+        Value_bytes_( const Value& value ):
+            m_buffer_size( sizeof( value ) )
+        {
+            static_assert( sizeof( value ) <= capacity );
+            static_assert( not system::is_mixed_endian );
+            memcpy( &m_buffer[0], &value, m_buffer_size );
+            if( system::is_little_endian ) {
+                reverse( m_buffer, m_buffer + m_buffer_size );
+            }
+        }
     };
 
 }  // namespace cppx

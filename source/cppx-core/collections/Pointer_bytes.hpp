@@ -36,18 +36,18 @@ namespace cppx {
             if( const int r = a.is_data_pointer() - b.is_data_pointer() ) {
                 return r;
             } else {
-                return Base::compare( a, b );
+                return compare_bytes_of( a, b );
             }
         }
 
         Pointer_bytes( const P_<const void> pd ):
-            Base( Common_init_tag(), pd ),
+            Base( pd ),
             m_is_data_pointer( true )
         {}
 
         template< class Result, class... Args >
         Pointer_bytes( const P_<Func_<Result, Args...>> pf ):
-            Base( Common_init_tag(), pf ),
+            Base( pf ),
             m_is_data_pointer( false )
         {}
     };
