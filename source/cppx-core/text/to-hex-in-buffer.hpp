@@ -63,16 +63,17 @@ namespace cppx {
     {
         static auto the_function(
             const P_<char>          buffer,
-            const Pointer_bytes&    bytes
+            const Pointer_bytes&    bytes,
+            const P_<const char>    hex_digits  = hex_digits_uppercase
         ) -> int
-        { return byte_span_to_hex_in( buffer, CPPX_ITEMS_OF( bytes ) ); }
+        { return byte_span_to_hex_in( buffer, CPPX_ITEMS_OF( bytes ), hex_digits ); }
 
         static constexpr auto its_buffer_size( const int n_bytes )
             -> Size
         { return buffer_size_for( byte_span_to_hex_in, n_bytes ); }
     };
 
-    // buffer, bytes
+    // buffer, bytes, {optional} hex_digits
     constexpr auto pointer_to_hex_in = Call_operator_for_<Function_pointer_to_hex_in>();
 
 }  // namespace cppx
