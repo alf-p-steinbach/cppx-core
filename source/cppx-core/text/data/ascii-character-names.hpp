@@ -16,6 +16,7 @@ namespace cppx
         const char      xoff        = '\x13';       //      0x13, ^S, "stop"
         const char      end_of_text = '\x1A';       //      0x1A, ^Z, non-std MS meaning.
         const char      escape      = '\x1B';       //      0x1B
+        const char      space       = ' ';          //      0x20
         const char      del         = '\x7F';       //      0x7F
 
         const char      first_char  = char( 0 );    static_assert( first_char == null );
@@ -34,6 +35,7 @@ namespace cppx
         const char      DC3         = xoff;         // “Device control 3”
         const char      SUB         = end_of_text;  // “Substitute”, but see below!
         const char      ESC         = escape;
+        const char      SPC         = space;
         const char      DEL         = del;          // “Delete”
 
         // ASCII DEL, code 0x7F = 127, “delete”, can be used as a replacement for encoding
