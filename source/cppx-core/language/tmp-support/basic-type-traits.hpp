@@ -63,4 +63,19 @@ namespace cppx
     template< class Int >
     constexpr Truth is_unsigned_            = std::is_unsigned_v<Int>;
 
+    template< class T >
+    constexpr Truth is_arithmetic_          = std::is_arithmetic_v<T>;
+
+    template< class T >
+    constexpr Truth is_enum_                = std::is_enum_v<T>;
+
+    template< class T >
+    constexpr Truth is_null_pointer_        = std::is_null_pointer_v<T>;
+
+    template< class T >
+    constexpr Truth is_pointer_             = std::is_pointer_v<T>;
+
+    template< class T >
+    constexpr Truth is_scalar_              = std::is_scalar_v<T>;
+
 }  // namespace cppx
