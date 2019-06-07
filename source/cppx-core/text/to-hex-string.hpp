@@ -54,17 +54,6 @@ namespace cppx {
         }
     }
 
-    inline auto hex_from_pointer_bytes(
-        const Pointer_bytes&    bytes,
-        const P_<const char>    hex_digits  = hex_digits_uppercase
-        ) -> string
-    {
-        const int result_length = buffer_size_for( pointer_to_hex_in, bytes.size() );
-        string result( result_length, '\0' );
-        pointer_to_hex_in( result.data(), bytes, hex_digits );
-        return result;
-    }
-
     template< class Type >
     inline auto to_hex(
         const Type&             value,

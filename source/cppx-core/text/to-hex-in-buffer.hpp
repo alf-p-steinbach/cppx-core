@@ -1,7 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/collections/Span_.hpp>                  // cppx::span_of
-#include <cppx-core/collections/Pointer_bytes.hpp>          // cppx::Pointer_bytes
 #include <cppx-core/language/syntax/macro-items_of.hpp>     // CPPX_ITEMS_OF
 #include <cppx-core/language/syntax/repeat_times.hpp>       // cppx::repeat_times
 #include <cppx-core/language/syntax/type-assemblers.hpp>    // cppx::P_
@@ -60,22 +59,5 @@ namespace cppx {
 
     // buffer, p_first, p_beyond, {optional} hex_digits 
     constexpr auto byte_span_to_hex_in = Call_operator_for_<Function_byte_span_to_hex_in>();
-
-    struct Function_pointer_to_hex_in
-    {
-        static auto the_function(
-            const P_<char>          buffer,
-            const Pointer_bytes&    bytes,
-            const P_<const char>    hex_digits  = hex_digits_uppercase
-        ) -> int
-        { return byte_span_to_hex_in( buffer, CPPX_ITEMS_OF( bytes ), hex_digits ); }
-
-        static constexpr auto its_buffer_size( const int n_bytes )
-            -> Size
-        { return buffer_size_for( byte_span_to_hex_in, n_bytes ); }
-    };
-
-    // buffer, bytes, {optional} hex_digits
-    constexpr auto pointer_to_hex_in = Call_operator_for_<Function_pointer_to_hex_in>();
 
 }  // namespace cppx

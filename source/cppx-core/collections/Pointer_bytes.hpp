@@ -3,11 +3,13 @@
 #include <cppx-core/collections/Value_bytes_.hpp>           // cppx::Value_bytes_
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
 #include <cppx-core/language/syntax/type-assemblers.hpp>    // cppx::(Func_, P_)
+#include <cppx-core/text/to-hex-string.hpp>                 // cppx::{hex functionality}
 
 #include <algorithm>        // std::max
+#include <string>           // std::string
 
 namespace cppx {
-    CPPX_USE_STD( max );
+    CPPX_USE_STD( max, string );
 
     constexpr int   data_pointer_size   = sizeof( void* );
     constexpr int   code_pointer_size   = sizeof( void(*)() );
@@ -51,6 +53,61 @@ namespace cppx {
             m_is_data_pointer( false )
         {}
     };
+
+    struct Function_pointer_to_hex_in
+    {
+        static auto the_function(
+            const P_<char>          buffer,
+            const Pointer_bytes&    bytes,
+            const P_<const char>    hex_digits  = hex_digits_uppercase
+            ) -> int
+        { return byte_span_to_hex_in( buffer, CPPX_ITEMS_OF( bytes ), hex_digits ); }
+
+        static constexpr auto its_buffer_size( const int n_bytes )
+            -> Size
+        { return buffer_size_for( byte_span_to_hex_in, n_bytes ); }
+    };
+
+    // buffer, bytes, {optional} hex_digits
+    constexpr auto pointer_to_hex_in = Call_operator_for_<Function_pointer_to_hex_in>();
+
+    inline auto hex_from_pointer_bytes(
+        const Pointer_bytes&    bytes,
+        const P_<const char>    hex_digits  = hex_digits_uppercase
+        ) -> string
+    {
+        const int result_length = buffer_size_for( pointer_to_hex_in, bytes.size() );
+        string result( result_length, '\0' );
+        pointer_to_hex_in( result.data(), bytes, hex_digits );
+        return result;
+    }
+
+    inline auto to_hex(
+        const Pointer_bytes&    bytes,
+        const P_<const char>    hex_digits  = hex_digits_uppercase
+        ) -> string
+    {  return hex_from_pointer_bytes( bytes, hex_digits );  }
+
+    inline auto spec_prefix_of( const Pointer_bytes& bytes, const bool use_uppercase = false )
+        -> P_<const char>
+    {
+        static const P_<const char> prefixes[2][2] =
+        {
+            {" &", " &"}, {"c&", "C&"}
+        };
+
+        return prefixes[bytes.is_code_pointer()][use_uppercase];
+    }
+
+    inline auto spec_of( const Pointer_bytes& bytes, const bool use_uppercase = false )
+        -> string
+    {
+        const P_<const char> hex_digits = (
+            use_uppercase? hex_digits_uppercase : hex_digits_lowercase
+            );
+
+        return spec_prefix_of( bytes, use_uppercase ) + to_hex( bytes, hex_digits );
+    }
 
     inline auto as_address( const P_<const void> pd )
         -> Pointer_bytes

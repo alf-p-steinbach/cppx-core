@@ -14,19 +14,8 @@ namespace cppx {
     inline auto operator<<(basic_ostream<Char, Traits>& stream, const Pointer_bytes& bytes)
         -> basic_ostream<Char, Traits> &
     {
-        const bool              uppercase   =
-            ((stream.flags() & ios_base::uppercase) != 0);
-        const P_<const char>    hex_digits  =
-            (uppercase? hex_digits_uppercase : hex_digits_lowercase);
-
-        static const P_<const char> lead_in[2][2] =
-        {
-            {"d-", "D-"}, {"c-", "C-"}
-        };
-
-        stream  << lead_in[bytes.is_code_pointer()][uppercase]
-                << to_hex( bytes, hex_digits ).c_str();
-        return stream;
+        const bool use_uppercase   = ((stream.flags() & ios_base::uppercase) != 0);
+        return stream << spec_of( bytes, use_uppercase );
     }
 
 }  // namespace cppx
