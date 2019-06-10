@@ -45,14 +45,21 @@ namespace cppx
         { return repeated( n, s ); }
     }
 
-    inline auto left( const string_view& s, const int width )
+    inline auto at_left( const int width, const string_view& s )
         -> string
-    { return string( s ) + spaces( width - utf8::n_code_points_in( s ) ); }
+    { return string( s ) + spaces( width - int( utf8::n_code_points_in( s ) ) ); }
 
-    inline auto right( const string_view& s, const int width )
+    inline auto at_left( const int width, const char ch )
         -> string
-    { return spaces( width - utf8::n_code_points_in( s ) ) + string( s ); }
+    { return ch + spaces( width - 1 ); }
 
+    inline auto at_right( const int width, const string_view& s )
+        -> string
+    { return spaces( width - int( utf8::n_code_points_in( s ) ) ) + string( s ); }
+
+    inline auto at_right( const int width, const char ch )
+        -> string
+    { return spaces( width - 1 ) + ch; }
 
     //----------------------------------------  Misc:
 
