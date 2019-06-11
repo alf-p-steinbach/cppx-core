@@ -95,7 +95,7 @@ namespace cppx {
     {
         static const P_<const char> prefixes[2][2] =
         {
-            {" &", " &"}, {"c&", "C&"}
+            {"&o=", "&O="}, {"&f=", "&F="}
         };
 
         return prefixes[bytes.is_code_pointer()][use_uppercase];
