@@ -5,7 +5,8 @@
 /// \make_name_ref{cppx,Signed_byte},
 /// \make_name_ref{cppx,bytes_per_},
 /// \make_name_ref{cppx,as_byte_ptr},
-/// \make_name_ref{cppx,as_signedbyte_ptr} and
+/// \make_name_ref{cppx,as_signedbyte_ptr},
+/// \make_name_ref{cppx,as_char_ptr} and
 /// \make_name_ref{cppx,bits_per_byte}, + `std::byte` support definitions
 /// \make_name_ref{cppx,as_number} and
 /// \make_name_ref{cppx,as_std_byte}.
@@ -29,10 +30,18 @@ namespace cppx
     /// \brief The number of bytes per instance of a type.
     template< class Type > constexpr Size bytes_per_ = sizeof( Type );
 
-    inline auto as_byte_ptr( const P_<Signed_byte> p ) -> P_<Byte>;
-    inline auto as_byte_ptr( const P_<const Signed_byte> p ) -> P_<const Byte>;
-    inline auto as_signedbyte_ptr( const P_<Byte> p ) -> P_<Signed_byte>;
-    inline auto as_signedbyte_ptr( const P_<const Byte> p ) -> P_<const Signed_byte>;
+    inline auto as_byte_ptr( const P_<Signed_byte> p )          -> P_<Byte>;
+    inline auto as_byte_ptr( const P_<const Signed_byte> p )    -> P_<const Byte>;
+    inline auto as_byte_ptr( const P_<char> p )                 -> P_<Byte>;
+    inline auto as_byte_ptr( const P_<const char> p )           -> P_<const Byte>;
+    inline auto as_signedbyte_ptr( const P_<Byte> p )           -> P_<Signed_byte>;
+    inline auto as_signedbyte_ptr( const P_<const Byte> p )     -> P_<const Signed_byte>;
+    inline auto as_signedbyte_ptr( const P_<char> p )           -> P_<Signed_byte>;
+    inline auto as_signedbyte_ptr( const P_<const char> p )     -> P_<const Signed_byte>;
+    inline auto as_char_ptr( const P_<Byte> p )                 -> P_<char>;
+    inline auto as_char_ptr( const P_<const Byte> p )           -> P_<const char>;
+    inline auto as_char_ptr( const P_<Signed_byte> p )          -> P_<char>;
+    inline auto as_char_ptr( const P_<const Signed_byte> p )    -> P_<const char>;
 
     /// \brief Usually 8, but e.g. 16 on some DSPs.
     constexpr int bits_per_byte = CHAR_BIT;
@@ -60,6 +69,14 @@ namespace cppx
         -> P_<const Byte>
     { return reinterpret_cast<P_<const Byte>>( p ); }
 
+    inline auto as_byte_ptr( const P_<char> p )
+        -> P_<Byte>
+    { return reinterpret_cast<P_<Byte>>( p ); }
+
+    inline auto as_byte_ptr( const P_<const char> p )
+        -> P_<const Byte>
+    { return reinterpret_cast<P_<const Byte>>( p ); }
+
     inline auto as_signedbyte_ptr( const P_<Byte> p )
         -> P_<Signed_byte>
     { return reinterpret_cast<P_<Signed_byte>>( p ); }
@@ -67,6 +84,30 @@ namespace cppx
     inline auto as_signedbyte_ptr( const P_<const Byte> p )
         -> P_<const Signed_byte>
     { return reinterpret_cast<P_<const Signed_byte>>( p ); }
+
+    inline auto as_signedbyte_ptr( const P_<char> p )
+        -> P_<Signed_byte>
+    { return reinterpret_cast<P_<Signed_byte>>( p ); }
+
+    inline auto as_signedbyte_ptr( const P_<const char> p )
+        -> P_<const Signed_byte>
+    { return reinterpret_cast<P_<const Signed_byte>>( p ); }
+
+    inline auto as_char_ptr( const P_<Byte> p )
+        -> P_<char>
+    { return reinterpret_cast<P_<char>>( p ); }
+
+    inline auto as_char_ptr( const P_<const Byte> p )
+        -> P_<const char>
+    { return reinterpret_cast<P_<const char>>( p ); }
+
+    inline auto as_char_ptr( const P_<Signed_byte> p )
+        -> P_<char>
+    { return reinterpret_cast<P_<char>>( p ); }
+
+    inline auto as_char_ptr( const P_<const Signed_byte> p )
+        -> P_<const char>
+    { return reinterpret_cast<P_<const char>>( p ); }
 
     inline auto as_number( const std::byte value )
         -> Byte
