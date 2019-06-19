@@ -28,8 +28,8 @@ namespace cppx
         template<
             class Fs_path,
             class = Enable_if_<is_same_type_<Fs_path, fs::path>>
-        >
-            auto utf8_from( const Fs_path& path )
+            >
+        auto utf8_from( const Fs_path& path )
             -> string
         {
             if constexpr( is_same_type_<string, decltype( path.u8string() )> )

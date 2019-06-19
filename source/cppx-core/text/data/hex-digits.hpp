@@ -11,4 +11,11 @@ namespace cppx {
     static constexpr auto& hex_digits = hex_digits_uppercase;
     constexpr int   hex_digits_per_byte     = div_up( bits_per_byte, 4 );
 
+    inline auto hex_digit( const int i )
+        -> char
+    { return hex_digits[i]; }
+
+    inline auto lowercase_hex_digit( const int i )
+        -> char
+    { return hex_digits_lowercase[i]; }
 }  // namespace cppx
