@@ -20,10 +20,20 @@ namespace cppx
     inline auto type_name_of( const type_info& info )
         -> string;
 
+    // An `operator<<` for stream output is defined by <cppx-core/io/type_name_of_-output.hpp>.
     template< class Type >
-    inline auto type_name_of_()
-        -> string
-    { return type_name_of( typeid( Type ) ); }
+    struct Type_name_of_
+    {
+        auto value() const
+            -> string
+        { return type_name_of( typeid( Type ) ); }
+
+        auto operator()() const -> string { return value(); }
+        operator string() const { return value(); }
+    };
+
+    template< class Type >
+    constexpr auto type_name_of_ = Type_name_of_<Type>();
 
 #ifdef __GNUG__
     inline auto type_name_of( const type_info& info )
