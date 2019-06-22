@@ -6,4 +6,4 @@
 
 #include <cppx-core/all-except-io.hpp>
 #include <cppx-core/io/all.hpp>
-#include <cppx-core/stdlib-includes/all.hpp>
+#include <cppx-core/stdlib-includes/basic-io.hpp>

@@ -2,12 +2,14 @@
 #include <cppx-core/collections/Range_.hpp>                     // cppx::Range_
 #include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::P_
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_...
+#include <cppx-core/language/types/type-makers.hpp>             // cppx::Unref_
 #include <cppx-core/text/ascii/ascii-util.hpp>                  // cppx::ascii::*
 
 #include <functional>   // std::invoke
 #include <stdlib.h>     // free
 #include <string>       // std::string
 #include <typeinfo>     // std::type_info
+#include <utility>      // std::forward
 
 #ifdef __GNUG__
 #   include  <cxxabi.h>
@@ -15,9 +17,9 @@
 
 namespace cppx
 {
-    CPPX_USE_STD( invoke, string, type_info );
+    CPPX_USE_STD( forward, invoke, string, type_info );
 
-    inline auto type_name_of( const type_info& info )
+    inline auto type_name_from_info( const type_info& info )
         -> string;
 
     // An `operator<<` for stream output is defined by <cppx-core/io/type_name_of_-output.hpp>.
@@ -26,7 +28,13 @@ namespace cppx
     {
         auto value() const
             -> string
-        { return type_name_of( typeid( Type ) ); }
+        {
+            // Wrapping the type keeps any top level CV-qualification in the result.
+            const string raw = type_name_from_info( typeid( Wrapped_type_<Type> ) );
+            const int i_first = 1 + raw.find_first_of( '<' );
+            const int i_beyond = raw.find_last_of( '>' );
+            return raw.substr( i_first, i_beyond - i_first );
+        }
 
         auto operator()() const -> string { return value(); }
         operator string() const { return value(); }
@@ -35,8 +43,13 @@ namespace cppx
     template< class Type >
     constexpr auto type_name_of_ = Type_name_of_<Type>();
 
+    template< class Type >
+    inline auto type_name_of( Type&& expr )
+        -> string
+    { return type_name_of_<Unref_<decltype( forward<Type>( expr ) )>>(); }
+
 #ifdef __GNUG__
-    inline auto type_name_of( const type_info& info )
+    inline auto type_name_from_info( const type_info& info )
         -> string
     {
         struct Malloc_string
@@ -73,7 +86,7 @@ namespace cppx
         };
     }  // namespace impl
 
-    inline auto type_name_of( const type_info& info )
+    inline auto type_name_from_info( const type_info& info )
         -> string
     {
         const string elaborated = string( info.name() ) + '\0';

@@ -25,6 +25,8 @@
 
 namespace cppx
 {
+    template< class T > struct Wrapped_type_ {};
+
     /// \brief Reduces to type `A` if the condition holds, otherwise type `B`.
     /// \param condition    A compile time boolean expression.
     /// \param A            Result type when the condition holds.
@@ -76,6 +78,7 @@ namespace cppx
     namespace type_makers
     {
         CPPX_USE_CPPX(
+            Wrapped_type_,
             Type_choice_,
             Unptr_, Unref_, Signed_, Unsigned_, Const_, Unconst_,
             Array_of_
