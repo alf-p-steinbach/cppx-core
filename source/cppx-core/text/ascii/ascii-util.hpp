@@ -212,6 +212,21 @@ namespace cppx::ascii
     { return to_uppercase( basic_string_view<Char>( s ) ); }
 
 
+    //----------------------------------------  Other classification:
+
+    inline auto is_letter( const char ch )
+        -> bool
+    { return is_lowercase( ch ) or is_uppercase( ch ); }
+
+    inline auto is_digit( const char ch )
+        -> bool
+    { return '0' <= ch and ch <= '9'; }
+
+    inline auto is_general_id_character( const char ch )
+        -> bool
+    { return is_letter( ch ) or is_digit( ch ) or ch == '_'; }
+
+
     //----------------------------------------  Misc:
 
     inline auto quoted( const string_view& sv )
