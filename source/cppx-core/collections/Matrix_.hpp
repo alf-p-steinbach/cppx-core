@@ -5,6 +5,7 @@
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
 #include <cppx-core/language/system/size-types.hpp>         // cppx::(Size, Index)
 #include <cppx-core/text/basic-string-building.hpp>         // cppx::operator<<
+#include <cppx-core/meta-type/type-traits.hpp>              // cppx::Item_for_collection_
 
 #include <vector>       // std::vector
 #include <stdexcept>    // std::out_of_range
@@ -13,26 +14,14 @@ namespace cppx
 {
     CPPX_USE_STD( out_of_range, vector );
 
-    template< class Item >
+    template< class Item_param >
     class Matrix_
     {
+        using Item = Item_param;
+
         vector<Item>        m_items;
         Size                m_width;
         Size                m_height;
-
-        template< class Result, class Self >
-        static auto checked_at( Self& self, const Index col, const Index row )
-            -> Result&
-        {
-            hopefully(
-                is_in( up_to( self.m_width ), col ) and
-                is_in( up_to( self.m_height ), row )
-                )
-                or CPPX_FAIL_( out_of_range,
-                    "Item position ("s << col << "," << row << ") is out of range"
-                    );
-            return self.m_items[self.index_of( col, row )];
-        }
 
     public:
         auto n_items() const -> Size    { return m_items.size(); }
@@ -58,21 +47,47 @@ namespace cppx
             -> Index
         { return i / m_width; }
 
+        template< class Self
+            , class = Enable_if_< is_a_< Matrix_, Unconst_< Self > > >
+            >
+        friend auto item_at( const Index col, const Index row, Self& self )
+            -> Item_for_collection_<Self>&
+        { return self.m_items[self.index_of( col, row )]; }
+
+        template< class Self
+            , class = Enable_if_< is_a_< Matrix_, Unconst_< Self > > >
+            >
+        friend auto item_at_checked( const Index col, const Index row, Self& self )
+            -> Item_for_collection_<Self>&
+        {
+            hopefully(
+                is_in( up_to( self.m_width ), col ) and
+                is_in( up_to( self.m_height ), row )
+            ) or CPPX_FAIL_( out_of_range,
+                "Item position ("s << col << "," << row << ") is out of range"
+            );
+            return self.m_items[self.index_of( col, row )];
+        }
+
+        [[deprecated]]
         auto operator()( const Index col, const Index row ) const
             -> const Item&
-        { return m_items[index_of( col, row )]; }
+        { return item_at( col, row, *this ); }
 
+        [[deprecated]]
         auto operator()( const Index col, const Index row )
             -> Item&
-        { return m_items[index_of( col, row )]; }
+        { return item_at( col, row, *this ); }
 
+        [[deprecated]]
         auto at( const Index col, const Index row ) const
             -> const Item&
-        { return checked_at<const Item>( *this, col, row );  }
+        { return item_at_checked( col, row, *this );  }
 
+        [[deprecated]]
         auto at( const Index col, const Index row )
             -> Item&
-        { return checked_at<Item>( *this, col, row );  }
+        { return item_at_checked( col, row, *this );  }
 
         Matrix_():
             m_items(),
@@ -86,4 +101,27 @@ namespace cppx
             m_height( height )
         {}
     };
+
+    struct Matrix_position { Size x; Size y; };
+
+    template< class Item>
+    auto item_at( const Matrix_position& pos, const Matrix_<Item>& m )
+        -> const Item&
+    { return item_at( pos.x, pos.y, m ); }
+
+    template< class Item>
+    auto item_at( const Matrix_position& pos, Matrix_<Item>& m )
+        -> Item&
+    { return item_at( pos.x, pos.y, m ); }
+
+    template< class Item>
+    auto item_at_checked( const Matrix_position& pos, const Matrix_<Item>& m )
+        -> const Item&
+    { return item_at_checked( pos.x, pos.y, m ); }
+
+    template< class Item>
+    auto item_at_checked( const Matrix_position& pos, Matrix_<Item>& m )
+        -> Item&
+    { return item_at_checked( pos.x, pos.y, m ); }
+
 }  // namespace cppx

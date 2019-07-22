@@ -9,7 +9,7 @@ namespace cppx
     inline auto monospaced_bullet_block(
         const string_view&  s,
         const string_view&  bullet          = best_effort::bullet_str,
-        const int                   indent_size     = 4
+        const int           indent_size     = 4
         ) -> string
     {
         if( is_empty( s ) ) { return ""; }
