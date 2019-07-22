@@ -80,8 +80,8 @@ namespace cppx
             m_height( 0 )
         {}
 
-        Matrix_( const Size width, const Size height ):
-            m_items( width*height ),
+        Matrix_( const Size width, const Size height, const Item& init_value = Item() ):
+            m_items( width*height, init_value ),
             m_width( width ),
             m_height( height )
         {}
