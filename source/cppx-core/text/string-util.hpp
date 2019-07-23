@@ -121,7 +121,7 @@ namespace cppx
     template< class Iterator >
     inline auto joined(
         const Span_<Iterator>       range,
-        const string&               separator = " "
+        const string_view&          separator = " "
         ) -> string
     {
         if( is_empty( range ) ) { return ""; }

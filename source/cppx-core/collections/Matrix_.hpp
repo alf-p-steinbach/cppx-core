@@ -14,20 +14,88 @@ namespace cppx
 {
     CPPX_USE_STD( out_of_range, vector );
 
+    namespace matrix {
+        struct Width{ Size value; };
+        struct Height{ Size value; };
+        struct Position { Size x; Size y; };
+
+        struct Basic_types
+        {
+            using Width     = matrix::Width;
+            using Height    = matrix::Height;
+            using Position  = matrix::Position;
+        };
+
+        class Layout:
+            public Basic_types
+        {
+            Size                m_width;
+            Size                m_height;
+
+        public:
+            auto width() const  -> Size     { return m_width; }
+            auto height() const -> Size     { return m_height; }
+            auto n_items() const -> Size    { return m_width*m_height; }
+
+            auto index_of( const Index col, const Index row ) const
+                -> Index
+            { return row*m_width + col; }
+
+            auto col_of( const Index i ) const
+                -> Index
+            { return i % m_width; }
+
+            auto row_of( const Index i ) const
+                -> Index
+            { return i / m_width; }
+
+            auto index_of_position( const Position& pos )
+                -> Index
+            { return index_of( pos.x, pos.y ); }
+
+            auto position_of_index( const Index i )
+                -> Position
+            { return Position{ col_of( i ), row_of( i ) }; }
+
+            Layout(): m_width( 0 ), m_height( 0 ) {}
+
+            Layout(
+                const Width     width,
+                const Height    height
+                ):
+                m_width( width.value ),
+                m_height( height.value )
+            {}
+        };
+    }  // namespace matrix
+
     template< class Item_param >
-    class Matrix_
+    class Matrix_:
+        public matrix::Layout
     {
         using Item = Item_param;
 
         vector<Item>        m_items;
-        Size                m_width;
-        Size                m_height;
+
+        template< class Self >
+        static auto item_at( const Index col, const Index row, Self& self )
+            -> Item_for_collection_<Self>&
+        { return self.m_items[self.index_of( col, row )]; }
+
+        template< class Self >
+        static auto item_at_checked( const Index col, const Index row, Self& self )
+            -> Item_for_collection_<Self>&
+        {
+            hopefully(
+                is_in( up_to( self.m_width ), col ) and
+                is_in( up_to( self.m_height ), row )
+                ) or CPPX_FAIL_( out_of_range,
+                    "Item position ("s << col << "," << row << ") is out of range"
+            );
+            return self.m_items[self.index_of( col, row )];
+        }
 
     public:
-        auto n_items() const -> Size    { return m_items.size(); }
-        auto width() const  -> Size     { return m_width; }
-        auto height() const -> Size     { return m_height; }
-
         auto begin() const      { return m_items.begin(); }
         auto end() const        { return m_items.end();  }
         auto data() const       { return m_items.data(); }
@@ -35,92 +103,74 @@ namespace cppx
         auto end()              { return m_items.end();  }
         auto data()             { return m_items.data(); }
 
-        auto index_of( const Index col, const Index row ) const
-            -> Index
-        { return row*m_width + col; }
-
-        auto col_of( const Index i ) const
-            -> Index
-        { return i % m_width; }
-
-        auto row_of( const Index i ) const
-            -> Index
-        { return i / m_width; }
-
-        template< class Self
-            , class = Enable_if_< is_a_< Matrix_, Unconst_< Self > > >
-            >
-        friend auto item_at( const Index col, const Index row, Self& self )
-            -> Item_for_collection_<Self>&
-        { return self.m_items[self.index_of( col, row )]; }
-
-        template< class Self
-            , class = Enable_if_< is_a_< Matrix_, Unconst_< Self > > >
-            >
-        friend auto item_at_checked( const Index col, const Index row, Self& self )
-            -> Item_for_collection_<Self>&
-        {
-            hopefully(
-                is_in( up_to( self.m_width ), col ) and
-                is_in( up_to( self.m_height ), row )
-            ) or CPPX_FAIL_( out_of_range,
-                "Item position ("s << col << "," << row << ") is out of range"
-            );
-            return self.m_items[self.index_of( col, row )];
-        }
-
-        [[deprecated]]
         auto operator()( const Index col, const Index row ) const
             -> const Item&
         { return item_at( col, row, *this ); }
 
-        [[deprecated]]
         auto operator()( const Index col, const Index row )
             -> Item&
         { return item_at( col, row, *this ); }
 
-        [[deprecated]]
         auto at( const Index col, const Index row ) const
             -> const Item&
         { return item_at_checked( col, row, *this );  }
 
-        [[deprecated]]
         auto at( const Index col, const Index row )
             -> Item&
         { return item_at_checked( col, row, *this );  }
 
         Matrix_():
-            m_items(),
-            m_width( 0 ),
-            m_height( 0 )
+            Layout( Width{ 0 }, Height{ 0 } ),
+            m_items()
         {}
 
-        Matrix_( const Size width, const Size height, const Item& init_value = Item() ):
-            m_items( width*height, init_value ),
-            m_width( width ),
-            m_height( height )
+        Matrix_(
+            const Width     width,
+            const Height    height,
+            const Item&     init_value = Item()
+            ):
+            Layout( width, height ),
+            m_items( n_items(), init_value )
         {}
     };
 
-    struct Matrix_position { Size x; Size y; };
+    template< class Item >
+    inline auto item_at( const Index col, const Index row, const Matrix_<Item>& m )
+        -> const Item&
+    { return m( col, row ); }
+
+    template< class Item >
+    inline auto item_at( const Index col, const Index row, Matrix_<Item>& m )
+        -> Item&
+    { return m( col, row ); }
+
+    template< class Item >
+    inline auto item_at_checked( const Index col, const Index row, const Matrix_<Item>& m )
+        -> const Item&
+    { return m.at( col, row ); }
+
+    template< class Item >
+    inline auto item_at_checked( const Index col, const Index row, Matrix_<Item>& m )
+        -> Item&
+    { return m.at( col, row ); }
 
     template< class Item>
-    auto item_at( const Matrix_position& pos, const Matrix_<Item>& m )
+    inline auto item_at( const matrix::Position& pos, const Matrix_<Item>& m )
         -> const Item&
     { return item_at( pos.x, pos.y, m ); }
 
     template< class Item>
-    auto item_at( const Matrix_position& pos, Matrix_<Item>& m )
+    inline auto item_at( const matrix::Position& pos, Matrix_<Item>& m )
         -> Item&
     { return item_at( pos.x, pos.y, m ); }
 
     template< class Item>
-    auto item_at_checked( const Matrix_position& pos, const Matrix_<Item>& m )
+    inline auto item_at_checked( const matrix::Position& pos, const Matrix_<Item>& m )
         -> const Item&
     { return item_at_checked( pos.x, pos.y, m ); }
 
     template< class Item>
-    auto item_at_checked( const Matrix_position& pos, Matrix_<Item>& m )
+    inline auto item_at_checked( const matrix::Position& pos, Matrix_<Item>& m )
         -> Item&
     { return item_at_checked( pos.x, pos.y, m ); }
 
