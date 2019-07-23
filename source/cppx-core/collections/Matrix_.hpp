@@ -78,12 +78,12 @@ namespace cppx
         vector<Item>        m_items;
 
         template< class Self >
-        static auto item_at( const Index col, const Index row, Self& self )
+        static auto impl_item_at( const Index col, const Index row, Self& self )
             -> Item_for_collection_<Self>&
         { return self.m_items[self.index_of( col, row )]; }
 
         template< class Self >
-        static auto item_at_checked( const Index col, const Index row, Self& self )
+        static auto impl_item_at_checked( const Index col, const Index row, Self& self )
             -> Item_for_collection_<Self>&
         {
             hopefully(
@@ -105,19 +105,19 @@ namespace cppx
 
         auto operator()( const Index col, const Index row ) const
             -> const Item&
-        { return item_at( col, row, *this ); }
+        { return impl_item_at( col, row, *this ); }
 
         auto operator()( const Index col, const Index row )
             -> Item&
-        { return item_at( col, row, *this ); }
+        { return impl_item_at( col, row, *this ); }
 
         auto at( const Index col, const Index row ) const
             -> const Item&
-        { return item_at_checked( col, row, *this );  }
+        { return impl_item_at_checked( col, row, *this );  }
 
         auto at( const Index col, const Index row )
             -> Item&
-        { return item_at_checked( col, row, *this );  }
+        { return impl_item_at_checked( col, row, *this );  }
 
         Matrix_():
             Layout( Width{ 0 }, Height{ 0 } ),
