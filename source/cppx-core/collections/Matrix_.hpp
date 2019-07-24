@@ -42,10 +42,7 @@ namespace cppx
 
             constexpr Abstract_layout(): m_width( 0 ), m_height( 0 ) {}
 
-            constexpr Abstract_layout(
-                const Width     width,
-                const Height    height
-                ):
+            constexpr Abstract_layout( const Width width, const Height height ):
                 m_width( width.value ),
                 m_height( height.value )
             {}
