@@ -27,11 +27,18 @@ namespace cppx
             using Position      = matrix::Position;
         };
 
-        class Layout:
+        class Abstract_layout:
             public Basic_types
         {
             Size                m_width;
             Size                m_height;
+
+        protected:
+            auto operator=( const Abstract_layout& other ) -> Abstract_layout& = default;
+            auto operator=( Abstract_layout&& ) -> Abstract_layout& = default;
+
+            Abstract_layout( const Abstract_layout& other ) = default;
+            Abstract_layout( Abstract_layout&& other ) = default;
 
         public:
             constexpr auto width() const  -> Size   { return m_width; }
@@ -58,9 +65,9 @@ namespace cppx
                 -> Position
             { return Position{ col_of( i ), row_of( i ) }; }
 
-            constexpr Layout(): m_width( 0 ), m_height( 0 ) {}
+            constexpr Abstract_layout(): m_width( 0 ), m_height( 0 ) {}
 
-            constexpr Layout(
+            constexpr Abstract_layout(
                 const Width     width,
                 const Height    height
                 ):
@@ -68,11 +75,27 @@ namespace cppx
                 m_height( height.value )
             {}
         };
+
+        class Layout:
+            public Abstract_layout
+        {
+        public:
+            auto operator=( const Layout& other ) -> Layout& = default;
+            auto operator=( Layout&& ) -> Layout& = default;
+
+            constexpr Layout() = default;
+            constexpr Layout( const Width width, const Height height ):
+                Abstract_layout( width, height )
+            {}
+
+            Layout( Layout& other ) = default;
+            Layout( Layout&& other ) = default;
+        };
     }  // namespace matrix
 
     template< class Item_param >
     class Abstract_matrix_:
-        public matrix::Layout
+        public matrix::Abstract_layout
     {
     public:
         using Item = Item_param;
@@ -100,7 +123,7 @@ namespace cppx
 
     protected:
         Abstract_matrix_():
-            Layout( Width{ 0 }, Height{ 0 } ),
+            Abstract_layout( Width{ 0 }, Height{ 0 } ),
             m_items()
         {}
 
@@ -109,7 +132,7 @@ namespace cppx
             const Height    height,
             const Item&     init_value = Item()
             ):
-            Layout( width, height ),
+            Abstract_layout( width, height ),
             m_items( n_items(), init_value )
         {}
 
