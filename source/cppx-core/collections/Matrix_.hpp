@@ -40,6 +40,16 @@ namespace cppx
             Abstract_layout( const Abstract_layout& other ) = default;
             Abstract_layout( Abstract_layout&& other ) = default;
 
+            constexpr Abstract_layout(): m_width( 0 ), m_height( 0 ) {}
+
+            constexpr Abstract_layout(
+                const Width     width,
+                const Height    height
+                ):
+                m_width( width.value ),
+                m_height( height.value )
+            {}
+
         public:
             constexpr auto width() const  -> Size   { return m_width; }
             constexpr auto height() const -> Size   { return m_height; }
@@ -64,16 +74,6 @@ namespace cppx
             constexpr auto position_of( const Index i ) const
                 -> Position
             { return Position{ col_of( i ), row_of( i ) }; }
-
-            constexpr Abstract_layout(): m_width( 0 ), m_height( 0 ) {}
-
-            constexpr Abstract_layout(
-                const Width     width,
-                const Height    height
-                ):
-                m_width( width.value ),
-                m_height( height.value )
-            {}
         };
 
         class Layout:
