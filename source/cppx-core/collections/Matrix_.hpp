@@ -68,7 +68,7 @@ namespace cppx
                 -> Index
             { return index_of( pos.x, pos.y ); }
 
-            constexpr auto position_of( const Index i ) const
+            constexpr auto position_of_index( const Index i ) const
                 -> Position
             { return Position{ col_of( i ), row_of( i ) }; }
         };
