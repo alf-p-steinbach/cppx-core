@@ -253,6 +253,22 @@ namespace cppx
         {}
     };
 
+    template< class Item_param, Size size_param >
+    class Square_matrix_:
+        public Fixed_size_matrix_<Item_param, size_param, size_param>
+    {
+        using FSM_base = Fixed_size_matrix_<Item_param, size_param, size_param>;
+
+    public:
+        static constexpr Size matrix_size = size_param;
+
+        auto operator=( const Square_matrix_& other ) -> Square_matrix_&    = default;
+        auto operator=( Square_matrix_&& other ) -> Square_matrix_&         = default;
+        using FSM_base::Fixed_size_matrix_;     // General constructors.
+        Square_matrix_( const Square_matrix_& )                             = default;
+        Square_matrix_( Square_matrix_&& )                                  = default;
+    };
+
     template< class Item_param >
     class Matrix_:
         public Abstract_matrix_<Item_param>
@@ -262,8 +278,11 @@ namespace cppx
     public:
         using Item = typename AM_base::Item;    // Alias Item_param.
 
-        using AM_base::Abstract_matrix_;        // Constructors, including copy & move.
-        using AM_base::operator=;               // Copy and move assignment operators.
+        auto operator=( const Matrix_& other ) -> Matrix_&                  = default;
+        auto operator=( Matrix_&& other ) -> Matrix_&                       = default;
+        using AM_base::Abstract_matrix_;        // General constructors.
+        Matrix_( const Matrix_& )                                           = default;
+        Matrix_( Matrix_&& )                                                = default;
 
         template< Size w, Size h >
         auto operator=( const Fixed_size_matrix_<Item, w, h>& other )
