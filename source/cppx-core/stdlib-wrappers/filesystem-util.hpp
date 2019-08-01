@@ -84,9 +84,7 @@ namespace cppx
                 or $fail( ""s << "Failed to read " << n << " items of type " << typeid( Type ).name() );
         }
 
-        // Note: appears to have some bug, UB-like behavior, but it beats me what that could be.
         template< class Type >
-        [[deprecated]]
         inline auto read_sequence_( const Size n, const P_<FILE> f )
             -> vector<Type>
         {
