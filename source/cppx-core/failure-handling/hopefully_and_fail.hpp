@@ -49,9 +49,9 @@ namespace cppx
             -> Truth
         { return condition; }
 
-        template< class X = runtime_error, class... More_args >
+        template< class X, class... More_args >
         [[noreturn]]
-        inline auto fail( const string& message, More_args&&... more_args )
+        inline auto fail_( const string& message, More_args&&... more_args )
             -> Truth
         {
             // This checking is necessary for MinGW g++ 8.2.0. Not sure if the standard
@@ -67,6 +67,12 @@ namespace cppx
                 throw X( message, forward<More_args>( more_args )...  );
             }
         }
+
+        template< class... More_args >
+        [[noreturn]]
+        inline auto fail( const string& message, More_args&&... more_args )
+            -> Truth
+        { fail_<runtime_error>( message, forward<More_args>( more_args )... ); }
 
         inline auto rich_exception_text(
             const string&                       message,
@@ -86,7 +92,7 @@ namespace cppx
             More_args&&...                      more_args
             ) -> Truth
         {
-            fail<X>(
+            fail_<X>(
                 rich_exception_text( message, throw_point ),
                 forward<More_args>( more_args )...
                 );
@@ -102,8 +108,8 @@ namespace cppx
         //
         // Typical usage patterns, here using a Windows' function that returns `HRESULT`:
         //
-        //      CoInitialize( nullptr, COINIT_MULTITHREADED )
-        //          >> Success() or fail( "main - CoInitialize failed" );
+        //      CoInitialize( nullptr, COINIT_MULTITHREADED ) >> Success()
+        //          or $fail( "CoInitialize failed" );
         //
         // where
         //
@@ -118,16 +124,26 @@ namespace cppx
         auto operator>>( const Value& v, Failure )
             -> Truth
         { return not (v >> Success{}); }
+
+        struct Is_zero{};
+
+        template< class Value >
+        auto operator>>( const Value& v, Is_zero )
+            -> Truth
+        { return v == 0; }
+
     }  // namespace hf
 
     inline namespace hopefully_and_fail {
 
         using hf::hopefully;
+        using hf::fail_;
         using hf::fail;
         using hf::fail_with_location;
 
         using hf::Success;
         using hf::Failure;
+        using hf::Is_zero;
         using hf::operator>>;
 
     }  // inline namespace hopefully_and_fail

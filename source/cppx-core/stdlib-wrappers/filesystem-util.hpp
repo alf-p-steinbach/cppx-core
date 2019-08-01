@@ -9,11 +9,14 @@
 #include <cppx-core/text/basic-string-building.hpp>             // cppx::operator<<
 #include <cppx-core/text/string-util.hpp>                       // cppx::quoted
 
-#include <c/stdio.hpp>      // fopen, Windows _wfopen
+#include <c/assert.hpp>     // assert
+#include <c/stdio.hpp>      // fopen, Windows _wfopen, FILE
 #include <algorithm>        // std::copy
 #include <filesystem>       // std::filesystem
 #include <string>           // std::(string, wstring)
+#include <typeinfo>         // std::type_info for use of typeid
 #include <utility>          // std::exchange
+#include <vector>           // std::vector
 
 CPPX_DEFINE_TAG( Read );
 CPPX_DEFINE_TAG( Write );
@@ -21,7 +24,7 @@ CPPX_DEFINE_TAG( Append );
 namespace cppx
 {
     namespace fs = std::filesystem;
-    CPPX_USE_STD( copy, exchange, string );
+    CPPX_USE_STD( copy, exchange, string, vector );
 
     inline namespace fs_util
     {
@@ -52,6 +55,60 @@ namespace cppx
             #else
                 return fopen( path.string().c_str(), options );
             #endif
+        }
+
+        template< class Type >
+        inline void read( const P_<FILE> f, Type& o )
+        {
+            int n_read = fread( &o, sizeof( Type ), 1, f );
+            hopefully( n_read == 1 )
+                or $fail( ""s << "Failed to read " << typeid( Type ).name() );
+        }
+
+        template< class Type >
+        inline auto read_( const P_<FILE> f )
+            -> Type
+        {
+            Type result;
+            read( f, result );
+            return result;
+        }
+
+        template< class Type >
+        inline void read_sequence( const P_<FILE> f, const P_<Type> p_start, const P_<Type> p_beyond )
+        {
+            const Size n = p_beyond - p_start;
+            assert( n < INT_MAX );
+            const int n_read = fread( p_start, sizeof( Type ), int( n ), f );
+            hopefully( n_read == n )
+                or $fail( ""s << "Failed to read " << n << " items of type " << typeid( Type ).name() );
+        }
+
+        // Note: appears to have some bug, UB-like behavior, but it beats me what that could be.
+        template< class Type >
+        [[deprecated]]
+        inline auto read_sequence_( const Size n, const P_<FILE> f )
+            -> vector<Type>
+        {
+            auto result = vector<Type>( n );
+
+            if( n == 0 ) {
+                return result;
+            }
+
+            read_sequence( f, &result[0], &result[0] + n );
+            return result;
+        }
+
+        template< class Type >
+        inline auto peek_( const P_<FILE> f )
+            -> Type
+        {
+            Type result;
+            const long read_position = ftell( f );
+            read( f, result );
+            fseek( f, read_position, SEEK_SET );
+            return result;
         }
 
         class C_file
