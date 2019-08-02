@@ -85,7 +85,7 @@ namespace cppx
         }
 
         template< class Type >
-        inline auto read_sequence_( const Size n, const P_<FILE> f )
+        inline auto read_sequence_( const P_<FILE> f, const Size n )
             -> vector<Type>
         {
             auto result = vector<Type>( n );
