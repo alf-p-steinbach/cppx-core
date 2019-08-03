@@ -20,6 +20,9 @@ namespace cppx
             current_exception, runtime_error, string, throw_with_nested 
             );
 
+        [[noreturn]]
+        void noreturn() {}
+
         //------------------------------------------ hopefully & fail
         //
         // The default `fail` function's exception can be caught as a `std::runtime_error`.
@@ -50,7 +53,7 @@ namespace cppx
         { return condition; }
 
         template< class X, class... More_args >
-        [[noreturn]]
+        //[[noreturn]]
         inline auto fail_( const string& message, More_args&&... more_args )
             -> Truth
         {
@@ -69,7 +72,7 @@ namespace cppx
         }
 
         template< class... More_args >
-        [[noreturn]]
+        //[[noreturn]]
         inline auto fail( const string& message, More_args&&... more_args )
             -> Truth
         { fail_<runtime_error>( message, forward<More_args>( more_args )... ); }
@@ -85,14 +88,14 @@ namespace cppx
         }
 
         template< class X = runtime_error, class... More_args >
-        [[noreturn]]
+        //[[noreturn]]
         inline auto fail_with_location(
             const Abstract_source_location&     throw_point,
             const string&                       message,
             More_args&&...                      more_args
             ) -> Truth
         {
-            fail_<X>(
+            return fail_<X>(
                 rich_exception_text( message, throw_point ),
                 forward<More_args>( more_args )...
                 );
@@ -136,6 +139,7 @@ namespace cppx
 
     inline namespace hopefully_and_fail {
 
+        using hf::noreturn;
         using hf::hopefully;
         using hf::fail_;
         using hf::fail;
