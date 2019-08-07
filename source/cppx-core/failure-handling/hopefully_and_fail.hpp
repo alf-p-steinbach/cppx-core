@@ -21,7 +21,7 @@ namespace cppx
             );
 
         [[noreturn]]
-        void noreturn() {}
+        inline void noreturn() {}
 
         //------------------------------------------ hopefully & fail
         //

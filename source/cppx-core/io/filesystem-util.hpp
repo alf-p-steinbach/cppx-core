@@ -98,6 +98,17 @@ namespace cppx
             return result;
         }
 
+        inline auto read_c_string( const P_<FILE> f )
+            -> string
+        {
+            string s;
+            int ch;
+            while( (ch = fgetc( f )) != EOF and ch != 0 ) {
+                s += char( ch );
+            }
+            return s;
+        }
+
         template< class Type >
         inline auto peek_( const P_<FILE> f )
             -> Type
@@ -106,6 +117,31 @@ namespace cppx
             const long read_position = ftell( f );
             read( f, result );
             fseek( f, read_position, SEEK_SET );
+            return result;
+        }
+
+        template< class Type >
+        auto from_bytes_( const P_<const Byte> p_first )
+            -> Type
+        {
+            Type result;
+            memcpy( &result, p_first, sizeof( Type ) );
+            return result;
+        }
+
+        template< class Type >
+        auto sequence_from_bytes_( const P_<const Byte> p_first, const Size n )
+            -> vector<Type>
+        {
+            vector<Type> result;
+            if( n <= 0 ) {
+                return result;
+            }
+
+            result.reserve( n );
+            for( const Index i: up_to( n ) ) {
+                result.push_back( from_bytes_<Type>( p_first + i*sizeof( Type ) ) );
+            }
             return result;
         }
 
