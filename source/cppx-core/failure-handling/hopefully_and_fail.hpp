@@ -60,9 +60,10 @@ namespace cppx
             // This checking is necessary for MinGW g++ 8.2.0. Not sure if the standard
             // requires it. It would be a design to attract bugs, if it were required.
 
-            const Truth in_exception_handling = (std::current_exception() != nullptr);
+            const Truth in_exception_handling = (current_exception() != nullptr);
             if( in_exception_handling )
             {
+                // std::throw_with_nested is guaranteed [[noreturn]].
                 throw_with_nested( X( message, forward<More_args>( more_args )... ) );
             }
             else
@@ -75,7 +76,7 @@ namespace cppx
         //[[noreturn]]
         inline auto fail( const string& message, More_args&&... more_args )
             -> Truth
-        { fail_<runtime_error>( message, forward<More_args>( more_args )... ); }
+        { return fail_<runtime_error>( message, forward<More_args>( more_args )... ); }
 
         inline auto rich_exception_text(
             const string&                       message,
