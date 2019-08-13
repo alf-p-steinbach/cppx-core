@@ -5,6 +5,7 @@
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/tmp-support/basic-Enable_if_.hpp>  // cppx::Enable_if_
 #include <cppx-core/language/tmp-support/basic-type-traits.hpp> // cppx::is_same_type_
+#include <cppx-core/language/system/size-types.hpp>             // cppx::Size
 #include <cppx-core/language/types/C_str_.hpp>                  // cppx::C_str
 #include <cppx-core/text/basic-string-building.hpp>             // cppx::operator<<
 #include <cppx-core/text/string-util.hpp>                       // cppx::quoted
@@ -60,7 +61,7 @@ namespace cppx
         template< class Type >
         inline void read( const P_<FILE> f, Type& o )
         {
-            int n_read = fread( &o, sizeof( Type ), 1, f );
+            const Size n_read = fread( &o, sizeof( Type ), 1, f );
             hopefully( n_read == 1 )
                 or $fail( ""s << "Failed to read " << typeid( Type ).name() );
         }
@@ -79,7 +80,7 @@ namespace cppx
         {
             const Size n = p_beyond - p_start;
             assert( n < INT_MAX );
-            const int n_read = fread( p_start, sizeof( Type ), int( n ), f );
+            const Size n_read = fread( p_start, sizeof( Type ), int( n ), f );
             hopefully( n_read == n )
                 or $fail( ""s << "Failed to read " << n << " items of type " << typeid( Type ).name() );
         }
