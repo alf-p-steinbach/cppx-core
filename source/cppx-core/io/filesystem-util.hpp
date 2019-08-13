@@ -58,38 +58,42 @@ namespace cppx
             #endif
         }
 
-        template< class Type >
-        inline void read( const P_<FILE> f, Type& o )
+        template< class T >
+        inline void read( const Type_<FILE*> f, T& o )
         {
-            const Size n_read = fread( &o, sizeof( Type ), 1, f );
+            const Size n_read = fread( &o, sizeof( T ), 1, f );
             hopefully( n_read == 1 )
-                or $fail( ""s << "Failed to read " << typeid( Type ).name() );
+                or $fail( ""s << "Failed to read " << typeid( T ).name() );
         }
 
-        template< class Type >
-        inline auto read_( const P_<FILE> f )
-            -> Type
+        template< class T >
+        inline auto read_( const Type_<FILE*> f )
+            -> T
         {
-            Type result;
+            T result;
             read( f, result );
             return result;
         }
 
-        template< class Type >
-        inline void read_sequence( const P_<FILE> f, const P_<Type> p_start, const P_<Type> p_beyond )
+        template< class T >
+        inline void read_sequence(
+            const Type_<FILE*>      f,
+            const Type_<T*>         p_start,
+            const Type_<T*>         p_beyond
+            )
         {
             const Size n = p_beyond - p_start;
             assert( n < INT_MAX );
-            const Size n_read = fread( p_start, sizeof( Type ), int( n ), f );
+            const Size n_read = fread( p_start, sizeof( T ), int( n ), f );
             hopefully( n_read == n )
-                or $fail( ""s << "Failed to read " << n << " items of type " << typeid( Type ).name() );
+                or $fail( ""s << "Failed to read " << n << " items of type " << typeid( T ).name() );
         }
 
-        template< class Type >
-        inline auto read_sequence_( const P_<FILE> f, const Size n )
-            -> vector<Type>
+        template< class T >
+        inline auto read_sequence_( const Type_<FILE*> f, const Size n )
+            -> vector<T>
         {
-            auto result = vector<Type>( n );
+            auto result = vector<T>( n );
 
             if( n == 0 ) {
                 return result;
@@ -99,7 +103,7 @@ namespace cppx
             return result;
         }
 
-        inline auto read_c_string( const P_<FILE> f )
+        inline auto read_c_string( const Type_<FILE*> f )
             -> string
         {
             string s;
@@ -110,38 +114,38 @@ namespace cppx
             return s;
         }
 
-        template< class Type >
-        inline auto peek_( const P_<FILE> f )
-            -> Type
+        template< class T >
+        inline auto peek_( const Type_<FILE*> f )
+            -> T
         {
-            Type result;
+            T result;
             const long read_position = ftell( f );
             read( f, result );
             fseek( f, read_position, SEEK_SET );
             return result;
         }
 
-        template< class Type >
-        auto from_bytes_( const P_<const Byte> p_first )
-            -> Type
+        template< class T >
+        auto from_bytes_( const Type_<const Byte*> p_first )
+            -> T
         {
-            Type result;
-            memcpy( &result, p_first, sizeof( Type ) );
+            T result;
+            memcpy( &result, p_first, sizeof( T ) );
             return result;
         }
 
-        template< class Type >
-        auto sequence_from_bytes_( const P_<const Byte> p_first, const Size n )
-            -> vector<Type>
+        template< class T >
+        auto sequence_from_bytes_( const Type_<const Byte> p_first, const Size n )
+            -> vector<T>
         {
-            vector<Type> result;
+            vector<T> result;
             if( n <= 0 ) {
                 return result;
             }
 
             result.reserve( n );
             for( const Index i: up_to( n ) ) {
-                result.push_back( from_bytes_<Type>( p_first + i*sizeof( Type ) ) );
+                result.push_back( from_bytes_<T>( p_first + i*sizeof( T ) ) );
             }
             return result;
         }
@@ -151,17 +155,17 @@ namespace cppx
             C_file( const C_file& ) = delete;
             auto operator=( const C_file& ) -> C_file& = delete;
 
-            P_<FILE>    m_file;
+            Type_<FILE*>    m_file;
 
         public:
             auto file_pointer() const
-                -> P_<FILE>
+                -> Type_<FILE*>
             { return m_file; }
         
-            operator P_<FILE> () const { return file_pointer(); }
+            operator Type_<FILE*> () const { return file_pointer(); }
 
             auto release()
-                -> P_<FILE>
+                -> Type_<FILE*>
             { return exchange( m_file, nullptr ); }
 
             ~C_file()
