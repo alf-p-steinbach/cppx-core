@@ -7,10 +7,10 @@ namespace cppx
         auto operator=( const No_copy& ) -> No_copy& = delete;
         No_copy( const No_copy& ) = delete;
 
+    public:
         auto operator=( No_copy&& ) -> No_copy& = default;
         No_copy( No_copy&& ) = default;
 
-    public:
         No_copy() {}
     };
 
