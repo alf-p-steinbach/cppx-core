@@ -40,9 +40,6 @@ namespace cppx
         bool        m_value;
 
     public:
-        static constexpr auto yes() -> Truth { return true; }
-        static constexpr auto no() -> Truth { return false; }
-
         /// \brief Implicit conversion to `bool` (only).
         ///
         /// Implicit conversion to `bool` because that's needed for template args.
@@ -63,8 +60,18 @@ namespace cppx
         constexpr Truth( const Arg value ) noexcept: m_value( value ) {}
     };
 
-    constexpr auto truth_value_no   = Truth::no();
-    constexpr auto truth_value_yes  = Truth::yes();
+    namespace truth_value {
+        static constexpr auto yes   = Truth( true );
+        static constexpr auto no    = Truth( false );
+    };  // namespace truth_value
+
+    constexpr auto is_true( const Truth value )
+        -> Truth
+    { return value; }
+
+    constexpr auto is_false( const Truth value )
+        -> Truth
+    { return not value; }
 
     constexpr auto operator!=( const Truth lhs, const Truth rhs )
         -> bool
