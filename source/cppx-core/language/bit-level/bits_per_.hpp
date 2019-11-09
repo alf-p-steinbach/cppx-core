@@ -25,10 +25,18 @@ namespace cppx
     template< class Type >
     constexpr int magnitude_bits_per_   = numeric_limits<Type>::digits;
 
-    constexpr int system_bitness = bits_per_<void*>;
+    struct Bitness{ enum Enum {
+        _16 = 16, _32 = 32, _64 = 64, _128 = 128, system = bits_per_<void*>
+        }; };
+    static_assert(
+        Bitness::system == 16 or
+        Bitness::system == 32 or
+        Bitness::system == 64 or
+        Bitness::system == 128
+        );
 
     namespace bitlevel
     {
-        CPPX_USE_CPPX( bits_per_, magnitude_bits_per_, system_bitness );
+        CPPX_USE_CPPX( bits_per_, magnitude_bits_per_, Bitness );
     }  // namespace bitlevel
 }  // namespace cppx
