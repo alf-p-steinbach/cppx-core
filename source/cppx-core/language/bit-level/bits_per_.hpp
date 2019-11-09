@@ -25,8 +25,10 @@ namespace cppx
     template< class Type >
     constexpr int magnitude_bits_per_   = numeric_limits<Type>::digits;
 
+    constexpr int system_bitness = bits_per_<void*>;
+
     namespace bitlevel
     {
-        CPPX_USE_CPPX( bits_per_, magnitude_bits_per_ );
+        CPPX_USE_CPPX( bits_per_, magnitude_bits_per_, system_bitness );
     }  // namespace bitlevel
 }  // namespace cppx
