@@ -35,7 +35,15 @@ namespace cppx
     template< class T >
     static constexpr bool is_bool_ = std::is_same_v<T, bool>;
 
-    class Truth
+    template< class Truth_class >
+    struct Truth_values_
+    {
+        static const Truth_class yes;
+        static const Truth_class no;
+    };
+
+    class Truth:
+        public Truth_values_<Truth>
     {
         bool        m_value;
 
@@ -60,11 +68,12 @@ namespace cppx
         constexpr Truth( const Arg value ) noexcept: m_value( value ) {}
     };
 
-    namespace truth_value {
-        static constexpr auto yes   = Truth( true );
-        static constexpr auto no    = Truth( false );
-    };  // namespace truth_value
+    template< class Truth_class >
+    const Truth_class Truth_values_<Truth_class>::yes   = true;
 
+    template< class Truth_class >
+    const Truth_class Truth_values_<Truth_class>::no    = false;
+    
     constexpr auto is_true( const Truth value )
         -> Truth
     { return value; }

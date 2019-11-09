@@ -2,10 +2,13 @@
 
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_...
 
-#ifndef CPPX_NO_FIX_OF_RANDOM_DEVICE
+#ifndef CPPX_NO_WARNING_ABOUT_RANDOM_DEVICE
 #   ifdef __GNUC__
-#       undef   _GLIBCXX_USE_RANDOM_TR1
-#       define  _GLIBCXX_USE_RANDOM_TR1
+#       ifndef  _GLIBCXX_USE_RANDOM_TR1
+#           pragma GCC warning \
+                "_GLIBCXX_USE_RANDOM_TR1 not defined:" \
+                " std::random_device may use a fixed pseudo-random sequence."
+#       endif
 #   endif
 #endif
 
@@ -18,52 +21,20 @@ namespace cppx::rnd
         default_random_engine, random_device, uniform_real_distribution
         );
 
+    using Generator     = std::mt19937_64;
+    using Bits_value    = Generator::result_type;
+    
+    static_assert( std::is_unsigned_v<Bits_value> );
+    static_assert( std::is_same_v<random_device::result_type, unsigned> );
+
+    struct Seed{ Bits_value value; };
+
     inline auto hardware_entropy()
         -> unsigned
     {
         static random_device the_entropy_source;
+
         return the_entropy_source();
     }
-
-    template< unsigned value >
-    struct Seed
-    {
-        auto operator()() const
-            -> unsigned
-        { return value; }
-    };
-
-    struct Random_seed
-    {
-        auto operator()() const
-            -> unsigned
-        { return hardware_entropy(); }
-    };
-
-    template< class Seeding >
-    class Seq_
-    {
-    public:
-        static inline auto bits_generator()
-            -> default_random_engine&
-        {
-            static default_random_engine    the_generator( invoke( []() -> unsigned
-            {
-                const Seeding the_seeder;
-                return the_seeder();
-            } ) );
-
-            return the_generator;
-        }
-
-        static inline auto next()
-            -> double
-        {
-            static uniform_real_distribution the_distribution;
-            return the_distribution( bits_generator() );
-        }
-    };
-
-    using Seq = Seq_<Random_seed>;
 
 }  // namespace cppx::rnd
