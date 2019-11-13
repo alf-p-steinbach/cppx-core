@@ -22,7 +22,7 @@ namespace cppx
     inline auto type_name_from_info( const type_info& info )
         -> string;
 
-    // An `operator<<` for stream output is defined by <cppx-core/io/type_name_of_-output.hpp>.
+    // An `operator<<` for stream output is defined by <cppx-core/io/type_name_of_.output.hpp>.
     template< class Type >
     struct Type_name_of_
     {
