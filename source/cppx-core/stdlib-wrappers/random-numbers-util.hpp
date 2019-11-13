@@ -8,16 +8,9 @@
 #include <cppx-core/language/tmp-support/basic-Enable_if_.hpp>      // cppx::Enable_if_
 #include <cppx-core/language/types/type-makers.hpp>                 // cppx::Type_choice_
 
-#ifndef CPPX_NO_WARNING_ABOUT_RANDOM_DEVICE
-#   ifdef __GNUC__
-#       ifndef  _GLIBCXX_USE_RANDOM_TR1
-#           pragma GCC warning \
-                "_GLIBCXX_USE_RANDOM_TR1 not defined:" \
-                " std::random_device may use a fixed pseudo-random sequence."
-#       endif
-#   endif
+#ifdef __GNUC__
+#   include <cppx-core/stdlib-wrappers/compiler-workarounds/gnuc/gnuc-random-device-warning.hpp>
 #endif
-
 #include <random>
 
 namespace cppx::random

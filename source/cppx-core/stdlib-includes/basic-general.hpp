@@ -1,10 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#ifndef CPPX_NO_FIX_OF_RANDOM_DEVICE
-#   ifdef __GNUC__
-#       undef   _GLIBCXX_USE_RANDOM_TR1
-#       define  _GLIBCXX_USE_RANDOM_TR1
-#   endif
+#ifdef __GNUC__
+#   include <cppx-core/stdlib-wrappers/compiler-workarounds/gnuc/gnuc-random-device-warning.hpp>
 #endif
 
 // In the comments below <@/whatever> means <cppx-core/whatever>.
