@@ -77,7 +77,7 @@ namespace cppx::random
         }
 
         template< class Unsigned, class = Enable_if_<is_unsigned_<Unsigned>> >
-        class Bits_
+        class Assembled_bits_
         {
             using Bits_generator = independent_bits_engine<Generator, bits_per_<Unsigned>, Unsigned>;
 
@@ -92,13 +92,12 @@ namespace cppx::random
                 -> Unsigned
             { return m_bits_generator(); }
 
-            Bits_( const Seed seed = random_seed() ):
+            Assembled_bits_( const Seed seed = random_seed() ):
                 m_bits_generator( seed.value() )
             {}
         };
 
-        template<>
-        class Bits_<Bits_value>
+        class Bits
         {
             Generator       m_bits_generator;
 
@@ -111,12 +110,10 @@ namespace cppx::random
                 -> Bits_value
             { return m_bits_generator(); }
 
-            Bits_( const Seed seed = random_seed() ):
+            Bits( const Seed seed = random_seed() ):
                 m_bits_generator( seed.value() )
             {}
         };
-
-        using Bits = Bits_<Bits_value>;
 
         template< class Integer, class = Enable_if_<is_integral_<Integer>> >
         class Integers_
