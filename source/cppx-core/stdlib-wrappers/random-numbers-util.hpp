@@ -65,6 +65,7 @@ namespace cppx::random
             // Not using std::independent_bits_engine because it copies the underlying engine.
             Bits_value value = 0;
             constexpr int n_chunks = div_up( sizeof( Bits_value ), sizeof( unsigned ) );
+            static_assert( n_chunks >= 1 );
             for( int i = 1;; ++i ) {
                 value |= hardware_entropy();
                 if( i == n_chunks ) {
@@ -91,7 +92,7 @@ namespace cppx::random
                 -> Unsigned
             { return m_bits_generator(); }
 
-            Bits_( const Seed seed = {} ):
+            Bits_( const Seed seed = random_seed() ):
                 m_bits_generator( seed.value() )
             {}
         };
@@ -110,7 +111,7 @@ namespace cppx::random
                 -> Bits_value
             { return m_bits_generator(); }
 
-            Bits_( const Seed seed = {} ):
+            Bits_( const Seed seed = random_seed() ):
                 m_bits_generator( seed.value() )
             {}
         };
@@ -134,7 +135,7 @@ namespace cppx::random
                 -> Integer
             { return m_adapt( m_bits_generator ); }
 
-            Integers_( const Integer n_unique_values, const Seed seed = {} ):
+            Integers_( const Integer n_unique_values, const Seed seed = random_seed() ):
                 m_bits_generator( seed.value() ),
                 m_adapt( 0, n_unique_values - 1 )
             {}
@@ -159,7 +160,7 @@ namespace cppx::random
                 -> Number
             { return m_adapt( m_bits_generator ); }
 
-            Numbers_( const Seed seed = {} ):
+            Numbers_( const Seed seed = random_seed() ):
                 m_bits_generator( seed.value() )
             {}
         };
