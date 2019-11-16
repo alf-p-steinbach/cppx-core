@@ -19,9 +19,12 @@
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_CPPX
 
 #include <c/stddef.hpp>     // size_t
+#include <array>            // std::array
 
 namespace cppx
 {
+    using std::array;
+
     //----------------------------------------------- Specialized basic builders:
     //
 
@@ -71,6 +74,9 @@ namespace cppx
     template< class Some_type >
     using R_ = Some_type&;
 
+    //----------------------------------------------- Arrays:
+    //
+
     /// \brief Ceates a raw array type of unknown size.
     ///
     /// `Raw_array_<T>` is the type denoted by `Type_<T>[]`, wrapped up. It's equivalent to
@@ -90,16 +96,25 @@ namespace cppx
     template< size_t n, class Item >
     using Raw_array_of_ = Item[n];
 
+    /// \brief `Array_of_<n, T>` is just more left-to-right direction readable than
+    /// `std::array<T, n>`, which is the type it produces.
+    template< size_t n, class Item >
+    using Array_of_                 = array<Item, n>;
+
     /// \brief Provides
     /// \make_name_ref{cppx,Type_},
     /// \make_name_ref{cppx,P_},
     /// \make_name_ref{cppx,R_},
-    /// \make_name_ref{cppx,Raw_array_} and
-    /// \make_name_ref{cppx,Raw_array_of_}.
-    namespace type_assemblers
+    /// \make_name_ref{cppx,Raw_array_},
+    /// \make_name_ref{cppx,Raw_array_of_} and
+    /// \make_name_ref{cppx,Array_of_}.
+
+    namespace type_builders
     {
-        CPPX_USE_CPPX( Type_, P_, R_, Raw_array_, Raw_array_of_ );
-    }  // inline namespace type_assemblers
+        CPPX_USE_CPPX(
+            Type_, P_, R_, Raw_array_, Raw_array_of_, Array_of_
+            );
+    }  // inline namespace type_builders
 
     /// Self-descriptive but more wordy `Ptr_` and `Ref_` aliases for
     /// `P_` and `R_`.

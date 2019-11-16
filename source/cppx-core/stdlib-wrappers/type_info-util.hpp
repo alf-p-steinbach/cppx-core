@@ -2,7 +2,8 @@
 #include <cppx-core/collections/Range_.hpp>                     // cppx::Range_
 #include <cppx-core/language/syntax/type-builders.hpp>          // cppx::P_
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_...
-#include <cppx-core/language/types/type-makers.hpp>             // cppx::Unref_
+#include <cppx-core/language/tmp/Type_carrier_.hpp>             // cppx::Type_carrier_
+#include <cppx-core/language/tmp/type-mutators.hpp>             // cppx::Unref_
 #include <cppx-core/text/ascii/ascii-util.hpp>                  // cppx::ascii::*
 
 #include <functional>   // std::invoke
@@ -30,7 +31,7 @@ namespace cppx
             -> string
         {
             // Wrapping the type keeps any top level CV-qualification in the result.
-            const string raw = type_name_from_info( typeid( Wrapped_type_<Type> ) );
+            const string raw = type_name_from_info( typeid( Type_carrier_<Type> ) );
             const int i_first = 1 + raw.find_first_of( '<' );
             const int i_beyond = raw.find_last_of( '>' );
             return raw.substr( i_first, i_beyond - i_first );

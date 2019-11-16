@@ -19,7 +19,7 @@
 /// here will be 16 bits on a 16-bit system (but I have no 16-bit system to test on).
 
 #include <cppx-core/language/syntax/macro-use.hpp>      // CPPX_USE_CPPX
-#include <cppx-core/language/types/type-makers.hpp>     // cppx::Signed_
+#include <cppx-core/language/tmp/type-mutators.hpp>     // cppx::Signed_
 
 #include <c/stddef.hpp>     // size_t
 

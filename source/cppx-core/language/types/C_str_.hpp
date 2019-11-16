@@ -24,7 +24,8 @@
 ///
 ///     constexpr string_view s = "Blah";
 
-#include <cppx-core/language/types/type-makers.hpp>     // cppx::(Type_, Const_, Unconst_)
+#include <cppx-core/language/syntax/type-builders.hpp>      // cppx::(Type_)
+#include <cppx-core/language/tmp/type-mutators.hpp>         // cppx::(Const_, Unconst_)
 
 namespace cppx
 {

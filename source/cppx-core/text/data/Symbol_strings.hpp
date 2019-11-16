@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/config.hpp>                         // cppx::use_ascii_substitutes
-#include <cppx-core/language/types/type-makers.hpp>     // cppx::Type_choice_
+#include <cppx-core/language/tmp/Type_choice_.hpp>      // cppx::Type_choice_
 
 namespace cppx
 {

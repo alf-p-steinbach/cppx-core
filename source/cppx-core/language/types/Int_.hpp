@@ -4,7 +4,8 @@
 /// \make_name_ref{cppx,Int_} and
 /// \make_name_ref{cppx,Unsigned_int_}.
 
-#include <cppx-core/language/types/type-makers.hpp>     // cppx::Unsigned_
+#include <cppx-core/language/tmp/type-mutators.hpp>     // cppx::Unsigned_
+
 #include <c/stdint.hpp>     // ::intN_t
 
 namespace cppx

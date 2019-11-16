@@ -4,7 +4,8 @@
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
-#include <cppx-core/language/types/type-makers.hpp>             // cppx::(R_, P_, Unsigned_)
+#include <cppx-core/language/syntax/type-builders.hpp>          // cppx::(R_, P_)
+#include <cppx-core/language/tmp/type-mutators.hpp>             // cppx::(Unsigned_)
 #include <cppx-core/meta-template/enable_if_.hpp>               // cppx::Enable_if_
 #include <cppx-core/meta-type/type-traits.hpp>                  // cppx::is_cpp03_char_type_
 #include <cppx-core/text/data/ascii-character-names.hpp>        // cppx::ascii::/names/
