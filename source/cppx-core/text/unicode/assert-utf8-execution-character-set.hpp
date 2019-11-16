@@ -8,7 +8,7 @@
 #include <cppx-core/text/unicode/utf8-is_the_execution_character_set.hpp>
 
 #ifndef CPPX_NO_CHARSET_ASSERTION_PLEASE
-#   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
+//#   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
 #endif
 //static_assert(
 //    not cppx::check_the_execution_character_set
