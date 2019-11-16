@@ -2,7 +2,7 @@
 
 #include <cppx-core/collections/Value_bytes_.hpp>           // cppx::Value_bytes_
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/syntax/type-assemblers.hpp>    // cppx::(Func_, P_)
+#include <cppx-core/language/syntax/type-builders.hpp>      // cppx::(Func_, P_)
 #include <cppx-core/text/to-hex-string.hpp>                 // cppx::{hex functionality}
 
 #include <algorithm>        // std::max

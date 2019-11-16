@@ -36,11 +36,11 @@ namespace cppx
     ///
     /// you can write it with prefix `const` as
     ///
-    ///     const Type_<Type_<auto()->int(&)[42]>*> fp;
+    ///     const Type_< Type_<auto()->Type_<int[42]>&>* > fp;
     ///
-    /// although for this particular example using the `#P_` type builder is more clean:
+    /// although for this particular example using the `#P_` and `#R_` type builders is more clean:
     ///
-    ///     const P_<auto()->int(&)[42]> fp;
+    ///     const P_< auto()->R_<int[42]> > fp;
     ///
     /// Credit: I first saw a template like `Type_` suggested by Johannes “litb” Schaub.
     template< class Some_type >

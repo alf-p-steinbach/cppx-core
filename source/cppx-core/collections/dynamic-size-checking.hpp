@@ -2,7 +2,7 @@
 
 #include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_STD
 #include <cppx-core/language/types/fixed-size-checking.hpp>         // cppx::*
-#include <cppx-core/language/syntax/type-assemblers.hpp>            // cppx::P_
+#include <cppx-core/language/syntax/type-builders.hpp>              // cppx::P_
 
 #include <bitset>           // std::bitset
 #include <iterator>         // std::(begin, end, size)

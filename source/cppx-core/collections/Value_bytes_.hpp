@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::P_
+#include <cppx-core/language/syntax/type-builders.hpp>          // cppx::P_
 #include <cppx-core/language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core/language/system/Endian.hpp>                 // cppx::(is_XXX_endian)
 #include <cppx-core/language/tmp/Enable_if_.hpp>                // cppx::Enable_if_

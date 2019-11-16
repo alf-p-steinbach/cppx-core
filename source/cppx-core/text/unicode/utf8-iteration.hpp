@@ -6,7 +6,7 @@
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
 #include <cppx-core/collections/Range_.hpp>                     // cppx::up_to
 #include <cppx-core/failure-handling/macro-fail.hpp>            // cppx::(hopefully, fail) CPPX_FAIL
-#include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::(P_)
+#include <cppx-core/language/syntax/type-builders.hpp>          // cppx::(P_)
 #include <cppx-core/language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core/language/system/size-types.hpp>             // cppx::Size
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth

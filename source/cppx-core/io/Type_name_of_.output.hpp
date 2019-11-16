@@ -2,7 +2,7 @@
 
 #include <cppx-core/stdlib-wrappers/type_info-util.hpp>     // cppx::Type_name_of_
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/syntax/type-assemblers.hpp>    // cppx::P_
+#include <cppx-core/language/syntax/type-builders.hpp>      // cppx::P_
 
 #include <ostream>      // std::basic_ostream
 

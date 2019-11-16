@@ -6,7 +6,7 @@
 #include <cppx-core/collections/Span_.hpp>                      // cppx::span_of_literal
 #include <cppx-core/language/bit-level/all.hpp>                 // cppx::Byte
 #include <cppx-core/language/syntax/macro-use.hpp>              // $use_std
-#include <cppx-core/language/syntax/type-assemblers.hpp>        // cppx::Raw_array_
+#include <cppx-core/language/syntax/type-builders.hpp>          // cppx::Raw_array_
 
 #include <iterator>         // std::(begin, end)
 

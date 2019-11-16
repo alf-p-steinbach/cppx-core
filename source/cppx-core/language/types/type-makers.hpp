@@ -15,9 +15,9 @@
 /// \make_name_ref{cppx,P_} and
 /// \make_name_ref{cppx,R_}, do. Those basic type assemblers are also offered by this
 /// header, via a convenience include of
-/// `<cppx-core/language/syntax/type-assemblers.hpp> `.
+/// `<cppx-core/language/syntax/type-builders.hpp> `.
 
-#include <cppx-core/language/syntax/type-assemblers.hpp>    // Convenience include.
+#include <cppx-core/language/syntax/type-builders.hpp>      // Convenience include.
 
 #include <c/stddef.hpp>     // size_t
 #include <array>            // std::array

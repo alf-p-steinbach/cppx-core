@@ -2,7 +2,7 @@
 
 #include <cppx-core/collections/Pointer_bytes.hpp>          // cppx::Pointer_bytes
 #include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/syntax/type-assemblers.hpp>    // cppx::P_
+#include <cppx-core/language/syntax/type-builders.hpp>      // cppx::P_
 #include <cppx-core/text/to-hex-string.hpp>                 // cppx::to_hex
 
 #include <ostream>      // std::basic_ostream
