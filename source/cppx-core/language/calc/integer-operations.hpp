@@ -12,7 +12,7 @@
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_CPPX
 #include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
-//#include <cppx-core/language/tmp-support/basic-type-traits.hpp>         // cppx::is_unsigned_
+//#include <cppx-core/language/tmp/basic-type-traits.hpp>         // cppx::is_unsigned_
 
 #include <c/limits.hpp>     // INT_MAX
 #include <c/stdint.hpp>     // ::(uintXX_t)

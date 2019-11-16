@@ -1,2 +1,2 @@
-#include <cppx-core/language/tmp-support/basic-type-traits.hpp>
+#include <cppx-core/language/tmp/type-traits.hpp>
 namespace { int satisfy_linker; }

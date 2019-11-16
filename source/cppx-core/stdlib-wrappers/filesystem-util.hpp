@@ -2,7 +2,7 @@
 
 #include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core/language/syntax/macro-with.hpp>             // CPPX_WITH
-#include <cppx-core/language/tmp-support/basic-type-traits.hpp> // cppx::is_same_type_
+#include <cppx-core/language/tmp/type-traits.hpp>               // cppx::is_same_type_
 
 #include <filesystem>       // std::filesystem
 #include <string>           // std::(string, wstring)
