@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/iterators/Forward_iterator_impl_.hpp>       // cppx::Forward_iterator_impl_
-#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
+#include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 
 #include <c/assert.hpp>
 

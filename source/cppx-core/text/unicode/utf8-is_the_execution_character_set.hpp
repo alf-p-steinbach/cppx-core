@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
+#include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 
 namespace cppx::utf8
 {

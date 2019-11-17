@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/bit-level/bits_per_.hpp>               // cppx::magnitude_bits_per_
+#include <cppx-core-language/bit-level/bits_per_.hpp>               // cppx::magnitude_bits_per_
 #include <cppx-core/text/unicode/unicode-Code_point_generator.hpp>  // cppx::unicode::Code_point_generator
 #include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
 

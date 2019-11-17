@@ -1,13 +1,13 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/failure-handling/macro-fail.hpp>            // CPPX_FAIL
-#include <cppx-core/language/syntax/macro-define_tag.hpp>       // CPPX_DEFINE_TAG
-#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/language/syntax/type-builders.hpp>          // cppx::Type_
-#include <cppx-core/language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
-#include <cppx-core/language/tmp/type-traits.hpp>               // cppx::is_same_type_
-#include <cppx-core/language/system/size-types.hpp>             // cppx::Size
-#include <cppx-core/language/types/C_str_.hpp>                  // cppx::C_str
+#include <cppx-core-language/syntax/macro-define_tag.hpp>       // CPPX_DEFINE_TAG
+#include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core-language/syntax/type-builders.hpp>          // cppx::Type_
+#include <cppx-core-language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
+#include <cppx-core-language/tmp/type-traits.hpp>               // cppx::is_same_type_
+#include <cppx-core-language/system/size-types.hpp>             // cppx::Size
+#include <cppx-core-language/types/C_str_.hpp>                  // cppx::C_str
 #include <cppx-core/stdlib-wrappers/filesystem-util.hpp>        // cppx::fs::*
 #include <cppx-core/text/basic-string-building.hpp>             // cppx::operator<<
 #include <cppx-core/text/string-util.hpp>                       // cppx::quoted

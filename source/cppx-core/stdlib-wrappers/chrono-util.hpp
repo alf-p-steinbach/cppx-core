@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_...
+#include <cppx-core-language/syntax/macro-use.hpp>          // CPPX_USE_...
 
 #include <chrono>           // std::chrono::*
 #include <ratio>            // std::(milli, micro, nano)

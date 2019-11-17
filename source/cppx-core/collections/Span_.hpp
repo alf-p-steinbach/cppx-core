@@ -3,9 +3,9 @@
 // Mainly for use with range based `for` loops.
 
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
-#include <cppx-core/language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/language/system/size-types.hpp>             // cppx::Size
-#include <cppx-core/language/types/Truth.hpp>                   // cppx::Truth
+#include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core-language/system/size-types.hpp>             // cppx::Size
+#include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 
 #include <iterator>     // std::(begin, distance, end, prev, next, make_reverse_iterator, reverse_iterator )
 #include <queue>        // std::queue

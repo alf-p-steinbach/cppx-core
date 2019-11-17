@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/language/tmp/type-traits.hpp>                   // cppx::is_same_type_
-#include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
+#include <cppx-core-language/tmp/type-traits.hpp>                   // cppx::is_same_type_
+#include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
 
 namespace cppx
 {

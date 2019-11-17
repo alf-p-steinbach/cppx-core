@@ -1,12 +1,12 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <algorithm>                                                // std::max
-#include <cppx-core/language/bit-level/bits_per_.hpp>               // cppx::(bits_per_, Bitness)
-#include <cppx-core/language/calc/integer-operations.hpp>           // cppx::div_up
-#include <cppx-core/language/syntax/macro-use.hpp>                  // CPPX_USE_...
-#include <cppx-core/language/tmp/type-traits.hpp>                   // cppx:(is_same_type_, is_unsigned_, is_integral_)
-#include <cppx-core/language/tmp/Enable_if_.hpp>                    // cppx::Enable_if_
-#include <cppx-core/language/tmp/Type_choice_.hpp>                  // cppx::Type_choice_
+#include <cppx-core-language/bit-level/bits_per_.hpp>               // cppx::(bits_per_, Bitness)
+#include <cppx-core-language/calc/integer-operations.hpp>           // cppx::div_up
+#include <cppx-core-language/syntax/macro-use.hpp>                  // CPPX_USE_...
+#include <cppx-core-language/tmp/type-traits.hpp>                   // cppx:(is_same_type_, is_unsigned_, is_integral_)
+#include <cppx-core-language/tmp/Enable_if_.hpp>                    // cppx::Enable_if_
+#include <cppx-core-language/tmp/Type_choice_.hpp>                  // cppx::Type_choice_
 
 #ifdef __GNUC__
 #   include <cppx-core/stdlib-wrappers/compiler-workarounds/gnuc/gnuc-random-device-warning.hpp>

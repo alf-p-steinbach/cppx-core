@@ -2,8 +2,8 @@
 
 #include <cppx-core/collections/Range_.hpp>                 // cppx::(is_in, up_to_)
 #include <cppx-core/failure-handling/macro-fail.hpp>        // CPPX_FAIL_
-#include <cppx-core/language/syntax/macro-use.hpp>          // CPPX_USE_STD
-#include <cppx-core/language/system/size-types.hpp>         // cppx::(Size, Index)
+#include <cppx-core-language/syntax/macro-use.hpp>          // CPPX_USE_STD
+#include <cppx-core-language/system/size-types.hpp>         // cppx::(Size, Index)
 #include <cppx-core/text/basic-string-building.hpp>         // cppx::operator<<
 #include <cppx-core/meta-type/type-traits.hpp>              // cppx::Item_for_collection_
 

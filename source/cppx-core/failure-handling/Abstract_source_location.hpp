@@ -8,7 +8,7 @@
 
 
 #include <cppx-core/collections/is_empty.hpp>               // cppx::is_empty
-#include <cppx-core/language/syntax/macro-with.hpp>         // CPPX_WITH
+#include <cppx-core-language/syntax/macro-with.hpp>         // CPPX_WITH
 #include <cppx-core/text/data/Symbol_strings.hpp>           // cppx::best_effort::*
 
 #include <string>                   // std::string

@@ -2,9 +2,9 @@
 
 #include <cppx-core/collections/dynamic-size-checking.hpp>          // cppx::n_items_of
 #include <cppx-core/iterators/Forward_iterator_impl_.hpp>           // cppx::Forward_iterator_impl_
-#include <cppx-core/language/syntax/type-builders.hpp>              // cppx::P_
-#include <cppx-core/language/syntax/macro-define_tag.hpp>           // CPPX_DEFINE_TAG
-#include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
+#include <cppx-core-language/syntax/type-builders.hpp>              // cppx::P_
+#include <cppx-core-language/syntax/macro-define_tag.hpp>           // CPPX_DEFINE_TAG
+#include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
 #include <cppx-core/meta-type/type-traits.hpp>                      // cppx::Iterator_for_
 
 #include <initializer_list> // std::initializer_list

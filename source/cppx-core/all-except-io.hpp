@@ -9,7 +9,7 @@
 #include <cppx-core/collections/all.hpp>
 #include <cppx-core/failure-handling/all.hpp>
 #include <cppx-core/iterators/all.hpp>
-#include <cppx-core/language/all.hpp>
+#include <cppx-core-language/all.hpp>
 #include <cppx-core/meta-macro/all.hpp>
 #include <cppx-core/meta-template/all.hpp>
 #include <cppx-core/meta-type/all.hpp>

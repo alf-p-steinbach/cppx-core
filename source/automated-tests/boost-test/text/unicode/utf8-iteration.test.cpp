@@ -2,10 +2,10 @@
 #include <_/test-framework.hpp>
 #include <cppx-core/text/unicode/utf8-iteration.hpp>
 
-#include <cppx-core/language/syntax/macro-use.hpp>              // $use_cppx
-#include <cppx-core/language/syntax/type-builders.hpp>          // cppx::(P_, Raw_array_of_)
-#include <cppx-core/language/system/size-types.hpp>             // cppx::Size
-#include <cppx-core/language/system/Byte.hpp>                   // cppx::Byte
+#include <cppx-core-language/syntax/macro-use.hpp>              // $use_cppx
+#include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(P_, Raw_array_of_)
+#include <cppx-core-language/system/size-types.hpp>             // cppx::Size
+#include <cppx-core-language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core/text/unicode/utf8-Generator.hpp>            // cppx::utf8::Generator
 #include <cppx-core/text/unicode/utf8-n_bytes_for.hpp>          // cppx::utf8::n_bytes_for
 

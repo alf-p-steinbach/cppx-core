@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/collections/Span_.hpp>                  // cppx::(Span_, all_but_first_of)
 #include <cppx-core/collections/is_empty.hpp>               // cppx::is_empty
-#include <cppx-core/language/syntax/type-builders.hpp>      // cppx::P_
+#include <cppx-core-language/syntax/type-builders.hpp>      // cppx::P_
 #include <cppx-core/text/ascii/ascii-util.hpp>              // cppx::*
 #include <cppx-core/text/data/Symbol_strings.hpp>           // cppx::best_effort::*
 #include <cppx-core/text/pointers-from-string_view.hpp>     // cppx::(p_first_of, p_beyond_of)

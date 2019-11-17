@@ -1,8 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
-#include <cppx-core/language/syntax/all.hpp>                        // CPPX_USE_STD, [[noreturn]]
-#include <cppx-core/language/types/Truth.hpp>                       // cppx::Truth
+#include <cppx-core-language/syntax/all.hpp>                        // CPPX_USE_STD, [[noreturn]]
+#include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
 
 #include <stdexcept>        // std::runtime_error
 #include <exception>        // std::throw_with_nested
