@@ -9,8 +9,8 @@
 #   include <boost/test/unit_test.hpp>
 #endif
 
-#include <cppx-core/meta-macro/macro-apply.hpp>
-#include <cppx-core/meta-macro/macro-repeat.hpp>
+#include <cppx-core-language/meta-macro/macro-apply.hpp>
+#include <cppx-core-language/meta-macro/macro-repeat.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $begin_test_suite    CPPX_BEGIN_TEST_SUITE

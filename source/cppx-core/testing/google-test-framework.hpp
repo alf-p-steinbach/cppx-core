@@ -1,8 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <gtest/gtest.h>
 
-#include <cppx-core/meta-macro/macro-apply.hpp>
-#include <cppx-core/meta-macro/macro-repeat.hpp>
+#include <cppx-core-language/meta-macro/macro-apply.hpp>
+#include <cppx-core-language/meta-macro/macro-repeat.hpp>
 
 namespace gtest = testing;
 
