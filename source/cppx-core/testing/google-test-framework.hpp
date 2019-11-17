@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 #include <cppx-core-language/meta-macro/macro-apply.hpp>
-#include <cppx-core-language/meta-macro/macro-repeat.hpp>
+#include <cppx-core-language/meta-macro/macro-duplicate.hpp>
 
 namespace gtest = testing;
 

@@ -152,7 +152,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │       macro-invoke_macro.hpp
 │       macro-joined.hpp
 │       macro-n_arguments.hpp
-│       macro-repeat.hpp
+│       macro-duplicate.hpp
 │       only_lvalue_ref_to.hpp
 │
 ├───meta-template

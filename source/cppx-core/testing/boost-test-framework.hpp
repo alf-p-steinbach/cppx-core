@@ -10,7 +10,7 @@
 #endif
 
 #include <cppx-core-language/meta-macro/macro-apply.hpp>
-#include <cppx-core-language/meta-macro/macro-repeat.hpp>
+#include <cppx-core-language/meta-macro/macro-duplicate.hpp>
 
 #ifndef CPPX_NO_DOLLARS_PLEASE
 #   define $begin_test_suite    CPPX_BEGIN_TEST_SUITE
@@ -43,7 +43,7 @@
     BOOST_AUTO_TEST_SUITE( name );
 
 #define CPPX_END_TEST_SUITE( nesting_level ) \
-    CPPX_REPEAT( nesting_level, CPPX_GENERATE_TEST_SUITE_END_ ) \
+    CPPX_DUPLICATE( nesting_level, CPPX_GENERATE_TEST_SUITE_END_ ) \
     static_assert( true, "- just to support a semicolon after this -" )
 
 #define CPPX_GENERATE_TEST_SUITE_END_() \
