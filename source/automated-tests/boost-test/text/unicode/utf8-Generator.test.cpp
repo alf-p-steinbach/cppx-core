@@ -3,7 +3,7 @@
 #include <cppx-core/text/unicode/utf8-Generator.hpp>
 
 #include <cppx-core/collections/dynamic-size-checking.hpp>      // cppx::(array_size_of, length_of)
-#include <cppx-core/collections/Span_.hpp>                      // cppx::all_but_last_of
+#include <cppx-core/collections/Span_util.hpp>                  // cppx::all_but_last_of
 #include <cppx-core-language/bit-level/all.hpp>                 // cppx::Byte
 #include <cppx-core-language/syntax/macro-use.hpp>              // $use_std
 

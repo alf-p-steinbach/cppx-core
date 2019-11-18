@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/Span_.hpp>                  // cppx::span_of
+#include <cppx-core/collections/Span_util.hpp>              // cppx::span_of
 #include <cppx-core-language/syntax/macro-items_of.hpp>     // CPPX_ITEMS_OF
 #include <cppx-core-language/syntax/repeat_times.hpp>       // cppx::repeat_times
 #include <cppx-core-language/syntax/type-builders.hpp>      // cppx::P_

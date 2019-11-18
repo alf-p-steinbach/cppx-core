@@ -2,10 +2,9 @@
 //
 // Mainly for use with range based `for` loops.
 
+#include <cppx-core-language/syntax/Span_.hpp>                  // cppx::Span_
+
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
-#include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core-language/system/size-types.hpp>             // cppx::Size
-#include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 
 #include <iterator>     // std::(begin, distance, end, prev, next, make_reverse_iterator, reverse_iterator )
 #include <queue>        // std::queue
@@ -19,61 +18,10 @@ namespace cppx
         queue, reverse_iterator, stack
         );
 
-    template< class Collection >
-    inline auto it_begin_of( Collection&& c )
-    {
-        using std::begin;
-        return begin( c );
-    }
-
-    template< class Collection >
-    inline auto it_end_of( Collection&& c )
-    {
-        using std::end;
-        return end( c );
-    }
-
-    template< class Iterator >
-    class Span_
-    {
-        Iterator    m_first;
-        Iterator    m_beyond;
-
-    public:
-        auto first() const      -> Iterator { return m_first; }
-        auto beyond() const     -> Iterator { return m_beyond; }
-        auto& front() const                 { return *m_first; }
-        auto is_empty() const   -> Truth    { return (m_first == m_beyond); }
-
-        // Standard library & core language naming convention adapters.
-        auto begin() const      -> Iterator { return m_first; }
-        auto end() const        -> Iterator { return m_beyond; }
-        auto empty() const      -> Truth    { return (m_first == m_beyond); }
-
-        Span_( const Iterator first, const Iterator beyond ):
-            m_first( first ),
-            m_beyond( beyond )
-        {}
-
-        template< class Collection >
-        Span_( Collection&& c ):
-            m_first( it_begin_of( c ) ),
-            m_beyond( it_end_of( c ) )
-        {}
-    };
-
-    template< class Item >
-    using Array_span_ = Span_<P_<Item>>;
-
     template< class Iterator >
     inline auto n_items_of( const Span_<Iterator>& range )
         -> Size
     { return distance( range.begin(), range.end() ); }
-
-    template< class Iterator >
-    inline auto span_of( const Iterator first, const Iterator beyond )
-        -> Span_<Iterator>
-    { return Span_<Iterator>( first, beyond ); }
 
     template< class Container >
     inline auto all_of( Container&& c )

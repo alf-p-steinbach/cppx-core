@@ -3,7 +3,7 @@
 #include <cppx-core/text/unicode/utf16-Generator.hpp>
 
 #include <cppx-core/collections/dynamic-size-checking.hpp>      // cppx::(array_size_of, length_of)
-#include <cppx-core/collections/Span_.hpp>                      // cppx::span_of_literal
+#include <cppx-core/collections/Span_util.hpp>                  // cppx::span_of_literal
 #include <cppx-core-language/bit-level/all.hpp>                 // cppx::Byte
 #include <cppx-core-language/syntax/macro-use.hpp>              // $use_std
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::Raw_array_

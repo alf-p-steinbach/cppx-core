@@ -81,7 +81,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │       Set_.hpp
 │       Sorted_map_.hpp
 │       Sorted_set_.hpp
-│       Span_.hpp
+│       Span_util.hpp
 │       String_value_view_.hpp
 │
 ├───failure-handling
