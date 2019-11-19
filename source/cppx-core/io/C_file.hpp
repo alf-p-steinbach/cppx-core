@@ -125,7 +125,7 @@ namespace cppx
         }
 
         result.reserve( n );
-        for( const Index i: up_to( n ) ) {
+        for( const Index i: zero_to( n ) ) {
             result.push_back( from_bytes_<T>( p_first + i*sizeof( T ) ) );
         }
         return result;

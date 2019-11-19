@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/collections/Range_.hpp>                     // cppx::Range
 #include <cppx-core-language/syntax/macro-items_of.hpp>         // CPPX_ITEMS_OF
 #include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core-language/syntax/Sequence_.hpp>              // cppx::Sequence_
 #include <cppx-core-language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(R_, P_)
@@ -131,7 +131,7 @@ namespace cppx::ascii
         static const string the_chars = invoke([]() -> string
         {
             string result;
-            for( const int code: Range( 0, last_char ) )
+            for( const int code: Sequence( 0, last_char ) )
             {
                 if( is_whitespace( char( code ) ) )
                 {

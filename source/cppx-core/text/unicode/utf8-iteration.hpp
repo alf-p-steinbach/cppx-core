@@ -4,7 +4,7 @@
 // For the classifiers see <url: https://en.wikipedia.org/wiki/UTF-8#Codepage_layout>.
 
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
-#include <cppx-core/collections/Range_.hpp>                     // cppx::up_to
+#include <cppx-core-language/syntax/Sequence_.hpp>              // cppx::zero_to
 #include <cppx-core/failure-handling/macro-fail.hpp>            // cppx::(hopefully, fail) CPPX_FAIL
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(P_)
 #include <cppx-core-language/system/Byte.hpp>                   // cppx::Byte
@@ -100,11 +100,11 @@ namespace cppx::utf8
     {
         if( distance >= 0 )
         {
-            for( auto _ : up_to( distance ) ) { (void)_; move_to_next( p ); }
+            for( auto _ : zero_to( distance ) ) { (void)_; move_to_next( p ); }
         }
         else
         {
-            for( auto _ : up_to( -distance ) ) { (void)_; move_to_prev( p ); }
+            for( auto _ : zero_to( -distance ) ) { (void)_; move_to_prev( p ); }
         }
     }
 
@@ -114,12 +114,12 @@ namespace cppx::utf8
         if( distance >= 0 )
         {
             const auto p_beyond = p_beyond_of( range );
-            for( auto _ : up_to( distance ) ) { (void)_; move_to_next( p, p_beyond ); }
+            for( auto _ : zero_to( distance ) ) { (void)_; move_to_next( p, p_beyond ); }
         }
         else
         {
             const auto p_first = p_first_of( range );
-            for( auto _ : up_to( -distance ) )
+            for( auto _ : zero_to( -distance ) )
             {
                 (void)_;
                 if( not move_to_prev( p, p_first ) )

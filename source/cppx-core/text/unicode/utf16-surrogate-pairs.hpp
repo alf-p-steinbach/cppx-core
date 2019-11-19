@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/collections/Range_.hpp>                     // cppx::Range_
+#include <cppx-core-language/syntax/Sequence_.hpp>              // cppx::Sequence_
 #include <cppx-core-language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core-language/bit-level/bits_per_.hpp>           // cppx::magnitude_bits_per_
 #include <cppx-core-language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
@@ -14,8 +14,8 @@ namespace cppx::utf16
     constexpr unsigned  max_value       = first_beyond - 1;     //  0xFFFF
 
     // UTF-16 surrogate pair value ranges:
-    constexpr Range_<unsigned>  range_of_pair_value_1( 0xD800, 0xDBFF );
-    constexpr Range_<unsigned>  range_of_pair_value_2( 0xDC00, 0xDFFF );
+    constexpr Sequence_<unsigned>  range_of_pair_value_1( 0xD800, 0xDBFF );
+    constexpr Sequence_<unsigned>  range_of_pair_value_2( 0xDC00, 0xDFFF );
 
     inline constexpr auto code_from_pair( const unsigned v1, const unsigned v2 ) noexcept
         -> uint32_t
@@ -23,8 +23,8 @@ namespace cppx::utf16
         //assert( range_of_pair_value_1.contains( v1 ) );
         //assert( range_of_pair_value_2.contains( v2 ) );
         return first_beyond + (
-            ((v1 - range_of_pair_value_1.lower()) << 10) |
-            (v2 - range_of_pair_value_2.lower())
+            ((v1 - range_of_pair_value_1.first()) << 10) |
+            (v2 - range_of_pair_value_2.first())
             );
     }
 
@@ -32,14 +32,14 @@ namespace cppx::utf16
         -> unsigned
     {
         // assert( code > max_value )
-        return ((code - first_beyond) >> 10) + range_of_pair_value_1.lower();
+        return ((code - first_beyond) >> 10) + range_of_pair_value_1.first();
     }
 
     inline constexpr auto pair_value_2_from( const uint32_t code )
         -> unsigned
     {
         // assert( code > max_value )
-        return (code & 0x3FFu) + range_of_pair_value_2.lower();
+        return (code & 0x3FFu) + range_of_pair_value_2.first();
     }
 
     template<

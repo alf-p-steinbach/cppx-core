@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/collections/Range_.hpp>                     // cppx::Range_
+#include <cppx-core-language/syntax/Sequence_.hpp>              // cppx::Sequence_
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::P_
 #include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_...
 #include <cppx-core-language/tmp/Type_carrier_.hpp>             // cppx::Type_carrier_
@@ -79,9 +79,9 @@ namespace cppx
             }
 
             const bool is_ascii_namechar =
-                is_in( Range_( '0', '9' ), ch ) or
-                is_in( Range_( 'A', 'Z' ), ch ) or
-                is_in( Range_( 'a', 'z' ), ch ) or
+                is_in( Sequence_( '0', '9' ), ch ) or
+                is_in( Sequence_( 'A', 'Z' ), ch ) or
+                is_in( Sequence_( 'a', 'z' ), ch ) or
                 ch == '_';
             return not is_ascii_namechar;
         };

@@ -21,12 +21,12 @@ A ~minimal example of *cppx-core* usage:
 ~~~cpp
 // → examples/hello.cpp
 #include <cppx-core/all.hpp>
-$use_cppx( up_to, spaces );
+$use_cppx( zero_to, spaces );
 $use_std( cout, endl );
 
 auto main() -> int
 {
-    for( const int i: up_to( 7 ) )
+    for( const int i: zero_to( 7 ) )
     {
         cout << spaces( 36 - i*i ) << "cppx-core, yay!" << endl;
     }
@@ -77,7 +77,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │       is_in.hpp
 │       Map_.hpp
 │       Matrix_.hpp
-│       Range_.hpp
+│       Sequence_util.hpp
 │       Set_.hpp
 │       Sorted_map_.hpp
 │       Sorted_set_.hpp
@@ -89,7 +89,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │       all.hpp
 │       exception-propagation.hpp
 │       exception-unwrapping.hpp
-│       hopefully_and_fail.hpp
+│       hopefully_or_fail.hpp
 │       macro-dbginfo.hpp
 │       macro-fail.hpp
 │       macro-source_location.hpp

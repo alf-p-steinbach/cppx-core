@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/Range_.hpp>                     // cppx::Range_
 #include <cppx-core-language/syntax/macro-define_tag.hpp>       // CPPX_DEFINE_TAG
+#include <cppx-core-language/syntax/Sequence_.hpp>              // cppx::Sequence_
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 
 #include <initializer_list>     // std::initializer_list
@@ -39,7 +39,7 @@ namespace cppx
 
         // Only meaningful for integer-like Key:
         template< class Integer >
-        Set_( const Range_<Integer> range ):
+        Set_( const Sequence_<Integer> range ):
             Base( range.begin(), range.end() )
         {}
         
@@ -67,7 +67,7 @@ namespace cppx
     { return { a_key }; }
     
     template< class Integer >
-    inline auto as_set( const Range_<Integer> range )
+    inline auto as_set( const Sequence_<Integer> range )
         -> Set_<Integer>
     { return { range }; }
     
