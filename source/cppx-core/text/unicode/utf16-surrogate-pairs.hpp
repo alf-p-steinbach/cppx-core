@@ -3,7 +3,7 @@
 #include <cppx-core-language/system/Byte.hpp>                   // cppx::Byte
 #include <cppx-core-language/bit-level/bits_per_.hpp>           // cppx::magnitude_bits_per_
 #include <cppx-core-language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
-#include <cppx-core/meta-type/type-traits.hpp>                  // cppx::Item_for_iterator_
+#include <cppx-core/meta-type/collection-traits.hpp>            // cppx::Item_for_iterator_
 
 #include <c/assert.hpp>         // assert
 #include <c/stdint.hpp>         // uint32_t

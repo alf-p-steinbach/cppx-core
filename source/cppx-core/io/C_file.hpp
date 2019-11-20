@@ -9,7 +9,7 @@
 #include <cppx-core-language/system/size-types.hpp>             // cppx::Size
 #include <cppx-core-language/types/C_str_.hpp>                  // cppx::C_str
 #include <cppx-core/stdlib-wrappers/filesystem-util.hpp>        // cppx::fs::*
-#include <cppx-core/text/basic-string-building.hpp>             // cppx::operator<<
+#include <cppx-core-language/syntax/basic-string-building.hpp>  // cppx::operator<<
 #include <cppx-core/text/string-util.hpp>                       // cppx::quoted
 
 #include <c/assert.hpp>     // assert

@@ -20,7 +20,7 @@ namespace cppx
         const char      del         = '\x7F';       //      0x7F
 
         const char      first_char  = char( 0 );    static_assert( first_char == null );
-        const char      last_char   = char( 127 );  static_assert( last_char == del );
+        const char      max_value   = char( 127 );  static_assert( max_value == del );
 
         // Standard but unfortunately uppercase abbreviations as per ASCII '67:
         const char      NUL         = null;

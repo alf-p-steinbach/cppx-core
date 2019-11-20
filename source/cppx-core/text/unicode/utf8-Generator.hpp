@@ -29,7 +29,7 @@ namespace cppx::utf8
             using Out_code = typename iterator_traits<Out_iterator>::value_type;
 
             Out_iterator out = destination;
-            static_assert( ascii::last_char == 0x7F );
+            static_assert( ascii::max_value == 0x7F );
             if( code <= 0x7F )
             {
                 *out = static_cast<Out_code>( code );  ++out;
