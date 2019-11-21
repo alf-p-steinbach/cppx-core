@@ -6,7 +6,7 @@
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(R_, P_)
 #include <cppx-core-language/tmp/type-traits.hpp>               // cppx::(is_integral_, is_a_char_type_)
-#include <cppx-core-language/tmp/type-mutators.hpp>             // cppx::(Unsigned_)
+#include <cppx-core-language/tmp/type-modifiers.hpp>            // cppx::(Unsigned_)
 #include <cppx-core-language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
 #include <cppx-core/text/data/ascii-character-names.hpp>        // cppx::ascii::/names/
 
