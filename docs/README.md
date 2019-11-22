@@ -120,7 +120,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │   │       integer-operations.hpp
 │   │       named-numbers.hpp
 │   │       number-type-properties.hpp
-│   │       std-calc.hpp
+│   │       stdlib-headers.hpp
 │   │
 │   ├───syntax
 │   │       all.hpp

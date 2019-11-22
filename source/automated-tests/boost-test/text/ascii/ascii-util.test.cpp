@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <_/test-framework.hpp>
-#include <cppx-core/text/ascii/ascii-util.hpp>
+#include <cppx-core-language/ascii/ascii-util.hpp>
 
 #include <string>       // std::string
 #include <string_view>  // std::string_view
