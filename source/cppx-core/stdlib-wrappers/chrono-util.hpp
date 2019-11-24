@@ -8,7 +8,7 @@
 
 namespace cppx
 {
-    CPPX_USE_STD_NSNAME( chrono );
+    CPPX_USE_STD_NS( chrono );
     CPPX_USE_STD(
         conditional_t,
         milli, micro, nano
