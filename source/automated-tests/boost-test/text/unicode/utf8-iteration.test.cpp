@@ -2,7 +2,7 @@
 #include <_/test-framework.hpp>
 #include <cppx-core/text/unicode/utf8-iteration.hpp>
 
-#include <cppx-core-language/syntax/macro-use.hpp>              // $use_cppx
+#include <cppx-core-language/syntax/macro-alias.hpp>            // $alias_cppx_ns
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(P_, Raw_array_of_)
 #include <cppx-core-language/system/size-types.hpp>             // cppx::Size
 #include <cppx-core-language/system/Byte.hpp>                   // cppx::Byte
@@ -16,7 +16,7 @@
 #include <vector>           // std::vector
 #include <iterator>         // std::(begin, end)
 
-$use_cppx_ns( utf8 );
+$alias_cppx_ns( utf8 );
 $use_cppx( Byte, utf8::n_bytes_for, P_, Raw_array_of_, Size );
 
 #include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>   //!

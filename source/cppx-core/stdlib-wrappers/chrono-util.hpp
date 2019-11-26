@@ -1,6 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/syntax/macro-use.hpp>          // CPPX_USE_...
+#include <cppx-core-language/syntax/macro-alias.hpp>            // CPPX_ALIAS_...
+#include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_...
 
 #include <chrono>           // std::chrono::*
 #include <ratio>            // std::(milli, micro, nano)
@@ -8,7 +9,7 @@
 
 namespace cppx
 {
-    CPPX_USE_STD_NS( chrono );
+    CPPX_ALIAS_STD_NS( chrono );
     CPPX_USE_STD(
         conditional_t,
         milli, micro, nano
