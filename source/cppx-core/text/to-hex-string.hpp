@@ -1,8 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/Value_bytes_.hpp>                   // cppx::Value_bytes_
-
 #include <cppx-core-language/syntax/macro-use.hpp>                  // CPPX_USE_STD
+#include <cppx-core-language/system-dependent/Value_bytes_.hpp>     // cppx::Value_bytes_
 #include <cppx-core-language/text/remove_leading_zeroes_in.hpp>     // cppx::remove_leading_zeroes_in
 #include <cppx-core-language/text/to-hex-in-buffer.hpp>             // cppx::*
 #include <cppx-core-language/tmp/Enable_if_.hpp>                    // cppx::Enable_if_
@@ -62,7 +61,8 @@ namespace cppx {
         ) -> string
     {
         if constexpr( is_pointer_<Type> ) {
-            return hex_from_pointer_bytes( value, hex_digits );
+            static_assert( false, "to_hex(pointer) not implemented" );
+            //return hex_from_pointer_bytes( value, hex_digits );       //TODO:
         } else if constexpr( is_scalar_<Type> ) {
             return hex_from_value( value, hex_digits );
         } else {
