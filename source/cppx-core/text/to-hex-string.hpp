@@ -4,8 +4,9 @@
 #include <cppx-core-language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
 #include <cppx-core-language/tmp/type-traits.hpp>               // cppx::(is_xxx_)
 #include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core/text/to-hex-in-buffer.hpp>                  // cppx::*
 #include <cppx-core/text/remove_leading_zeroes_in.hpp>          // cppx::remove_leading_zeroes_in
+
+#include <cppx-core-language/ascii/to-hex-in-buffer.hpp>        // cppx::*
 
 #include <c/assert.hpp>     // assert
 #include <string>           // std::string
