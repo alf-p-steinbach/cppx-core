@@ -62,12 +62,10 @@ namespace cppx {
             const P_<const char>    hex_digits  = hex_digits_uppercase
             ) -> int
         {
-            return int( byte_span_to_hex_in( buffer, CPPX_ITEMS_OF( bytes ), hex_digits ) );
+            return int( byte_span_to_hex_in(
+                Bufferptr_byte_to_hex( buffer ), CPPX_ITEMS_OF( bytes ), hex_digits
+                ) );
         }
-
-        static constexpr auto its_buffer_size( const int n_bytes )
-            -> Size
-        { return buffer_size_for( byte_span_to_hex_in, n_bytes ); }
     };
 
     // buffer, bytes, {optional} hex_digits
@@ -78,7 +76,7 @@ namespace cppx {
         const P_<const char>    hex_digits  = hex_digits_uppercase
         ) -> string
     {
-        const auto result_length = int( buffer_size_for( pointer_to_hex_in, bytes.size() ) );
+        const auto result_length = int( Bufferptr_byte_to_hex::size_for( bytes.size() ) );
         string result( result_length, '\0' );
         pointer_to_hex_in( result.data(), bytes, hex_digits );
         return result;
