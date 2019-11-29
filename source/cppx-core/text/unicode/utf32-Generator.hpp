@@ -9,7 +9,7 @@
 #include <cppx-core/text/unicode/utf8-iteration.hpp>                // cppx::utf8::*
 #include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
 
-#include <cppx-core-language/ascii/ascii-character-names.hpp>       // cppx::ascii::bad_char
+#include <cppx-core-language/text/ascii-character-names.hpp>        // cppx::ascii::bad_char
 
 #include <iterator>             // std::(distance, next)
 #include <functional>           // std::invoke

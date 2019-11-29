@@ -325,7 +325,7 @@ The standard library provides the `::isspace` function from the C standard libra
 
 The standard library also provides a `std::isspace` function overload that takes a `char` and a `std::locale` as arguments. That doesn't suffer from the correctness problems of `::isspace`, but is less efficient and gives more contorted calling code. And likewise for other `cppx::ascii` functions: it's not functionality that's entirely missing in the standard library, but functionality where the standard library, for historical reasons, namely the C++ roots in 1970's C and the generalization of iostreams in the 1990s, makes the calling code brittle, or unclear, or inefficient.
 
-These functions and control character names are all provided by headers in the *cppx-core/text/ascii/* folder, mainly *cppx-core/text/ascii/ascii-character-util.hpp*.
+These functions and control character names are all provided by headers in the *cppx-core/text/text/* folder, mainly *cppx-core/text/text/ascii-character-util.hpp*.
 
 
 ## 9 – Easily pass `begin`/`end` pairs with the `$items` macro.
