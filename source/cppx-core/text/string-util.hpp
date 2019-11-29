@@ -1,11 +1,12 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core-language/ascii/ascii-util.hpp>          // cppx::*
-#include <cppx-core/collections/Span_util.hpp>              // cppx::(Span_, all_but_first_of)
-#include <cppx-core/collections/is_empty.hpp>               // cppx::is_empty
-#include <cppx-core-language/syntax/type-builders.hpp>      // cppx::P_
-#include <cppx-core/text/data/Symbol_strings.hpp>           // cppx::best_effort::*
-#include <cppx-core/text/pointers-from-string_view.hpp>     // cppx::(p_first_of, p_beyond_of)
-#include <cppx-core/text/unicode/utf8-iteration.hpp>        // cppx::utf8::(n_code_points_in, *)
+#include <cppx-core-language/ascii/ascii-character-util.hpp>        // cppx::*
+#include <cppx-core-language/syntax/general-string-builders.hpp>    // cppx::spaces
+#include <cppx-core/collections/Span_util.hpp>                      // cppx::(Span_, all_but_first_of)
+#include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
+#include <cppx-core-language/syntax/type-builders.hpp>              // cppx::P_
+#include <cppx-core/text/data/Symbol_strings.hpp>                   // cppx::best_effort::*
+#include <cppx-core/text/pointers-from-string_view.hpp>             // cppx::(p_first_of, p_beyond_of)
+#include <cppx-core/text/unicode/utf8-iteration.hpp>                // cppx::utf8::(n_code_points_in, *)
 
 #include <iterator>             // std::next
 #include <utility>              // std::move
@@ -19,31 +20,6 @@ namespace cppx
     // This is not at all perfect, especially wrt. Unicode character modifiers, but the
     // simpleton approach of counting code points for character positions is usually Good
     // Enough™, and it plays nicely with console windows that do not compose characters.
-
-    inline auto spaces( const int n )
-        -> string
-    { return (n <= 0? "" : string( n, ' ')); }
-
-    inline namespace string_repeat
-    {
-        inline auto repeated( const int n, const string_view& s )
-            -> string
-        {
-            if( n <= 0 ) { return ""; }
-
-            string result;
-            result.reserve( n*s.length() );
-            for( int i = 1; i <= n; ++i )
-            {
-                result += s;
-            }
-            return result;
-        }
-
-        inline auto operator*( const int n, const string_view& s )
-            -> string
-        { return repeated( n, s ); }
-    }
 
     inline auto at_left( const int width, const string_view& s )
         -> string
@@ -117,22 +93,5 @@ namespace cppx
     }
 
     inline auto split() -> void; // TODO
-
-    template< class Iterator >
-    inline auto joined(
-        const Span_<Iterator>       range,
-        const string_view&          separator = " "
-        ) -> string
-    {
-        if( is_empty( range ) ) { return ""; }
-
-        string result = range.front();
-        for( const auto& item : all_but_first_of( range ) )
-        {
-            result += separator;
-            result += item;
-        }
-        return result;
-    }
 
 }  // namespace cppx

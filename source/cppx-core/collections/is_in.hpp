@@ -2,7 +2,7 @@
 
 #include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::Raw_array_of_
-#include <cppx-core-language/system/size-types.hpp>             // cppx::Size
+#include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::Size
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 
 #include <algorithm>            // std::(binary_search, find)

@@ -325,7 +325,7 @@ The standard library provides the `::isspace` function from the C standard libra
 
 The standard library also provides a `std::isspace` function overload that takes a `char` and a `std::locale` as arguments. That doesn't suffer from the correctness problems of `::isspace`, but is less efficient and gives more contorted calling code. And likewise for other `cppx::ascii` functions: it's not functionality that's entirely missing in the standard library, but functionality where the standard library, for historical reasons, namely the C++ roots in 1970's C and the generalization of iostreams in the 1990s, makes the calling code brittle, or unclear, or inefficient.
 
-These functions and control character names are all provided by headers in the *cppx-core/text/ascii/* folder, mainly *cppx-core/text/ascii/ascii-util.hpp*.
+These functions and control character names are all provided by headers in the *cppx-core/text/ascii/* folder, mainly *cppx-core/text/ascii/ascii-character-util.hpp*.
 
 
 ## 9 – Easily pass `begin`/`end` pairs with the `$items` macro.
@@ -385,7 +385,7 @@ Now, with the default allocator the size type of a `std::string`, a `std::vector
 
 So, ***how to express a loop condition*** can depend crucially on whether the loop variable is of a signed or unsigned type. With the signed `Index` type you can get simple conditions as above, and you can avoid wrap-around problems. But using `Index` doesn't remove all the dangers: coding as if it were an unsigned type can yield bugs.
 
-*cppx-core-language/system/size-types.hpp* also provides a signed size type called **`Size`**, that's an alias for `Index`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**. Both these functions are provided by *cppx-core/collections/size-checking.hpp*.
+*cppx-core-language/system-dependent/size-types.hpp* also provides a signed size type called **`Size`**, that's an alias for `Index`. To avoid signed/unsigned mismatch warnings these types are supported by signed result functions such as **`n_items_of`** and (for strings) **`length_of`**. Both these functions are provided by *cppx-core/collections/size-checking.hpp*.
 
 
 ## 11 – Easily display the messages of nested exceptions.

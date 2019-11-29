@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/system/size-types.hpp>     // cppx::Size
+#include <cppx-core-language/system-dependent/size-types.hpp>       // cppx::Size
 
 #include <iterator>     // std::iterator_traits
 

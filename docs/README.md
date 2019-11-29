@@ -197,7 +197,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
     │
     ├───ascii
     │       all.hpp
-    │       ascii-util.hpp
+    │       ascii-character-util.hpp
     │
     ├───data
     │       all.hpp
