@@ -1,10 +1,11 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/system-dependent/Value_bytes_.hpp> // cppx::Value_bytes_
+#include <cppx-core/parameters/buffer_size_for_.hpp>            // cppx::Call_operator_for_
+
 #include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
 #include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(Func_, P_)
-#include <cppx-core/parameters/buffer_size_for_.hpp>            // cppx::Call_operator_for_
-#include <cppx-core/text/to-hex-string.hpp>                     // cppx::{hex functionality}
+#include <cppx-core-language/system-dependent/Value_bytes_.hpp> // cppx::Value_bytes_
+#include <cppx-core-language/text/to-hex-string.hpp>            // cppx::{hex functionality}
 
 #include <algorithm>        // std::max
 #include <string>           // std::string
@@ -64,7 +65,7 @@ namespace cppx {
             ) -> int
         {
             return int( byte_span_to_hex_in(
-                Bufferptr_byte_to_hex( buffer ), CPPX_ITEMS_OF( bytes ), hex_digits
+                Bufferptr_for_byte_to_hex( buffer ), CPPX_ITEMS_OF( bytes ), hex_digits
                 ) );
         }
     };
@@ -77,7 +78,7 @@ namespace cppx {
         const P_<const char>    hex_digits  = hex_digits_uppercase
         ) -> string
     {
-        const auto result_length = int( Bufferptr_byte_to_hex::size_for( bytes.size() ) );
+        const auto result_length = int( Bufferptr_for_byte_to_hex::size_for( bytes.size() ) );
         string result( result_length, '\0' );
         pointer_to_hex_in( result.data(), bytes, hex_digits );
         return result;

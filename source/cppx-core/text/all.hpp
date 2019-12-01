@@ -5,6 +5,5 @@
 
 #include <cppx-core/text/pointers-from-string_view.hpp>
 #include <cppx-core/text/string-util.hpp>
-#include <cppx-core/text/to-hex-string.hpp>
 
 #include <cppx-core-language/text/all.hpp>
