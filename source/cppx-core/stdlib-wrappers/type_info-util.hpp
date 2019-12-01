@@ -7,10 +7,6 @@
 #include <string>       // std::string
 #include <utility>      // std::forward
 
-#ifdef __GNUC__
-#   include  <cxxabi.h>
-#endif
-
 namespace cppx
 {
     CPPX_USE_STD( forward, string );
