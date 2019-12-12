@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/iterators/Count_iterator_.hpp>
-#include <cppx-core-language/syntax/macro-use.hpp>
+#include <cppx-core-language/syntax/declarations.hpp>
 #include <cppx-core/text/unicode/utf16-Generator.hpp>
 
 namespace cppx::utf16

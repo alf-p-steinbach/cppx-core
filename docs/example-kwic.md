@@ -220,7 +220,7 @@ The **`$use_cppx`** macro is an alias for `CPPX_USE_CPPX`, and ditto, **`$use_st
 
 Both macros are defined in terms of the more general `CPPX_USE_FROM_NAMESPACE`, alias **`$use_from_namespace`**, which you can use to `using`-declare names from other namespaces.
 
-These macros are provided by *cppx-core-language/syntax/macro-use.hpp*.
+These macros are provided by *cppx-core-language/syntax/declarations.hpp*.
 
 
 ## 5 – Easily also make nested namespaces directly available.
@@ -241,7 +241,7 @@ The **`$use_namespace_name_in`** macro has a corresponding “plural form” mac
 
 I'm sorry, the names are verbose. The plural form can still save typing, but one doesn't often need to refer unqualified to multiple nested namespaces… So, this notation is more about avoiding the name repetition in the expansion; it's a more DRY notation  –  *Don't Repeat Yourself*.
 
-Like `$use_cppx`, `$use_std` and `$use_from_namespace`, the `$use_namespace_name_in` and `$use_namespace_names_in` macros are provided by *cppx-core-language/syntax/macro-use.hpp*.
+Like `$use_cppx`, `$use_std` and `$use_from_namespace`, the `$use_namespace_name_in` and `$use_namespace_names_in` macros are provided by *cppx-core-language/syntax/declarations.hpp*.
 
 
 ## 6 – Easily throw an exception with throw point information.
@@ -475,4 +475,4 @@ By the way, as the code so far has exemplified my preferred convention for where
 
 For some time I experimented with a ditto notation for references, but in the end I found that it didn't really provide any advantage. But `P_` does, in particular because, unlike references, it makes sense to declare a pointer itself as `const`. And also because one can have pointers to pointers with possible `const`-ness at each level, and because in a `for` loop one may want to declare two or more pointers in the loop head.
 
-Both the above functions are provided by *cppx-core/failure-handling/exception-unwrapping.hpp*. The `monospaced_bullet_block` function is provided by *cppx-core/io/monospaced_bullet_block.hpp*. The `P_` type builder and others that also are sufficiently basic to support template argument deduction, are provided by *cppx-core-language/syntax/type-builders.hpp*.
+Both the above functions are provided by *cppx-core/failure-handling/exception-unwrapping.hpp*. The `monospaced_bullet_block` function is provided by *cppx-core/io/monospaced_bullet_block.hpp*. The `P_` type builder and others that also are sufficiently basic to support template argument deduction, are provided by *cppx-core-language/syntax/types/type-builders.hpp*.

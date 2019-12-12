@@ -4,9 +4,9 @@
 // For the classifiers see <url: https://en.wikipedia.org/wiki/UTF-8#Codepage_layout>.
 
 #include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
-#include <cppx-core-language/syntax/Sequence_.hpp>              // cppx::zero_to
+#include <cppx-core-language/syntax/types/Sequence_.hpp>        // cppx::zero_to
 #include <cppx-core/failure-handling/macro-fail.hpp>            // cppx::(hopefully, fail) CPPX_FAIL
-#include <cppx-core-language/syntax/type-builders.hpp>          // cppx::(P_)
+#include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx::(P_)
 #include <cppx-core-language/system-dependent/Byte.hpp>         // cppx::Byte
 #include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::Size
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth

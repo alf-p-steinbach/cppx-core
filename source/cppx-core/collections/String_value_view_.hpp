@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
-#include <cppx-core-language/syntax/type-builders.hpp>          // cppx:P_
+#include <cppx-core-language/syntax/declarations.hpp>           // CPPX_USE_STD
+#include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx:P_
 #include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::Size
 #include <cppx-core/collections/dynamic-size-checking.hpp>      // cppx::length_of
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth

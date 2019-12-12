@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core/collections/is_in.hpp>                          // cppx::is_in
 #include <cppx-core/io/monospaced_bullet_block.hpp>                 // cppx::monospaced_bullet_block
-#include <cppx-core-language/syntax/macro-use.hpp>                  // CPPX_USE_STD
+#include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
 
 //#include <c/stdio.hpp>      // FILE, fflush, fprintf, stderr, stdout
 #include <iostream>         // std::(cerr, clog, endl)

@@ -126,7 +126,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 │   │       all.hpp
 │   │       macro-define_tag.hpp
 │   │       macro-items_of.hpp
-│   │       macro-use.hpp
+│   │       declarations.hpp
 │   │       macro-with.hpp
 │   │       type-builders.hpp
 │   │

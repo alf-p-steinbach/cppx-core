@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/syntax/type-builders.hpp>          // cppx::Raw_array_of_
-#include <cppx-core-language/syntax/macro-use.hpp>              // CPPX_USE_STD
+#include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx::Raw_array_of_
+#include <cppx-core-language/syntax/declarations.hpp>           // CPPX_USE_STD
 #include <cppx-core-language/tmp/type-traits.hpp>               // cppx::(is_signed_ ...)
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core-language/tmp/type-modifiers.hpp>            // cppx::(Unref_ ...)

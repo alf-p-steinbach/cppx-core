@@ -1,9 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
-#include <cppx-core-language/syntax/hopefully-or-fail.hpp>          // cppx::(fail, hopefully, noreturn)
-#include <cppx-core-language/syntax/macro-use.hpp>                  // CPPX_USE_STD
-#include <cppx-core-language/syntax/success-checking.hpp>           // cppx::(Success, Failure, Is_zero, operator>>)
+#include <cppx-core-language/syntax/exception-throwing.hpp>         // cppx::(fail, hopefully, noreturn, Success, Failure, Is_zero, operator>>)
+#include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
 #include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
 
 #include <stdexcept>        // std::runtime_error
