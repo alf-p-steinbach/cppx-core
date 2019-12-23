@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cpp/assert/is-c++17-or-later.hpp>
+#include <cppx-core-language/assert-cpp/is-c++17-or-later.hpp>
 #ifndef CPPX_NO_CHARSET_ASSERTION_PLEASE
-#   include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>
+#   include <cppx-core-language/assert-cpp/has-utf8-execution-character-set.hpp>
 #endif
 
 #include <cppx-core/all-ascii.hpp>

@@ -103,7 +103,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 ├───iterators
 │       all.hpp
 │       Count_iterator_.hpp
-│       Forward_iterator_impl_.hpp
+│       mix_in::Adapt_as_forward_iterator_.hpp
 │
 ├───language
 │   │   all.hpp

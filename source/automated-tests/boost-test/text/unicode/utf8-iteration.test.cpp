@@ -2,12 +2,12 @@
 #include <_/test-framework.hpp>
 #include <cppx-core/text/unicode/utf8-iteration.hpp>
 
-#include <cppx-core-language/syntax/declarations/macro-alias_ns_from.hpp>   // $alias_cppx_ns
-#include <cppx-core-language/syntax/types/type-builders.hpp>                // cppx::(P_, Raw_array_of_)
-#include <cppx-core-language/system-dependent/size-types.hpp>               // cppx::Size
-#include <cppx-core-language/system-dependent/Byte.hpp>                     // cppx::Byte
-#include <cppx-core/text/unicode/utf8-Generator.hpp>                        // cppx::utf8::Generator
-#include <cppx-core/text/unicode/utf8-n_bytes_for.hpp>                      // cppx::utf8::n_bytes_for
+#include <cppx-core-language/syntax/declarations.hpp>               // $alias_cppx_ns
+#include <cppx-core-language/syntax/types/type-builders.hpp>        // cppx::(P_, Raw_array_of_)
+#include <cppx-core-language/system-dependent/size-types.hpp>       // cppx::Size
+#include <cppx-core-language/system-dependent/Byte.hpp>             // cppx::Byte
+#include <cppx-core/text/unicode/utf8-Generator.hpp>                // cppx::utf8::Generator
+#include <cppx-core/text/unicode/utf8-n_bytes_for.hpp>              // cppx::utf8::n_bytes_for
 
 #include <c/assert.hpp>     // assert
 #include <c/string.hpp>     // strlen
@@ -16,7 +16,7 @@
 #include <vector>           // std::vector
 #include <iterator>         // std::(begin, end)
 
-$alias_cppx_ns( utf8 );
+$alias_cppx_namespaces( utf8 );
 $use_cppx( Byte, utf8::n_bytes_for, P_, Raw_array_of_, Size );
 
 #include <cppx-core/text/unicode/assert-utf8-execution-character-set.hpp>   //!

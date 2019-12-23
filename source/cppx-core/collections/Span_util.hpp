@@ -10,17 +10,12 @@
 #include <stack>        // std::stack
 #include <utility>      // std::(declval, move)
 
-namespace cppx
+namespace cppx::_
 {
     CPPX_USE_STD(
         begin, declval, distance, end, make_reverse_iterator, move, next, prev,
         queue, reverse_iterator, stack
         );
-
-    template< class Iterator >
-    inline auto n_items_of( const Span_<Iterator>& range )
-        -> Size
-    { return distance( range.begin(), range.end() ); }
 
     template< class Container >
     inline auto all_of( Container&& c )
@@ -110,4 +105,21 @@ namespace cppx
         -> Span_<reverse_iterator<decltype( begin( c ) )>>
     { return reverse_span_of( CPPX_ITEMS_OF( c ) ); }
 
+}  // namespace cppx::_
+
+// Exporting namespaces:
+namespace cppx {
+    namespace spans {
+        CPPX_USE_FROM_NAMESPACE( _,
+            all_but_first_n_of,
+            all_but_first_of,
+            all_but_last_n_of,
+            all_but_last_of,
+            all_of,
+            reverse_span_of,
+            reversed,
+            span_of_literal
+        );
+    }
+    using namespace spans;
 }  // namespace cppx
