@@ -4,7 +4,7 @@
 #include <cppx-core-language/syntax/declarations.hpp>           // CPPX_USE_STD
 #include <cppx-core-language/tmp/type-traits.hpp>               // cppx::(is_signed_ ...)
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
-#include <cppx-core-language/tmp/type-modifiers.hpp>            // cppx::(Unref_ ...)
+#include <cppx-core-language/tmp/type-modifiers.hpp>            // cppx::(As_referent_ ...)
 #include <cppx-core/meta-template/Type_list_.hpp>               // cppx::(contains_type_, Joined_, Type_list_)
 
 #include <iterator>         // std::begin
@@ -18,7 +18,7 @@ namespace cppx
     using Item_for_iterator_            = typename std::iterator_traits<Iterator>::value_type;
 
     template< class Collection >
-    using Item_for_collection_          = Unref_<decltype( *begin( declval<Collection&>() ) )>;
+    using Item_for_collection_          = As_referent_<decltype( *begin( declval<Collection&>() ) )>;
 
     template< class Collection >
     using Iterator_for_                 = decltype( begin( declval<Collection&>() ) );

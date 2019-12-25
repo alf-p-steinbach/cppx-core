@@ -25,7 +25,7 @@ namespace cppx
 
     public:
         using   Item        = decltype( *std::begin( declval<Collection&>() ) );    // Usually a ref.
-        using   Item_value  = Unref_<Item>;
+        using   Item_value  = As_referent_<Item>;
 
         struct Item_and_index
         {

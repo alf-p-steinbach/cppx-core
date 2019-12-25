@@ -2,7 +2,7 @@
 #include <cppx-core-language/system-dependent/Byte.hpp>         // cppx::Byte
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
 #include <cppx-core-language/tmp/type-traits.hpp>               // cppx::is_integral_
-#include <cppx-core-language/tmp/type-modifiers.hpp>            // cppx::Unsigned_
+#include <cppx-core-language/tmp/type-modifiers.hpp>            // cppx::As_unsigned_
 
 #include <c/ctype.hpp>          // isspace, iswspace
 
@@ -16,7 +16,7 @@ namespace cppx::cstdlib
     {
         static_assert( is_integral_<Code> );
         if constexpr( sizeof( Code ) > 1 ) {
-            if( Unsigned_<Code>( ch ) > max_byte ) {
+            if( As_unsigned_<Code>( ch ) > max_byte ) {
                 return false;
             }
         }
@@ -29,7 +29,7 @@ namespace cppx::cstdlib
     {
         static_assert( is_integral_<Code> );
         if constexpr( sizeof( Code ) > sizeof( wchar_t ) ) {
-            if( Unsigned_<Code>( ch ) > wchar_t( -1 ) ) {
+            if( As_unsigned_<Code>( ch ) > wchar_t( -1 ) ) {
                 return false;
             }
         }
