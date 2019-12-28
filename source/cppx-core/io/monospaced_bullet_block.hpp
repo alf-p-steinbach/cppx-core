@@ -15,7 +15,7 @@ namespace cppx
         if( is_empty( s ) ) { return ""; }
         const auto indent = spaces( indent_size );
 
-        string formatted = at_left( indent_size, bullet );
+        string formatted = at_left_in( indent_size, bullet );
         char prev_ch = '\0';
         for( const char ch : s )
         {

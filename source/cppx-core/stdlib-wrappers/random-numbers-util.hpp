@@ -1,7 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <algorithm>                                                // std::max
-#include <cppx-core-language/bit-level/bits_per_.hpp>               // cppx::(bits_per_, Bitness)
+#include <cppx-core-language/bit-level/bits_per_.hpp>               // cppx::bits_per
+#include <cppx-core-language/bit-level/Bit_width.hpp>               // cppx::Bit_width
 #include <cppx-core-language/calc/integer-operations.hpp>           // cppx::div_up
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_...
 #include <cppx-core-language/tmp/type-traits.hpp>                   // cppx:(is_same_type_, is_unsigned_, is_integral_)
@@ -29,7 +30,7 @@ namespace cppx::random
     }
 
     template<
-        Bitness::Enum bitness,
+        Bit_width::Enum bitness,
         class = Enable_if_<(bitness == 32 or bitness == 64)>
         >
     struct Scope_
@@ -161,5 +162,5 @@ namespace cppx::random
 }  // namespace cppx::random
 
 namespace cppx{
-    using Random = random::Scope_<Bitness::system>;
+    using Random = random::Scope_<Bit_width::system>;
 }  // namespace cppx

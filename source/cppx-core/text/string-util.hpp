@@ -3,11 +3,11 @@
 #include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
 #include <cppx-core-language/syntax/types/type-builders.hpp>        // cppx::P_
 #include <cppx-core/text/data/Symbol_strings.hpp>                   // cppx::best_effort::*
-#include <cppx-core/text/pointers-from-string_view.hpp>             // cppx::(p_first_of, p_beyond_of)
 #include <cppx-core/text/unicode/utf8-iteration.hpp>                // cppx::utf8::(n_code_points_in, *)
 
-#include <cppx-core-language/syntax/string-expressions/string-operators.hpp>    // cppx::spaces
-#include <cppx-core-language/text/ascii-character-util.hpp>                     // cppx::*
+#include <cppx-core-language/syntax/string-expressions.hpp>         // cppx::spaces
+#include <cppx-core-language/text/ascii-character-util.hpp>         // cppx::*
+#include <cppx-core-language/text/pointers-from-string_view.hpp>    // cppx::(p_first_of, p_beyond_of)
 
 #include <iterator>             // std::next
 #include <utility>              // std::move
@@ -22,19 +22,19 @@ namespace cppx
     // simpleton approach of counting code points for character positions is usually Good
     // Enough™, and it plays nicely with console windows that do not compose characters.
 
-    inline auto at_left( const int width, const string_view& s )
+    inline auto at_left_in( const int width, const string_view& s )
         -> string
     { return string( s ) + spaces( width - int( utf8::n_code_points_in( s ) ) ); }
 
-    inline auto at_left( const int width, const char ch )
+    inline auto at_left_in( const int width, const char ch )
         -> string
     { return ch + spaces( width - 1 ); }
 
-    inline auto at_right( const int width, const string_view& s )
+    inline auto at_right_in( const int width, const string_view& s )
         -> string
     { return spaces( width - int( utf8::n_code_points_in( s ) ) ) + string( s ); }
 
-    inline auto at_right( const int width, const char ch )
+    inline auto at_right_in( const int width, const char ch )
         -> string
     { return spaces( width - 1 ) + ch; }
 

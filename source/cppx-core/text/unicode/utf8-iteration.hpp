@@ -10,7 +10,7 @@
 #include <cppx-core-language/system-dependent/Byte.hpp>         // cppx::Byte
 #include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::Size
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
-#include <cppx-core/text/pointers-from-string_view.hpp>         // cppx::(p_first_of, p_beyond_of)
+#include <cppx-core-language/text/pointers-from-string_view.hpp>// cppx::(p_first_of, p_beyond_of)
 
 #include <string_view>          // std::(string_view )
 

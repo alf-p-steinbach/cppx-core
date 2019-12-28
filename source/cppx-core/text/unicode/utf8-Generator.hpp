@@ -8,7 +8,7 @@
 #include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
 
 #include <cppx-core/collections/Span_util.hpp>                      // cppx::Span_
-#include <cppx-core/text/pointers-from-string_view.hpp>             // cppx::(p_first_of, p_beyond_of)
+#include <cppx-core-language/text/pointers-from-string_view.hpp>    // cppx::(p_first_of, p_beyond_of)
 #include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
 
 #include <c/assert.hpp>         // assert
