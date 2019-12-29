@@ -5,9 +5,9 @@
 
 namespace cppx
 {
-    namespace utf8
+    namespace utf8_symbols
     {
-        struct Symbol_strings
+        struct Strings
         {
             static constexpr auto& left_quote_str      = "“";
             static constexpr auto& right_quote_str     = "”";
@@ -17,9 +17,9 @@ namespace cppx
         };
     }
 
-    namespace ascii
+    namespace ascii_symbols
     {
-        struct Symbol_strings
+        struct Strings
         {
             static constexpr auto& left_quote_str      = "\"";
             static constexpr auto& right_quote_str     = "\"";
@@ -32,7 +32,7 @@ namespace cppx
     namespace best_effort
     {
         using Symbol_strings = Type_choice_<
-            !!use_ascii_substitutes, ascii::Symbol_strings, utf8::Symbol_strings
+            !!use_ascii_substitutes, ascii_symbols::Strings, utf8_symbols::Strings
             >;
 
         inline constexpr auto& left_quote_str   = Symbol_strings::left_quote_str;
