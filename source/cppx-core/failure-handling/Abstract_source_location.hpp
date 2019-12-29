@@ -7,7 +7,7 @@
 // <url: https://en.cppreference.com/w/cpp/experimental/source_location>
 
 
-#include <cppx-core/collections/is_empty.hpp>               // cppx::is_empty
+#include <cppx-core-language/syntax/collection-util.hpp>    // cppx::is_empty
 #include <cppx-core-language/syntax/declarations.hpp>       // CPPX_WITH
 #include <cppx-core/text/data/Symbol_strings.hpp>           // cppx::best_effort::*
 

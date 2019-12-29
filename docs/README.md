@@ -192,7 +192,7 @@ On Sunday 28ᵗʰ April 2019 *cppx-core* provided the following headers (the Dox
 └───text
     │   all.hpp
     │   basic-string-building.hpp
-    │   pointers-from-string_view.hpp
+    │   string_view-util.hpp
     │   string-util.hpp
     │
     ├───ascii

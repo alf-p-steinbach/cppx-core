@@ -3,8 +3,8 @@
 // This class is used by the CPPX_FAIL macro. It can't use things that use CPPX_FAIL.
 // Line and character position indexing is 1-based.
 
-#include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
 #include <cppx-core/failure-handling/Abstract_source_location.hpp>  // cppx::Abstract_source_location
+#include <cppx-core-language/syntax/collection-util.hpp>            // cppx::is_empty
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
 #include <cppx-core-language/tmp/Enable_if_.hpp>                    // cppx::Enable_if_
 

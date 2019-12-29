@@ -1,4 +1,4 @@
-#include <cppx-core/collections/is_empty.hpp>
+#include <cppx-core-language/syntax/collection-util.hpp>
 
 #include <string>
 

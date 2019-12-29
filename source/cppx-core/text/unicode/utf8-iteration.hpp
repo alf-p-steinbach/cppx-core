@@ -3,14 +3,14 @@
 // UTF-8 code point iteration.
 // For the classifiers see <url: https://en.wikipedia.org/wiki/UTF-8#Codepage_layout>.
 
-#include <cppx-core/collections/is_empty.hpp>                   // cppx::is_empty
-#include <cppx-core-language/syntax/types/Sequence_.hpp>        // cppx::zero_to
 #include <cppx-core/failure-handling/macro-fail.hpp>            // cppx::(hopefully, fail) CPPX_FAIL
+#include <cppx-core-language/syntax/collection-util.hpp>        // cppx::is_empty
+#include <cppx-core-language/syntax/types/Sequence_.hpp>        // cppx::zero_to
 #include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx::(P_)
 #include <cppx-core-language/system-dependent/Byte.hpp>         // cppx::Byte
 #include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::Size
 #include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
-#include <cppx-core-language/text/pointers-from-string_view.hpp>// cppx::(p_first_of, p_beyond_of)
+#include <cppx-core-language/text/string_view-util.hpp>// cppx::(ptr_to_first_in, ptr_to_beyond)
 
 #include <string_view>          // std::(string_view )
 
@@ -113,12 +113,12 @@ namespace cppx::utf8
     {
         if( distance >= 0 )
         {
-            const auto p_beyond = p_beyond_of( range );
+            const auto p_beyond = ptr_to_beyond( range );
             for( auto _ : zero_to( distance ) ) { (void)_; move_to_next( p, p_beyond ); }
         }
         else
         {
-            const auto p_first = p_first_of( range );
+            const auto p_first = ptr_to_first_in( range );
             for( auto _ : zero_to( -distance ) )
             {
                 (void)_;
@@ -168,7 +168,7 @@ namespace cppx::utf8
         }
 
         Size n = 0;
-        for(    auto p = p_first_of( view ), beyond = p_beyond_of( view );
+        for(    auto p = ptr_to_first_in( view ), beyond = ptr_to_beyond( view );
                 p != beyond;
                 move_to_next( p, beyond ) )
         { ++n; }

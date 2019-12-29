@@ -1,13 +1,13 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core/collections/Span_util.hpp>                      // cppx::(Span_, all_but_first_of)
-#include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
-#include <cppx-core-language/syntax/types/type-builders.hpp>        // cppx::P_
-#include <cppx-core/text/data/Symbol_strings.hpp>                   // cppx::best_effort::*
-#include <cppx-core/text/unicode/utf8-iteration.hpp>                // cppx::utf8::(n_code_points_in, *)
+#include <cppx-core/collections/Span_util.hpp>                  // cppx::(Span_, all_but_first_of)
+#include <cppx-core/text/data/Symbol_strings.hpp>               // cppx::best_effort::*
+#include <cppx-core/text/unicode/utf8-iteration.hpp>            // cppx::utf8::(n_code_points_in, *)
 
-#include <cppx-core-language/syntax/string-expressions.hpp>         // cppx::spaces
-#include <cppx-core-language/text/ascii-character-util.hpp>         // cppx::*
-#include <cppx-core-language/text/pointers-from-string_view.hpp>    // cppx::(p_first_of, p_beyond_of)
+#include <cppx-core-language/syntax/collection-util.hpp>        // cppx::is_empty
+#include <cppx-core-language/syntax/string-expressions.hpp>     // cppx::spaces
+#include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx::P_
+#include <cppx-core-language/text/ascii-character-util.hpp>     // cppx::*
+#include <cppx-core-language/text/string_view-util.hpp>         // cppx::(ptr_to_first_in, ptr_to_beyond)
 
 #include <iterator>             // std::next
 #include <utility>              // std::move
@@ -54,44 +54,6 @@ namespace cppx
     inline auto quoted( const char ch )
         -> string
     { return quoted( string_view( &ch, 1 ) ); }
-
-    inline auto trimmed( const string_view& sv )
-        -> string_view
-    {
-        if( is_empty( sv ) )
-        {
-            return sv;
-        }
-        P_<const char> p_first      = p_first_of( sv );
-        P_<const char> p_beyond     = p_beyond_of( sv );
-        while( p_first != p_beyond and ascii::is_whitespace( *p_first ) )
-        {
-            ++p_first;
-        }
-        while( p_beyond != p_first and ascii::is_whitespace( *p_beyond ) )
-        {
-            --p_beyond;
-        }
-        return string_view( p_first, p_beyond - p_first );
-    }
-
-    inline auto trimmed( const string& s )
-        -> string
-    { return string( trimmed( string_view( s ) ) ); }
-
-    inline auto trimmed( string&& s )
-        -> string
-    {
-        const string_view t = trimmed( string_view( s ) );
-        if( t.length() == s.length() )
-        {
-            return move( s );
-        }
-        else
-        {
-            return string( t );
-        }
-    }
 
     inline auto split() -> void; // TODO
 

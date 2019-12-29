@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/collections/is_empty.hpp>                       // cppx::is_empty
+#include <cppx-core-language/syntax/collection-util.hpp>            // cppx::is_empty
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
 #include <cppx-core-language/types/C_str_.hpp>                      // cppx::C_str
 
