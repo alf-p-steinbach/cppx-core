@@ -1,5 +1,5 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core-language/syntax/macro-items_of.hpp>             // CPPX_ITEMS_OF
+#include <cppx-core-language/syntax/collection-util.hpp>            // CPPX_ITEMS_OF
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
 #include <cppx-core-language/syntax/types/type-builders.hpp>        // cppx::(P_)
 #include <cppx-core-language/system-dependent/Byte.hpp>             // cppx::Byte
