@@ -1,11 +1,11 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/failure-handling/macro-fail.hpp>            // CPPX_FAIL_
-#include <cppx-core-language/syntax/declarations.hpp>           // CPPX_USE_STD
-#include <cppx-core-language/syntax/types/Sequence_.hpp>        // cppx::(is_in, up_to_)
-#include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::(Size, Index)
-#include <cppx-core-language/syntax/string-expressions.hpp>     // cppx::operator<<
-#include <cppx-core/meta-type/collection-traits.hpp>            // cppx::Item_for_collection_
+#include <cppx-core/failure-handling/macro-fail.hpp>                // CPPX_FAIL_
+#include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
+#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>  // cppx::(is_in, up_to_)
+#include <cppx-core-language/system-dependent/size-types.hpp>       // cppx::(Size, Index)
+#include <cppx-core-language/syntax/string-expressions.hpp>         // cppx::operator<<
+#include <cppx-core/meta-type/collection-traits.hpp>                // cppx::Item_for_collection_
 
 #include <vector>       // std::vector
 #include <stdexcept>    // std::out_of_range

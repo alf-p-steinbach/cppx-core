@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core-language/syntax/declarations/macro-define_tag.hpp>  // CPPX_DEFINE_TAG
-#include <cppx-core-language/syntax/types/Sequence_.hpp>                // cppx::Sequence_
+#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>      // cppx::Sequence_
 #include <cppx-core-language/types/Truth.hpp>                           // cppx::Truth
 
 #include <initializer_list>     // std::initializer_list

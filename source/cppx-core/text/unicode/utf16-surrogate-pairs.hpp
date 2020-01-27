@@ -1,9 +1,9 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core-language/syntax/types/Sequence_.hpp>        // cppx::Sequence_
-#include <cppx-core-language/system-dependent/Byte.hpp>         // cppx::Byte
-#include <cppx-core-language/bit-level/bits_per_.hpp>           // cppx::magnitude_bits_per_
-#include <cppx-core-language/tmp/Enable_if_.hpp>                // cppx::Enable_if_
-#include <cppx-core/meta-type/collection-traits.hpp>            // cppx::Item_for_iterator_
+#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>      // cppx::Sequence_
+#include <cppx-core-language/system-dependent/Byte.hpp>                 // cppx::Byte
+#include <cppx-core-language/bit-level/bits_per_.hpp>                   // cppx::magnitude_bits_per_
+#include <cppx-core-language/tmp/Enable_if_.hpp>                        // cppx::Enable_if_
+#include <cppx-core/meta-type/collection-traits.hpp>                    // cppx::Item_for_iterator_
 
 #include <c/assert.hpp>         // assert
 #include <c/stdint.hpp>         // uint32_t

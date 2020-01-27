@@ -3,7 +3,7 @@
 // Mainly for use with range based `for` loops.
 
 #include <cppx-core-language/syntax/collection-util.hpp>        // cppx::is_empty
-#include <cppx-core-language/syntax/types/Span_.hpp>            // cppx::Span_
+#include <cppx-core-language/syntax/collection-util/Span_.hpp>  // cppx::Span_
 
 #include <iterator>     // std::(begin, distance, end, prev, next, make_reverse_iterator, reverse_iterator )
 #include <queue>        // std::queue

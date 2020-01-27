@@ -11,5 +11,5 @@
 #include <cppx-core/collections/Span_util.hpp>
 
 #include <cppx-core-language/syntax/collection-util.hpp>
-#include <cppx-core-language/syntax/types/Sequence_.hpp>      // Convenience include.
+#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>      // Convenience include.
 #include <cppx-core-language/system-dependent/Value_bytes_.hpp>
