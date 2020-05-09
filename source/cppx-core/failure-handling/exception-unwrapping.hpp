@@ -2,7 +2,7 @@
 
 #include <cppx-core-language/syntax/collection-util.hpp>            // cppx::is_empty
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
-#include <cppx-core-language/types/C_str_.hpp>                      // cppx::C_str
+#include <cppx-core-language/text/C_str_.hpp>                       // cppx::C_str
 
 #include <exception>        // std::(exception, rethrow_exception)
 #include <functional>       // std::function

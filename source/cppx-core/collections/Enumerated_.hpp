@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/collections/dynamic-size-checking.hpp>              // cppx::n_items_of
-#include <cppx-core-language/syntax/types/type-builders.hpp>            // cppx::P_
+#include <cppx-core-language/syntax/type-builders.hpp>                  // cppx::P_
 #include <cppx-core-language/syntax/declarations/macro-define_tag.hpp>  // CPPX_DEFINE_TAG
 #include <cppx-core-language/mix-in/Adapt_as_forward_iterator_.hpp>     // cppx::mix_in::Adapt_as_forward_iterator_
 #include <cppx-core-language/types/Truth.hpp>                           // cppx::Truth

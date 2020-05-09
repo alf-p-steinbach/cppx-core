@@ -5,7 +5,7 @@
 
 #include <cppx-core-language/syntax/collection-util.hpp>        // cppx::is_empty
 #include <cppx-core-language/syntax/string-expressions.hpp>     // cppx::spaces
-#include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx::P_
+#include <cppx-core-language/syntax/type-builders.hpp>          // cppx::P_
 #include <cppx-core-language/text/ascii-character-util.hpp>     // cppx::*
 #include <cppx-core-language/text/string_view-util.hpp>         // cppx::(ptr_to_first_in, ptr_to_beyond)
 

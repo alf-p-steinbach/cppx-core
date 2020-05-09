@@ -1,9 +1,9 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/syntax/declarations.hpp>           // CPPX_USE_STD
-#include <cppx-core-language/syntax/types/type-builders.hpp>    // cppx::Raw_array_of_
-#include <cppx-core-language/system-dependent/size-types.hpp>   // cppx::Size
-#include <cppx-core-language/types/Truth.hpp>                   // cppx::Truth
+#include <cppx-core-language/syntax/declarations.hpp>                   // CPPX_USE_STD
+#include <cppx-core-language/syntax/type-builders.hpp>                  // cppx::Raw_array_of_
+#include <cppx-core-language/types/system-dependent/size-types.hpp>     // cppx::Size
+#include <cppx-core-language/types/Truth.hpp>                           // cppx::Truth
 
 #include <algorithm>            // std::(binary_search, find)
 #include <bitset>               // std::bitset
@@ -14,7 +14,7 @@
 namespace cppx
 {
     CPPX_USE_STD(
-        basic_string_view, begin, binary_search, bitset, end, find, initializer_list
+        begin, end, binary_search, find, basic_string_view, bitset, initializer_list
         );
 
     template< class Char >
@@ -46,19 +46,19 @@ namespace cppx
         -> Truth
     { return find( begin, end, v ) != end; }
 
-    template< class Key, Size n, class Arg >
-    auto is_in( Raw_array_of_<n, const Key>& a, const Arg& v )
-        -> Truth
-    { return is_in_range( begin( a ), end( a ), v ); }
-
     template< class It, class Arg >
     auto is_in_sorted_span( const It begin, const It end, const Arg& v )
         -> Truth
     { return binary_search( begin, end, v ); }
 
     template< class Key, Size n, class Arg >
+    auto is_in( Raw_array_of_<n, const Key>& a, const Arg& v )
+        -> Truth
+    { return is_in_span( begin( a ), end( a ), v ); }
+
+    template< class Key, Size n, class Arg >
     auto is_in_sorted( Raw_array_of_<n, const Key>& a, const Arg& v )
         -> Truth
-    { return is_in_sorted_range( begin( a ), end( a ), v ); }
+    { return is_in_sorted_span( begin( a ), end( a ), v ); }
 
 }  // namespace cppx

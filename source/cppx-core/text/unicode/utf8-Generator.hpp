@@ -1,15 +1,15 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
-#include <cppx-core-language/syntax/collection-util.hpp>            // CPPX_ITEMS_OF
-#include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
-#include <cppx-core-language/syntax/types/type-builders.hpp>        // cppx::(P_)
-#include <cppx-core-language/system-dependent/Byte.hpp>             // cppx::Byte
-#include <cppx-core-language/system-dependent/size-types.hpp>       // cppx::Size
-#include <cppx-core-language/text/ascii-character-names.hpp>        // cppx::ascii::*
-#include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
+#include <cppx-core-language/syntax/collection-util.hpp>                // CPPX_ITEMS_OF
+#include <cppx-core-language/syntax/declarations.hpp>                   // CPPX_USE_STD
+#include <cppx-core-language/syntax/type-builders.hpp>                  // cppx::(P_)
+#include <cppx-core-language/types/system-dependent/Byte.hpp>           // cppx::Byte
+#include <cppx-core-language/types/system-dependent/size-types.hpp>     // cppx::Size
+#include <cppx-core-language/text/ascii-character-names.hpp>            // cppx::ascii::*
+#include <cppx-core-language/types/Truth.hpp>                           // cppx::Truth
 
-#include <cppx-core/collections/Span_util.hpp>                      // cppx::Span_
-#include <cppx-core-language/text/string_view-util.hpp>             // cppx::(ptr_to_first_in, ptr_to_beyond)
-#include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>         // cppx::utf16::*
+#include <cppx-core/collections/Span_util.hpp>                          // cppx::Span_
+#include <cppx-core-language/text/string_view-util.hpp>                 // cppx::(ptr_to_first_in, ptr_to_beyond)
+#include <cppx-core/text/unicode/utf16-surrogate-pairs.hpp>             // cppx::utf16::*
 
 #include <c/assert.hpp>         // assert
 #include <iterator>             // std::(next, iterator_traits)

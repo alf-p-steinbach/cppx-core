@@ -1,6 +1,6 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 #include <cppx-core-language/syntax/collection-util/Sequence_.hpp>      // cppx::Sequence_
-#include <cppx-core-language/system-dependent/Byte.hpp>                 // cppx::Byte
+#include <cppx-core-language/types/system-dependent/Byte.hpp>           // cppx::Byte
 #include <cppx-core-language/bit-level/bits_per_.hpp>                   // cppx::magnitude_bits_per_
 #include <cppx-core-language/tmp/Enable_if_.hpp>                        // cppx::Enable_if_
 #include <cppx-core/meta-type/collection-traits.hpp>                    // cppx::Item_for_iterator_

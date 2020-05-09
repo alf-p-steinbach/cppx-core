@@ -3,14 +3,14 @@
 // UTF-8 code point iteration.
 // For the classifiers see <url: https://en.wikipedia.org/wiki/UTF-8#Codepage_layout>.
 
-#include <cppx-core/failure-handling/macro-fail.hpp>                // cppx::(hopefully, fail) CPPX_FAIL
-#include <cppx-core-language/syntax/collection-util.hpp>            // cppx::is_empty
-#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>  // cppx::zero_to
-#include <cppx-core-language/syntax/types/type-builders.hpp>        // cppx::(P_)
-#include <cppx-core-language/system-dependent/Byte.hpp>             // cppx::Byte
-#include <cppx-core-language/system-dependent/size-types.hpp>       // cppx::Size
-#include <cppx-core-language/types/Truth.hpp>                       // cppx::Truth
-#include <cppx-core-language/text/string_view-util.hpp>             // cppx::(ptr_to_first_in, ptr_to_beyond)
+#include <cppx-core-language/syntax/flow-control/exception-throwing.hpp>    // cppx::(hopefully, fail) CPPX_FAIL
+#include <cppx-core-language/syntax/collection-util.hpp>                    // cppx::is_empty
+#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>          // cppx::zero_to
+#include <cppx-core-language/syntax/type-builders.hpp>                      // cppx::(P_)
+#include <cppx-core-language/types/system-dependent/Byte.hpp>               // cppx::Byte
+#include <cppx-core-language/types/system-dependent/size-types.hpp>         // cppx::Size
+#include <cppx-core-language/types/Truth.hpp>                               // cppx::Truth
+#include <cppx-core-language/text/string_view-util.hpp>                     // cppx::(ptr_to_first_in, ptr_to_beyond)
 
 #include <string_view>          // std::(string_view )
 

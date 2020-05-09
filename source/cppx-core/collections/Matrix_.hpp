@@ -1,11 +1,11 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core/failure-handling/macro-fail.hpp>                // CPPX_FAIL_
-#include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
-#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>  // cppx::(is_in, up_to_)
-#include <cppx-core-language/system-dependent/size-types.hpp>       // cppx::(Size, Index)
-#include <cppx-core-language/syntax/string-expressions.hpp>         // cppx::operator<<
-#include <cppx-core/meta-type/collection-traits.hpp>                // cppx::Item_for_collection_
+#include <cppx-core-language/syntax/flow-control/exception-throwing.hpp>    // CPPX_FAIL_
+#include <cppx-core-language/syntax/declarations.hpp>                       // CPPX_USE_STD
+#include <cppx-core-language/syntax/collection-util/Sequence_.hpp>          // cppx::(is_in, up_to_)
+#include <cppx-core-language/types/system-dependent/size-types.hpp>         // cppx::(Size, Index)
+#include <cppx-core-language/syntax/string-expressions.hpp>                 // cppx::operator<<
+#include <cppx-core/meta-type/collection-traits.hpp>                        // cppx::Item_for_collection_
 
 #include <vector>       // std::vector
 #include <stdexcept>    // std::out_of_range
@@ -109,9 +109,8 @@ namespace cppx
         static auto impl_item_at_checked( const Index col, const Index row, Self& self )
             -> Item_for_collection_<Self>&
         {
-            hopefully(
-                is_in( zero_to( self.m_width ), col ) and
-                is_in( zero_to( self.m_height ), row )
+            hopefully(  is_in( zero_to( self.m_width ), col ) and
+                        is_in( zero_to( self.m_height ), row )
                 ) or CPPX_FAIL_( out_of_range,
                     "Item position ("s << col << "," << row << ") is out of range"
             );
