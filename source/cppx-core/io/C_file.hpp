@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
-#include <cppx-core-language/syntax/flow-control/exception-throwing.hpp>    // CPPX_FAIL
 #include <cppx-core-language/syntax/declarations.hpp>                       // CPPX_DEFINE_TAG, CPPX_USE_STD
+#include <cppx-core-language/syntax/flow-control/x-throwing.hpp>            // CPPX_FAIL
 #include <cppx-core-language/syntax/type-builders.hpp>                      // cppx::Type_
 #include <cppx-core-language/tmp/Enable_if_.hpp>                            // cppx::Enable_if_
 #include <cppx-core-language/tmp/type-traits.hpp>                           // cppx::is_same_type_

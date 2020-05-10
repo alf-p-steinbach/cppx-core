@@ -1,8 +1,8 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core/collections/Span_util.hpp>                              // cppx::Span_
-#include <cppx-core-language/syntax/flow-control/exception-throwing.hpp>    // CPPX_FAIL, std::exception
 #include <cppx-core-language/syntax/declarations.hpp>                       // CPPX_USE_STD
+#include <cppx-core-language/syntax/flow-control/x-throwing.hpp>            // CPPX_FAIL, std::exception
 #include <cppx-core-language/types/system-dependent/size-types.hpp>         // cppx::Size
 #include <cppx-core-language/tmp/Enable_if_.hpp>                            // cppx::Enable_if_
 #include <cppx-core/parameters/In_out_ref_.hpp>                             // cppx::In_out_ref_, std::ref
