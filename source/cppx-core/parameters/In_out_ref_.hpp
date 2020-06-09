@@ -2,7 +2,7 @@
 
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_STD
 #include <cppx-core-language/tmp/Enable_if_.hpp>                    // cppx::Enable_if_
-#include <cppx-core-language/tmp/type-traits.hpp>                   // cppx::is_const_
+#include <cppx-core-language/tmp/type-checkers.hpp>                 // cppx::is_const_
 
 #include <functional>   // std::(ref, reference_wrapper)
 

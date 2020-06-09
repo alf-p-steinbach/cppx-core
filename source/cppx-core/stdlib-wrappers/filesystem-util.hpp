@@ -1,7 +1,7 @@
 ﻿#pragma once    // Source encoding: UTF-8 with BOM (π is a lowercase Greek "pi").
 
 #include <cppx-core-language/syntax/declarations.hpp>           // CPPX_USE_STD, CPPX_WITH
-#include <cppx-core-language/tmp/type-traits.hpp>               // cppx::is_same_type_
+#include <cppx-core-language/tmp/type-checkers.hpp>             // cppx::is_same_type_
 
 #include <filesystem>       // std::filesystem
 #include <string>           // std::(string, wstring)

@@ -5,7 +5,7 @@
 #include <cppx-core-language/bit-level/Bit_width.hpp>               // cppx::Bit_width
 #include <cppx-core-language/calc/integer-operations.hpp>           // cppx::div_up
 #include <cppx-core-language/syntax/declarations.hpp>               // CPPX_USE_...
-#include <cppx-core-language/tmp/type-traits.hpp>                   // cppx:(is_same_type_, is_unsigned_, is_integral_)
+#include <cppx-core-language/tmp/type-checkers.hpp>                 // cppx:(is_same_type_, is_unsigned_, is_integral_)
 #include <cppx-core-language/tmp/Enable_if_.hpp>                    // cppx::Enable_if_
 #include <cppx-core-language/tmp/Type_choice_.hpp>                  // cppx::Type_choice_
 
